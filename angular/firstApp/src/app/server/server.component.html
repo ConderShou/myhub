@@ -1,0 +1,50 @@
+<!-- 
+		====String Interpolation=====
+
+		You can write a TypeScript expression within the {{}}
+			NOTE: these are variables/properties within the CLASS
+
+			Any expression which can be resolved to a string is valid for string interpolation - methods, variables, etc...
+				NOTE: NUMBERS CAN BE CONVERTED INTO STRINGS - so 'serverID' works!
+
+			This means you can hardcode strings with the {{}} symbols (but it'd obviously be unnecessary to do something like that)
+
+			HOWEVER, you cannot write multiline expressions in here or block expressions. 'if..then' or 'for' structure are therefore not valid. 
+
+			Ternary expressions WOULD be valid
+
+			-->
+
+<!-- ngStyle: In [] because it needs some configuration in order to do something. Indicates we need to bind on some property on this directive.
+
+We are binding to the property of the directive. (?)
+	
+Expects a Javascript object.
+
+We define this in key, value pairs:
+	
+		Key = CSS style name
+		Value = value of CSS style
+
+NOTE: We can refer to the style name through '' (SINGLE quotation marks) or camel case
+		i.e. 'background-color' === backgroundColor
+
+-->
+
+<!-- ngClass: Allows us to dynamically add or remove CSS classes
+	Also takes in a JavaScript object, but note that this is different depending on the directive
+
+	Also defined in key-value pairs
+
+		Key:	CSS Class names
+		Value: Expression that says whether the class should be attached or not
+
+		You can of course outsource the value part of the pair if it is evaluated more extensiively than a single expression
+
+		(We've put in code so that elements with 'online' class will have white text)
+ -->
+
+<p [ngStyle]= "{backgroundColor: getColor()}"
+[ngClass]="{online: serverStatus === 'online'}">
+{{ 'Server' }} with ID {{ serverID }} is {{ getServerStatus() }}
+</p>

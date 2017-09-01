@@ -1,0 +1,99 @@
+ <div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <ul class="nav nav-tabs">
+
+<!-- 
+      Changing the 'href' means that the application is RESTARTED at each selection
+
+      That's not good.
+-->
+
+     <!--    <li role="presentation" class="active"><a href="/">Home</a></li>
+        <li role="presentation"><a href="/servers">Servers</a></li>
+        <li role="presentation"><a href="/users">Users</a></li> -->
+
+  <!-- We use routerLink instead. -->
+
+<!-- RouterLinkActive
+
+routerLinkActive="active" - Attaches the 'active' CSS class when route is seleted.
+
+Can input any class you wish to attach 
+
+ -->
+
+<!--         <li role="presentation" class="active"><a routerLink="/">Home</a></li> -->
+
+<!-- 
+
+In bootstrap. attaching the routerlinkactive to 'a' doesnt do anything. 
+
+Attach routerLinkActive to either 'li' or 'a', depending on what styling package you are using.
+-->
+
+<!-- exact: true -->
+
+<!-- HOWEVER: It sets all the elements 'active' whose path your CURRENT PATH contains
+
+  I.E. ALL the paths right now contain Home's path - localhost:4200
+
+  Setting 'exact' to 'true' ensures that the element is only active if the EXACT path is selected
+ -->
+
+        <li role="presentation" 
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{exact: true }">
+          <a routerLink="/">Home</a>
+        </li>
+
+        <li role="presentation" 
+        routerLinkActive="active">
+          <a routerLink="/servers">Servers</a>
+        </li>
+
+        <!-- NOTE: We can also property bind to routerLink
+
+        We specify each part of the URL in the array. This allows us to construct complex paths easily.
+
+        WE DO NOT ADD A SLASH AFTER THE FIRST ELEMENT (the first slash is for creating the absolute path)
+
+        [routerLink] = ['/users', 'something']
+
+            => localhost:4200/users/something
+
+        -->
+
+        <li role="presentation" 
+        routerLinkActive="active">
+          <a [routerLink] = "['/users']">Users</a>
+        </li> 
+ 
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+
+    <!-- Router Outlet
+
+    This DIRECTIVE marks the place where we load the currently selected route in the App Component -->
+      <router-outlet></router-outlet>
+
+    </div>
+  </div>
+
+  <!-- We get rid of all this - We'll load this stuff through the router outlet as separate 'pages' -->
+
+ <!--  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <app-users></app-users>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <app-servers></app-servers>
+    </div>
+  </div> -->
+
+</div>

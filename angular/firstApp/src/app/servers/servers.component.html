@@ -1,0 +1,125 @@
+<!--We can use component selectors in any other template in any other component-->
+
+<!-- 
+===Property Binding===
+
+We can bind the property 'disabled' (something from normal HTML/bootstrap), so that we can trigger it in our TypeScript file 
+
+	NOTE: We are binding to the property of 'disabled', so we can SET IT to whatever this property reads to set the property
+		i.e. disabled is a True or False (boolean) property, so we set it equal to a variable that returns either a True or False
+
+	NOTE: Although it is in quotation marks, 'allowNewServer' is treated as a boolean variable with the '!'
+	i.e. Set disabled to the Opposite Boolean Value of 'allowNewServer'. When 'allowNewServer' is False, we set 'disabled' to True, and therefore DISABLE THE BUTTON
+	
+	You can also call methods in property binding to evaluate to the appropriate type of value.
+-->
+
+<!-- In javascript, you use 'onClick', but we wont use that for Angular
+
+			We can bind to the same 'onClick' property but just saing 'click' withtout the 'on' portion. 
+
+			This means you should be familiar with what properties in the HTML you can bind to 
+
+			 IMPORTANT: console.log() the HTML element you're interested in to see which properties/events it offers - Just google it. 
+
+			'onCreateServer()' will now be executed whenever we click the button.
+
+			The expression in the parentheses will be run, when the event occurs. Technically you can put code in between the quotation marks as well. But that's not recommended. 
+
+			The MDN (Mozilla Developer Network) offers nice lists of all properties and events of the element you're interested in. Googling for YOUR_ELEMENT properties  or YOUR_ELEMENT events  should yield nice results
+			-->
+
+<label>Server Name</label>
+
+ <!-- '$event' is  a reserved key word you can use in the template when you're doing eventbinding 
+
+ 			'$event' holds the data that the event outputs after it is triggered.
+
+ 			EX: (click) will have its coordinates of where it was clicked in $event
+			
+			$event will pass the value of 'input' event data ANYWHERE within the quotation marks set to (input)
+
+			NOTE: 'target' - one of the outputted Event properties, refers to the target HTML from which this event was triggered
+ 			-->
+
+<!-- <input type="text" 
+			class = "form-control"
+			(input) = "onUpdateServerName($event)"> -->
+
+<!-- Two-way binding combines property and event binding 
+
+			In order to use 'ngModel' you must import the 'FormsModule' from @angular/forms. You need to add it to the imports[] array in the AppModule (this should be there by default in a CLI project)
+
+			Important: For Two-Way-Binding to work, you need to enable the ngModel  directive. This is done by adding the FormsModule  to the imports[]  array in the AppModule.
+
+		You then also need to add the import from @angular/forms  in the app.module.ts file:
+
+		import { FormsModule } from '@angular/forms';
+
+			NOTE: ngModel is SPECIFICALLY for HTML text input/forms
+
+
+			This will now trigger on the 'input' event and update the serverName automatically
+
+			It will ALSO update the value of the input if we change the serverName somewhere else	 
+
+			ASA, binds in both directions and reacts to changes to the variable/property it's binding with
+
+			IMPORTANT: IT'S NOT CALLING THE 'updateServerName' FUNCTION ANYMORE
+			It links to the TypeScript variable 'serverName' DIRECTLY
+			-->
+
+<input type="text" 
+			class = "form-control"
+			[(ngModel)] = "serverName">
+
+<!-- <p>{{ serverName }}</p> -->
+<!-- <p>{{ serverCreationStatus }}</p> -->
+
+<!-- The star is required because 'ngIf' is a STRUCTURAL DIRECTIVE. It changes the literal structure of the DOM by choosing to add or not add an element. 
+
+	The expressions set to 'ngIf' should be a boolean expression. Method, variable, an actual TypeScript statement, etc...
+
+	ngIf shows statement when the expression is True.
+
+	NOTE: ngIf DOES NOT HIDE the element. The element either EXISTS in the DOM or it's actually not. 
+-->
+
+<!-- We just added 'else noServer' as an else construction for 'ngIf'
+
+			NOTE: In this case, you can also use some form of '!serverCreated' to achieve similar means -->
+
+<!-- <p *ngIf="serverCreated; else noServer">Server was created, server name is {{ serverName }}</p> -->
+
+<p *ngIf="serverCreated">Server was created, server name is {{ serverName }}</p>
+<!-- 
+		Constructing an 'else' for the 'ngif'
+Think of the # as a marker for now. 
+			ng-template is a built-in component in Angular. 
+			Used to mark places in the DOM
+		 -->
+
+<!-- <ng-template #noServer>
+	<p>
+		No server was created!
+	</p>
+</ng-template> -->
+
+<button class="btn btn-primary" [disabled]="!allowNewServer" 
+(click) = "onCreateServer()">Add Server</button>
+
+<!-- ngFor is a structural directive, hence the * 
+Iterates through the 'servers' array in normal Javascript/python like fashion.
+
+NOTE: 'server' represents the CURRENT element in the 'servers' array 
+-->
+
+<app-server *ngFor="let server of servers"></app-server>
+
+<!--Showing one of the cases where property binding and string interpolation can both be used to display the value of 'allowNewServer'
+-->
+
+<!-- <p [innerText] = 'allowNewServer'></p>
+
+		 <p>{{ allowNewServer }}</p>
+-->
