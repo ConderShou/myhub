@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <ol>
+        <li>Add A button which says 'Display Details'</li>
+        <li>Add a paragraph with any content of your choice (e.g. 'Secret Password = tuna')</li>
+        <li>Toggle the displaying of that paragraph with the button created in the first step</li>
+        <li>Log all button clicks in an array and output that array below the secret paragraph (maybe log a timestamp or simply an incrementing number)</li>
+        <li>Starting at the 5th log item, give all future log items a blue background (via ngStyle) and white color (ngClass)</li>
+      </ol>
+      <hr>
+      <button class="btn btn-primary" (click) = "toggleP()">Display Details</button>
+      <app-p *ngIf="toggleParagraph"></app-p>
+
+      <!-- IMPORTANT: 'click' becomes your way of accessing the SPECIFIC element that is created at a certain iteration.  -->
+
+
+<!--     
+  '= index' (a reserved expression) gives access to the index of the current iteration in the array.
+
+  This means 'i' will be 0 for the first iteration, then 1, etc... 
+
+  Setting it to check >= 4 because array index starts at 0-->
+
+      <!-- <p *ngFor="let click of clicks" [ngStyle] = "{'background-color': colorFifth(click)}" [ngClass] = "{fifth: click >= 5}">{{ click }}</p> -->
+
+      <p *ngFor="let click of clicks; let i = index" [ngStyle] = "{'background-color': i >= 4 ? 'blue' : 'white'}" [ngClass] = "{fifth: i >= 4}">{{ click }}</p>
+      <p>
+    </div>
+  </div>
+</div>

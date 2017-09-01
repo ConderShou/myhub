@@ -1,0 +1,57 @@
+<div class="row">
+    <div class="col-xs-12">
+      <p>Add new Servers or blueprints!</p>
+      <label>Server Name</label>
+     <!--  <input type="text" class="form-control" [(ngModel)]="newServerName"> -->
+
+     <!-- ==Local Reference==
+
+     1. A local reference can be placed on ANY HTML element.
+     Name it by starting it with #
+
+     2.  #serverNameInput will hold a reference to the WHOLE HTML element, including its properties.
+
+    3. You can use them ANYWHERE in your template.
+      BUT ONLY in your template. 
+      NOT IN YOUR TYPESCRIPT CODE
+
+    4. The local reference will be the whole HTML element and its properties AT THAT MOMENT
+
+      -->
+
+      <input 
+      type="text"
+       class="form-control" 
+       #serverNameInput>
+
+      <label>Server Content</label>
+      <!-- <input type="text" class="form-control" [(ngModel)]="newServerContent"> -->
+
+
+      <!-- ViewChild 
+
+          Using ViewChild, we can get access to this local reference from within the TypeScript code.
+
+          See .ts file for details
+      -->
+      
+      <input 
+      type="text" 
+      class="form-control" 
+      #serverContentInput>
+
+      <br>
+
+      <!-- Local Reference
+
+        Now we pass it into this function
+
+       -->
+      <button
+        class="btn btn-primary"
+        (click)="onAddServer(serverNameInput)">Add Server</button>
+      <button
+        class="btn btn-primary"
+        (click)="onAddBlueprint(serverNameInput)">Add Server Blueprint</button>
+    </div>
+  </div>

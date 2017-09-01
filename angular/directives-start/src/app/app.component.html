@@ -1,0 +1,132 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <button
+        class="btn btn-primary"
+        (click)="onlyOdd = !onlyOdd">Only show odd numbers</button>
+      <br><br>
+      <ul class="list-group">
+
+      <!-- You can’t have more than one structural directive on an element.
+
+        <li
+          class="list-group-item"
+          *ngFor="let num of numbers"
+          *ngIf = "number % 2 == 0" //ERROR
+          >
+          {{ num }}
+        </li> -->
+
+    <!-- Instead you can have more than structural directive affect an element by placing the element with a 'div' wrapper -->
+
+       <div *ngIf="onlyOdd">
+          <li
+            class="list-group-item"
+            [ngClass] = "{odd: odd % 2 !== 0}"
+            [ngStyle] = "{backgroundColor: odd % 2 !== 0 ? 'yellow' : 'transparent'}"
+           *ngFor="let odd of oddNumbers">
+           {{ odd }}
+          </li>
+       </div>
+        
+        <!-- <div *ngIf="!onlyOdd">
+          <li
+           class="list-group-item"
+           [ngClass] = "{odd: even % 2 !== 0}"
+           [ngStyle] = "{backgroundColor: even % 2 !== 0 ? 'yellow' : 'transparent'}"
+           *ngFor="let even of evenNumbers">
+           {{ even }}
+          </li>
+        </div> -->
+
+        <!-- Inside the 'ng-template', we have the content we CONDITIONALLY want to render
+
+          ng-template is itself not rendered.
+
+          Provided so that it is rendered only once Angular itself determines it needs to render it
+
+          NOTE: We don't use the * here for ngIf.
+
+          IMPORTANT: This is the form that the element IS transformed into WITH the STAR
+
+          THIS IS EXACTLY WHAT IS HAPPENING BEHIND THE SCENES WITH THE STAR 
+
+          This is the equivalent to the previous block of code 
+              (with <div *ngIf="!onlyOdd">)
+         -->
+
+       <!--  <ng-template [ngIf] = "!onlyOdd">
+          <div>
+            <li
+              class="list-group-item"
+              [ngClass] = "{odd: even % 2 !== 0}"
+              [ngStyle] = "{backgroundColor: even % 2 !== 0 ? 'yellow' : 'transparent'}"
+              *ngFor="let even of evenNumbers">
+           {{ even }}
+            </li>
+          </div>
+        </ng-template> -->
+
+
+        <!-- Structural Directive -->
+        
+        <div *appUnless="onlyOdd">
+          <li
+           class="list-group-item"
+           [ngClass] = "{odd: even % 2 !== 0}"
+           [ngStyle] = "{backgroundColor: even % 2 !== 0 ? 'yellow' : 'transparent'}"
+           *ngFor="let even of evenNumbers">
+           {{ even }}
+          </li>
+        </div>
+
+      </ul>
+
+      <p appHighlight>Style me with a basic directive</p>
+
+      <!-- With custom properties in directives, we set to them in the same way that we do normally with custom properties.
+
+      NOTE: To set a string, we actually input it with '' WITHIN the ""
+
+      "" are like () parentheses waiting for the parameter you want to pass
+
+      NOTE: Angular figures out on its own if the property we're binding to is of the directive or of the component
+
+       -->
+
+     <!--  <p appBetterHighlight 
+      [defaultColor] = "'yellow'" 
+      [highlightColor] = "'red'"
+      >Style me with a better directive</p> -->
+
+
+   <!--    Setting an alias for an input property to 'appBetterHighlight' results in [appBetterHighlight] --> 
+
+   <!--  You can also omit the [] and '' if you are passing a string to a property. It's confusing so not recommended I think. -->
+
+       <p [appBetterHighlight] = "'red'" 
+      defaultColor = "yellow" 
+      >Style me with a better directive</p>
+      
+      <!-- ngSwitch
+        
+        [ngSwitch] = "value" sets value as the expression we are evaluating
+
+        When the value is one of those outlined in the *ngSwitchCase, the element is displayed.
+
+        If value doesn't align with anything, then it defaults to showing the element with the *ngSwitchDefault directive
+
+        Like switch-case statements, but for *ngIf
+       -->
+
+      <div [ngSwitch] = "value">
+        <p *ngSwitchCase="5">Value is 5</p>
+        <p *ngSwitchCase="10">Value is 10</p>
+        <p *ngSwitchCase="100">Value is 100</p>
+        <p *ngSwitchDefault>Value is Default</p>
+      </div>
+
+      
+    </div>
+  </div>
+</div>

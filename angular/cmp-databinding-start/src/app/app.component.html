@@ -1,0 +1,49 @@
+<div class="container">
+  <app-cockpit 
+  (srvCreated) = "onServerAdded($event)" 
+  (bpCreated) = "onBlueprintAdded($event)"
+  ></app-cockpit>
+  <hr>
+  <div class="row">
+
+  <!-- NOTE: the property being binded is the NAME of the actual variable that we have defined in 'server-element.component.ts'
+
+      i.e. server-element defines 'element' as a property in its class definition.
+
+      BUT - BY DEFAULT - All properties of Components are ONLY accessible through their OWN components. Not through external files
+
+      You need to add a decorator in 'server-element':
+           @Input
+
+      See the respective TypeScript file for more info.
+   -->
+
+<!-- 
+   srvElement is an alias for 'element'.
+
+   In the server-element.component.ts, @Input('srvElement') element.... allows this property to be referred to as the label within the Input parentheses 
+
+   NOTE: referring to the element property by 'element' will NO LONGER work
+
+   -->
+
+    <app-server-element *ngFor="let serverElement of serverElements"
+    [srvElement]="serverElement">
+     
+<!--     ng-content
+
+Everything placed between a component tag is LOST BY DEFAULT.
+
+    EX: The below code would not show in the ServerElementComponent
+-->
+          <p #contentParagraph>
+            <strong *ngIf="element.type === 'server'" style="color: red">{{ element.content }}</strong>
+            <em *ngIf="element.type === 'blueprint'">{{ element.content }}</em>
+          </p> 
+
+
+
+
+    </app-server-element>
+  </div>
+</div>

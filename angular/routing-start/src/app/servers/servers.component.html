@@ -1,0 +1,59 @@
+<div class="row">
+  <div class="col-xs-12 col-sm-4">
+    <div class="list-group">
+
+      <!-- queryParams is another bindable property of the [routerLink] directive 
+  
+      [queryParams] = "{allowEdit: '1'}" ==> Tacks on '?allowEdit=1'
+      
+      [fragment] = "'loading'"" ==> '#loading'
+      -->
+
+      <a
+        [routerLink] = "['/servers', server.id]"
+        [queryParams] = "{allowEdit: server.id === 3 ? '1': '0'}"
+        [fragment] = "'loading'"
+        href="#"
+        class="list-group-item"
+        *ngFor="let server of servers">
+        {{ server.name }}
+      </a>
+    </div>
+  </div>
+  <div class="col-xs-12 col-sm-4">
+
+    <!-- Relative vs. Absolute Path -->
+  
+    <!-- Relative Path 
+      
+      No slash, means that the page will try to go from:
+            localhost:4200/servers => localhost:4200/servers/servers
+
+      Appending that path element to the CURRENT path
+    -->
+    <!-- <a routerLink="servers">Reload Page</a> -->
+
+    <!-- Absolute Path 
+        
+        / indicates that the page go to:
+            localhost:4200/servers
+
+      Appending that path element ONLY TO THE MAIN DOMAIN
+    -->
+    <!-- <a routerLink="/servers">Reload Page</a> -->
+
+    <!-- NOTE: You can also use './' and '../' like you would with a folder directory to navigate paths -->
+
+  
+  <!-- Nesting Child Routes
+
+  Child routes are loaded here - NEXT to the template code rendered from above -->
+ <router-outlet></router-outlet> 
+
+  <!--   <button class="btn btn-primary" (click) = "onReload()"> Reload Page</button>
+    <app-edit-server></app-edit-server>
+    <hr>
+   <app-server></app-server> -->
+  </div>
+</div>
+

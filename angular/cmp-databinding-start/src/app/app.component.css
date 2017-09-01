@@ -1,0 +1,19 @@
+.container {
+  margin-top: 30px;
+}
+
+/*Normally, browsers apply CSS to the ENTIRE document (like styles in React)
+
+The fact that this 'p' element is NOT affecting other components' templates, shows that this is enforced by Angular.
+
+It does this by assigning a custom attribute to ALL the elements of a component that are UNIQUE TO THAT COMPONENT
+
+Ex: p { color: blue; } in this component might ultimately show as
+<p _ngcontent-ejo-0> in the browser DOM
+	
+		And all the other HTML elements in app component would have this same '_ngcontent-ejo-0' attribute attached to them*/
+
+/*p {
+  color: blue;
+}
+*/
