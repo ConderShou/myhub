@@ -1,0 +1,33 @@
+/*Referring to the class names in the JSX "className"s of the different files.
+
+NOTE: We don't have to specify from which file to get this class in. Just refer directly to the className.
+
+This means "className" must be globally accessible and should be unique in respect to the other components' JSX when necessary*/
+
+.search-bar {
+	margin: 20px;
+	text-align: center;
+}
+
+.search-bar input {
+	width: 75%;
+}
+
+.video-item img {		/*No class name with 'video-item'. I think he 										meant 'list-group-item' */
+	max-width: 64px;
+}
+
+.video-detail .details {
+	margin-top: 10px;
+	padding: 10px;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+}
+
+ .list-group-item {
+ 	cursor: pointer;
+ }
+
+ .list-group-item:hover {
+ 	background-color: #eee;
+ }
