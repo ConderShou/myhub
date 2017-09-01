@@ -1,0 +1,54 @@
+A 'string constant'	is a an ARRAY of CHARACTERS
+
+	Internally, the array is terminated with the null character '\0' so that the programs can find the end
+		
+	Thus:	The length in storage is ONE more than the number of characters between the double quotes
+
+
+Acess to character strings are done through character pointers:
+
+	printf receives a pointer to the beginning of the character array
+
+That is, a string constant is accessed by a pointer to its FIRST element
+
+IMPORTANT DIFFERENCE:
+
+	char *pmessage;
+	pmessage = "now is the time";		- Assigns to 'pmessage' a POINTER to the character array
+
+	char amessage[] = "now";	/* an ARRAY */
+	char *pmessage = "now";	/* a POINTER */
+
+	'amessage' will always refer to the same storage, but 'pmessage' is a pointer, initialized to point to a
+		string constant
+
+	'pmessage' can subsequently be MODIFIED to POINT ELSEWHERE
+		(Result is undefined if we atttempt to modify the string contents)
+
+
+----Functions------
+Contained within <string.h>
+
+strcpy(s, t)	- Copies the pointer 't' to pointer 's'	'
+
+	- Documention in textbook
+
+	Result: Characters are copied from 't' to 's', up to and including the terminating '\0'
+
+	*t++	is the character that 't' pointed to BEFORE 't' was incremented
+		- The postfix ++ doesn't change 't' until AFTER its character has been fetched
+	Similarly, same character is stored into old 's' position BEFORE 's' is incremented
+
+
+strcmp(s, t)	
+	- Compares the character strings 's' and 't', and returns negative, zero, or positive if 's' is LEXICOGRAPHICALLY
+		less than, equal to, or greater than 't'
+		
+	*--p	- Decrements 'p' BEFORE fetching character that 'p' points to
+
+
+---------Pushig and Popping------
+
+*p++ = val;	/* PUSH val onto stack */
+val = *--p;	/* POP top of the stack INTO val */
+

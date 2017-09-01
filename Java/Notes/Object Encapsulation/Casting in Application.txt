@@ -1,0 +1,53 @@
+class Person{
+    String name;
+ 
+    Person(String name){
+        this.name = name;
+    }
+    
+    void print(){
+        System.out.print("My name is " + name);
+    }
+}
+
+
+class Teacher extends Person{
+    Teacher(String name){
+        super(name);
+    }
+}
+
+
+class Learner extends Person{
+    boolean enrolled;
+    
+    Learner(String name){
+        super(name);
+        enrolled = false;
+    }
+    
+    void enroll(){
+        enrolled = true;
+    }
+}
+
+
+Person[] people = new Person[8];	- This is upcasting. 
+					-Allowing us to store in the same array Teachers and Learners 
+						(subclasses that both inherit from the Person class)
+
+people[0] = new Learner("Juan");
+people[1] = new Teacher("Carlos");
+people[2] = new Learner("Ana");
+people[3] = new Learner("Ivan");
+people[4] = new Learner("Mike");
+people[5] = new Teacher("Iria");
+people[6] = new Learner("Elisa");
+people[7] = new Teacher("Carmen");
+
+for (Person person:people){
+    if (person instanceof Learner){	- This returns "true" if the object "person" is an instance of the class "Learner" and is "false" otherewise
+
+         ((Learner) person).enroll();	- When you cast an object, ensure that you are invoking an object of the class you are casting
+    }					Proper syntax: ((Class) variable).method();
+}

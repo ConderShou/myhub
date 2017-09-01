@@ -1,0 +1,24 @@
+Instead of hardcoding strings into your layout file, 
+	ADD them to a String resource file
+	and then REFERENCE them from your layout
+
+In 'res/values/strings.xml' :
+
+	<resources>
+    		<string name="app_name">Fun Facts</string>
+    		<string name="question">Did you know?</string>
+	</resources>
+
+You type within the resources tag:
+
+	<string name = "[Name of the String VARIABLE]">[CONTENT OF THE STRING]</string>
+
+
+Then to REFERENCE it from the layout:
+
+	<TextView 
+		android:layout_width = "wrap_content"
+		android:layout_height="wrap_content"
+		android:text="@string/question" />
+
+A 'TextView' is created for EVERY INDIVIDUAL TEXTBOX

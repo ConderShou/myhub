@@ -1,0 +1,27 @@
+A for loop helps us to sequentially visit all the values in an array and affect a change upon them
+
+-----Map Pattern: Getting y = square(x)-------
+
+for (int i = 0; i < 4; i = i +1) {
+      y[i] = square(x[i]);
+}
+
+----Reduce pattern: Summing elements of array into a variable-------
+
+[0, 1, 2, 3] --> 6
+
+int z = 0;
+
+for (int i = 0;
+      i < x.length;
+      i = i + 1) {
+ z += x[i];
+}
+
+-----Enhanced for loop (like reduce pattern)----------
+
+int z = 0;
+
+for (int elem: x) {		- Creating a variable called "elem" that takes successively all the elements in the array x
+   z += elem;		
+}

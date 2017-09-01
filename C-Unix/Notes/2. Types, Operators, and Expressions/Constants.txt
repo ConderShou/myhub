@@ -1,0 +1,99 @@
+- A 'long' constant is written with a terminal 'l' or 'L'
+
+	float = 123456789L;
+
+- An integer too big to fit into an 'int' will also be taken as a 'long'
+
+- Unsigned constants are written with a terminal 'u' or 'U'
+- The suffix 'ul' or 'UL' indicates 'unsigned long'
+
+- Floating point constants contain a decimal point, 123.4, or an exponent, 1e-2, or both. 
+	- type is 'double'
+	- 'f' or 'F' indicates 'float'
+	- 'l' or 'L' indicates a long oduble
+
+
+-------------
+
+- Leading 0 on an integer constant menas octal
+- Leading 0x or 0X means hexadecimal. 
+	- Decimal 31 in octal: 037
+	- Decimal 31 in hex: 0x1f or 0X1F
+
+	- We can apply 'L' and 'U' to make them long and/or unsigned
+	- 0xFUL	(unsigned long with a value 15 decimal)
+
+- Character constant:	integer, written as one character with single quotes
+	- 'x'	(this stands for the ASCII value of 'x')
+
+- If we want the value of 48, better to write it out though, than to use '0' , so that it's not dependent on character set.
+
+- We can use '\' to specify octal digits and hexadecimal digits in character and string constants
+
+	Octal: #define VTAB '\013'		//ascii vertical tab
+	Hex:   #define BELL '\x7'		// ascii veritable tab
+
+- '\0'	represents the character with VALUE 0 (i.e. the null character)
+	- Numeric value is 0. 
+	- Often just used to emphasize the character nature of some expression
+
+
+--------Constant Expression----
+
+- Constant expression:	an expression that involves only constants
+	- Can be used in any place that a constant can occur
+
+	#define MAXLINE 1000
+	char line[MAXLINE + 1];
+	
+
+--------String constant/literal----
+
+- Sequence of zero or more characters surrounded by DOUBLE quotes
+
+""	- empty string
+
+\"	- represents double-quote character
+
+
+- String constants can be concatenated at compile time (use to split long strings across SEVERAL source lines):
+	
+	"hello," "world" = "hello, world"
+
+- String constant = array of characters. 
+- Internal representation has a null character '\0' at the end, so the physical storage than the number of characters
+	written between the quotes
+
+- No limit to how long a string can be.
+
+
+---------string.h------------
+
+strlen(s)		- Returns the length of its character string argument 's' (excluding '\0')
+		- Has to manually exclude the '\0' in its program
+
+Other library functions are declared in '<string.h>'
+
+
+------Enumeration constant------
+
+- A list of constant integer values.
+
+	Ex: 	enum boolean { NO, YES };
+
+- The first name in an 'enum' has value 0, the next 1, and etc... (unless EXPLICIT values are defined)
+
+- If not all values are specified, unspecified values continue the progression from the last specified value.
+	
+	i.e. enum months { Jan = 1, FEB, MAR, APR, MAY, ...... }; /* FEB is 2, MAR is 3, etc...
+
+Explicitly defined example:
+	
+	enum escapes { BELL = '\a', BACKSPACE = '\b', TAB = '\t', etc... };
+
+- Names in different enumerations must be distinct. Values do not need to be. 
+
+
+- Enumerations are a convenient way to associate constant values with names. 
+	- An often BETTER alternative to '#define', where the values are generated for you, 
+		- and offer the chance of checking

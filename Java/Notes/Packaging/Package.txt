@@ -1,0 +1,50 @@
+A package bundles classes and interfaces handling access protection and name space management. 
+
+Usually classes grouped into the same package has similar semantics.
+You don't need to import other classes in the same package.
+
+Ex:
+	We can have a package called "Transport" that contains the classes for "Car", "Airplane", or "Train.
+
+Packages can also be sudivided into subpackages. 
+
+Ex:		
+	We can further divide package "Transport" into subpackage "terrain" - "Car", "Train" - and subpackage "air" - "Airplane"
+
+--------------------Defining a package and subpackage-------------------
+
+The package definition must be the first statement in the source file.
+
+Ex:
+	package graphics;
+	public interface Draggable {
+		....
+	}
+
+When compiling, if such a package/subpackage does not exist, it will be created.
+	Otherwise, the class will be added to the existing package.
+
+Ex:
+	package places.school;	- If you've already written a class "Pencil" and you want to add it to the right subpackage "places.school"
+
+Subpackages are specified using the dot character.
+
+Ex:
+	import transport.air.*;	
+	import transport.terrain.*;		
+		
+ - Using "import" allows you to import some of the classes and interfaces from a certain package.
+		This statement goes IMMEDIATELY AFTER the package statement.
+
+- Using the "*" asterisk symbol allows you to import ALL classes within the specified package
+
+
+-----------------More on Importing Packages and Classes-----------------
+
+Importing the Ball class, we have three options:
+
+	import places.*;
+
+	import places.sport_center.*;
+	
+	import places.sport_center.Ball;		- We continue using dot notation to specify the class we'd like to import

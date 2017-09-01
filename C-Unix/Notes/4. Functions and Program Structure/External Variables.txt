@@ -1,0 +1,18 @@
+C does not allow functions to be defined inside other functions.
+
+By default, external variables and functions have the property that all references to them by the same name 
+	(even from those compiled separately)
+	are references to the same thing. 
+
+	- Property is called "external linkage"
+
+- Because external variables are GLOBALLY ACCESSIBLE, they provide an alternative to function arguments 
+	and return values for communicating data BETWEEN FUNCTIONS
+
+	- Any function may access an external variable by referring to it by name
+		AS LONG AS it has been DECLARED somehow (separately within the function?)
+
+- External variables are permanent	 - retain values from one function invocation to the next
+	
+
+- A variable is external if it is defined OUTSIDE of ANY function

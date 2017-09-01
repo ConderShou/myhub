@@ -1,0 +1,13 @@
+Application Programming Interaces are:
+	A set of tools and methods geared towards some ulterior function
+	Programmed by others
+	Available in the form of a library
+
+Ex:
+	The Java library includes a class called "Math" that contain several methods for performing
+		mathematical operations, like the square root - Math.sqrt
+	You can simply use the method and input the parameters, and the library will give you the output.
+		Someone has already programmed the algorithms you would need for this operation.
+
+Look into the library's documentation for the different methods provided in the API and their functions/descriptions.
+	

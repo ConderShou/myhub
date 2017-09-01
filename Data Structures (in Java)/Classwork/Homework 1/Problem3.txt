@@ -1,0 +1,71 @@
+Conder Shou
+UNI: cs3544
+Prof. Bauer
+
+Results and Analysis of Problem 3
+
+--------------------------------------------------------------------------------------------------------------------------
+
+DISCLAIMER:
+		The time was changed to nanoseconds in order to get usable results.
+		A sleep method was also called within the body of the method of fragment C to help with getting results.
+		Each fragment was run and measured 30 times, the average of all those times was then calculated for each fragment. The average running time is what the program prints.
+
+--------------------------------------------------------------------------------------------------------------------------
+
+Output of the program:
+
+
+	The printed running times of these fragments are an average of 30 trial runs.
+	------------------------------------------------------------
+
+	Running time with an n value of 10
+
+	Average time for fragment A: 270 nanoseconds
+	Average time for fragment B: 484 nanoseconds
+	The k value for fragment C is: 2
+	Average time for fragment C: 300273198 nanoseconds
+	------------------------------------------
+
+	Running time with an n value of 20
+
+	Average time for fragment A: 313 nanoseconds
+	Average time for fragment B: 1796 nanoseconds
+	The k value for fragment C is: 2
+	Average time for fragment C: 400281110 nanoseconds
+	------------------------------------------
+
+	Running time with an n value of 40
+
+	Average time for fragment A: 456 nanoseconds
+	Average time for fragment B: 6229 nanoseconds
+	The k value for fragment C is: 2
+	Average time for fragment C: 500339527 nanoseconds
+	------------------------------------------
+
+	Running time with an n value of 80
+	
+	Average time for fragment A: 983 nanoseconds
+	Average time for fragment B: 30634 nanoseconds
+	The k value for fragment C is: 2
+	Average time for fragment C: 600431487 nanoseconds
+	------------------------------------------
+
+Analysis:
+
+	As I was told by a TA, the relationships I wrote down for written Problem 3 are mainly theoretical. In practice,
+I am comparing instead, the relative speeds of the fragments. As such, that is what I will do. The machine , after all, will most likely not 
+adhere precisely to the mathematical properties of its linear, exponential, logarithmic relationships. However, the runtime for the different fragments 
+should still be growing in different speeds in the same order that we inferred from their Big-Oh runtimes. 
+
+We notice, to begin with, that in fragment C, it increases generally by 100 milliseconds for each time that "n" doubles. Notice that the long running time 
+of fragment C is due to the Thread.sleep() method that is called within the program, whereby the program pauses or sleeps for 100 milliseconds. This makes sense
+because since "n" is being divided each time by 2, and base 2 logarithm of twice the number "n" equals 1, then the running time for fragment C should only really increase by 100 milliseconds as "n" doubles. 
+
+If we look at fragment B, we see that it increases by a factor of 3.7 the first time "n" doubles, then by about 3.47 when "n" increases from a size of 20 to 40,
+and the by about 4.9 the next time "n" doubles. 
+
+Looking at fragment A, we see that the runtime increases by a factor 1.2 the first time "n" doubles, the by a factor of 1.5, and then a factor of 2.2. 
+
+While fragment A may not be strictly increasing at a linear rate, and while fragment B may not be increasing at exponential rate, it is still quite clear that fragment B is increasing at a drastically, much faster rate
+than fragment A. As a result, while the predicted run times may not quite line up with what was expected from my written assignment, the relative order of speed between each fragment still holds true. 

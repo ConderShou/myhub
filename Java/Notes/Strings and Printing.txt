@@ -1,0 +1,146 @@
+-----------------Text-------------------------
+
+Characters: a letter, a digit, a symbol
+
+	Placed in ' ' single quotes
+
+String: A sequence of characters, just one character, or no characters at all (spaces count!)
+
+	Placed in " " double quotes
+
+----Use backlash to escape the quote symbol----
+
+"\"Hello\""	- This string prints as: "Hello" (with the quotation marks included)
+
+"Hello\n" 		-  Prints as: Hello 
+			(and then a new line) 
+
+" \\ and \""	- Prints as: \ and " 
+			(just follow the same format as "\"Hello\"" ) 
+
+--------------------------------Strings-----------------------------------------------------
+
+Declaring the variable for strings:
+
+	String variableName = "word";	Use "String" instead of "int" or "boolean"
+
+---Concatenation----
+
+String s = "s";
+String t = "top";
+
+String p = s + t;	Prints: "stop"
+String q = t + s;	Prints: "tops"
+
+	You can add strings together and the characters will combine in the order that you add them in
+
+--Adding Strings and Integers together---
+
+int n = 1;
+String s = "1";
+	             Prints:
+int m = n + n;	2
+String p = s + s;	"11"
+
+String q = s + n;	"11"	If one of the operands is a string, the other opreand is also converted to a string
+
+
+----------------Length of Strings--------------------
+
+String s = "s";
+		            	           Prints:
+	int n = s.length();		1
+
+String p = "";
+	s
+	int j = p.length();		0 
+
+String t = "top";	
+	
+	int m = t.length();		3
+
+------------------charAt------------------
+
+charAt(x) applied to a string returns the character in the position defined by the index "x" (remember that the assignment of position begins from 0)
+
+Ex:	
+	String s = "Boom baby!";
+
+	System.out.println(s.charAt(5));
+		
+		Prints: b 
+
+-----------------Substring------------------------
+
+String s = "Hello!";
+			              Prints:
+String t = s.substring(2,4); 		"11"
+String p = s.substring(0,2)		"He"
+String q = s.substring(2, 6);		"llo!"
+String r = s.substring(2);		"llo!"
+
+	The characters of "Hello!" are ordered into positions 0, 1, 2, 3, 4, 5 (with 'H' being position 0 and '!' being position 5)
+
+	substring(startingposition, thepositionBeforetheNumberHere)
+
+	substring(2,4); means we extract the substring that starts at position 2 and ends at the position before position 4
+
+	substring(2) means this position is selected and all the characters after it (until the end of the string)
+
+------------------Print------------------------------
+
+System.out.print()		- prints anything out that is within the () on the same line
+
+System.out.println()	- prints anything out and then starts a new line afterwards
+
+	Ex: 
+		System.out.print("F.C. Barcelona "+totalGoalsBarc);	- Use the "+" button to combine strings and integers together as a string
+
+		Prints:
+	
+		F.C. Barcelona 4
+
+---Another example for combining strings and integers together to make a string----
+
+int y = 2012;
+int m = 11;
+int d = 0;
+
+if....
+d = 30;
+}else if ....
+
+System.out.println("In "+y+", the month "+m+" has "+d+" days");	- the quotation marks are for the strings, not for the integer variables (y, m, d)
+
+	Prints:
+
+	In 2012, the month 11 has 30 days			- ^^ notice how the comma in this print is included because it's
+							  WITHIN the statement's quotation marks
+
+----------------------Char----------------------------
+
+Characters have numeric values. 
+
+"H" is a character, a value of type "char".
+
+"H" is  a string containing a single character, a value of type String.
+
+The "charAt" method returns a "char" value from a string.
+
+	Ex:
+		String name = "Harry";
+		char start = name.charAt(0);		- Sets "start" to the value of "H"
+		char last = name.charAt(4);		- Sets "last" to the value of "y"
+
+---------------Concat and \n--------------
+
+concat = add Strings together
+
+\n = new line
+
+body = body.concat("\n").concat("Sincerely,").concat("\n").concat("\n").concat(from);
+
+-----------------replace()-------------
+
+String river = "Mississippi";
+river.replace("issip", "our");		- Replaces all "issip" instances of the string in "river" into "our" and RETURNS the modified string. 

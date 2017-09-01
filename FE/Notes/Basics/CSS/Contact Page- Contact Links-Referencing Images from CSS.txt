@@ -1,0 +1,130 @@
+Create 'contact.html'
+
+------------------------
+
+We create two sections:
+	
+	<section>
+	</section>
+	<section>	
+	</section>
+
+In desktop view, this will be a two-column layout. 
+
+In mobile view, it will be a single column with simply two sections stacked on top of one another. 
+
+
+-----------------------------
+
+<section>
+         <h3>General Information</h3>
+         <p>I am a cow. Just gonna fill up some space here to show the formatting of the paragraph</p>
+         <p>Another paragraph that has stuff written in it, which I'm gonna show by just typing some random stuff in.</p>
+      </section>
+      <section>
+        <h3>Contact Details</h3>
+        <ul class="contact-info">
+          <li class="phone"></li>  
+        </ul>
+      </section>
+
+
+We need to add classes to the ordered list (i.e. 'phone') to ADD ICONS later in our CSS
+
+
+------------Adding Telephone Number---------------
+
+<li class="phone"><a href="tel:345-3212">345-3212</a></li>  
+
+
+We can use 'tel:' to let smart phones know that this is a telephone number it can dial. 
+
+
+-----------Adding Email-----------------
+
+<li class="mail"><a href="mailto:boom@example.com">boom@example.com</a></li>
+
+
+We can use "mailto:" to let the browser know that this is an email address it can send mail to.  
+
+
+-------------Adding Tweet Link-------------------
+
+<li class="twitter"><a href="http://twitter.com/intent/tweet?screen_name=nickrp">@nickrp</a></li> 
+
+
+Upon being clicked, this link automatically directs the user to the page for writing tweets.
+
+Make sure the SCREEN_NAME is changed to YOUR twitter username for the tweet to be directed at YOUR account.
+
+
+-----------------------------------Styling with CSS--------------------------------
+
+.contact-info {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 0.9em;
+}
+
+
+-----Referencing Images with CSS---------
+	
+.contact-info li.phone a {
+  background-image: url('../img/phone.png');
+}
+  
+.contact-info li.mail a {
+  background-image: url('../img/mail.png');
+}
+
+.contact-info li.twitter a {
+  background-image: url('../img/twitter.png');
+}
+
+
+To reach the 'img' folder, we have to use '..' to step OUT of the CSS directory and go to the img folder.
+
+
+----
+
+However: we need to add SPACING and POSITIONING to position our images properly to the left of the text
+
+
+.contact-info a {
+  display: block;
+  min-height: 20px;
+  background-repeat: no-repeat;
+  background-size: 20px 20px;
+  padding: 0 0 0 30px;
+  margin: 0 0 10px;
+}
+
+
+The images will take up space as a BLOCK.
+
+A minimum height here.
+
+Background images will ALWAYS REPEAT by DEFAULT. 
+	(Repeating meaning that they will be duplicated and FILL UP the background of the text, like a WALLPAPER)
+		But we want backgrounds to display only ONCE. 
+		So we set it to 'no-repeat'
+
+'background-size' resizes the images DOWN to keep them defined on high resolution displays
+
+We put padding on the LEFT side because THAT'S where our images are going to go
+	It will push the TEXT over to the RIGHT
+
+Margin spacing on the bottom to separate the contact details a little.
+
+
+NOTE: 
+	Margin adds more space to the bottom in this case. 
+	Without padding, the background images are LITERALLY BEHIND the text.
+		Padding moves the text OVER to the right and the images are STILL in the background as
+		they were, only NOW they are BEHIND THE PADDING
+
+******
+	Margin adds space on the "outside" of the element and pushes nearby elemetns away.
+	Padding adds space on the "inside" of the element and makes space between the element's EDGE and its CONTENT
+		

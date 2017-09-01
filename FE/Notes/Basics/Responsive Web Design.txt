@@ -1,0 +1,11 @@
+Notice: 
+	It's best to start by designing the mobile version of the website first, then go on to desktops, tablets, etc...
+
+	RATHER than starting with the desktop version first and scaling it down to mobile.
+
+
+Three rules for a fluid layout:
+
+	1. Using relative units to define their dimensions - Fluid images
+	2. Fluid grid
+	3. Media queries

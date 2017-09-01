@@ -1,0 +1,75 @@
+----------------Objects References and Variables-----------------
+
+- Variables hold 'references' to objects
+
+- Variables DO NOT have or enforce any notion of type
+	(not like Java or C/C++)
+
+- Two notions of equality in Python
+
+	- the 'is' operator is true if the two references are to the SAME object
+
+	- the '==' operator is true if
+		- the two references are to the SAME object, or two DIFFERENT objects that "print the same way" 
+			(the same output) 
+
+
+x = 123456
+y = 123456
+z = y
+
+
+Are 'x' & 'y' references to the same object?
+------------------------
+
+x is y
+
+O:
+
+False
+
+
+Are 'y' and 'z' references to the same object?
+------------------------
+
+y is z
+
+O:
+
+true
+
+-  
+
+y == z
+
+O:
+
+true
+
+
+Are 'x' & 'y' equivalent in some sense? 
+------------------------
+
+Yes, they represent the same integer ( same output )
+
+
+x == y
+
+O:
+
+true
+
+
+Small 'int's are singletons for efficiency reasons. 
+	- There's only ONE object of each small int
+
+No matter how you compute to a '4', you'll get the SAME '4' object 
+------------------------
+
+a = 4
+b = 4
+c = 6 - 2
+d = 2 * 2
+e = 2**2
+
+a, b, c, d, e    are the same object. 

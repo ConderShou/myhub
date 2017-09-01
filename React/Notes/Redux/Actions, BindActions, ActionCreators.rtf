@@ -1,0 +1,139 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf810
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww33400\viewh20520\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \
+\'97actions/index.js\'97\'97\
+\
+\
+// We have to make sure this action is wired up to redux when we use it in a component\
+// NOTE: in other words, this wiring occurs in the component, not in this file\
+
+\b \
+export function selectBook(book) \{\
+
+\b0    \
+    // Because this is an ActionCreator, it needs to return an Action\
+\
+    // An Action is an object with a TYPE property\
+    // It usually has TWO values: A TYPE and a PAYLOAD\
+    //   - The payload contains further information associated with the action - the data (another 'condition')\
+                // The payload isn't required for an action to be deemed acceptable\
+\
+    //   - The type is MANDATORY.\
+    //          - Must describe the PURPOSE of the action\
+\
+   
+\b  return \{\
+
+\b0 \
+        //The type can be seen as a variable and not a string sometimes, we will go through this later\
+            // - The 100% right way is to pull the names out and into a file so that the naming always remains consistent\
+            \
+       
+\b   type: 'BOOK_SELECTED',\
+         payload: book\
+    \}\
+\}\
+
+\b0 \
+\
+\
+\'97book-list.js\'97\
+
+\b \
+import React, \{ Component \} from 'react';\
+\
+import \{ connect \} from 'react-redux';\
+\
+import \{ selectBook \} from '../actions/index';\
+
+\b0 \
+// This makes sure that our action and its result actually flows through all the reducers in our application\
+
+\b \
+import \{ bindActionCreators \} from 'redux';\
+\
+class BookList extends Component \{\
+    \
+    renderList() \{\
+        return this.props.books.map((book) => \{\
+            return (\
+
+\b0 \
+                //After wiring the action up, we can now use onClick to call it knowing that it should affect the reducers\
+               
+\b  <li \
+                key=\{book.title\}\
+                onClick=\{() => this.props.selectBook(book)\} \
+                className="list-group-item"\
+                >\
+                    \{book.title\}\
+                </li>\
+                )\
+        \})\
+    \}\
+\
+    render() \{\
+        return (\
+            <ul className="list-group col-sm-4">\
+                \{this.renderList()\}\
+            </ul>\
+        )\
+    \}\
+\}\
+
+\b0 \
+
+\b function mapStateToProps(state) \{
+\b0 \
+    
+\b   return \{
+\b0 \
+\
+       
+\b      books: state.books\
+    \};\
+\}\
+\
+
+\b0 \
+//Anything returned from this function will end up as props on the Booklist container\
+\
+//'selectBook' - the KEY - is now on our props, we can call 'this.props.selectBook'\
+\
+
+\b function mapDispatchToProps(dispatch) \{
+\b0 \
+\
+    //Whenever 'selectBook' is called within this component, the result is passed to all of our reducers\
+\
+    //The VALUE 'selectBook' is what we imported at the top\
+\
+    //'dispatch' is a function that sends it to all our reducers\
+\
+    
+\b return bindActionCreators(\{ selectBook: selectBook \}, dispatch)\
+\}\
+
+\b0 \
+//Exporting the CONTAINER\
+// ------Connect-------\
+/*\
+    Connect takes in a function and a component and PRODUCES A CONTAINER (a component that is aware of the state within redux)\
+\
+    Now it also knows about 'selectBook', the dispatch method, and makes it available as a prop to this component\
+\
+    REFER TO 'REACT-REDUX' documentation for more ways to use 'connect' - This is the most widely used container\
+*/\
+\
+
+\b export default connect(mapStateToProps, mapDispatchToProps)(BookList);\
+\
+\
+\
+\
+}

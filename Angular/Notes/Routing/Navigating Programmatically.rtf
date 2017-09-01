@@ -1,0 +1,68 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf810
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww33400\viewh20520\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \
+\
+=home.component.html\ul \
+\
+\
+\ulnone <h4>Welcome to Server Manager 4.0</h4>\
+<p>Manage your Servers and Users.</p>\
+
+\b \ul <button class = "btn btn-primary" (click) = "onLoadServers()">Load Servers </button>
+\b0 \ulnone \
+\
+\
+\
+\
+=home.component.ts\
+\
+\
+
+\b  onLoadServers() \{\
+\
+  	
+\b0 //Array is like [routerLink] - except for relative paths - SEE BELOW\
+  	//this.route = The current url of the component (thats why it breaks the app)\
+  	// This function navigates to appropriate router page\
+
+\b   	this.router.navigate(['/servers']);\
+  \}\
+\
+\
+\
+
+\b0 \'97\'97\'97\'97\'97Relative Paths on \'91Router\'92\'97\'97\'97\'97\
+\
+servers.component.ts\
+\
+\
+\
+
+\b import \{ Component, OnInit \} from '@angular/core';\
+import \{ ServersService \} from './servers.service';\
+\
+
+\b0 // Activated Route is the currently activated route that has loaded the current component
+\b \
+\
+import \{ Router, ActivatedRoute \} from '@angular/router';\
+\
+\'85.\
+
+\b0 \
+
+\b   onReload() \{\
+\
+  	
+\b0 //With 'relativeTo' - NOW this command breaks the app
+\b \
+  	this.router.navigate(['servers', \{relativeTo: this.route\}]);\
+  \}\
+\}
+\b0 \
+}

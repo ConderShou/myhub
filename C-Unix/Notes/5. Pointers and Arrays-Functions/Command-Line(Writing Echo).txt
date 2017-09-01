@@ -1,0 +1,44 @@
+char *a[] = {"hello", "world", '\0'};
+
+-----Coding Echo--------
+
+Three possible ways out of the many to implement it:
+
+1.
+
+int main(int argc, char **argv) { 	//argv = Pointer to a char pointer
+	int i;
+	for(i = 1; i < argc; i++) {	//We start at 1 because we ignore "echo". Index starts at 0 so we still do '< '
+		printf( "%s ", *++argv);
+	}
+}
+
+
+2.
+
+int main(int argc, char **argv) {
+	int i;
+	for(i = 1; i < argc; i++) {
+		printf("%s", argv[i]);
+	}
+}
+
+
+3.
+
+int main(int argc, char **argv) {
+	int i;
+	for(; i < argc; argv++) {
+		printf("%s", *argv);
+	}
+}
+
+*++argv	
+
+	argv is pointer to char *pointer array.
+
+argv ->	echo
+	hello
+	world
+
+*argv references the pointer to 'echo'

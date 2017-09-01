@@ -1,0 +1,69 @@
+
+---------------In the HTML file-------------------------
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Conder Shou | Developer</title>
+		<link rel="stylesheet" href="css/normalize.css">	
+		<link rel="stylesheet" href="css/main.css">		- MUST come after normalize.css so that normalize.css does not overwrite main.css		
+	</head>														
+  											
+---------------------In main.css------------------------
+
+----Testing to make sure we implemented main.css correctly....
+
+Ex:
+
+body {
+	background-color: orange;		- Changes the background color of the entire page to orange
+}
+
+----Removing underlines on the the hyperlinked text
+
+Ex:
+
+a {
+	text-decoration: none;
+}
+
+
+This selects ALL anchor elements
+
+
+----Referring to a <div> section---
+
+#wrapper {			- Now we can do anything to wrapper, and it'll only affect the section we've included in the div tag named "wrapper"
+
+}
+
+
+--------Multiple Selectors--------
+
+h1, h2 {
+	color: #fff;
+}
+
+
+------------
+
+We could even do:
+
+h1 a, h2 {
+	color: #fff;
+}
+
+To select the anchor element INSIDE the 'h1' element
+
+
+--------------
+
+nav a, nav a:visited {
+  color: #fff;
+}
+
+
+'visited' is a state that the elemetn is in. A 'pseudo-class'
+
+

@@ -1,0 +1,71 @@
+----------------------Building the Footer-----------------------
+
+1. Adding social icons for Twitter and Facebook
+
+
+
+------------------------------------------------------------
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Conder Shou | Developer</title>
+	</head>
+  
+	<body>
+		<header>	
+			<a href="index.html">		
+				<h1>Conder Shou</h1>		
+				<h2>Developer</h2>			
+			</a>					
+			<nav>				
+				<ul>		
+								
+					<li><a href="index.html">Portfolio</a></li> 	
+					<li><a href="about.html">About</a></li>	
+					<li><a href="contact.html">Contact</a></li>
+				</ul>
+			</nav>
+		</header>
+		<section>					
+			<ul>
+				<li>
+					<a href="img/numbers-01.jpg">			
+						<img src="img/numbers-01.jpg" alt="">
+						<p>Experimentation with color and texture.</p>		
+					</a>
+				</li>	
+				<li>
+					<a href="img/numbers-02.jpg">			
+						<img src="img/numbers-02.jpg" alt="">
+						<p>Playing with blending modes in Photoshop.</p>		
+					</a>
+				</li>	
+				<li>
+					<a href="img/numbers-06.jpg">			
+						<img src="img/numbers-06.jpg" alt="">
+						<p>Trying to creatae an 80's style of glows.</p>		
+					</a>
+				</li>
+				<li>
+					<a href="img/numbers-09.jpg">			
+						<img src="img/numbers-09.jpg" alt="">
+						<p>Drips created using Photoshop brushes.</p>		
+					</a>
+				</li>
+				<li>
+					<a href="img/numbers-12.jpg">			
+						<img src="img/numbers-12.jpg" alt="">
+						<p>Creating shapes using repetition.</p>		
+					</a>
+				</li>						
+			</ul>									
+		</section>								
+		<footer>										
+			<a href="http://twitter.com/nickrp"><img src="img/twitter-wrap.png" alt="Twitter Logo"></a>			- Adding twitter and facebook link to footer of page.						
+			<a href="http://facebook.com/conshou"><img src="img/facebook-wrap.png" alt="Facebook Logo"></a>		- We need an alternate attribute in these cases because there's no caption for the picture icon
+			<p>&copy; 2016 Conder Shou.</p>									- NOTICE: links for exterior pages are ABSOLUTE paths
+		</footer>														- Relative paths make the website more portable though. Use them when you can.
+	</body>							
+</html>

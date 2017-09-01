@@ -1,0 +1,36 @@
+class Student{
+    private String fullName;
+    private int year;
+    private double mark;
+   
+    /**
+     * Constructor of a new student instance
+     * @param theFullName Full name of the student
+     * @param theYear An integer indicating the year (must be between 1 and 5)
+     */
+
+    public Student (String theFullName, int theYear){
+        fullName=theFullName;
+        year=theYear;
+    }
+   
+    /**
+     * Sets the mark of the student for this year
+     * @param theMark The new mark achieved by the student (must be between 0 and 20)
+     */
+
+    public void calify (double theMark){
+        mark=theMark;
+    }
+}
+
+  /**
+     * Compares this student with another, given as parameter. 
+     * Returns true if both students belong to the same year
+     * and have achieved the same mark.
+     * @parameter other The other Student to which this student is compared
+     */
+    public boolean equals(Student other){
+         return mark==other.mark && year==other.year;	- Checks to see if students are "identical", meaning in this case,
+							their school year and mark are the same.
+    }

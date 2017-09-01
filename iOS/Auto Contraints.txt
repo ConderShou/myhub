@@ -1,0 +1,11 @@
+For constraints in respect to a certain object - ALL dimensions must be included in order  for ANY 
+	of the constraints to work
+
+	i.e.	'Full Name'
+		
+		In order for the leading and trailing constraints to work... it needed to all set the TOP space
+		in respect to the divider, and then the BOTTOM space to something at the bottom (Text field: Enter 
+			your name...)
+
+
+NOTE: If you're missing a constraint, the element will be HIGHLIGHTED in RED

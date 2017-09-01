@@ -1,0 +1,57 @@
+-------FOR-------------
+
+int n = 1;
+for (int i =0; i<4; i=i+1) {
+     n = n*2;
+}
+
+- for ( initialization; stop condition; update statement) {
+				expression
+}
+		
+- NOTE: the update statement is executed AFTER the expression within the for loop has been 
+	executed. (Meaning "i" is 0 for the first loop of the for statement)
+
+- stop condition is the condition that must remain true for the for loop to continue executing
+	(Doesn't have to do with initialization variable)
+
+		Ex: 	int n = 3;
+			int x = 12;
+
+			for (int y = 0; x >= n; y++) 	- NOTICE how stop condition doesn't have anything to do with "y"
+			{
+				x = x-n;
+			}
+
+-----Enhanced for loop (like reduce pattern)----------
+
+int z = 0;
+
+for (int elem: x) {		- Creating a variable called "elem" that takes successively all the elements in the array x
+   z += elem;		
+}
+
+SAME THING AS:	(for each "elem" in "z")
+
+int z = 0;
+
+for ( int i = 0; i < x.length; i++ )
+{
+	double elem = x[i];		- NOTICE: In an ENHANCED for loop, the ELEMENT variable is assigned
+	z = z + elem;			array[0], array[1], etc..., instead of the INDEX VARIABLE "i" being
+}					assigned to 0, 1, etc..
+
+
+The enhanced for loop does not allow you to modify the contents of an array.
+
+for (double element : values)
+{
+	element = 0;	- This DOES NOT fill any array with zeroes
+}				- element is set to values[0], then it's set to 0, then it's set to values[1], then 0, etc..
+
+Use the basic loop instead if you want to set the array to zeroes:
+
+for (int i = 0; i < values.length; i++)
+{
+	values[i] = 0;
+}

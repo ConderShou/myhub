@@ -1,0 +1,116 @@
+
+-------------------Single/MultiLine Commenting---------------
+
+One and the same in Java.
+
+/* site body */
+body {
+  background-color: #fff;
+  color: #999;
+}
+
+
+Use the multi-line commenting format from Java ( /* */ ) for CSS
+
+
+----------------Labelling Sections----------------------
+
+/*******************************
+GENERAL
+*******************************/
+
+
+Just using some basic styling
+
+
+
+-------------------------Organizing CSS-------------------------
+
+Label each section. 
+
+Make sure to keep your organization from affecting the actual styling of the CSS.
+
+Go from General to Specific. 
+
+-----------
+
+So, just to review, under the GENERAL section
+
+we have the WRAPPER ID and our ANCHOR selector.
+
+Under the heading, we have our LOGO ID selector.
+
+And then under COLORS, we have our BODY colors, HEADER colors, NAVIGATION colors, 
+
+H1 and H2, ANCHOR colors and then NAV 'A' 
+
+and NAV VISITED colors and then these SELECTED and HOVER states.
+
+
+Now, our code is a lot more READABLE and SCAN-ABLE.
+
+--------------
+
+/*******************************
+GENERAL
+*******************************/
+
+#wrapper {
+  max-width: 940px;
+  margin: 0 auto;
+  padding: 0 5%;
+}
+
+a {
+  text-decoration: none;
+}
+
+/*******************************
+HEADING
+*******************************/
+
+#logo {
+  text-align: center;
+  margin: 0;
+}
+
+/*******************************
+COLORS
+*******************************/
+
+/* site body */
+body {
+  background-color: #fff;
+  color: #999;
+}
+
+/* green header */
+header {
+  background: #6ab47b;
+  border-color: #599a68;
+}
+
+/* logo text */
+h1, h2 {
+  color: #fff;
+}
+
+/* nav background on mobile devices */
+nav {
+  background: #599a68;
+}
+
+/* links */
+a {
+  color: #6ab47b;
+}
+
+/* nav link */
+nav a, nav a:visited {
+  color: #fff;
+}
+
+/* selected nav link */
+nav a.selected, nav a:hover {
+  color: #32673F;
+}

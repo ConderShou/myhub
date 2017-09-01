@@ -1,0 +1,77 @@
+String s1=new String ("I'm learning how to compare Strings");
+String s2=new String ("I'm learning how to compare Strings");
+if (s1 == s2) {
+    System.out.println ("s1 and s2 are the same");
+}else{
+    System.out.println ("s1 and s2 are different");
+}
+
+OUTPUT:
+	"s1 and s2 are different"
+
+The relational operator ==, when applied to two objects, indicates whether these are stored at the SAME MEMORY LOCATION.
+	 In this case, even though the Strings s1 and s2 contain the same message, they have been created as new, different objects, 
+		and thus they are located in DIFFERENT POSITIONS of the memory.
+
+----------------------
+
+String s1=new String ("I'm learning how to compare Strings");
+String s2=new String ("I'm learning how to compare Strings");
+if (s1.equals(s2)) {
+    System.out.println ("s1 and s2 are the same");
+}else{
+    System.out.println ("s1 and s2 are different");
+}
+
+OUTPUT:
+	"s1 and s2 are the same"
+
+In the STRING class (different for other classes), "equals" returns true "if and only if the argument is not null 
+	and is a String object that represents the SAME SEQUENCE of characters as this String"
+
+--------------------------
+	
+String s1="I'm learning how to compare Strings";		- Creates two different names for the same content
+String s2="I'm learning how to compare Strings";
+if (s1 == s2) {
+    System.out.println ("s1 and s2 are the same");
+}else{
+    System.out.println ("s1 and s2 are different");
+}
+In this case, when String s1 is initialized, Java internally creates an object in a intern pool. 
+	As s2 is initialized with the same char sequence, instead of creating a new object, 
+		the Java Virtual Machine (JVM) makes a reference to s1, because s2 is equals to s1.
+
+
+--------------IMPORTANT: length() between ARRAYS and STRINGS-----------------
+
+int a[] = {1, 2, 3, 4};
+String s = "1234";
+
+Calculating length:
+
+	a.length		- Arrays contain an ATTRIBUTE that represents the length of the array
+
+	s.length()		- WHEREAS String classes contain a METHOD that returns the length of the String array
+
+------------------substring() and its two different forms-----------------
+
+String literal = "This is a literal";
+
+literal.substring(0, 4);
+
+	This
+
+literal.substring(5, 9);
+
+	is a
+
+literal.substring(10);	- NOTICE: this starts at position 10 and continues to the end of the String array. 
+				This is the 1st version of this method
+	literal
+	
+literal.substring(15, 16)
+
+	a
+
+

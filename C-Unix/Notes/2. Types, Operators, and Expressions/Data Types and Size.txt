@@ -1,0 +1,50 @@
+char	- a single byte, capable of holding ONE character in the local character set
+
+int	- integer, arbitrary (depends on the natural size of integers on the host machine)
+
+float	- single-precision floating point
+
+double 	- double-precision floating point
+
+
+-----------------------------
+
+We can also apply qualifiers to these basic types:
+
+	short int some_variable;
+
+	long int counter;
+
+	long double;
+
+
+The word 'int' is typically omitted in such declarations, and it usually is
+
+
+short	- usually 16 bits - 2 bytes	(at least)
+
+long	- 32 bits	- 4 bytes		(at least)
+
+int	- either 16 or 32 bits	(at least longer than 'short', and shorter than 'long')
+
+'float, double, long double' are also dependent on the machine's implementation of them
+
+------
+
+The qualifier 'signed' or 'unsigned' may be applied to 'char' or any integer
+
+The unsigned numbers are always positive or 0, obeying the arithmetic modulo 2^n (where 'n' is the # of bits in the type)
+
+	For 'chars':
+		unsigned char	- Values between 0 and 255
+		signed char	From  -128 to 127 (2^n / 2 to 2^n - 1)
+					- In a TWO'S COMPLEMENT MACHINE
+
+Whether plain 'chars' are signed or unsigned is dependent upon the machine.
+	- However, PRINTABLE characters are always positive. 
+
+-----------
+
+<limits.h> and <float.h>
+
+	contain symbolic constants for ALL these sizes

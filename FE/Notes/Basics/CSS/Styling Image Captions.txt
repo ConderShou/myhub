@@ -1,0 +1,35 @@
+#gallery li a p {
+  margin: 0;
+  padding: 5%;
+  font-size: 0.75em;
+  color: #bdc3c7;
+}
+
+
+We select the element with ID 'gallery', which is the unordered list.
+
+Inside the list we select the ORDERED LIST --> ANCHOR element --> Paragraph text (image captions)
+
+
+Paragraph text automatically has margins, here we remove that and INSTEAD put PADDING around the image.
+	It's better to use PADDING than MARGINS because margins still push elements when they're inside the 
+	parent container. 
+
+The color of the caption is now gray, linked or unlinked. 
+
+Font size now relatively smaller. 
+
+
+-------Adding on to footer CSS-----
+
+Clearing the footer of any influence from the rest of these floating elements
+
+footer {
+ ...
+    clear: both;
+   ....
+}
+
+
+Now when we shrink the webpage, the footer stays where it is. 
+

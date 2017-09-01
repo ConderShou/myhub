@@ -1,0 +1,13 @@
+If the program is within MULTIPLE DIFFERENT files: 
+	we'd need to CENTRALIZE the global defintiions and declarations shared among the files.
+
+Header file:	Where all the global definitions and declarations are stored (save it in '.h')
+
+	Ex: 'calc.h' for all the push, pop, getop, getch, ungetch methods
+
+
+Then... in ALL of the other files, we include at the top:
+
+	#include "calc.h"
+
+	(Notice the quotation marks in respect to the arrows '<>' that we use to include standard libraries)

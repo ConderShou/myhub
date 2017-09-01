@@ -1,0 +1,30 @@
+Class is similar to ID
+
+	Difference:
+		Can have MULTIPLES of the same class on the same page
+	
+	However, each ID must be unique and cannot be repeated on the same page.
+	
+
+Ex:
+
+---In index.html-----
+
+<nav>
+          <ul>
+	<li><a href="index.html" class="selected">Portfolio</a></li>
+
+
+'selected' can be any name you choose to give it. 
+
+
+---in main.css----
+
+nav a.selected, nav a:hover {
+  color: #32673F;
+}
+
+
+We used the PERIOD to select the class 
+
+The 'hover' pseudoclass is for when the cursor is HOVERED over the links

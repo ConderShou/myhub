@@ -1,0 +1,9 @@
+Either use constructor to specify two end points:
+
+	Line2D.Double segment = new Line2D.Double(x1, y1, x2, y2);
+
+Or, specify each end points as an object of the Point2D.Double class:
+
+	Point2D.Double from = new Point2D.Double(x1, y1);
+	Point2D.Double to = new Point2D.Double(x2, y2);
+	Line2D.Double segment = new Line2D.Double(from, to);

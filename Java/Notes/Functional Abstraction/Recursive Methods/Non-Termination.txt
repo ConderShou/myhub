@@ -1,0 +1,16 @@
+----------------------------------------------Infinite Computation--------------------------------------------
+
+power(x, -2) --> x*power(x, -3) --> x*power(x,-3)*x*power(x,-4)......		- This yields an unending computation
+
+---------------------------------------------------
+
+int power (int x, int y) { //y >= 0
+	if (y ==0)
+		{return 1;}		- Base case
+	else
+		{return x*power(x,y-1);}	- Recursive case
+
+}
+
+	- There's always one or more base cases and one or more recursive cases
+	- We need the successive recursive calls get successively closer to the base case, to the termination condition

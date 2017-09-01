@@ -1,0 +1,24 @@
+>	>=	<	<=
+
+- They all have the same precedence.
+
+- Just below them in precedence are the equality operators: 	==     !=
+
+&& and || 
+
+- Expressions connected by && and || are evaluted left to right.
+- Evaluation stops as soon as the truth or falsehood of the result is known. 
+
+- && has HIGHER precedence than ||
+
+	- Both are LOWER than the relational operators above.
+
+for ( i = 0; i < lim-1 && (c= getchar()) != '\n' && c != EOF; ++i)
+	s[i] = c;
+
+- Pay attention to the order of these tests.
+	1. Check for room in array 's' (i < lim-1)
+	2. Get char 'c' first, then test it against EOF
+
+
+

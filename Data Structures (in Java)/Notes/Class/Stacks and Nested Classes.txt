@@ -1,0 +1,139 @@
+Nested classes can access the variables of the classes it is in. 
+	- As well as methods of the instance variable
+
+--------------------------MyArrayListIterator----------------
+
+public AnyType next()
+{
+	if( !hasNext() )
+		throw new java.util.NoSuchElementException();		- throw this exception if you are at END OF LIST. Where it refers to null
+
+	okToRemove = true;
+	return theItems[ current++ ];			- This FIRST RETURNS the current value, THEN increments it by one.
+							- If the ++ or -- came before "current", then the incremental/decremental operation would be executed first
+
+------------------
+
+
+Just need to provide next(), hasNext(), and remove().
+	 
+public void remove()
+{
+	if (!okToRemove)
+		throw new IllegalStateException();
+	
+	MyArrayList.this.remove(--current);		- We're calling the remove method of the MyArrayList, NOT trying to do a RECURSIVE call
+	okToRemove  = false;
+}
+
+
+
+-------------------STACKS----------------
+
+Last In First Out
+
+We can reverse the order of the elements by using a stack
+
+push();		- adds elements on to the TOP of the stack
+
+pop();		- removes an elements from the TOP of the stack		- Therefore, the last element inputted, will be the first one to be "popped"
+
+top() or peek()	- looking at what's at the top of the stack
+
+isEmpty()		- checking if Stack is empty
+
+size()		- the size of the stack
+
+
+--------------------Implementing a Stack with an Array---------------------------
+
+We increment top as we "push" values into the array
+
+Our "pop" method might look like:
+
+pop() {
+	return a[--top];		- first decrement top, then return the value at that position in the array
+}
+
+---Detecting Palindrome---------
+
+race car
+
+Push r, a, c and ignore the midpoint "e"..
+Pop "c, a, r
+
+As you pop c, a, r, check to see if they match the second half of the word to see if they're the same
+
+--------------------------RPA----------------------------------
+
+Operands followed by operator
+
+5 3 +
+
+     Output: 8
+
+5 3 + 2 *
+
+    Output: 8 2 *
+		Output: 16
+
+5 3 + 2 *
+
+Push 5 and 3.
+
+Then operand2 = pop();
+         operand1 = pop();
+
+Don't pop the operand
+
+apply(op1, op2, +);
+
+Pop twice, push the operator, and apply and push the result
+
+
+When you get a token, push the operand. Push the next operand. And then pop them both and apply them with the operator. And then push the result.
+
+
+------------------------------------------------------------------------
+
+a * b - c + d
+
+Push the operators and pop them after passing through the operands. 
+
+ab * c - d + 
+
+Then afterwards, we pop the stack. 
+
+------Dealing with parentheses
+
+a + b * c + (d * e + f) * g
+
+ab				Pushed the + 
+				Push the *
+
+Then we write down the c: abc
+					Pop the *
+abc*
+					Pop the +
+abc * + 	
+	(this multiplies "bc" first and then adds it to "a"	
+		
+				Push the (
+Write down "d"
+				Push the *
+Write down "e"
+
+de
+					Pop the *
+
+				Push the +
+Write down the "f"
+
+de*f
+				Pop the +
+de*f+
+				Push the *
+Write down "g"
+					Pop the *
+					Pop the +
+	

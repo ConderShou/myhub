@@ -1,0 +1,66 @@
+------------------Overloading----------------------------
+
+Car() {lights = false; color = "white";}
+
+Car(String c) {lights = false; color = c;}
+Car(boolean b) {lights = b; color = "white";}
+Car(boolean b, String c) {lights = b; color = c;}
+
+public void println(String output) {....} 
+public void println(int output) {...}
+
+Overloading is when we have different methods with the same name, but different parameters.
+	Like when we define mulitple constructors for a specific class, determining which constructor
+		to use based on the type of input parameters.
+
+IMPORTANT: Parameters HAVE TO BE DIFFERENT.
+	
+	- Different number of parameters
+
+	AND/OR	
+
+	- Different types
+
+CANNOT just differentiate between Return types and/or Parameter NAMES (We also get compiler error here)
+
+NOPE:	int m (int x, int y)			NOPE: int m(int x, int y)
+	double m (int x, int y)		           int m(int a, int b)
+
+------------------------Overriding-----------------------------
+
+public class Vehicle {
+	private String color;
+	public Vehicle(String c) {color = c;}
+	
+	public String toString()
+		{return "I am a vehicle";}
+}
+
+public class Car extends Vehicle {
+	private int noPass;
+	public Car(int n, String c)
+		{super(c); noPass = n;}
+
+	public String toString(
+
+		{return "I am a car. I am carrying "+noPass+" passengers";}
+}
+
+Overriding, changing the behavior of a method inherited from a superclass. 
+	As seen previously, the method "toString" has same parameters and return types, but different content within. 
+
+IMPORTANT: Parameter and return TYPES must remain the same 
+	(String parameters and String returns must  remain as Strings, even if they say different things)
+
+Ex:
+	public class A {
+		public String m (String x) {return x;}		- Overloading the method "m", the PARAMETER is DIFFERENT. The name and return types of these two constructors are the same. 
+		public String m()	{return "A";}		- Constructor "String m()" is being overriden. 
+	}							Method name, parameter types, and return types are the same.
+
+	public class B extends A
+		public String m()	{return "B";}
+	}
+
+
+

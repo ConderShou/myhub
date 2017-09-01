@@ -1,0 +1,68 @@
+RelativeLayout 		- used when we want to place views relative to one another or relative to the edges 
+			   of the layout
+
+
+------------------Change Background of App--------------------
+
+In the 'Design Tab', click on 'RelativeLayout' in the 'Component Tree' window.
+
+Go to 'background' in properties.
+
+Click on the three dots that show up when you select 'background'
+
+a. Select color in the 'Color Tab' and choose a pre-selected color
+
+	ALTERNATIVE:
+	
+b. Go to 'Add new resource' in upper right and select 'New color value' to get a pallette to create your own
+
+	You can also enter the color code in the '#       ' box in that color pallette
+
+	OR
+
+Enter color code inside the space of the 'background' property field ITSELF
+
+
+----Code---
+
+Adding:
+
+	 android:textColor="@android:color/white"
+
+
+also works for some pre-defined colors (those that have been named by the Studio itself already)
+
+
+UNIVERSALLY:
+
+	android:background="#fff092b0" 
+
+This works with color codes too
+
+
+---------------------Button------------------
+
+Can do the same thing EVEN THOUGH there appears to be text already in the 'background' field
+
+-------------------TextView-----------------------
+
+Select 'textColor' property field
+
+
+------------------------------------DIFFERENT BACKGROUNDS BASED ON DIFFERENT FACTS-------------------------------
+
+We select colors, but change the TRANSPARENCY of the color of the object
+
+We change the ALPHA value (A) (or 'FF')
+
+	255 - Completely Opaque
+	0     - Completely Transparent
+
+We can change to '128' for about 50% transparency on the 'Did you know?' text
+
+
+
+
+
+	
+

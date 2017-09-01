@@ -1,0 +1,37 @@
+---Tool Menus------
+
+    1.Under 'Tools' menu, select 'Menu Editor' 
+    2. Create New Primary Menu
+    3. Label it
+    4. Add Submenus and label them
+    5. Add Tags to the submenus
+    6. Put Accelerator on it 
+
+	Ex: 
+		Label: Save
+		Tag: SaveMenu
+		Accelerator: Ctrl + S	- Hotkey
+	
+		Load..
+
+		Label: Quit
+		Tag: QuitMenu
+		Accelerator: Ctrl + Q
+		Separator above this item	-Puts a line above the Quit option
+		
+		(Check mark this item -- Let's you use these submenus as checkboxes)
+
+Callbacks for all these different menus will be created within the GUI code
+	-Must edit these callbacks for the menu functions to work
+
+----Saving and loading files----------
+
+x = 4.5;
+a = 2;
+b = 101;
+name = 'Roberto';
+save('mydata', 'x', 'a', 'b', 'name');	-saves all the listed variables that have been established into mydata.mat
+
+load('mydata');	- loads all the stored information again EVEN if the command 'clear' was just used on information from mydata 
+
+load('mydata', 'x', 'a')	-just loads variables 'x' and 'a' from 'mydata'

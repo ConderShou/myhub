@@ -1,0 +1,11 @@
+----------------------Unkown Number of Inputs---------------------------------
+
+Simply read inputs and add them to an array list.
+
+Ex:
+	ArrayList<Double> inputs = new ArrayList<Double>();
+	
+	while (in.hasNextDouble())
+	{
+		inputs.add(in.nextDouble());		- Using the array list method
+	}

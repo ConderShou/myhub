@@ -1,0 +1,52 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf810
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww33400\viewh20520\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 Ask yourself this before creating a new component:\
+\
+	Does this component need to maintain any kind of state? Does all the information it need mainly just come from \'91props\'92? If so, then it only needs to be a functional component.\
+	\
+	If it needs to keep track of things outside of what is passed down in \'91props\'92, perhaps things that happen the component itself specifically and that it needs to record - then it should be a class-based component. \
+\
+\
+\
+\'97video_detail\'97\
+\
+\
+
+\b import React from 'react';\
+\
+const VideoDetail = (\{video\}) => \{\
+\
+	const videoID = video.id.videoId;
+\b0 \
+\
+	//Interpolates the string with the javascript variable\
+\
+
+\b 	const url = `https://www.youtube.com/embed/$\{videoID\}`;\
+\
+	return (\
+		<div className="video-detail col-md-8">\
+			<div className="embed-responsive embed-responsive-16by9">\
+
+\b0 \
+		\{/* With iframes, the browser will go the url in source and place the content of the url inside the iframe */\}\
+\
+	
+\b 			<iframe className="embed-responsive-item" src=\{url\}> </iframe>\
+			</div>\
+			<div className="details">\
+				<div>\{video.snippet.title\}</div>\
+				<div>\{video.snippet.description\}</div>\
+			</div>\
+		</div>\
+\
+		);\
+\
+\};\
+\
+export default VideoDetail;}

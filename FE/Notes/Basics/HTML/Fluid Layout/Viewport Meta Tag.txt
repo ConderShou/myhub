@@ -1,0 +1,21 @@
+Allows us to control size of the browser window on mobile devices so that instead of site visitors panning
+	and zooming around the page, our layout will be locked at the size of the window.
+
+Underneath: <link .... href = "css/responsive.css">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+Initial-scale - Size in relation to the "device-width"
+
+Do this for ALL HTML pages.
+
+
+This allows the browswer to change itself to FIT the width of the browser window of the mobile device or desktop.
+
+	THUS allowing our media queries to THEN take effect.
+
+
+
+Remember, beginning the design of the website to accommodate MOBILE DEVICES FIRST allows EASY, QUICK adjustments
+	for adopting the website for a desktop.

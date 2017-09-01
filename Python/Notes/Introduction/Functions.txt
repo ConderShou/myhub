@@ -1,0 +1,52 @@
+------------------------Functions------------------------
+
+- Functions are "first class" objects in Python
+	- Can be assigned as variables or passed as arguments
+
+- Functions are (MOSTLY) immutable objects
+
+- By default, functions return 'None'
+	- You must use the 'return' statement to return a value
+
+- Note the ':' at the end of the first line, and the INDENTING of the function body
+	- This is how you define a STATEMENT BLOCK in python
+	- Java/C++ use '{...}' for statement blocks
+
+------------------------
+
+def add2(x):
+	x+2
+
+print(add2(4))
+
+-O:
+
+None
+
+
+Must use return to get a value from the function
+------------------------
+
+def add2(x):
+	return x + 2
+
+add2(3)
+
+-O:
+
+5
+
+
+Can return multiple values by returning a list(or other data structures)
+------------------------
+
+def adsub2(x):
+	return [x+2, x-2]
+
+addsub2(10)
+
+-O:
+
+[12, 8]
+
+

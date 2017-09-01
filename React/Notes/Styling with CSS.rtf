@@ -1,0 +1,60 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf810
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww33400\viewh21000\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \
+\'97\'97\'97style.css\'97\'97\'97\
+\
+\
+/*Referring to the class names in the JSX "className"s of the different files.\
+\
+NOTE: We don't have to specify from which file to get this class in. Just refer directly to the className.\
+\
+This means "className" must be globally accessible and should be unique in respect to the other components' JSX when necessary*/\
+\
+.search-bar \{\
+	margin: 20px;\
+	text-align: center;\
+\}\
+\
+.search-bar input \{\
+	width: 75%;\
+\}\
+\
+.video-item img \{			//I think he made a mistake here and meant \'91list-group-item\'94. \
+	max-width: 64px;		// There is no class name with \'91video-item\'92\
+\}\
+\
+.video-detail .details \{\
+	margin-top: 10px;\
+	padding: 10px;\
+	border: 1px solid #ddd;\
+	border-radius: 4px;\
+\}\
+\
+ .list-group-item \{\
+ 	cursor: pointer;\
+ \}\
+\
+ .list-group-item:hover \{\
+ 	background-color: #eee;\
+ \}\
+\
+\
+\
+\'97\'97search_bar.js\'97\'97\'97\
+\
+
+\b render() \{
+\b0 \
+
+\b  	return (
+\b0 \
+\
+	 		// RECOMMENDED: Set the highest level JSX element the className of the component, lowercase and separated by dashes when necessary\
+	 		\
+	 		
+\b  <div className="search-bar">}

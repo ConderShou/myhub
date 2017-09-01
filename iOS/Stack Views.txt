@@ -1,0 +1,32 @@
+Divide up elements into their own stack views.
+
+Even if it's just one element, add them to a stack view in case you add more stuff later
+
+Choose Horizontal/Vertical depending on what direction you think you'll be adding elements in the future
+
+- Note: We selected all the stack views and made them into a SINGLE stack view
+
+Stack views will always stretch their width and height to fill the screen
+
+
+Content Hugging		- How closely you go towards contents 
+
+Content Resistance 	- How much do you want to push back on things that want to hug you
+
+
+------Modifying Per Device--------
+
+Go to Stack View:
+
+	Click "+" symbols
+
+
+- Compact Width = Width less than Height (Phone / Portrait Mode)
+
+
+
+Watch apple developer link on stack views:	
+		
+	https://developer.apple.com/videos/wwdc/2015/?id=218
+
+(Link given in lecture video 48)

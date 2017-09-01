@@ -1,0 +1,17 @@
+----Variables Names-----
+
+- Names are made up of LETTERS and DIGITS
+
+- The FIRST character MUST be a LETTER
+
+- Underscore, "_" counts as a letter
+	- Don't begin variable names with underscore though, library routines usually use those
+
+- Case-sensitive: Upper and lower case letters are distinct. 
+	- Variables names: lower case 
+	- Symbolic constants: upper case
+
+
+- We tend to use SHORT names for local variables, (especialyl loop indices),
+	and LONGER names for EXTERNAL variables
+

@@ -1,0 +1,50 @@
+MATLAB interprets 0 as false and a 1 (or any other nonzero number) as true
+MATLAB interprets expressions "true" and false" as representing logical values
+ 
+T=95
+isTooHot = T>90  - Stores value 1, because it's true (stores value 0 if false)
+
+isTooHot = true - Stores value 1
+isTooHot = false - Stores value 0 
+		
+
+
+(a>0) && (a<=100) - a is greater than zero AND a is less than or equal to 100
+
+year ~= 1960 	  - year is NOT EQUAL to 1960
+
+~ 	- means NOT 
+
+(Tc>Tmin) || (alpha>alphaMax) - Tc is greater than Tmin OR alpha is greater than alphaMax
+
+----Comparing Strings-----
+
+if strcmp(str1, str2) - Checks to see if two strings match each other:
+					-If matching, then it stores value 1
+					-If not matching, then it stores value 0
+if strcmp(str1, str2)==false     - Can do this to have the if statement work when strcmp is false
+					-Can also do ' if strcmp(str1, str2) == 0 '
+						- '==1' for substitution of 'true'
+
+strcmpi('Hello', 'heLLo') - Ignores the case of letters
+				-Output is true here
+
+----Switch Statements---------
+
+switch <switchExpression>      -switchExpression can be a variable with a value assigned to it 
+					-Ex: switch iDoor (where iDoor=randi(4))
+  case <case1_exp>				case 1
+	<statement block1>				disp('It''s a new car!');
+  case <case2_exp>				case {2, 3} - the integer 2 OR 3 will BOTH match up with this case
+	<statement block2>				disp('It''s a picture of someone else''s car!');
+  case <case3_exp>				...
+	<statement block3>
+   ...
+otherwise					otherwise
+  	<default statement block>			disp('Something has gone wrong.')
+end						end
+
+		
+	-If switchExpression==caseN_exp then <statement blockN> is executed.
+		 Otherwise <default statement block> is executed
+			-Works with strings or numbers

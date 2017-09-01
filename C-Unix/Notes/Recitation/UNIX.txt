@@ -1,0 +1,11 @@
+Relative paths don't have the slash in front.
+	Relative to current directory.
+
+Absolute paths show the whole path to the file/directory from the ROOT.
+
+Files starting with a dot are HIDDEN FILES
+
+
+If you don't include "-o" when you link the files, you get the generic "a.out"
+	
+	"-o" is purely for naming the file that is outputted. 

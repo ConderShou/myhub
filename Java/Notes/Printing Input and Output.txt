@@ -1,0 +1,55 @@
+------------------------User Input-------------------------------
+
+import java.util.Scanner;			- Import the needed Scanner class like this
+
+System.out.print("Please enter the number of bottles: ");
+Scanner in = new Scanner(System.in);		- Creates a Scanner object that reads keyboard input
+
+int bottles = in.nextInt();			- Now use the "nextInt" method to read an integer value	
+	
+	 ........nextDouble()
+	   ......next();			- Only reads one number. (Or one word, depending on the type of input specified - int, String, etc...) 		
+
+------------------------Formatted Output--------------------------
+
+Price per liter: 1.21596324320
+
+If we want it to be like, 
+	Price per liter: 1.22
+
+We do this:
+
+	System.out.printf("%.2f", price);		- Displays price with two digits after decimal point		
+		              "%10.2f"			- Specifies FIELD WIDTH. 
+							-Uses ten characters total to display the price number to two decimal places.
+								- Six spaces followed by the four characteres "1.22"
+		- NOTICE: A COMMA is used after the format specifier, where the variable/thing being acted upon follows after
+
+
+				- The "%.2f" and the "%10.2f" is called the FORMAT SPECIFIER
+	
+	System.out.printf(.....%.2d, ....)	- Use "d" for an integer
+		             (.....%.2s, ....)	- "s" for a string
+					
+Ex:
+	System.out.printf("Price per liter: %10.2f", price);
+
+	PRINTS:
+	
+		Price per liter:      1.22
+
+	- This gives our output neat columns. 
+
+
+---------------------------Dialog Boxes for Input and Output------------------------
+
+---Input----
+
+String input = JOptionPane.showInputDialog("Enter price:");
+
+double price = Double.parseDouble(input);	- Converts the "String" inputted to a "double"
+					- Using "Integer.parseInt", we would convert it to an integer. 
+
+--Output---
+
+JOptionPane.showMessage

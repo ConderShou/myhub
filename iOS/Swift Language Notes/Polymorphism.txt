@@ -1,0 +1,21 @@
+class Shape {
+	var area: Double?
+
+	func calcArea(valA: Double, valB: Double) {
+	
+	}
+}
+
+class Triangle: Shape {
+
+	override func calculateArea(valA: Double, valB: Double) {
+		area = valA * valB / 2
+	}
+}
+
+class Rectangle: Shape {
+
+	override func .... {
+		area = valA * valB
+	}
+}

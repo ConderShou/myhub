@@ -1,0 +1,74 @@
+Implementing interfaces with classes
+
+public class Vehicle
+	implements VehicleIF {			- Implementing the interface
+	private String color;
+	public Vehicle(String c) {color = c;}
+	public void moveForward() {...}
+	public void moveBackward() {...}
+	public String toString() {...}
+	}
+
+Implementing an interface mens we define a class where we give implementations to ALL the methods.
+	In other words, we define bodies.
+	We might also define attributes and constructors in addition to methods, maybe even private ones.
+
+-----Steps to Implementing Interfaces------
+
+We can first extend an interface to another interface.
+
+Then, we might partially implement the interface by giving bodies to SOME of the methods.
+	- This means that we are making an ABSTRACT class (b/c not all methods are implemented yet)
+		- Which we can then extend to ANOTHER abstract class OR fully define into a class
+		- We can then even continue to extend the class to other classes
+
+Finally, we might go directly from interface to class by implementing ALL methods
+
+-------------------------------------------
+
+We can also use an interface for multiple different types of objects/classes.
+
+public interface Moveable {			- This can be used not just for Vehicles, but also robots and other movable objects.
+	void moveForward();
+	void moveBackward();
+	String toString();
+}
+
+Ex:
+
+interface Playable {
+    void play();
+}
+
+interface Movable {
+    void moveForward();
+    void turn();
+    void stop();
+}
+
+public abstract class Toy implements Playable {
+    public abstract void play();
+}
+
+To implement a class "ToyCar" that represents a "Toy" that is "Movable" AND "Playable", and that is not abstract....
+
+	We can declare the class as such:
+		
+		public class ToyCar extends Toy implements Movable {...}
+
+
+------------------------Implementing Multiple Interfaces-----------------------
+
+A class can implement multiple interfaces.
+	(Remember, it can't be extended from multiple classes)
+
+----Possible Name Conflicts------
+
+If we have same method name:
+	and there are Different return types, there's an error.
+	and Same return type, we are GOOD.
+	and Same return type AND different parameter types, we can implement EACH method through Overloading
+	and Same return and parameter type, the class only has to implement this method ONCE (the abstract methods are the EXACT same)
+
+If we have same variable name:
+	Use a prefix

@@ -1,0 +1,75 @@
+
+--------Empty Initialization with Assignment---------
+
+var namesOfIntegers = [Int: String]()
+
+namesOfIntegers[3] = "three"
+
+
+---Clearing out Dictionary-----
+
+namesOfInteregs = [:]	- Like Python splitting
+
+
+----Initialization with Elements------
+
+var airports: [String: String] = ["XYE": "FJDSFSI", "LAX": "Airport"]
+
+var airports = [...] 	- Type inference also works
+
+
+----Count----
+
+airports.count
+
+
+---isEmpty----
+
+airports.isEmpty
+
+
+-----Adding and then Overriding Element-----
+
+airports["HR"] = "fdskf"
+airports["HR"] = "dsjflfds"		- Overriden
+
+
+-----Removing elements-----
+
+airports["HR"] = nil
+
+- Setting it to 'nil' REMOVES it
+
+
+-------------------Iterating through Dictionaries---------------------
+
+-----Iterating through WHOLE dictionary----
+
+for (airportCode, airportName) in airports {
+	print("\(airportCode): \(airportName)")
+}
+
+---equivalent to---
+
+for(key, value) in airports {
+	....
+}
+
+
+--------Iterating through JUST keys and values------
+
+---Just KEYS----
+
+for airportCode in airports.keys {
+	print("Key: \(airportCode")
+}
+
+
+---Just VALUES----
+
+for someValue in airports.values {
+	print("Value: \(someValue)")
+}
+
+
+

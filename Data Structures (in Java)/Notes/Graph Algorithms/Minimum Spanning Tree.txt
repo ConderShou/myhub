@@ -1,0 +1,36 @@
+
+Finding a minimum spanning tree in an undirected graph. 
+------------------------------------------------------------
+
+A minimum spanning tree of an undirected graph G is a tree formed from graph edges that connects ALL the vertices of G at LOWEST total cost. 
+
+	Exists IFF G is connected
+We will assume that G is connected.
+
+The minimum spanning tree is a TREE because it is ACYCLIC.
+		SPANNING because it covers EVERY vertex
+		MINIMUM for obvious reasons (vertices connected at lowest total cost)
+
+Ex:
+	Wriing a house with a minimum number of cable = minimum spanning tree problem
+
+
+------------
+
+For any spanning tree, if an edge that is not in the tree is added, a CYCLE is CREATED
+	The removal of any edge on the cycle reinstates the SPANNING TREE property (but probs not MINIMUM property)
+	The cost of the spanning tree is LOWERED if the added edge has LOWER cost than the edge that was removed. 
+
+if, as a spanning tree is created, the edge that is added is the one of minimum cost that avoids creation of a cycle,
+	then the cost of the resulting span tree cannot be improved
+
+	This is because any replacement edge would have cost AT LEAST AS MUCH as an edge already in the spanning tree
+
+This thus shows that GREED works for the minimum - spanning tree algorithm.
+	
+	(A greedy algorithm may not find the optimal solution, but it approximates the optimal solution in a reasonable amount of time
+
+
+--------------------
+
+We will now discuss in other files the two algorithms that differ in how a minimum edge is selected.

@@ -1,0 +1,20 @@
+Since pointers are variables THEMSELVES,
+	they can be STORED in ARRAYS just as other variables can. 
+
+
+Ex:	We want to sort a set of text lines into alphabetic order
+	These text lines can be of DIFFERENT length
+
+	To cope efficiently/conveniently with variable-lenght text lines:	
+		We use an Array of Pointers
+
+	The pointers themselves can be stored in an array, and two lines can be compared by passing their pointers
+		to 'strcmp'
+	
+	The lines themselves are stored end-to-end in ONE long character array
+
+	When two out of order lines have to be exchanged, the pointers themselves are exchanged. 
+
+
+
+Take a look at the big program code if needed. More on pointers.

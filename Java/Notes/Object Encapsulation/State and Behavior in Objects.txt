@@ -1,0 +1,9 @@
+State = the values of the variables/attributes/fields at a given time
+Method = the way in which the state changes/transforms. 
+	- "Eating" changes the isHungry state of a hiker from true to false
+	- Methods are often related to verbs because they imply an action
+	- The methods at a given time are called "behavior"
+
+Behavior = things that the object can do
+
+All of these things are encapsulated into "objects". 

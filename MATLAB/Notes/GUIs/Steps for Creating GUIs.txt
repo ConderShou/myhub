@@ -1,0 +1,140 @@
+----Transforming a program into a GUI tool----------
+
+0. Write and debug the program
+
+1.  Plan the GUI
+  
+	Select the components needed for the GUI
+	Launch 'guide'
+
+2. Create the GUI with GUIDE
+
+	a) Make unique Tag names according to the naming convention.
+
+		- 'String' 	contains the label of the object 
+		- 'Tag'	 is what the program calls the object (and what it uses to refer to the object)
+			-Can view tag in bottom left of GUIDE upon clicking on the object
+		- 'Max'/'Min'/'Value' 	for giving the range in values and assigning a starting value, respectively
+
+	b) Save with name '[program]Tool'	Ex: (GaussTool)
+
+		GUIDE creates GaussTool.m and GaussTool.fig
+
+	c) Synchronize GUI elements in GaussTool.m by editing Callback functions.
+
+		-Use "Go to" to find the callbacks for the various objects
+		-Type in code underneath the respective callback to alter its properties and to synchronize it 
+		with other objects
+		
+		Ex:	function widthSlider.Callback....
+
+			a = handles.widthSlider.Value;
+			handles.widthText.String = num2str(a); --Can affect other objects from the code of another
+				
+		-Changing the value of the slider (position of the slider) changes the number in the textbox
+		    
+		      ---------------------------------------------------------------------------
+			function widthText.Callback...
+
+			astr = handles.widthText.String;  	--set these properties to a variable shorter in length
+			handles.widthSlider.Value = str2double(astr);
+				
+		-Changing the values of the textbox also changes the value of the slider
+
+3. Transform the program into an appropriate function 
+
+        -What to do inside the program to have it connect with the GUI
+
+	a) Save program in another file with first line: "function [program]F(handles)"
+	
+		Ex: function plotgaussF(handles)
+	
+	b) Direct plotting to the GUI using "plot(handle,...) etc."
+
+	       -Taking the handles to the Axes as the first object
+
+		Ex: plot(x, g); 			plot(handles.plotAxes, x, g);
+		     ylabel('g(x)');			ylabel(handles.plotAxes, 'g(x)');
+		     legend('g(x)', 'dg/dx')		legend(handles.plotAxes, 'g(x)', 'dg/dx')	
+		     xlabel(...
+		     title(....
+
+		     grid on			grid(handles.plotAxes, 'on')
+
+			
+	c) Get parameters from the GUI using "handles.TagName.Property"
+
+		Ex: 	%width from slider in GUI
+			a = handles.widthSlider.Value;	(instead of a = 1)	
+	
+		-Gets properties from the slider	
+
+	d) Set properties on the GUI using "handles.TagName.Property"
+
+		-Can use string property to tell User a message
+
+4. Connect the function to the GUI
+
+	- Insert calls to "plotGaussF(handles)" in appropriate Callback functions
+
+		Ex: function plotButton_Callback(...
+
+	  	     plotgaussF(handles);
+	
+		-When the button is clicked, GUI plots the graph from plotgaussF
+		
+		------------OR-----------------------------
+		
+		      function widthSlider.Callback.....		function widthText.Callback(....
+
+		      a = handles.widthSlider.Value;		astr = handles.widthText.String;
+		      handles.widthText.String = num2str(a);	handles.widthSlider.Value = str2double(astr);
+		      plotgaussF(handles);			plotgaussF(handles);
+
+		-When the value of the slider/textbox is changed, the graph of plotgaussF is instantly plotted
+
+		--------------------------------------------------
+		
+		-Inside plotgaussF
+
+		     handles.plotAxes.XTick = [xmin:xmax];
+			
+		-More vertical gridmarks for the x-values
+
+		-------------------------------------------------
+
+		     function GaussTool_OpeningFcn(....
+
+		     plotgaussF(handles);
+
+		-GUI will graph plotgaussF at its launch with the initial values already set
+		
+5. Improving a GUI
+	
+	Ex: Adding plotPopup and gridCheckbox
+ 
+     ------Within program.....
+
+	iPlotChoice = handles.plotPopup.Value;	
+		-Different choices in the Popup are represented as different integers
+	Use switch in the program to match these choices to the desired corresponding graph
+
+	% get choice of turning on grid from checkbox
+	doGrid = handles.gridCheckbox.Value;	      	- Will get either true or false value
+	
+	if doGrid
+		grid(handles.plotAxes, 'on')
+	else
+		grid(handles.plotAxes, 'off')
+	end
+
+      -----Within GUI.......
+
+	function plotPopup_Callback(...
+	plotgaussF(handles);
+
+	function gridCheckbox_Callback(....
+	plotgaussF(handles);
+
+
+

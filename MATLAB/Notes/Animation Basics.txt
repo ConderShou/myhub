@@ -1,0 +1,38 @@
+--Animation Basics----
+
+Draw a sine curve smoothly from left to right
+
+parameters T, tmin, tmax, and Nt=300 is given.
+t = linspace(tmin, tmax, Nt);
+y=sin(2*pi*t/T);
+
+for it=1:Nt
+	plot(t(it), y(it), 'ro', ...
+		t(1:it), y(1:it), 'b')	       - this second graph creates blue trail
+	axis([tmin, tmax, -1.1, 1.1]);           -Need to take control of scaling.
+				         Or else Matlab rescales every time
+	grid on
+	xlabel...			       -Because it replots every loop, you need to 
+				       -relabel/grid and such every time too
+	ylabel...
+	drawnow                 
+end
+
+----------------------------------------------------------------------
+Animate drawing of a circle
+
+Nth=100;
+R=1;
+
+theta=linspace(0, 4*pi, Nth);		- 4*pi means it goes around circle twice
+x=R*cos(theta);
+y=R*sin(theta);
+
+for ith=1:Nth
+	plot(x(ith), y(ith), 'ro', ...
+		x(1:ith), y(1:ith), 'b');
+	axis(1.2*[-R, R, -R, R]);	-Taking control of axis (and making it a little bigger for comfort)
+	axis square		-Frames the xy axis into a square
+	grid on
+	drawnow
+end

@@ -1,0 +1,25 @@
+You apply a hash function to that data
+
+You do some calculation to that data
+
+You get a number, that's hopefully smaller than the data you put in, like a compression
+
+If you have a good hash function, you hopefully have unique numbers coming out.
+
+Because you're losing some data, you might have some collisions.
+
+It's hard, hopefully impossible, to find what the initial value was, based on the value you got out
+	- Process not meant to be reversible
+
+-----------------Ex-------------------
+
+You put in a word
+
+You get a number, 5325, that is meant to be unique from any of your other outputs.
+
+You're given the function applied to the number.
+
+You cannot use an inverse of the function, apply it to 5325, and then find what the word was that was inputted
+
+It acts as a signature for the file.
+

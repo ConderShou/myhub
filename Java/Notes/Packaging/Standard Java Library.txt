@@ -1,0 +1,6 @@
+Object is the root class in the Java library
+
+All classes in Java inherit from the Object class
+	All classes by default are SUBCLASSES of the superclass "Object"
+
+Classes may use or redefine methods from the Object class

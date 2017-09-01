@@ -1,0 +1,8 @@
+"Then you should add Privacy - Location When In Use in Info.plist 
+
+and then as a value write something like "app needs a location". It worked for me."
+
+- Works... Kinda? The user location is in San Francisco, but that may be because of the nature of the Simulator. 
+
+
+Make sure to also use an actual phone to simulate an app like this.

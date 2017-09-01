@@ -1,0 +1,3 @@
+- Immutable objects, once created, can never be modified
+
+- Mutable objects can be modified at any time

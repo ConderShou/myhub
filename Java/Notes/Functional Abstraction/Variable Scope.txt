@@ -1,0 +1,40 @@
+------------Variable Scope---------------------
+
+int x = 1;			- This "x" is a GLOBAL VARIABLE (used everywhere in the code except for within methods)
+int f(int x)		- This "x" is a LOCAL VARIABLE (it is only used by this method and does not affect anything outisde the method)
+{
+	return x+x;
+}
+int z = f(f(x+1));
+
+--------
+
+int x = 1;			- Same concept, except parameter is defined within body, not within declaration
+int f()
+{
+	int x =2;
+	return x+x;
+}
+int z = f();
+
+------Using Outside Variable within body of method-----------
+
+To use an outside variable in the body of the method, choose a DIFFERENT name for the parameter
+
+int x = 1;
+int f(int y)
+{
+	return x+y;
+}
+int z = f(x+1);
+
+-------------------
+
+int x = 1;
+int f()
+{
+	int y = 2;		- Same concept as previous example, execept parameter is defined within body, not in declaration
+	return x+y;
+}
+int z = f();
+

@@ -1,0 +1,22 @@
+angular.module('App', [])
+.directive('markdown', function() {		//Declares directive and names it "markdown"
+   var converter = new Showdown.converter();	//Creates Showdown converter to use later
+   return {					//DIRECTIVES return an object to define directive settings
+	scope: {
+		markdown: '@'		//Declares CUSTOM scope that expects a value for the Markdown attribute
+	}
+	link: function(scope, element, attrs) {	//Declares link function that actually manages conversion from Markdown to HTML
+	  scope.$watch('markdown', function() {  //Scope watcher updates any time model changes
+		var content = converter.makeHtml(attrs.markdown);	//Converts Markdown into content variable
+		element.html(content);				//Injects converted HTML content into element
+		});
+        	}
+    }
+});
+
+
+$watch will run the function when 'markdown' changes.
+
+Showdown is a Javascript Markdown to HTML converter
+
+Link function 

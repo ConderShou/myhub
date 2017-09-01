@@ -1,0 +1,116 @@
+
+Heapsort	- Using priority queues to sort in O(Nlogn) time
+
+
+-------------------------Preliminary Strategy-------------------------------------
+
+1. Build binary heap of N elements						- O(N) time
+	
+2. Perform N 'deleteMin' operations						- O(logN) time
+	Elements leave heap smallest first
+
+3. Record these elements in a second array and then copy the array back		- O(N) time
+
+
+Total running time: 	O(N logN) time
+
+---------------------------------------------------------------------------
+
+Main problem:
+		Uses an extra array 
+			(doubling the memory requirement)
+
+INSTEAD:
+		After each 'deleteMin', there is an empty space at end of array
+		Place the recently deleted element in that space. 
+	
+	As a result:
+
+		After the last 'deleteMin', the array will contain the elements in 	
+		DECREASING order
+	
+		If we wanted the array to be in INCREASING order, we use a MAX HEAP instead. 
+
+
+----------------------------------Final Strategy----------------------------------
+
+1. Build a max/min heap 			- O(N) 
+
+2. Perform N-1 deleteMax/deleteMin
+	by SWAPPING the LAST element in the heap with the FIRST
+	
+	Decrementing the heap size
+	
+	and Percolating down
+
+3. At finish, the array contains the elements in sorted order
+
+----------------------------------------------
+
+
+Note: UNLIKE the binary heap, the data begins in position 0 (rather than 1)
+
+Ex:
+	/**
+	 * Internal method for heapsort
+	 * @param i the index of an item in the heap
+	 * @return the index of the left child
+	 */
+	private static int leftChild( int i )
+	{
+		return 2 * i + 1;
+	}
+
+	/**
+ 	  * To be used in deleteMax and buildHeap
+	 * @param a an array of Comparable items
+	 * @int i the position from which to percolate down
+	 * @int n the logical size of the binary heap
+	 */
+	private static <AnyType extends Comparable<? super AnyType>>
+	void percDown( AnyType[] a, int i, int n)
+	{
+		int child;
+		AnyType tmp;
+		
+		for( tmp = a[i]; leftChild( i ) < n; i = child )
+		{
+			child = leftChild( i );
+			
+			if( child != n - 1 && a[ child ].compareTo( a[ child + 1 ]) < 0)
+				child++;
+	
+			if( tmp.compareTo( a[ child ] ) < 0 )
+				a[ i ] = a[ child ];
+			else
+				break;
+		}
+		a[ i ] = tmp;
+	}
+
+	/**
+   	 * Standard heapsort
+	* @param a an array of Comparable items
+	*/
+	public static <AnyType extends Comparable<? super AnyType>>
+	void heapsort( AnyType[] a )
+	{
+		for( int i = a.length / 2 - 1; i >= 0; i-- )	/* buildHeap */
+			percDown( a, i, a.length );
+		for( int i = a.length - 1; i > 0; i-- )
+		{
+			swapReferences( a, 0, i );	/* deleteMax */
+			percDown( a, 0, i );
+		}
+	}
+
+
+--------------------Analysis-----------------------
+
+Theorem:
+	The average number of comparisons used to heapsort a random permutation of N distinct items is
+	2NlogN - O(Nlog logN)
+
+
+In the WORST and AVERAGE case: 
+	At most 2NlogN - O(N) comparisons are used by heapsort

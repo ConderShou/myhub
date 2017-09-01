@@ -1,0 +1,11 @@
+x += x += 10
+
+This evaluates from RIGHT to LEFT. 
+
+	x+=10 is evaluated first.
+	THEN x += whatever the previous result was. 
+
+
+Other than regular assignment operators and expression stuff, discusses some stuff about bitcounts.
+
+	- If necessary, review section in textbook

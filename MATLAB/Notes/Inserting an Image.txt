@@ -1,0 +1,10 @@
+--------Inserting Images---------
+
+1. monkey = imread('monkey.bmp');	- Read in image data from file
+
+2. image('CData', monkey, ...
+	'XData', [x1, x2], 'YData', [y1, y2]);	-Create image on current figure and set its position by setting
+					 value of the XData and YData properties
+
+	-XData and YData are 2 x 1 row vectors that have, as their coordinates, lower left and upper right
+	-CData represents the color properties of the image

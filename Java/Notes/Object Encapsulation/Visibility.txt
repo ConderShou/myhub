@@ -1,0 +1,44 @@
+class Car {
+
+	int gas; // from 0 to 100
+	
+	...
+
+	void move (int n) {...; gas-=n; ...;}
+	void fill (int n) {...; gas+=n; ...;}
+}
+
+	- The two methods "move" and "fill" are not in sole control of this variable. 
+	   We must restrict this access somehow. 
+
+------Access modifiers-----------
+
+public 
+
+private
+
+Ex:
+
+	class Car {
+
+		private int gas;	 	- We can only access this variable WITHIN the class NOT OUTSIDE
+
+		...
+	
+		public void move(int n) {...; gas-=n; ...;}		- Can be called from OUTSIDE the class
+		public void fill(int n) {....; gas+=n; ....;}
+	
+		}
+
+It is normal and typical to have private variables and public methods.
+
+Ex:
+	public class Car {					- Good to put "public" in front of Class
+			private int gas;
+			...
+			public Car () {gas = 0;}
+			public void move (int n) {...; gas-=n; check();}
+			public void fill(int n) {....; gas += n; check();}
+	
+			private void check()		- AUXILLARY METHODS: Used for other public methods (Can't be used outside of class - ONLY for within)
+				{if (gas<0) gas = 0; if (gas>100) gas = 100;}

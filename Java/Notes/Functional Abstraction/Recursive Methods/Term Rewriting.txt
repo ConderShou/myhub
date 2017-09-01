@@ -1,0 +1,30 @@
+---------------Term Rewriting--------------------------------
+
+Substituting expressions for other equivalent expressions
+
+Ex: 
+
+power(x, 3)
+
+- if (3==0) {return 1}
+else return x*power(x, 3-1)
+
+- if (false) {return 1}
+else return x*power(x, 2) 
+
+- return x*power(x, 2)
+
+...
+
+power(x, 3)
+
+x*power(x, 2)
+
+x*(x*power(x, 1))
+
+x*(x*(x*power(x,0)))
+
+x*(x*(x*1))
+
+x*(x*x)
+

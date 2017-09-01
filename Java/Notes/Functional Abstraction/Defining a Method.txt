@@ -1,0 +1,34 @@
+Method = means "function" in JAVA terminology
+
+int square (int x)		- Initialize the type of output that will be given by the method
+			   The name given to the method,
+			   Then the type of parameter and a variable name for it (the things in parentheses)
+				- The name of the parameter does NOT interfere with the same variable name given outside the method declaration
+int square (int x)
+{			- Within curly brackets, the computation(s) of the function
+	return x*x;	- "return" means that the result of the expression on the right will be the output of the method
+
+}
+
+---------------
+
+There is a problem with this code.
+
+double square(double x) {		- ERROR: There is no return value if the argument is less than zero 
+	if (x >= 0) {				- Make sure you have return values for all possible outcomes
+		return x*x;
+	}
+}
+
+------Naming methods------
+
+Recommendations (stylistic conventions):
+
+	- the first letter should be lowercase
+	- a verb of what the method does
+	- it should have meaning
+	- Capitalize the following words if the name needs more than one word
+
+      Ex: 
+	Verb: move
+	Phrase: isEmpty

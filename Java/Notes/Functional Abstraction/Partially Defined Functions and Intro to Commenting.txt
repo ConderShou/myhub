@@ -1,0 +1,38 @@
+---------------------Defining partially defined functions------------------------
+
+1. Expect an error
+2. Comment the program so the programmer remembers how to use the function correctly
+3. Prepare useful documentation (special comments for Javadoc)
+4. Programming Exceptions so that the program can respond to the undefined cases (where there are no values of Y for some values X)
+
+------Normal Commentary--------
+
+Ex:
+	double sqrt (int x) {
+
+	/* x has to be 
+	non-negative */		- Writing comments in JAVA (can do multiple lines as long as we end in "*/" ) 
+	
+		return ...;
+	}
+
+
+-------Special Commentary for Javadoc----
+
+Ex:
+	double sqrt (int x) {
+	/**					- Javadoc takes these special comments and 
+	  *  @param x an int value			  outputs a nicely formatted documentation for programmers to use
+	  *	Precondition: x >= 0
+	  *  @return the non-neg. sq. root		- @param and @return have special meanings that Javadoc uses to produce the resulting documentation
+	  */					   (?? this lecture didn't tell me what these meanings were)
+	    return ...;					
+	}
+
+-------Exceptions-------------------
+
+Ex:
+	double sqrt (int x) throws NegEx{		- Programming what to do for values that are not defined
+	   if (x<0)  {throw new NegEx();}			(Refer to relevant notes on writing Exceptions)
+	   return ..;
+	}

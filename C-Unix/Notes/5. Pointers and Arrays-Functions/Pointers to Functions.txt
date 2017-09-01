@@ -1,0 +1,42 @@
+A function itself is not a variable - possible to define pointers to functions:
+		
+	which can be assigned,
+	 placed in arrays, 
+	passed to functions,
+	 returned by functions,
+	 and so on
+
+
+void notifier( int (*fn)() );
+
+	- The function has to return an 'int'
+	- Has to take in NO arguments
+
+The form of a function pointer type:
+	
+	return_typ (*name) (parameters)
+
+	- The PARENTHESES are NECESSARY (if we don't have any around *name, it would be as if we're declaring
+		a VARIABLE)
+
+
+notifier(wasteTime);
+notifier(&wasteTime);
+
+	- Assuming 'notifier' took in a function pointer that was called 'wasteTime' here, the AMPERSAND
+		is optional
+
+- NOTICE: This means referencing a pointer to a function just gets you the SAME pointer back
+
+	- Functions without the '()' are automatically the function pointers
+
+	
+
+We can declare function pointers within the body of a method (even though we can't declare functions themselves)
+
+int main(int argc, char **argc) {
+
+	int (*f1)();
+	f1 = wasteTime;
+	...
+}

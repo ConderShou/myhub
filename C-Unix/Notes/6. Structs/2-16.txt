@@ -1,0 +1,16 @@
+size_t		//Equals unsigned int
+
+const char *p = &c;		//'p' will ONLY point at the address of 'c' and CANNOT be MODIFIED
+
+
+
+
+
+
+
+
+
+
+
+
+

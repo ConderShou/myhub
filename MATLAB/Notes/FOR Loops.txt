@@ -1,0 +1,61 @@
+---FOR loops----
+
+Repeatedly execute a block of commands
+---------------
+for i=8:-3:1  - counter goes from 8 and towards 1 by subtracting 3 each time
+		Ex: "i" will equal 8, 5, and 2
+
+
+--The loop variable: icount---
+
+iMax=5;
+for icount=1:iMax 				
+	disp(['Count is: ', num2str(icount)]);
+end		  		
+
+	-icount is created by the for statement
+		-initially set to 1
+		-Executes the statement block underneath
+		-Then incremented by 1 until the value of 'iMax' is reached
+
+icount=1:2:iMax	- icount will increment by two each time through the loop (will still stop before rather than surpass iMax)
+
+----archery.m-----
+
+deltat = 0.02;
+Nmax=50;                               	 -decreasing 'Nmax' shortens the arrow's path
+
+for kb=1:Nmax
+	clc
+	disp([blanks(kb), '>>--->'])     -'blanks(kb)' shifts the arrow 'kb' blanks
+	pause(deltat)
+end
+
+clc
+disp([blanks(Nmax), '>>---<'])
+pause(deltat)
+clc
+disp([blanks(Nmax), '>>-<-'])
+pause(deltat)
+......
+for kb=1:Nmax
+	clc
+	disp([blanks(Nmax-kb), '<---<<'])     
+	pause(deltat)
+end
+-----Vocab and Good Programming Practice---
+
+"loop unrolling" means to write out the loop function in its equivalent number of independent statements
+"loop rolling" means to condense a series of independent statements into a loop statement
+
+Never change the value of the LOOP INDEX VARIABLE in the loop - Don't change value of icount within the loop
+
+Use loop index variables names that begin with i, j, k, m, n to indicate integers
+
+Choose loop index variable names that are related to the quantity being changed in the loop
+	-Ex: a loop over time
+		for it=1:Nt
+		
+		-ix, irow, ie (energies), it - MAKE CODE CLEAR
+
+Always use indenting (Editor | Indent| Smart --> or Ctrl + I

@@ -1,0 +1,6 @@
+int ndigit[10];	- Initialize array
+
+++ndigit[c-'0'];	- Increment value stored at the index represented by expression ' c-'0' '
+
+
+ndigit[i] = 0;	- Array assignment

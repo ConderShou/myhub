@@ -1,0 +1,27 @@
+IMPORTANT: You must write your html page elements in the order you would like them to appear on the page
+
+--------------------------------------------------------
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Conder Shou | Developer</title>
+	</head>
+  
+	<body>
+		<header>					- Different from "head" element, which was for the web browser to read meta data about the HTML document 
+			<h1>Conder Shou</h1>			- The "header" element helps to structure the content. 
+			<h2>Developer</h2>			- The second level headline element that appears SMALLER than the first level headline
+		</header>
+		<section>					- Sections break up a page into logical groupings of information
+			<p>Portfolio will go here.</p>	- The paragraph element will contain text in sentence or paragraph form
+		</section>
+		<footer>					- Represents the bottom of a content area. The complement of the header element.
+								- Like the header, information in the "footer" will be featured in every page. (Social media links, copyright info, etc..)
+			<p>&copy; 2014 Conder Shou.</p>	- "&copy;" is an HTML entity that represents the copyright character (Google it when you need to know what the HTML entities are of certain characters)
+		</footer>						- HTML entities usually follow the syntax of "&" + "name of symbol" + ";"
+	</body>							
+</html>
+
+
+

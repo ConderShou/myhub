@@ -1,0 +1,29 @@
+
+1. Declare an instance variable with a data type of RelativeLayout.
+    (Same format as other View fields)
+
+2. Set this variable in the 'onCreate' method like other Views.
+
+ 	You may need to add an ID to the RelativeLayout in the Layout file
+
+3. When we set a new fun fact, call the 'setBackgroundColor()' method on this new variable
+
+	Use Color.Red as the parameter
+
+--------------------------------------------------------------
+
+In 'activity_fun_facts.xml', look at Relative Layout:
+
+	android:id="@+id/relativeLayout"	//Add/change the relative layout id to what  you want
+
+
+In FunFactsActivity.java:
+
+ 	private RelativeLayout mRelativeLayout;
+
+ 	mRelativeLayout = (RelativeLayout) findViewById(R.id.relativeLayout);	//after we give it an ID,
+								   gotta look for it in the xml file
+								   OR property pane
+
+
+	

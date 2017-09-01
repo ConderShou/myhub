@@ -1,0 +1,14 @@
+h1, h2 {
+	color: #fff;
+}
+
+
+Here, each digit will be used as BOTH digits for each color.
+
+---------------------------
+
+nav a, nav a:visited {
+  color: #fff;
+}
+
+Even after the link is 'visited', it will remain as the color white (rather than blue)

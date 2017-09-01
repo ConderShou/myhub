@@ -1,0 +1,7 @@
+return expression;
+
+The expression will be converted to the type of the function if necessary. 
+	Parentheses are often used around the 'expression', but are optional. 
+
+
+Everything else like Java.

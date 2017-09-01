@@ -1,0 +1,46 @@
+----------More on Variable Scopes-------------------
+
+int x = 1;
+int y = 0;
+for (int x =1; x < 3; x++)	- Here the LOCAL variable "x" within the for loop prevents us from using the GLOBAL variable "x"
+{				-This LOCAL variable disappears once we exit the for loop
+	y = y+x;
+}
+int z = y;
+
+--------Extreme example (don't do this - this is just to prove a point)------
+
+int x =1;
+int f(int x) {
+	int y = 0;
+	for (int x = 1; x<3;x++)
+		{y = y+x;}		- This "x" is localized only to the for loop
+	return y+x;		- This "x" is localized only to the function "f"
+}
+int z = f(x+2)+x;			- This "x" is a global variable that only applies to these outside operations
+
+--------------------------------Lexical/Static Scoping------------------------------
+
+Most programs today have static scoping. Some have something called "dynamic scoping" but JAVA has static scoping.
+
+int x =1 ;
+int f()
+{
+	return x;		- Variable "x" here is bound to the value it has when the method is defined (x = 1)...
+}				
+int g()
+{
+	int x = 0;		... not when it's called (x = 0)...
+	return f();
+}
+int z = g();		... therefore, z = g() = 1.
+
+
+--------------
+
+int f()			- If we remove the topmost declaration "x", the code segment would give an error while it is compiled
+{
+	return x;
+}
+
+  ... 

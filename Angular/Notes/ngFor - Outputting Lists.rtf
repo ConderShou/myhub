@@ -1,0 +1,73 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf810
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww33400\viewh20520\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \
+\
+\
+\
+\
+\
+\'97\'97server.component.ts\'97\'97\'97\
+\
+
+\b servers = ['Testserver', 'Testserver 2']\
+\
+onCreateServer() \{\
+    this.serverCreated = true;\
+    this.servers.push(this.serverName); \
+    this.serverCreationStatus = 'Server was created! Name is ' + this.serverName;  \
+  \}\
+
+\b0 \
+\
+\
+\'97\'97server.component.html\'97\'97\
+\
+<!-- ngFor is a structural directive, hence the * \
+Iterates through the 'servers' array in normal Javascript/python like fashion.\
+\
+NOTE: 'server' represents the CURRENT element in the 'servers' array \
+-->\
+\
+
+\b <app-server *ngFor="let server of servers"></app-server>\
+\
+\
+\
+\
+
+\b0\fs22 \'97\'97\'97\'97\'97Important Assignment Notes\'97- (basics 3 assignment)\
+\
+ <!-- IMPORTANT: 'click' becomes your way of accessing the SPECIFIC element that is created at a certain iteration.  -->\
+\
+
+\i\fs36 IMPORTANT: \'91click\'92 becomes a \'93global\'94 variable in the HTML. Any HTML element can now access the \'91click\'92 element, not just the <p></p> element it was declared in. \
+(NOT ACCESSIBLE for HTML elements that come before \'91click\'92s declaration)
+\i0\fs22 \
+\
+   
+\b    <p *ngFor="let click of clicks" \
+[ngStyle] = "\{backgroundColor: colorFifth(click)\}" \
+[ngClass] = "\{fifth: click >= 5\}">\{\{ click \}\}</p>\
+      <p>\
+\
+\
+
+\b0 \'97Adding On\
+\
+<!--      \
+	 '= index' (a reserved expression) gives access to the index of the current iteration in the array.\
+\
+      This means 'i' will be 0 for the first iteration, then 1, etc... \
+\
+   Setting it to check >= 4 because array index starts at 0\
+\'97>\
+      \
+      <!-- <p *ngFor="let click of clicks" [ngStyle] = "\{'background-color': colorFifth(click)\}" [ngClass] = "\{fifth: click >= 5\}">\{\{ click \}\}</p> -->\
+\
+    
+\b   <p *ngFor="let click of clicks; let i = index" [ngStyle] = "\{'background-color': i >= 4 ? 'blue' : 'white'\}" [ngClass] = "\{fifth: i >= 4\}">\{\{ click \}\}</p> }

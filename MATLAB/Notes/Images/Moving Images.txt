@@ -1,0 +1,24 @@
+-----Moving Image---------
+
+Just need to change the axis position, don't have to reimport and redisplay the image each time
+
+---From Perry code----
+
+%% move agent p 
+%	shifts x coordinate from right to left
+
+xinit = 15;
+xfin = -15;
+Nx = 400;
+x = linspace(xinit, xfin, Nx);
+
+axis off
+
+for ix = 1:Nx
+	xLL = x(ix);
+	xUR = xLL + PerryWidth;
+
+	him.XData = [xLL, xUR];
+
+	drawnow
+end

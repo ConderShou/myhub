@@ -1,0 +1,63 @@
+-------Defining the function----------
+
+double atof(char s[]) 
+{
+	....
+}
+
+
+- Have the return type given before the function statement
+
+
+---------Ensuring that the function returns a non-int value------
+
+main()
+{
+	double sum, atof(char[]);
+	...
+}
+
+
+- This declares that "sum" is a double variable, and that 'atof' is a function that
+	takes one char[] argument and returns a double
+
+	- Ensures that this will be the case when the function is defined
+	- Else compiler will detect error
+
+	- If 'atof' were compiled separately (in a different file), the mismatch would NOT be detected, 
+		'atof' would return a 'double' that 'main' would treat as an 'int', 
+			and meaningless answers would result. 
+
+----NOTE---
+
+If there's no function prototype:
+
+	sum += atof(line)
+	
+	- This can implicitly declare a function by its FIRST appearance in an expression,
+		a name NOT previously declared with an expression and LEFT parenthesis is assumed to be a function name
+
+	- The function is assumed to return an 'int', and nothing is assumed about its arguments. 
+
+
+If a function is declared without any arguments:
+
+	double atof();
+
+	- Nothing is assumed about the ARGUMENTS of atof
+		All parameter checking is turned off.
+	- Use VOID if it has no arguments
+
+-------------------
+
+int atoi(char s[])
+{
+	double atof(char s[]);
+
+	return (int) atof(s);
+}
+	
+The expression returned is AUTOMATICALLY casted to the type of the FUNCTION before the return is taken.
+EXPLICITLY writing the cast states that the operation is intended, and SUPPRESSES any warning. 
+	- Be warned. Information may be lost in this kind of casting
+		(Which is why compilers warn of it in the first place)

@@ -1,0 +1,72 @@
+
+--------------Adjacency matrix--------------		
+
+Two-dimensional array representation of a graph
+
+
+For each edge (u, v), we set A[u][v] to TRUE; 
+	Otherwise, the entry in the array is FALSE
+
+If the edge has a weight associated with it, we set A[u][v] equal to the WEIGHT 
+	- Using either very large or very small weight as a sentinel to indicate nonexistent edges
+
+
+
+This representation is only appropriate if the graph is DENSE
+	
+	DENSE graph:		a graph whose number of edges is CLOSE to the MAXIMAL number of edges
+
+
+---------------Adjacency List---------------------
+
+If the graph is SPARSE (only a few edges), use:
+
+	Adjacency List representation
+
+
+For each vertex, we keep a list of all adjacent vertices. 
+	(Space requirement is linear in the size of the graph)
+
+If the edges have weights, then the information is also stored in the adjacency lists. 
+
+
+This is the standard way to represent a graph. 
+
+
+In undirected graphs: each edge (u, v) appears in two lists
+	(Space usage doubles)
+
+Ex:
+             Vertex           List (Contains adjacent vertices - directed graph?)
+	1	2, 4, 3
+	2	4, 5
+	3	6
+	4	6, 7, 3
+	5	4, 7
+	6	(empty)
+
+------------------------Maintaining Adjacency Lists--------------------------------
+
+Can be maintained in any kind of List.
+	- i.e. ArrayLists or LinkedLists
+
+For very sparse graphs, when using ArrayLists, the programmer may need to start the ArrayLists with a smaller capacity than the default
+	(to avoid wasting huge amounts of space)
+
+
+Because it is important to quickly obtain the list of adjacent vertices for any vertex, the two basic options are:
+
+	1. Map				- keys are vertices, values are adjacency lists
+
+	2. Data member of a Vertex calss	- Each adjacency list is a data member of a Vertex class
+
+
+For (2):
+	If the vertex is a String, then a MAP can be used in which 
+		KEY = vertex NAME
+		VALUE = VERTEX
+	And each Vertex Object keeps a list of adjacency vertices, and perhaps also the original String name
+
+
+	
+		

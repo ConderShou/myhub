@@ -1,0 +1,113 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf810
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww33400\viewh20520\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \
+\'97\'97better-highlight.directive.ts\'97\'97\
+\
+//Custom Property Binding\
+	// Allowing us to set the colors that we use in these properties dynamically\
+\
+	//NOTE: Angular figures out on its own if the property we're binding to is of the directive or of the component\
+\
+	//BUG: Even though we dynamically set it to 'yellow' at first. The element is 'transparent' to begin before we hover and de-hover over it.\
+\
+	//SOLUTION: Use ngOnInit and set backgroundColor to default color once more there\
+\
+	
+\b \ul @Input() defaultColor: string = 'transparent';\ulnone \
+\
+
+\b0 	\ul //@Input() highlightColor: string = 'blue'\ulnone ;\
+\
+	//Setting a property to the directive selector\
+	// i.e. like [ngClass] = "something.."\
+\
+	//Now we do [appBetterHighlight] = "" to change highlightColor\
+	\ul \
+	
+\b @Input('appBetterHighlight') highlightColor: string = 'blue';\ulnone \
+
+\b0 \
+\
+
+\b HostBinding('style.backgroundColor') backgroundColor: \ul string = this.defaultColor;
+\b0 \ulnone \
+\
+	//Now we can set things to 'backgroundColor' as if it were actually the 'style.backgroundColor' property\
+\
+  
+\b constructor(private elRef: ElementRef, private renderer: Renderer2) \{ \}
+\b0 \
+\
+ 
+\b  ngOnInit() \{
+\b0 \
+\
+  		//BUG: Even though we dynamically set it to 'yellow' at first. The element is 'transparent' to begin before we hover and de-hover over it.\
+\
+	//SOLUTION: Use ngOnInit and set backgroundColor to default color once more there\
+\
+		//ngOnInit triggers RIGHT before the template is displayed\
+\
+  	
+\b this.backgroundColor \ul = this.defaultColor;
+\b0 \ulnone \
+
+\b   \}
+\b0 \
+\
+  
+\b @HostListener('mouseenter') mouseover(eventData: Event) \{\
+
+\b0 		\
+
+\b   	this.backgroundColor \ul = this.highlightColor;\ulnone \
+	\}\
+\
+@HostListener('mouseleave') mouseleave(eventData: Event) \{\
+			\
+		this.backgroundColor \ul = this.defaultColor\ulnone ;\
+	\}\
+\
+\
+\}
+\b0 \
+\
+\'97app.component.html\'97\'97\
+\
+     <!-- With custom properties in directives, we set to them in the same way that we do normally with custom properties.\
+\
+      NOTE: To set a string, we actually input it with '' WITHIN the ""\
+\
+      "" are like () parentheses waiting for the parameter you want to pass\
+\
+      NOTE: Angular figures out on its own if the property we're binding to is of the directive or of the component\
+\
+       -->\
+\
+     \ul <!--  <p appBetterHighlight \
+      [defaultColor] = "'yellow'" \
+      [highlightColor] = "'red'"\
+      >Style me with a better directive</p> -->\
+\ulnone \
+\
+   <!--    Setting an alias for an input property to 'appBetterHighlight' results in [appBetterHighlight] --> \
+\
+   <!--  You can also omit the [] and '' if you are passing a string to a property. It's confusing so not recommended I think. -->\
+\
+
+\b        <p \ul [appBetterHighlight] = "'red'" \ulnone \
+     \ul  defaultColor = "yellow"\ulnone  \
+      >Style me with a better directive</p>\
+\
+\
+\
+\
+\
+\
+\
+}

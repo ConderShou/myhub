@@ -1,0 +1,32 @@
+func purchaseItem(currentBalance: inout Double, itemPrice: Double){
+	if itemPrice <= currentBalance {
+		print.....
+	currentBalance = currentBalance - itemPrice
+	} else {...
+	}
+}
+
+- 'inout' allows us to DIRECTLY modify the variable passed in
+	- Like using a POINTER in C
+
+
+money = 500
+shoes = 200.0
+
+purchaseItem(currentBalance: &money, itemPrice: shoes)
+
+	- USE '&' to put in the POINTER of the variable inside the function
+
+	- This function now modifies the variable "money" WITHIN the function. 
+		NO NEED for a RETURN STATEMENT  
+			i.e.
+			
+			-> Int {
+				If .... {...
+					 return currentBalance - itemPrice
+				} else {...
+					return currentBalance
+				}
+				}
+
+NOTE: Use this SPARINGLY

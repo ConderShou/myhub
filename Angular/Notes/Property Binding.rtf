@@ -1,0 +1,73 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf810
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww33400\viewh20520\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 There a lot of scenarios where you can \ul choose\ulnone  between either 
+\i string interpolation 
+\i0 and 
+\i property binding\
+\
+
+\i0 For later: You can also bind to 
+\i directives
+\i0  and 
+\i components
+\i0 . We\'92ll look at that later\
+\
+\
+\'97servers.component.html\'97\'97\
+\
+<!-- \
+\
+This is done by Angular.\
+\
+We can bind the property 'disabled' (something from normal HTML/bootstrap), so that we can trigger it in our TypeScript file \
+\
+	NOTE: We are binding to the property of 'disabled', so we can SET IT to whatever this property reads to set the property\
+		i.e. disabled is a True or False (boolean) property, so we set it equal to a variable that returns either a True or False\
+\
+	NOTE: Although it is in quotation marks, 'allowNewServer' is treated as a boolean variable with the '!'\
+	i.e. Set disabled to the Opposite Boolean Value of 'allowNewServer'. When 'allowNewServer' is False, we set 'disabled' to True, and therefore DISABLE THE BUTTON\
+\
+You can also call methods in property binding to evaluate to the appropriate type of value.\
+	\
+-->\
+\
+
+\b <button class="btn btn-primary" [disabled]="!allowNewServer" >Add Server</button>\
+<app-server></app-server>\
+<app-server></app-server>\
+\
+\
+
+\b0 \'97\'97server.component.ts\'97\'97\
+\
+\
+
+\b export class ServersComponent implements OnInit \{\
+\
+  allowNewServer = false;
+\b0 \
+\
+  //This method is executed at the moment this component is created by Angular   \
+\
+
+\b   constructor() \{
+\b0 \
+    \
+    //After 2 seconds, (2000 milliseconds), the variable will be set to true\
+\
+   
+\b  setTimeout(() => \{\
+      this.allowNewServer = true;\
+    \}, 2000);\
+\
+   \}\
+\
+  ngOnInit() \{\
+  \}\
+\
+\}}

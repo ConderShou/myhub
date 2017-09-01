@@ -1,0 +1,42 @@
+git init		//inside the directory - make it a git respository
+		//Works form top down. The directory you work in and DOWNWARDS
+
+git add 		// stage the files to be committed
+
+	git add <filename>		//Choose what file to add
+
+	git add .			// Add everything
+
+	git add -A		// Add everything in subdirectories
+
+
+git status		// show what files are staged and what are not
+
+git commit	//Commit the file
+
+	git commit <filename> -m "Commit message"	//Specifying file to commit and the commit message
+
+git log		//Shows what commits have been done
+
+
+---To revert back to a version of the directory that has been committed----
+
+1. First COMMIT what you have just in case
+
+2. git log		
+	- Look for the commit you want to revert back to
+
+3. Take the first 7 characters of the git commit hash
+
+4. git checkout 035e986
+
+5. Done
+
+
+-----------Git branch----------
+
+After reverting to a previous commit, you can create  new branch from that version.
+
+git checkout -b <branch name>	//Creates and names that new branch
+
+git checkout master			// Goes to most updated version in master version

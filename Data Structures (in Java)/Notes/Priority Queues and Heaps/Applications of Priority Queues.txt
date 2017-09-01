@@ -1,0 +1,97 @@
+Here we will show how to use priority queues to obtain solutions to two problems
+
+-------------------------------The Selection Problem-----------------------------------------
+
+Input is a list of N elements, which can be totally ordered, and an integer "k"
+
+Selection Problem:
+		Find the kth largest element
+
+
+In Chapter 1, the first algorithm 1A was:
+		
+		read elements into an array 	
+		sort them
+		return appropriate element
+
+Assuming simple sorting algorithm: O(N^2)
+
+	    The second algorithm 1B was:
+
+		read "k" elements into an array
+		sort them
+		The smallest of these is in the kth position
+		
+		We process remaining elements one by one
+		
+		As elements arrive, compare it with the kth element in the array
+	
+		If its larger, then the kth element is removed
+			New element is placed in the correct place among the remaining k - 1 elements
+
+		When the algorithm ends, the element in the kth position is the answer. 
+	
+
+If k = N/2, then both algorithms are O(N^2)
+
+k = N/2 is really the hardest case for these algorithms, 
+	interestingly, the MEDIAN case
+
+
+
+The algorithms we give both run in O(NlogN).
+
+
+
+----------------------------------------------------------------------------------------------------------
+------------------------------------Algorithm 6A-----------------------------------------------------
+----------------------------------------------------------------------------------------------------------
+
+Assume we are trying to find the kth SMALLEST element
+
+Algorithm is simple:
+			We read N elements into an array
+			Apply BUILDHEAP algorithm to the array
+			Perform "k" deleteMin operations
+
+			The last element extracted from the heap is our answer
+
+		NOTICE: changing the heap-order property will allow us to find the kth LARGEST element
+
+
+--------------------------------------------------------------------------------------------------------
+----------------------------------Algorithm 6B----------------------------------------------------
+----------------------------------------------------------------------------------------------------------
+
+Here, assume we are trying to find the kth LARGEST element again.
+
+We'll use the idea from algorithm 1B.
+
+
+Algorithm:
+		At any point in time, we'll maintain a set S of the "k" largest elements
+
+		After the first "k" elements are read,
+			when a new element is read it is compared with the "kth" largest element,
+				denoted by "Sk"
+			Notice that "Sk" is the smallest element in S
+
+		If the new element is larger, then it replaces Sk in S
+			S will then have a new smallest element, which may or may not be the newly added one
+		
+		At end of input, we find the smallest element in S, and return it as the answer
+
+
+Essentially the same as 1B, but we implement a heap, so MORE SPECIFICALLY:
+
+		The first "k" elements are placed into the heap with a call to BUILDHEAP
+
+
+At any point in time, we'll maintain a set S of the "k" largest elements
+
+
+At any point in time, we'll maintain a set S of the "k" largest elements
+
+
+
+?????(----------------------------------Event Simulation---------------------------------)????

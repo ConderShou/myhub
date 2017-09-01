@@ -1,0 +1,6 @@
+1. Provide a tester class.
+2. Supply a main method.
+3. Inside the main method, construct one or more objects.
+4. Apply methods to the objects.
+5. Display the results of the method calls.
+6. Display the values that you expect to get.

@@ -1,0 +1,44 @@
+<style></style> 		- We can write CSS within these tags to change the visual presentation of the HTML
+
+<style>
+
+	h1 {			- "h1" is an ELEMENT SELECTOR. It tells the browser which HTML element we would like to apply our styling to
+	       	color: blue;	- "color" is a PROPERTY. "blue" is a VALUE.	  
+	}
+</style>
+
+----------------The Cascading Rule of CSS-----------------
+
+<style>
+	footer {			
+		color: green;
+	}
+	footer {
+		color: orange;	- This second and MORE RECENT color command overrules the first color command. 
+	}				- Footer text is now orange. 
+</style>
+
+-----------Changing background color------------------------
+
+<style>
+	nav {				- Selecting the navigation element instead of the footer now
+		color: white;		
+		background-color: orange;	- Changes background color to orange	
+	}				
+</style>
+
+	- BUT PROBLEM - Selector Specificity- the browser specifically styles the anchor tags, the text with LINKS, 
+		so we have to be EVEN MORE SPECIFIC
+
+-------------Selector Specificity - Descendant Selector---------------------------
+
+<style>
+	nav a {					- Goes from "nav" to the "a" tag within the "nav" element 	
+		color: white;				- the ' <a href = ...... > </a> ' tag
+		background-color: orange;		- Now, it's also specifically ONLY the background of the anchor text that changes color. 
+	}						- The rest of the navigation section of the webpage remains white
+</style>
+
+	- NOTICE that you can go straight from "nav" to "a" even though in the HTML code,
+		there are "ul" and "li" tags in between them 
+

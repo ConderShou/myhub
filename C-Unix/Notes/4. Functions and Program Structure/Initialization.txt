@@ -1,0 +1,51 @@
+- In the absence of explicit initialization (explicit assignment):
+
+	External and static variables are guaranteed to be intialized to 0. 
+	Automatic and register variables have undefined (GARBAGE) initial values.
+
+For external and static variables, the intializer must be a CONSTANT EXPRESSION
+	- The initialization is done ONCE, conceptually before the program begins execution
+
+For automatic/register variables, initialization is done each time the function/block is entered
+	- Initialization is NOT restricted to being a constant 
+		- Can involve ANY expression involving previously defined values, EVEN FUNCTION CALLS
+
+Ex:
+	int binsearech(int x, int v[], int n)
+	{
+		int low = 0;
+		int high = n -1 ;	//not a constant - 'n' could be anything. This still works though
+		int mind;
+		...
+	}
+
+
+---------Array-----
+
+If there are fewer initializers for an array than the number specified, the missing elements will be ZERO for 
+	external, static, and automatic variables.
+
+Ex:
+	int array[5] = {1, 2 }
+	
+	- The array will thus be: {1, 2, 0, 0, 0}
+
+
+
+- There is no way to specify REPETITION of an initializer, 
+	NOR to initialize an element in the MIDDLE of the array 
+	WITHOUT supplying the PRECEDING values as well
+
+- Too many initializers result in an ERROR
+
+
+-----Character Arrays-----
+
+Special case of initialization:
+
+	char pattern[] = "ould";
+
+	Shorthand for:
+
+	char pattern[] = { 'o', 'u', 'l', 'd', '\0' }
+

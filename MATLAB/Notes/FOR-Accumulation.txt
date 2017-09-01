@@ -1,0 +1,36 @@
+---Accumulation----
+
+accumulator=0 - initialize a variable called the accumulator
+			-usually set to zero
+
+accumulator = accumulator + newValue
+
+		- Each time through the loop compute a new quantity and add it to the current value of the accumulator,
+		storing the result back in the accumulator
+
+-----Series--------
+
+N=100;
+
+S=0;         -accumulator
+
+for k=1:N
+    S=S+k;   -adding values onto the accumulator (adds 1 with 2, then 1+2 with 3, then 1+2+3 to 4, etc..., eventually reaches to the addition of all the integers)
+end
+
+clc
+disp(['Sum of the first ', num2str(N), ...
+	'integers is ', num2str(S)]);
+
+Output: Sum of the first 100 integers is 5050. 
+
+-----Geometric Sum-------
+
+N=5;
+a=1/3;
+
+S=0;
+for k=0:N
+    S = S + a^k;
+end
+			-Geometric series sum of (1/3)^k to five terms

@@ -1,0 +1,69 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf810
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww33400\viewh20520\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \
+\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97search_bar.js\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+\
+//This search bar should update the video list on the right hand side based on what we typed into the input\
+//	When user types something in, it should do a search of some sort\
+\
+//Even though we're not calling a variable 'React' here, we should still import the library.\
+//		 We need the library to convert our JSX into JavaScript, whether we're explicitly using the 'React' variable or not\
+\
+
+\b import React from 'react';
+\b0 \
+\
+\
+//If we can get the search bar component over into 'index.js', we can get index.js to show the HTML input element\
+\
+
+\b const SearchBar = () => \{\
+	return <input />\
+\}
+\b0 \
+\
+//To export a SPECIFIC part of the code here...\
+//	Now any file that IMPORTS the SearchBar Component, will now actually get the searchbar component\
+\
+
+\b export default SearchBar;
+\b0 \
+\
+\
+\
+\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97index.js\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+\
+\'85.\
+\
+\
+//The "SearchBar" variable here will be EQUAL to the SearchBar component we are now exporting from 'search_bar.js'\
+\
+
+\b import SearchBar from './components/search_bar'; 
+\b0 \
+\
+//Have to give relative path to files that WE make. NOT TRUE FOR LIBRARIES in npm_modules (hence the react import statements)\
+// Don't need the '.js' for .js files\
+ \
+\'85\'85\
+\
+
+\b const App = () => \{\
+
+\b0 \
+	//Parenthese are optional for multi-line statements. They're nice to organize with\
+
+\b \
+	return (\
+	
+\b0 	
+\b <div>\
+			<SearchBar />\
+		</div>\
+		);  \
+\}}

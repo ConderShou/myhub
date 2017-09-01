@@ -1,0 +1,71 @@
+In linear probing, "f" is a linear function of "i".
+	
+	TYPICALLY, f(i) = i. 
+
+This results in trying cells sequentially (with wraparound) in search of an empty cell.
+
+Eventually, however, even if the table is relatively empty, blocks of occupied cells start forming. 
+	This is called PRIMARY CLUSTERING. 
+
+		This means that any key that hashes into the cluster will require SEVERAL attempts to resolve
+		the collision, and then when it finally finds a empty space, it will only ADD to the cluster.
+
+The expected number of probes using linear probing is roughly:
+
+	1/2 * ( 1 + 1/(1-LAMBDA)^2 )
+
+for insertions and unsuccessful searches (these require SAME NUMBER of probes). 
+
+For successful searches, it's:
+
+	1/2 * ( 1 + 1/(1 - LAMBDA) ) 
+
+On average, successful searches obviously will take LESS time than unsuccessful searches. 
+
+
+------------------------------------Random Collision Resolution Strategy----------------------------------------------
+
+We will assume a very large table and that each probe is independent of the previous probes. 
+
+These assumptions are satisfied by a RANDOM collision resolution strategy and are reasonable
+unless LAMBDA is very close to 1. 
+
+First, we derive the expected number of probes in an unsuccessful search. 
+	This is the expected number of probes until we find an empty cell. 
+
+	The fraction of empty cells is 1 - LAMBDA, so the number of cells we expect to probe is 1/(1 - LAMBDA)
+
+The number of probes for a successful search is equal to the number of probes required when the particular 
+	element was inserted.
+
+When an element is inserted, it is done as a result of an unsuccessful search. 
+
+As a result, we can use the cost of an unsuccessful search to compute the average cost of a successful search. 
+
+
+NOTE: The earlier insertions are cheaper and bring the average down.
+
+For example, if an element was inserted when LAMBDA was 0.2, a relatively empty table, then the cost of accessing it
+is already determined to be that of an unsuccessful search of a table with a LAMBDA value of 0.2, no matter how much
+the table grows afterwards
+
+	Accessing it should be easier than instead of a more recently inserted element with the LAMBDA at
+	0.5 or some other greater value. 
+
+
+We can estimate the average by using an integral to calculate the mean value of the insertion time, ultimately
+	resulting in:
+
+	I(LAMBDA) = 1/LAMBDA * ln( 1/(1-LAMBDA) )
+
+These formulas are better than the corresponding formulas for linear probing. 
+
+Ex: 
+	If LAMBDA = 0.75, then the formula above indicates that 8.5 probes are expected for an insertion in linear probing. 
+	If LAMBDA = 0.9, then 50 probes are expected, which is UNREASONABLE.
+
+	Compare this with 4 and 10 probes for the respective load factors, if cluserting were not a problem. 
+
+
+Therefore: LINEAR PROBING is a BAD IDEA if the table is expected to be MORE than HALF FULL. 
+

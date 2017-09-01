@@ -1,0 +1,38 @@
+switch (expression) {
+	case const-expr: statements
+	...
+	default: statements
+}
+
+
+- 'default' is executed if none of the other cases are satisfied 
+	- Optional: if it isn't there and none of the cases match, then nothing happens
+
+	- Cases and the default clause can occur in ANY ORDER
+
+- Can include multiple cases for one statement:
+	
+	Ex:
+		case '0': case '1': case '2': ..... case '9':
+			ndigit[c - '0'];
+			break;
+		case ' ':
+		case '\n':
+			nwhite++;
+			break;
+		...
+
+
+-------break-----------
+
+The break statements causes an IMMEDIATE EXIT from the 'switch'
+
+	- 'Break' and 'return are the most common ways to leave a 'switch'
+
+- Break can also be used to exit 'while', 'for', and 'do' loops
+
+- Put 'break' after the LAST CASE (sometimes the 'default') even though it's logically unnecessary. 
+
+	- Protects code when another case gets added at the end some day
+	- Defensive programming. 
+

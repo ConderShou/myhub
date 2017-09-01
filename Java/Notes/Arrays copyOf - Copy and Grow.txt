@@ -1,0 +1,36 @@
+------------------------------------Copying Arrays------------------------------------------
+
+Copying array variables only copies the REFERENCE to the SAME array
+
+	double[] values = new double[6];
+	
+	double[] prices = values;
+
+"prices" and values" refer to the SAME ARRAY here
+
+
+INSTEAD, use the "Arrays.copyOf(values, n)" method:
+
+	double[] prices = Arrays.copyOf(values, values.length);
+
+"n" = length of array
+
+Arrays.copyOf(values, n) : CREATES an array of length "n", 
+			COPIES the first "n" elements of "values" into the array "prices"         
+			and RETURNS the new array
+
+ NOTE: NOT POSITION - FIRST "n" elements
+
+If n > values.length, then it copies the ENTIRE "values" array into "prices"
+
+IN ORDER TO USE THE ARRAYS CLASS:
+	
+	import java.util.Arrays;
+
+
+-------------------------------Growing Array Space----------------------------------------
+
+double[] newValues = Arrays.copyOf(values, 2 * values.length);
+values = newValues;
+
+

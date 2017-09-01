@@ -1,0 +1,53 @@
+-----------------------------------------------Javadoc Commentary-------------------------------------------
+
+Generates HTML documents from the Java code
+
+
+/** Here comes the documentation */
+
+------Writing documentation in Javadoc------------
+
+Oracle - "How to Write Doc Comments for the Javadoc Tool"
+
+A "doc comment" is written in HTML.
+	1. Description
+	2. Block tags
+
+/**
+* Description: Brief and complete of what the method does. Begins with a verb phrase. 
+		Separate paragraphs with <p>
+* Insert blank comment line between description and block tags
+* @ tags 							- @ signs tell Javadoc the description has been finished
+*/							- Use tags for adding information about your method
+
+-----------------------------------------Documenting a Method----------------------------------
+
+@param		- describes an argument of the method
+			- Mandatory for all arguments of the method
+
+@param str	- the tag is always followed by the name of the argument (the name is "str" in this case)
+			- The name is always lowercase (Do not bracket the name of the parameter between other tags)
+
+@param str the string to be printed			- The description of the argument
+					- In the description: you MUST state the data type of the argument
+						(unless the data type is "int", then you can omit it)
+
+
+Multiple arguments in a Method = Multiple @param tags
+
+	Ex:
+
+		/**
+		  *  Returns the number of pixels of an image
+		  * 
+		  * @param x the width of the image, measured in pixels		- if sentence begins with verb, start with uppercase
+		  * @param y the length of the image, measured in pixels
+		  * @return the number of pixels of the image
+		  */
+		  int numberPixels(int x, int y);
+
+------------------------------Running javadoc from Command Line-----------
+
+javadoc MyClass.java
+
+javadoc *.java		- documents multiple Java files

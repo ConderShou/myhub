@@ -1,0 +1,39 @@
+
+
+---onClickListener-------
+
+An Object
+	
+	We use it with the 'setOnClickListener' method
+
+Listens for the button to be clicked
+	- Once detected, it runs some code that we've programmed for it: in its 'OnClick' method
+
+There are multiple kinds of 'OnClickListener' objects:
+	
+	F1 the method of the View (or Google it) to see what type of 'OnClickListener' object the 'set...' method takes in
+	- For Button:
+		setOnClickListener( View OnClickListener );	
+	Takes in the View type
+
+
+Ex:
+	View.OnClickListener listener = new View.onClickListener() {
+		@Override
+		public void OnClick(View v) {				
+			//The button was clicked, so update the fact TextView with a new fact
+		
+		String fact = "Ostriches can run faster than horses";
+                                mFactTextView.setText(fact);
+		}
+	}; //<--REMEMBER THIS SEMICOLON HERE
+
+	mShowFactButton = setOnClickListener (listener);
+
+
+NOTES:
+
+	REMEMBER THAT SEMICOLON at END of the Object creation method
+
+	mFactTextView.setText(fact)		
+		- Sets the text of the View assigned to 'mFactTextView' to the string within the 'fact' string variable

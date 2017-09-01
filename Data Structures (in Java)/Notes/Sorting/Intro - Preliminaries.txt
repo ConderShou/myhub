@@ -1,0 +1,19 @@
+
+--------------------------------Preliminaries------------------------------------
+
+Each algorithm we describe will:
+
+	Interchangeable
+	
+	Passed into an array containing the elements
+	
+	Assume that all array positions contain data to be sorted
+	
+	Assume N is the number of elements passed to our sorting routines
+
+	The objects being sorted are of type Comparable	(therefore we use "compareTo" method)
+		Besides reference assignments, this is the only operation allowed on the
+		input data. 
+
+		This is called COMPARISON-BASED SORTING
+	

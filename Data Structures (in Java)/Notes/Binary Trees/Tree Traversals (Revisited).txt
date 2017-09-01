@@ -1,0 +1,105 @@
+
+
+-----------------------------------Inorder Traversal----------------------------------------
+
+Listing all the items in sorted order
+
+Strategy:
+
+	Process the LEFT subtree first
+	Process CURRENT node
+	Process the RIGHT subtree
+
+
+The total running time is O(N)
+
+Constant work is being performed at every node in the tree.
+
+	Each node is visited once
+	We test each node is tested to see if it's null or not
+				  set up two method calls
+					(in the example, these are each a recursive call either 
+					to the left or right subtree)
+				  and doing a println
+
+Ex:
+	//Print tree contents in sorted order
+
+	public void printTree() 
+	{
+		if( isEmpty() )
+			System.out.println( "Empty tree" );
+		else
+			printTree( root );
+	}
+
+	/** INTERNAL method to print subtree in sorted order 
+	  *  @param t the node that roots the subtree
+	 */
+
+	private void printTree( BinaryNode<AnyType> t )
+	{
+		if( t != null )
+		{
+			printTree( t.left );
+			System.out.println( t.element );	
+			printTree( t.right );
+		}
+	}
+
+--------------------------------------Postorder Traversal------------------------------------
+
+Process both subtrees firt before we process a node
+
+For example:
+		To compute the height of a node, we computethe height of the subtrees first
+
+This routine declares the height of a leaf to be zero			
+	- A null node is -1, a full node has height 1. 
+		So a leaf (a node with no children), is -1 + 1 = 0.
+
+
+Total running time is O(N), constant work is also being performed at each node here
+
+
+Ex:
+	./**
+	    * Internal method to compute height of a subtree
+	    * @param t the node that roots the subtree
+	    */
+	
+	private int height( BinaryNode<AnyType> t )
+	{
+		if( t == null )
+			return -1;
+		else
+			return 1 + Math.max( height( t.left ), height( t.right ) );
+	}
+
+-------------------------------Preorder Traversal--------------------------------------------------------
+
+The node is processed BEFORE its children
+
+This could be useful for labeling each node with its depth. 
+
+
+-------------------------------Commonalities------------------------------------------------
+
+Handle "null" case first, then the rest.
+
+We only pass the "reference" to the node that roots the subtree 
+
+No declaration of extra variables are made. 
+
+A more compact code = Less probability of bugs
+
+
+-------------------------------Level-Order Traversal-------------------------------------------
+
+All nodes at depth "d" are processed before any node at depth "d + 1"
+
+This DIFFERS from the other traversals in that it's NOT DONE RECURSIVELY
+
+A QUEUE is used, instead of the implied STACK of RECURSION
+
+

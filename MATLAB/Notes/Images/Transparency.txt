@@ -1,0 +1,59 @@
+-----------Transparency-------------
+
+Some files contain a 4th layer with information on the transparency of the image.
+	[rects, mode, Ralpha] = imrea('Rectangles.png');
+		-mode plays no role in this process here but we must request it for syntax purposes
+
+--------------
+
+[rects, map, Ralpha] = imread['Recetangles.png'];
+
+	-Ralpha contains information about what areas we'd like to be transparent and opaque
+		-the rectangles area is white. the black background is black
+
+image(rects, 'AlphaData', Ralpa)
+axis image;
+axis off		-Turning off axis reveals the true image, -leaves just the background and foreground of the image
+
+	- The background of the image is now gone - transparent 
+
+--------------
+
+High alpha => not transparent
+
+Low alpha => fully transparent
+
+There can also be partial transparencies
+
+AlphaData can be integers (as here) or a double (number) between 0 and 1
+
+Along with the Red, Green, and Blue layer is also the Alpha layer, that determines transparency
+
+------With the Perry code----------
+
+Instead of:
+
+	 Perry = imread('Perry_the_Platypus.png')
+
+We do:
+
+	[Perry, map, Palpha] = imread('Perry_the_Platypus.png');
+
+.....
+
+
+%% flip color planes
+	
+for k = 1:3
+...
+end
+
+Palpha = flipud(Palpha);	-Remember to also flip the alpha plane if we are doing Cartesian axis
+	
+....
+
+hPimage = image('CData', Perry, 'AlphaData', Palpha);
+
+...
+
+axis off

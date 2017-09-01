@@ -1,0 +1,18 @@
+Merge conflicts when developers change the SAME line of code
+
+Git will insert >>>>>>>>> and <<<<<<<<<< to signify where the merge conflicts are,
+	it will include TWO different versions of the code that conflicts
+
+- Communicate with the other programmers. Choose one and delete the other
+
+- Now sync it
+
+Even if someone just "added" something to the same line - it still shows as a merge conflict. 
+You can accept both.
+
+-----------------------Tools
+
+Google git merge tools
+
+There's a bunch of them available.
+

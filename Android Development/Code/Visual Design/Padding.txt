@@ -1,0 +1,42 @@
+Padding		- the borders of the text/layout screen
+
+We change this by changing the padding of the RelativeLayout
+
+  android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+
+
+The @dimen...... 's refer to whatever 'dp' the resource is referring to - in this case, 16dp.
+
+	Later we change it to 50dp though.
+
+We change these for 'padding'.
+
+----
+
+We can also use the 
+	
+	android:padding="25dp"
+
+	android:padding="@dimen/activity_horizontal_margin"
+
+property to change padding all around
+
+
+------------
+
+Note:
+	@dimen 
+
+gives us a hint that it's located in the 'dimens.xml' folder
+
+
+------------
+
+NOTE:
+
+	dimens.xml (w820dp)
+
+is for dimensions for LARGER screens, like a TABLET

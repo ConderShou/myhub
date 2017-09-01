@@ -1,0 +1,21 @@
+Conder Shou
+cs3544
+
+Discussing the big-O running time of the enqueue and dequeue operation of my queue implementation. 
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+enqueue(AnyType elem)
+
+	Here, all that this operation does is push a value into the stack "s1". In the MyStack class, this is simply
+	a call of the "addLast()" method of the LinkedList class, which is a constant time operation. 
+	
+	This means that, ultimately, the big-O running time is O(1). 
+
+dequeue()
+
+	In this operation, everything is in O(1) time except for the while statement. While pushing, popping, and checking
+	for emptiness are all constant time operations, the while statement causes the program to pop N elements
+	from stack s1 and push them to stack s2. That is, to continue popping and pushing elements until stack s1 is empty. 
+
+	Therefore, this method ultimately has a big-O running time of O(N), a linear running time. 

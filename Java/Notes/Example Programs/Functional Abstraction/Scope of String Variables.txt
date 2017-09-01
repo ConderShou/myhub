@@ -1,0 +1,58 @@
+-------------------------Without updating "sentence"--------------------------
+
+public class Main{
+
+	static void assignAuthor(String sentence, String author){
+	
+		sentence = sentence + " Author: " + author;
+
+		System.out.println("The sentence is: "+sentence);
+	}
+
+	public static void main(String[] args){
+
+		String sentence = "Veni, vidi, vici";
+		String author = "Julius Caesar";
+
+		System.out.println("The sentence is: " + sentence);
+		System.out.println("The author is: " + author);
+		assignAuthor(sentence, author);
+		System.out.println("The sentence is: " + sentence);
+	}
+}
+
+Prints: 
+
+	The sentence is: Veni, vidi, vici
+	The author is: Julius Caesar
+	The sentence is: Veni, vidi, vici Author: Julius Caesar
+	The sentence is: Veni, vidi, vici
+
+----------------Updating "sentence"-----------------------
+
+public class Main{
+
+	static String assignAuthor(...... {		- Change void to String, so that method will give a String output
+
+		....
+		.......
+		return sentence;			- Must return the newly modified version of "sentence"
+}
+
+	public static void main(String[] args) {
+	
+		...
+			.....
+
+		sentence = assignAuthor(sentence, author);	- Update "sentence" variable
+			
+			......
+	}
+}
+
+Prints: 
+
+	The sentence is: Veni, vidi, vici
+	The author is: Julius Caesar
+	The sentence is: Veni, vidi, vici Author: Julius Caesar
+	The sentence is: Veni, vidi, vici Author: Julius Caesar

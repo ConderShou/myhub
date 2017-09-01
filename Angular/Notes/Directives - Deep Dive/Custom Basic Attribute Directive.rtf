@@ -1,0 +1,84 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf810
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww33400\viewh20520\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \
+\'97basic-highlight.directive.ts\'97\'97\
+\
+
+\b import \{ Directive, ElementRef, OnInit \} from '@angular/core';\
+\
+@Directive(\{
+\b0 \
+\
+	//Selectors work the same way as they do in components\
+	//		Rules for making the selectors work as attributes VS element VS classes remain the same\
+	// Use camelCase instead of dashes -\
+\
+	// We want this particular directive to be an attribute\
+\
+	
+\b selector: '[appHighlight]'
+\b0 \
+\
+	//We cannot add a template to a directive\
+
+\b \})
+\b0 \
+\
+//Directives have OnInit and OnDestroy but not the rest of the lifecycle hooks\
+\
+
+\b export class BasicHighlightDirective implements OnInit\{
+\b0 \
+\
+	//Automatically creates a private 'elementRef' variable upon instantiation of this directive\
+	// Bounds the argument to this private property\
+\
+	// Due to injection (? - explained later ?) Angular will provide the ElementRef of the element that this directive is PLACED ON\
+\
+	
+\b constructor(private elementRef: ElementRef) \{\
+	\}\
+\
+
+\b0 	/* REMEMEBER:\
+\
+	2. ngOnInit    - Called once component is initialized\
+\
+      This is BEFORE it has been added to the DOM.\
+\
+      The properties can now be accessed and initialized.\
+    \
+      !! - Run after the CONSTRUCTOR. - !!\
+\
+    */\
+\
+	
+\b ngOnInit() \{\
+		this.elementRef.nativeElement.style.backgroundColor = 'green';\
+	\}\
+\}\
+\
+\
+
+\b0 \'97\'97\'97app.module.ts\'97\'97\
+\
+//Import directives\
+\
+
+\b import \{ BasicHighlightDirective \} from './basic-highlight/basic-highlight.directive';\
+\
+@NgModule(\{\
+
+\b0 \
+  //Add them in as a declaration\
+  \
+
+\b   declarations: [\
+    AppComponent,\
+    BasicHighlightDirective\
+  ],}

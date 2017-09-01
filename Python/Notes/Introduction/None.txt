@@ -1,0 +1,35 @@
+----------------------------None--------------------------
+
+- Like 'null' in other languages
+
+- Means failure or absence of a value
+
+- Is a singleton (only ONE object of class 'None')
+
+- Does not print at top level
+
+
+No output
+------------------------
+
+None
+
+
+Explicit print will show it
+------------------------
+
+print(None)
+
+O:
+
+None
+
+
+x = None
+y = None
+
+x is y
+
+O:
+
+True

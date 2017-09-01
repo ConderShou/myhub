@@ -1,0 +1,18 @@
+
+
+Weighted Path Length		- Each edge has a cost to traverse it
+
+Unweighted Path Length		- Number of edges on the path, namely N - 1
+
+Negative-Cost cycle		- A cycle in which the shortest paths are not defined 
+					- The negative paths allow one to run ceasessly in a loop through certain vertices
+					   that "technically" have the shortest path because the cost gets more negative
+
+
+-----------Dijkstra's Algorithm-------
+
+Refer to textbook for specifics.
+
+Dijkstra's algorithm DOES NOT work in the presence of a negative edge (but no negative cost cycle)
+
+

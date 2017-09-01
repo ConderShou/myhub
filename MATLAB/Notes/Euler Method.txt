@@ -1,0 +1,38 @@
+----Implementing Euler Method in MATLAB program-----
+
+% marchlinear.m
+% dy/dt = a
+% y(0) = b
+
+%% set parameters
+a = 1.2;
+b = 0.5;
+Nt = 7;
+Tf = 1;   % final time
+
+%% initialize 
+t = linspace(0, Tf, Nt);
+deltat = t(2) - t(1);
+y = zeros(1, Nt);
+y(1) = b;
+
+for it = 1:Nt - 1
+	y(it+1) = y(it) + a*deltat;	--- Yn+1 = Yn + (rate of change)*deltat
+end
+
+--------Decay Equation: Euler Method
+
+	dy/dt = -ay	y(0) = b
+
+y(t+deltat) = y(t) - ay(t)deltat		- Euler formula
+
+--------Decay Equation: Improved Euler method
+	
+	dy/dt = -ay	y(0) = b
+
+-ay(t) ==> -a[y(t+deltat)+y(t)]/2	- now it's not y(t), but the average between the final and initial y-value
+
+Yn+1 = Yn [ 1-a*deltat/2 ]
+	   ------------------		- Improved Euler formula
+	  [ 1+a*deltat/2 ]
+

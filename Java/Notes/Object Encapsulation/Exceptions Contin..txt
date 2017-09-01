@@ -1,0 +1,100 @@
+We have seen: 
+
+ArithmeticException
+ArrayIndexOutOfBoundsException
+NumberFormatException.
+
+ Let's see two more, which are related to classes and objects: 
+
+NullPointerException 
+ClassCastException.
+
+Exceptions are events that occur at runtime and that break the flow of instructions of a program.
+
+-----------------NullPointerException--------------------
+
+Activates when the program tries to use a variable that is not of primitive type and that hasn't been initialized yet.
+
+We are trying to use a variable that points at an object that hasn't been created yet. 
+
+Ex:
+
+	String s = new String("MyString");		
+	System.out.println(s.length());
+
+	Prints: 
+		8
+
+	HOWEVER......
+
+	String s = null;
+	System.out.println(s.length());
+
+	Output:
+		NullPointerException	- Trying to use a variable that has not been initialized yet.
+
+--------------
+
+	int[] a = null;
+	System.out.println(a.length);
+
+	Output:
+		NullPointerException
+
+NOTICE:
+	int[] a = null;
+	System.out.println(a[0]);
+	
+	Output:	
+		NullPointerException
+
+	NOT an ArrayIndexOutofBoundsException
+
+----------------------------------ClassCastException----------------------------------------
+
+Vehicle v = new Car();
+
+Car c  = (Car) v;
+
+Bike b = (Bike) v;	----ERROR: ClassCastException - The object in variable "v" is NOT a "Bike"
+
+-------------------------"Throw"----------------------------
+
+Using the keyword "throw", we can create instances of the particular exceptions that the method is excpected to throw.
+	We can throw several exceptions depending on the circumstances.
+
+Ex:
+	public void method (String s) {
+		if (s==null) {
+			throw new IllegalStateException("s is null");	- Indicates that the argument we are receiving has not been initialized yet
+		}							That is, does not have appropriate state at this moment in the sequence of the code
+		...
+	}
+
+Ex:
+	public void division (int dividend, int divisor) {
+		if (divisor == 0) {
+			throw new IllegalArgumentException("The divisor cannot be 0");	- Indicates that the method has received an illegal or inappropriate argument
+		}
+	}
+
+-----------------------------Example that includes "Throws"---------------------
+
+class ComplexNumber{
+ private double real;
+ private double imag;
+ public ComplexNumber(double real, double imag) throws IllegalArgumentException{		- LITERALLY just means that this code includes the USE of "IllegalArgumentException"
+       if (real*real + imag*imag > 1){ 
+           throw new IllegalArgumentException(real + " + " + imag + "i is outside the Unit Circle");
+        } 
+        this.real = real;
+        this.imag = imag;
+    }
+
+public ComplexNumber(double real) throws IllegalArgumentException{
+       this(real,0);
+     }
+}
+
+To indicate that the method throws an exception, we include the keyword "throws" in the name of the method
+	with the name of the exception. 

@@ -1,0 +1,9 @@
+The Java compiler generates the bytecode from the Java source code (source code = what you type).
+
+The Java Virtual Machine translates this bytecode into the machine language that the computer can then run
+
+Running the program = interpreting sentences individually to generate the output as it goes
+
+"Interpretation" = execution
+
+"Translation" = compilation

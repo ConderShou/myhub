@@ -1,0 +1,103 @@
+
+
+-------------------Topological sort	-----------------
+
+ Ordering of vertices in a DAG (directed acyclic graph)
+
+
+If there is a path from one vertex to another, then the second vertex has to come AFTER the previous vertex. 
+
+Like a course pre-requisite structure, one class has to be taken in order for the student to take another. 
+
+	A topological ordering of those courses would be any course sequence that does not violate the prerequisite requirement
+
+
+NOTE: 	Topological ordering is IMPOSSIBLE if the graph has a cycle
+
+
+----Simple Algorithm to Find Topological Ordering--------
+
+1. Find any vertex with no incoming edges.
+
+2. Print vertex.
+
+3. Remove it, along with its edges, from the graph. 
+
+4. Apply same strategy to rest of graph.
+
+
+More specifically:
+
+The INDEGREE of a vertex V is the NUMBER OF EDGES (u, v)
+
+	1. Compute indegrees of ALL vertices in the graph
+		- Assuming that the indegree for each vertex is STORED
+		- and that the graph is read into an ADJACENCY LIST
+	
+	2. Apply the algorithm below to generate a topological ordering
+
+---Simple Un-Optimized Pseudocode Algorithm----
+
+findNewVertexOfIndegreeZero()	- scans the array looking for a vertex with indegree 0 that has NOT already been asssigned a topological number.
+				- Returns NULL if no such vertex exists; 
+					- This means that a CYCLE exists within the graph
+
+void topsort() throws CycleFoundException
+{
+	for( int counter = 0; counter < NUM_VERTICES; counter++)
+	{
+		Vertex v = findNewVertexOfIndegreeZero();
+		
+		if( v == null )
+			throw new CycleFoundException();
+		v.topNum = counter;
+		
+		for each Vertex w adjacent to v
+			w.indegree--;
+	}
+}
+
+
+We can make it more efficient to update vertices and their indegrees by using a stack or a queue
+
+
+---------------Optimized Pseudocode Algorithm----------------------------------
+
+1. Indegree computed for every vertex
+
+2. All vertices of indegree 0 are placed on an initially empty queue
+
+3. While queue is not empty, vertex V is removed.
+
+4. All vertices adjacent to V have their indegrees decremented
+
+
+A vertex is put on the queue as soon as its indegree falls to 0. 
+
+The topological ordering is the order in which the vertices dequeue. 
+
+Ex:
+	void topsort() throws CycleFoundException
+	{
+		Queue<Vertex> q = new Queue<Vertex>();
+		int counter = 0;
+
+		for each vertex v
+			if( v.indegree == 0 )
+				q.enqueue( v );
+		
+		while( !q.isEmpty() )
+		{
+			Vertex v = q.dequeue();
+			v.topNum = ++counter;	// Assign next number
+	
+			for each Vertex w adjacent to v
+				if( --w.indegree == 0 )
+					q.enqueue( w );
+		}
+		if( counter != NUM_VERTICES )
+			throw new CycleFoundException();
+	}
+
+
+

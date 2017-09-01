@@ -1,0 +1,91 @@
+We will highlight methods
+
+	compareTo
+	indexOf
+	length
+	substring
+
+------------------------------------------
+
+A String stores constant values that cannot be changed after they are created.
+
+String str = "abc";
+
+-------------------------compareTo------------------------
+
+Compares the String calling this method with another String given by the parameter
+
+Returns a negative integer if the calling String precedes the given argument alphabetically, 
+	0 if they are the same,
+		or a positive integer if the String follows the other one alphabetically
+			 (alphabetically greater than the string argument)
+
+Ex:
+	String a = new String ("abc");
+	String b = new String ("abd");
+
+	a.compareTo(b)	---> returns NEGATIVE number
+				"abc" comes before "abd" alphabetically
+
+	"This is a literal".compareTo("This is a litera") 	---> returns positive integer 1
+
+	"These are not literals".compareTo("This is a literal")	---> returns -4
+							- Because there are different characters at MORE THAN ONE index positions,
+								compareTo returns the difference between the two character values in the two strings 
+									AT the position that the two strings first differ
+							- The distance between "e" and "i" in the alphabet is 4. 
+								Therefore it returns -4 because "e" is four placements behind "i". 
+
+--------------------------indexOf---------------------
+
+Receives another String and returns the index of the first occurence of the callling String that matches with the substring specified in the argument
+
+If the String does not contain the specified substring, then it will return a -1.
+
+Ex:
+	String a = new String("abc");
+	
+	a.indexOf("bc"); 	---> returns 1	- Position 1 is the position of the "abc" String array that contains the beginning of the substring specified
+
+          ...............................
+
+	a.indexOf("bd");      ---> returns -1	- "bd" is not contained within the "abc" String stored in "a"
+
+
+Also can start the search at a specified index (a second argument)
+	
+Ex:
+	"This is a literal".indexOf('i', 3)
+
+		5			- Position 5 (not position 2, where the first "i" is located at
+						because the search started at position 3)
+	
+
+-------------------------length---------------------------
+
+Returns the length of the substring
+
+Ex:
+	"abc".length();
+
+		----> Returns 3
+
+
+------------------------substring()-------------------------
+
+Returns a new String composed of a subsequence of characters contained within the caller String.
+
+Two instantiations of this method:
+
+1. Receives the starting position of the substring and returns all the characters from this position to the end of the String
+
+	Ex:
+		"abc".substring(1);
+			- calling this returns "bc"
+	
+2. Receives two integer numbers representing the starting and ending position-minus-one of the sequence returned.
+
+	Ex:
+		"abcdef".substring(2,5);
+			- calling this returns "cde"	- these occur at positions 2, 3, and 4. 
+

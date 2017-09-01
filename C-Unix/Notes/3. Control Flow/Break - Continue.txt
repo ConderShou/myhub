@@ -1,0 +1,6 @@
+Break causes the innermost enclosing loop or switch to be exited IMMEDIATELY
+
+---Continue-----
+
+Causes the next iteration of the enclosing 'for', 'while', or 'do' loop to begin. 
+

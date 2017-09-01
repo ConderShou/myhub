@@ -1,0 +1,40 @@
+
+An INVERSION in an array of numbers is:
+
+	any ordered pair (i,j) having the property that i < j but a[i] > a[j]
+
+NOTE: the number of inversions in the list = the number of swaps by Insertion sort
+
+Insertion sort runs in LINEAR time if the number of inversions is O(N)
+
+
+------------------------
+
+We can compute precise bounds on the avveage running time of insertino sort by computing the
+	AVERAGE number of inversions in a permutation
+
+Assume: no duplicate elements
+
+-----------
+-----------
+Theorem:
+	The average number of inversions in an array of N distict elements is N(N-1)/4
+-----------
+-----------
+
+Implies quadratic for Insertion Sort.
+	Each swap removes only ONE inversion.
+	There are (N^2-N)/4 inversions, or Ohm(N^2). 
+	
+	THUS: There are Ohm(N^2) SWAPS
+
+
+THEREFORE:
+
+----------
+----------
+Theorem:
+	Any algorithm that sorts by exchanging adjacent elements requires Ohm(N^2) time on 
+	average. 
+----------
+----------

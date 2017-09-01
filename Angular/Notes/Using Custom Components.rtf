@@ -1,0 +1,83 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf810
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww33400\viewh20520\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 1. Connect custom component to app.module (can also connect to other components that we want as a parent instead?)\
+	- Import\
+	- @NgModule\
+2. Make the html selector in the app.component.html (and would this also work for another component besides app.component? Presumably so, right?)\
+\
+\
+\'97\'97server.component.ts\'97\'97\'97\
+\
+//Imports the Component decorator\
+
+\b import \{ Component \} from '@angular/core';
+\b0 \
+\
+//Tells Angular this is not just a normal Typescript class, but a Component\
+//	So we add a DECORATOR (used to enhance elements of the code - not just for classes)\
+//	Also passing a Javascript object to this decorator to configure it\
+
+\b @Component(\{
+\b0 \
+	//We can set up information to be stored as metadata for this class in the background \
+	//  that will tell Angular what to do with this class\
+ 	\
+	//Selects the HTML tag that you can use this component with in the other components' template\
+ 	//    Prefix it with "app-" and then set it as any UNIQUE string\
+ 	
+\b selector: 'app-server', 
+\b0 \
+\
+ 	//Telling Angular where to find the HTML template \
+ 
+\b 	templateUrl: './server.component.html'
+\b0 \
+\
+\
+
+\b \})
+\b0 \
+\
+//Exporting this class to AppComponent for it to use\
+
+\b export class ServerComponent \{\
+\
+\
+\}\
+\
+\
+\
+
+\b0 \'97\'97\'97app.module.ts\'97\'97\'97\
+
+\b \
+
+\b0 //.ts extension is added by Webpack AUTOMATICALLY\
+
+\b \
+import \{ ServerComponent \} from './server/server.component'; \
+\
+@NgModule(\{\
+  declarations: [\
+    AppComponent,\
+    ServerComponent\
+  ],\
+
+\b0 \
+\'85.\
+\
+\
+\
+\'97app.component.html\'97\'97\
+\
+\
+
+\b <h3>Hey I'm in the App Component</h3>\
+<hr>\
+<app-server></app-server>\
+}

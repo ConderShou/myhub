@@ -1,0 +1,54 @@
+# This is Jae's makefile with the comments removed. 
+# Toggling which lines are commented demonstrates how the implicit and explicit rules in makefiles are equivalent.
+
+CC  = gcc				- Changes compiler to 'gcc'
+CXX = g++			- C++ compiler
+
+INCLUDES = -I../somedirectory	- Use includes if you want to include some DIRECTORY
+				- Use RELATIVE paths 
+
+CFLAGS   = -g -Wall $(INCLUDES)	- Compiling flags
+CXXFLAGS = -g -Wall $(INCLUDES)	- C++ compiler flags
+
+LDFLAGS = -g			- Appended to the compiler when the compiler is being used for linking
+					- Here it's just the debugging info
+
+LDLIBS =	-l[something] 		- Includes any of the LIBRARIES that you'd like to include
+				- "-lm" uses the math library for any math functions that you'd like to do
+					where "m" is what DENOTES the math library
+
+
+main: main.o myadd.o		- The VERY FIRST "target" or rule in makefile gets built when you type "make"
+#main: myadd.o			- make assumes that 'main' DEPENDS on 'main.o', so we can OMIT it.
+					We can just do this commented statement: 'main: myadd.o'
+				- We do not give a rule here due to the IMPLIED LINKING RULE (see below)
+main.o: main.c myadd.h
+#main.o: myadd.h			- Remember, "main.c" would be assumed here. 
+				- Implied COMPILING rule: 
+					$(CC) -c $(CFLAGS) <the-.c-file>
+
+myadd.o: myadd.c myadd.h
+#myadd.o: myadd.h
+
+.PHONY: clean			- "phony" so that it doesn't attempt to use implicit rules or try to compile them
+				- ALWAYS INCLUDE A CLEAN for "make clean"
+				- It should return your directory to its SOURCE CODE that can GENERATE
+					all the OTHER files
+clean:
+	rm -f  *.o a.out core main myadd executable	- '-f' removes warnings, you should include them.
+							but when you remove a file, it's GONE FOREVER
+							so BE CAREFUL
+
+.PHONY: all			
+all: clean main			- removes ALL intermediate files and compiled files 
+					- forcing main to recompile everything when main is called. 
+
+
+
+------NOTE: 'make' follows an IMPLIED LINKING RULE
+
+	$(CC) $(LDFLAGS) <all-dependent-.o-files> $(LDLIBS)
+
+
+Dependencies means that if any of the dependencies (or THEIR dependencies) change between the last time this target
+	was run, it should RE-RUN the outdated targets as well as this one. 

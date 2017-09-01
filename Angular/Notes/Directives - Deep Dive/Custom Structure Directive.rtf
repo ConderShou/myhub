@@ -1,0 +1,85 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf810
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww33400\viewh20520\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \
+\
+\
+\'97unless.directive.ts\'97\'97\
+\
+
+\b import \{ Directive, Input, TemplateRef, ViewContainerRef \} from '@angular/core';\
+\
+@Directive(\{\
+\
+  selector: '[appUnless]'\
+\})\
+export class UnlessDirective \{\
+\
+
+\b0 	//Need to get condition as input, so we need a custom property \
+\
+	// 'set' 	\
+	// \
+	/* This is STILL a property.\
+		'set' means that the method we specify in \{\} is executed WHENEVER THE PROPERTY CHANGES\
+\
+		This is of course comes from whatever condition we specify in the HTML of the component\
+\
+		IMPORTANT!!: We are binding to this property, so if we want to do '*appUnless', then this property needs to be named 'appUnless'\
+\
+	*/\
+
+\b \
+	@Input() set appUnless(condition: boolean) \{\
+\
+		if (!condition) \{\
+ \
+
+\b0 			//createEmbeddedView = creates a view in this view container
+\b \
+\
+			this.vcRef.createEmbeddedView(this.templateRef);\
+\
+		\} else \{\
+\
+			this.vcRef.clear();\
+\
+		\}\
+\
+	\}\
+\
+
+\b0 	//REMEMBER: Angular transforms the * into a <ng-template [someProperty] = ""> \
+\
+	//TemplateRef refers to the <ng-template>, also a generic type so you can pass in 'any'\
+\
+	// 1. What we render (template)\
+	// 2. Where we render it (ViewContainerRef) 
+\b \
+\
+  constructor(private templateRef: TemplateRef<any>, private vcRef: ViewContainerRef) \{ \}\
+\
+\}\
+
+\b0 \
+\
+\
+\'97app.component.html\'97\
+\
+\
+   <!-- Structural Directive -->\
+        \
+
+\b  \ul        <div *appUnless="onlyOdd">\ulnone \
+          <li\
+           class="list-group-item"\
+           [ngClass] = "\{odd: even % 2 !== 0\}"\
+           [ngStyle] = "\{backgroundColor: even % 2 !== 0 ? 'yellow' : 'transparent'\}"\
+           *ngFor="let even of evenNumbers">\
+           \{\{ even \}\}\
+          </li>\
+\ul         </div>}

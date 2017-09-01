@@ -1,0 +1,33 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf810
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \'974/11\'97\
+\
+MS::MS(const MS &s)\
+\{\
+	len = s.len;\
+	data = new char[len+1];	//Deep copy - creates a new allocation of memory for this data\
+	strcpy(data, s.data);			//Shallow copy (what we DONT want to do): data = s.data;\
+\}\
+\
+The compiler will automatically write the SHALLOW copy for you\
+\
+\
+\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+\
+Void MS::operator=(const MS &rhs)\
+\{\
+	if (this == &rhs) 			//Makes sure that if you assign an object to itself: S2 = S2\
+		return;					//that it doesn\'92t delete its own data, and returns itself\
+\
+	delete data;\
+	\'85deletion/assignment stuff\
+\}\
+\
+\
+if(*this == rhs)				//Works just like the previous if statemen	\
+	return;}

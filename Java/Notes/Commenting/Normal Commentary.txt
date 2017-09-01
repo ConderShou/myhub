@@ -1,0 +1,44 @@
+----------------------------------------------------------------Comments------------------------------------------------------------------------
+
+Comments are text included in the code that is not executed by the program.
+They are meant for the developer (when it's been a while) and other onlooking programmers so that they 
+	understand the functions of the code and how to use it.
+
+----Purposes----
+
+1. Code description - summarizing the purpose of a segment of code
+2. Algorithm description 
+3. Comment out a code segment that is not working properly
+4. Automatic generation of documentation (Javadoc)
+
+------------------------------Normal Commentary----------------------
+
+----Single line comments-----
+
+// This is a single line comment in Java	- Two forward slashes before the text of the comment for single-lined comments
+					- Everything after the two forward slashes will be considered a comment until the end of the line
+Ex:
+
+	int a = 1;    // This is an int initialized to 1		
+	int b = a*a;   // This line calculates the square of a
+
+-------Multiple line Comments------
+
+/* This is a multiple			- Start the comment with "/* " and end the comment with " */"
+     line comment in Java */			- Can be used for both single and multiple line comments
+
+/* The following code calculates
+the square of a */
+
+int a = 1;
+int b = a*a;
+
+---------------Stylistic Recommendations------------------
+
+Multiple line comments are used for commenting blocks of code.
+
+Single line comments are for everything else (single lines of code, etc..).
+
+Don't over comment. Try to make every comment count.
+
+If your code is bad, rewrite it rather than overcommenting. 

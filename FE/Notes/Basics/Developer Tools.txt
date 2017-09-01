@@ -1,0 +1,14 @@
+Ctrl + Shift + I 
+
+Inspect Element
+
+Setttings > More Tools > Developer Tools
+
+----------------------
+
+Shows html of webpage, and when clicking on element, the corresponding CSS element.
+
+Can change the code you see with developer tools to EXPERIMENT, the changes quickly disappear when you refresh
+	the page (doesn't affect what other people see either - otherwise anyone could change the website temporarily)
+
+Crossed out CSS code = Being overriden (Cascading rule)

@@ -1,0 +1,30 @@
+------------------------Boolean------------------------
+
+- TRUE and FALSE are boolean objects
+
+- Operators:  'not', 'and', 'or', '<', '<=', etc...
+
+- UNLIKE many languages, '&', '&&', '|', '||', '~', are NOT BOOLEAN OPERATORS
+------------------------
+
+not(True and (True or False))
+
+O:
+
+False
+
+-
+
+1234 <= 1234
+
+O:
+
+True
+
+- 
+
+123<345
+
+O:
+
+True

@@ -1,0 +1,83 @@
+We're going to create a new file called 'about.html'
+
+	Unlike our index file, we can call oither pages whatever we want (as long as they keep the .html extension)
+  
+Almost every other web server will recognize the 'index.html' as the HOMEPAGE.
+
+
+------Translating the Selected State of Nav------
+
+<nav>
+          <ul>
+            <li><a href="index.html">Portfolio</a></li>
+            <li><a href="about.html" class="selected">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+</nav>
+
+
+Notice that now 'class = "selected" ' is attached to the About page.
+
+
+---------------------------Pre-CSS Basics---------------------------
+
+------Adding Propic------
+
+An image of both a WIDTH and HEIGHT of 200 pixels will work best.
+
+
+ <section>
+         <img src="img/nick.jpg" alt = "Photograph of Nick Pettit" class = "profile-photo">
+ </section>
+
+
+------Adding Paragraphs and Links----
+
+<section>
+         <img src="img/nick.jpg" alt = "Photograph of Nick Pettit" class = "profile-photo">
+          <h3>About</h3>
+          <p>Hey, I'm not Nick Pettit.</p>
+          <p>Don't follow me <a href="http://twitter.com/nickrp">
+                      @conderS</a>.</p>
+</section>
+
+
+---------------------------Applying CSS--------------------------------
+
+In main.css:
+
+	.profile-photo {
+	  display: block;
+	  max-width: 150px;
+	  margin: 0 auto 30px;
+	  border-radius: 100%;
+	}
+
+Setting the display to BLOCK allows us to use AUTO MARGINS to CENTER the element on the page
+	Also prevents it from being displayed in line with the text.
+	We want it to actually take up space on the page, with a width and height.
+
+	Technically we could let it be text, and then use 'text-align: center' BUT this won't give us the flexibility
+	we'll need later on for the DESKTOP LAYOUT   
+
+The CENTERING is then done by: 'margin: 0 auto 30px'
+
+The BORDER RADIUS property allows us to add ROUNDED CORNERS to an element.
+	You can use PIXELS, but here we use the PERCENT instead. 
+
+	100% means our corners will be SO ROUND that our photo will be a CIRCLE, rather than a square. 
+
+
+----h3------
+
+We'll edit this in the GENERAL section because this H3 will be applied to OTHER PAGES later on.
+
+h3 {
+    margin: 0 0 1em 0;
+}	 
+
+
+This is basically an insurance policy to make sure 'About' is always separate from all the other elements
+
+NOTE: Always make sure to manually reset margins that you don't manually implement yourself.
+	This will allow you to avoid pushing other elements out of the way. 

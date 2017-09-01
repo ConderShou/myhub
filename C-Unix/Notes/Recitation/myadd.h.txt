@@ -1,0 +1,26 @@
+#ifndef _MYADD_H__
+
+	A header guard.
+	
+	If myadd.h is not defined, define it, and then close it with "#endif"	- Only executed if  a pre-processor
+		variable is NOT DEFINED
+
+	This ensures that "myadd.h" is only included ONCE in an executable.
+
+		The underscores are simply naming conventions.
+
+
+int add(int a, int b);
+
+	Prototype.
+
+	That's all you want in a header file.
+
+	A blueprint for all the functions you're going to have.   
+
+
+The header file will catch mistakes you make in other files when you're writing the function DIFFERENTLY than the 
+	prototype.
+
+If you change one "myadd" function, the header file will remind you to change the "myadd" functions of all your OTHER
+	files, provided you "include" the header file in every one of those programs.

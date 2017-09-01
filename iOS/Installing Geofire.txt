@@ -1,0 +1,7 @@
+﻿You can do the GeoFire installation like this: 
+1) Add GeoFire pod to the Podfile pod 'GeoFire', :git => 'https://github.com/firebase/geofire-objc.git' 
+2) type "pod install" to the Terminal (You have to be in the file you have your project)
+3) In Xcode move to: "Pods > Pods > FirebaseDatabase > Frameworks" and click at "FirebaseDatabase.framework" and you have to choose File Inspector from the right side of Xcode. Then in "Target Membership" check "GeoFire"
+4) Build (cmd + B)
+5) Make an import of GeoFire in the file you wanna use it (ex.: import GeoFire in ViewController.swift)
+6) You're ready to go! :)

@@ -1,0 +1,43 @@
+For double hashing, the popular collision resolution function is:
+	
+		f( i ) = i * hash2(x)
+
+We apply a second hash function to x and probe at a distance hash2(x), 2hash2(x), etc..
+
+The function must NEVER evaluate to zero. 
+
+Also, ALL cells must be able to be probed. 
+
+A function such as:
+			hash2(x) = R - (x mod R), with R a prime smaller than TableSize
+will work well. 
+
+For example, if we choose R to be 7 and the table ranges from 0 to 9, and we get a collision while trying to insert 49:
+	
+	1. hash2(x) is computed. --> hash2(49) = 7 - 0 = 7
+	
+	2. 49 is inserted whatever number of spaces down calculated by hash2(x).
+		In this case, it's 7. So we move 49 seven spaces down, or to position 6.
+		(Originally, we attempted to insert 49 at "9"). 
+	
+	3. If a collision occurs again, we move it 7 spaces down again. Therefore, the next alternative would be at 3.
+	
+	4. Continue until an empty space is found. 
+		Generally there aren't really many bad cases here
+
+Although in this case the table size was not prime, it is IMPORTANT that we make sure the table size IS PRIME.
+	- Table size was 10 here for mere convenience of computing the hash function as an example.
+
+Ex:
+	If we attempt to insert 23 into the table, and it happens to collide, then the hash2(23) value is 5. 
+	Since the table size is 10, the only other alternative location is 0. 
+	If 0 is already taken, then you're screwed.
+
+THUS: If the table size is NOT PRIME, then it's possible to RUN OUT of ALTERNATIVE LOCATIONS prematurely.
+
+If double hashing is correctly implemented, then the expected number of probes is almost the SAME as for a
+	RANDOM COLLISION RESOLUTION STRATEGY. 
+
+Quadratic probing, however, does not require the use of a second hash function and is thus likely to be simpler
+	 and faster in practice.
+		Especially for keys like strings whose hash functions are expensive to compute. 

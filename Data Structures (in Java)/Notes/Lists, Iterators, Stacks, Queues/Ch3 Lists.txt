@@ -1,0 +1,344 @@
+Abstract Data Types - Objects with operations
+
+----------------------------The List ADT------------------------------
+
+A list, we assume will have elements ordered one after the other, but NOT SORTED.
+	Just arbitrarily ordered one after the other.
+
+We can give this LIST different functions, printList, makeEmpty, find, remove, etc..
+
+-----------ArrayList------------------
+
+These ADT can only have OBJECTS inside them
+
+------------Linked Lists---------------
+
+To avoid the potentially great cost of insertion/deletion, (removing/adding an element at the beginning of the list
+		we have a LINKED LIST		and shifting the rest of the list down/up)
+
+Each linked list contains a series of nodes that might not have to be totally adjacent in memory.
+	Each node contains the element of the list, and a ink to a node containing its successor ---
+		that's called the "next" link
+	The last cell's "next" link references "null"
+
+A DOUBLY LINKED LIST maintains a link to its previous node in the list. 
+
+-----------------------------Lists in the Java COLLECTIONS API---------------------------
+
+-----Methods in Collection Interface----------
+
+size		- returns number of items in the collection
+
+isEmpty		- returns true iff the size of the collection is zero
+
+contains		- returns true if "x" is in the collection
+
+add
+		- these add/remove item "x" from the collection, returning TRUE if it succeeds, FALSE if it fails
+remove		
+
+----------Iterable-------
+
+The Collection interface extends the ITERABLE interface
+
+Classes that implement the ITERABLE interface can have ENHANCED FOR LOOPS used on them to shift through/view all their items
+
+Iterables (and therefore, iterators), simply allow you to move through a collection. 
+
+---------------------------Iterators------------------------------
+
+Collections that implement the Iterable interface must provide a METHOD named "iterator" that returns an object of type Iterator.
+
+ITERATOR is an interface defined also in package java.util
+
+The Iterator interface in package java.util:
+
+	public interface Iterator<AnyType>
+	{
+		boolean hasNext();		- says if there is a next item
+		AnyType next();		- each call here gives the next item in the collection (first call gives first item, second call gives second, etc...)
+		void remove();		- remove the last item returned by "next"
+	}					NOTICE: you cant  "remove" again until ANOTHER CALL to "next"
+
+-----PURPOSE of the Iterator: VIA the iterator METHOD, each collection can create, and return an object 
+					implementing the Iterator interface that also stores internally its notion of a CURRENT POSITION (returns an object that uses Iterator)
+
+Ex:
+
+Here, the "print" method is rewritten with Iterator
+
+	public static <AnyType> void print( Collection<AnyType> coll )
+	{
+		Iterator<AnyType> itr = coll.iterator();
+		whilte( itr.hasNext() )
+		{
+			AnyType item = itr.next();
+			System.out.println( item );
+		}
+	}
+
+When the compiler sees the enhanced for loop used on object that is ITERABLE, 
+	it REPLACES enhanced for loop with calls to the "iterator" method to obtain an Iterator, and then calls to "next" and "hasNext"
+
+
+Ex:
+	public static final void main(String[] args) {
+		ArrayList<Integer> a = new ArrayList<Integer>();
+
+		a.add(2);
+		a.add(1);
+		a.add(3);
+		a.add(4);
+	
+		for( Integer i : a) {
+			System.out.println(i);
+		
+	}
+
+PRINTS:
+
+2
+1
+3
+4
+
+	public static final void main(String[] args) {
+		ArrayList<Integer> a = new ArrayList<Integer>();
+
+		a.add(2);
+		a.add(1);
+		a.add(3);
+		a.add(4);
+	
+		for( Integer i : a) {
+			System.out.println(i);
+		
+		System.out.println();
+
+		java.util.Iterator<Integer> n = a.iterator();	- Iterator is generic, so SPECIFY the class - "<Integer>"
+		while(n.hasNext()) {
+			Integer i = n.next();
+			System.out.println(i);
+		}		
+	}
+
+PRINTS:
+2
+1
+3
+4
+
+2	- Showing you what iterators can do, they come handy when you want to keep track of TWO different locations/speeds
+1
+3
+4
+
+NOTICE: Iterators always start at the beginning. You use them when to go through the WHOLE collection/arraylist
+
+-------------------------------------The List Interface, ArrayList, and LinkedList------------------------------------------
+
+"get" and "set" allow us to access or change an item at the specified position in the list, given by its index "idx"
+
+Index 0 is at the front of the list, size() - 1 represents the last item in the list
+
+Index size() represents the position where a newly addded item can be placed
+
+"add" allows placement of a new item in position "idx"
+	- "add" at position 0 is adding at the front
+	- "add" at position size() is adding an item as the new last item
+
+In addition to the standard "remove" that takes AnyType as a parameter, 
+	"remove" is also overloaded to remove an item at a specified position
+
+Also specifies the "listIterator" method that produces a more complicated iterator
+
+	public interface Lit<AnyType> extends Collection<AnyType>
+	{
+		AnyType get ( int idx );
+		AnyType set ( int idx, AnyType newVal );
+		void add ( int idx, AnyType x );
+		void remove ( int idx );
+
+		List Iterator<AnyType> listIterator ( int pos );
+	}
+
+
+---------------Implementing the List ADT-------------------
+
+ArrayList - an array implementation of the List ADT
+	
+	Advantages: "get" and "set" take constant time
+	
+	Disadvantage: insertion of new items and removal of existing items is expensive, UNLESS these actions are made at the END of the ArrayList
+
+LinkedList - a doubly linked list implementation of the List ADT
+
+	Advantages: insertion of new items and removal of existing ones is cheap, AS LONG AS the position of the changes IS KNOWN 
+			- the adds and removes from the front of the list are constant-time operations
+				- even provides the methods "addFirst" and "removeFirst", "addLast" and "removeLast", and "getFirst" and "getLast"  to efficiently add, remove, and access items are both ends of the list
+
+	Disadvantage: not easily indexable, calls to "get" expensive UNLESS they are very close to one of the ends of the list (the search can proceed from either the back or the front of the list) 
+
+-----Ex: Let's look at the differences
+
+1. Construct a list by adding items at the end
+
+	public static void makeList1( List<Integer> lst, int N ) 
+	{
+		lst.clear();
+		for ( int i = 0; i < N; i++ )
+			lst.add(i);
+	}
+
+	- Whether it's an ArrayList or a LinkedList that's passed as a parameter, the running time of makeList1 is O(N), 
+		because each call to "add", being at the end of the list, takes constant time
+
+2. However, if we construct a List by adding items at the front
+
+	public static void makeList2( List<Integer> lst, int N)
+	{
+		lst.clear();
+		for( int i = 0; i < N; i++ )
+			lst.add( 0, i );
+	}
+
+	- Running time is O(N) for a LinkedList, but O(N^2) for an ArrayList 
+		- In an ArrayList, adding at the front is an O(N) operation - moving all the elements back
+
+3. Computing the sum of the numbers in a List: 
+
+	public static int sum( List<Integer> lst)
+	{
+		int total = 0;
+		for (int i = 0; i < N; i++)
+			total += lst.get( i );
+		return total;
+	} 
+
+	- Running time is O(N) for ArrayList but O(N^2) for a LinkedList.
+		- In a LinkedList, calls to "get" are O(N) operations
+			- INSTEAD: use an enhanced "for" loop, which will make the running time O(N) for any List (iterator efficiently advances from one item to the next) 
+				- It uses an ITERATOR which would be able to call the element at "i" immediately as it moves from one item to the the next
+
+Both ArrayList and LinkedList are inefficient for searhes, so calls to the Collection "contains" and "remove"  methods (that have parameter AnyType), take LINEAR TIME
+
+
+	NOTE: The ArrayList automatically increases the capacity as needed to ensure that it is AT LEAST as large as the size of the list
+	
+"ensureCapacity" - If you can estimate the size BEFOREHAND, "ensureCapacity" can set the capacity to a sufficiently large amount BEFOREHAND to avoid a later expansion of the array capacity
+
+"trimToSize" - trims the ArrayList to the least amount of space needed AFTER all the ArrayList adds are completed	
+		- This avoids wasting space
+
+
+
+----------------------------------Example: Using "remove" on a LinkedList--------------------------------------
+
+Removing from almost anywhere in an ArrayList is expensive (we have to shift all the elements every time)
+
+LinkedLists just need a rearranging of some links. 
+
+1st Attempt:
+
+	public static void removeEvensVer1( List<Integer> lst)
+	{
+		int i = 0;
+		while( i < lst.size() )
+			if (lst.get( i ) % 2 = 0)
+				lst.remove( i );				- For an ArrayList, the "remove" method ALSO shifts the elements over ON ITS OWN. 
+			else						- For a LinkedList, it goes through the list AGAIN BY ITSELF to get to the position i
+				i++;						- EVEN THOUGH the "get" method was called previous, because this action is INCLUDED WITHIN the "remove" method's function
+	}
+
+- As explained beforehand, the ArrayList is not efficient here because of the "remove" method
+	- the LinkedList is not effective because the call to "get" is inefficient and the call to "remove" is inefficient NOT BECAUSE OF SHIFTING, but because of the run-through of the array required to get to the defined position separately
+
+- The runtime is quadratic for both lists
+
+2nd Attempt:
+	
+	public static void removeEvensVer2( List<Integer> lst )
+	{
+		for (Integer x : lst)
+			if( x % 2 == 0 )
+				lst.remove( x );
+	}
+
+- We use an iterator instead of "get" to step through the list, which is efficient. 
+	- BUT: we use the Collections "remove" method to remove the even-valued item.
+		- This is NOT EFFICIENT because the "remove" method has to SEARCH FOR THE ITEM AGAIN ON ITS OWN, taking linear time 
+			- Which makes the program OVERALL QUADRATIC cause of the iterator referred to by the enhanced "for" loop
+
+- The list ALSO generates an EXCEPTION because when the item is removed, the iterator used by the enhanced for loop is INVALIDATED.
+	- Basically, the enhanced for loop doesnt understand that it can only proceed if an item is NOT REMOVED
+
+3rd Attempt: 
+
+	public static void removeEvensVer3( List<Integer> lst )
+	{
+		Iterator<Integer> itr = lst.iterator();
+
+		while ( itr.hasNext() )
+			if( itr.next() % 2 == 0 )
+				itr.remove();
+	}
+
+- We use an iterator to do everything. 
+
+	- Removing the element with the iterator is constant time (operation of 1), cause the iterator is already at the node that needs to be removed
+- Thus, the entire program takes linear time for a LinkedList
+
+	- HOWEVER, even though the iterator is already at the point that needs to be removed, "remove" is still expensive because the array items must be SHIFTED
+- Thus, the entire program takes quadratic time for an ArrayList
+
+- Passing in a LinkedList<Integer>, we see that this holds true. 
+
+
+-------------------------------------------ListIterators---------------------------------------
+
+A ListIterator adds more function to the Iterator for Lists
+
+"previous" and "hasPrevious" allows back and forth movement of the list		- self-explanatry, follow same logic as "next" and "hasNext"
+
+"add"	- places a new item into the list in the current position BETWEEN the values it would call for "next" and "previous"
+
+NOTE: The CURRENT POSITION is the space BETWEEN two values. NOT AT some value.   
+
+- Remember, "add" is a constant-time operation for a LinkedList and expensive for an ArrayList (where elements must be shifted)
+
+"set"	- Changes the last value seen by the iterator - CONVENIENT for LinkedLists
+		- Regular iterators can't do anything to the element they're on other than the method commands already given, ("add", "remove", etc..), they can't do "subtract 1 from that element"
+
+
+-----An implementation of ArrayList in the bank shows a usable, self-constructed ArrayList generic class
+
+----------Generic Array Creation------
+
+An idiom that is required because direct generic array creation is illegal.
+
+  Ex:	theItems = (AnyType []) new Object[ newCapacity];
+
+Instead, we create an array of the generic type's bound and then use an array cast.
+	- This will give us an unavoidable compiler warning.
+
+-----------
+
+Two versions of add:
+
+public boolean add(AnyType x) {
+	add( size(), x);				- Trivialy implemented by calling the other version that adds at the specified position
+	return true;
+}
+
+public void add(int idx, AnyType x) {
+	if (theItems.length == size() )
+		ensureCapacity( size() * 2 + 1);	- Doubles the capacity, includes the +1 at the end in case the size of the array is zero
+	for (int i = theSize; i > idx; i-- )
+		theItems[i] = theItems[ i - 1];		- Computationally expensive, shifts elements that are after the specified position an additional position higher
+	theItems[ idx ] = x;				- Then sets the desired location to the chosen value - thus, "adding" it
+
+	theSize++;
+}
+
+
+	

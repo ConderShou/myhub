@@ -1,0 +1,3 @@
+message = "She\'s a great person!";
+
+	Backslash causes the quote mark to be treated as a character.

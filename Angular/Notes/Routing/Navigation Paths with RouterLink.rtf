@@ -1,0 +1,38 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf810
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww33400\viewh20520\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \
+\
+\'97servers.component.html\'97\
+\
+    <!-- Relative vs. Absolute Path -->\
+  \
+    <!-- Relative Path \
+      \
+      No slash, means that the page will try to go from:\
+            localhost:4200/servers => localhost:4200/servers/servers\
+\
+      Appending that path element to the CURRENT path\
+    -->\
+\
+   \ul  
+\b <!-- <a routerLink="servers">Reload Page</a> -->
+\b0 \ulnone \
+\
+    <!-- Absolute Path \
+        \
+        / indicates that the page go to:\
+            localhost:4200/servers\
+\
+      Appending that path element ONLY TO THE MAIN DOMAIN\
+    -->\
+\
+   \ul  
+\b <!-- <a routerLink="/servers">Reload Page</a> -->
+\b0 \
+\ulnone \
+    <!-- NOTE: You can also use './' and '../' like you would with a folder directory to navigate paths -->}

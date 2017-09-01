@@ -1,0 +1,67 @@
+If 'p' is a pointer to some element of an array, p++ increments 'p' to point to the NEXT element
+
+	p += i	increments it to point 'i' elements beyond where it currently does
+
+The standard library provides 'malloc' and 'free' that stores characters, and releases the storage so that it can be re-used later,
+	respectively
+
+Note:	C guarantees that zero is never a valid address for data
+
+
+Pointers and integers are NOT interchangeable. 
+	Zero is the SOLE exception.
+
+	The constant 0 may be assigned to a pointer, and a pointer may be compared with the constant 0
+
+	NULL is a symbolic constant that is often used in place of 0
+		Defined in <stdio.h>
+
+
+
+-------------Pointer Arithmetic-------------
+
+1. Pointers may be compared under CERTAIN circumstances
+
+	If 'p' and 'q' point to members of the SAME array, then relations like ==, !=, < , etc... work properly
+
+		Ex:
+			p < q	is true if 'p' points to an earlier member of the array than 'q' does
+
+		Any pointer can be meaningfully compared for equality or inequality with zero.
+
+	This, however is UNDEFINED for pointers that DO NOT point to members of the same array.
+
+		Exception: The address of the first element past the end of an array can be used in pointer arithmetic
+		(? Why ?)
+
+2. A pointer and an integer may be added or subtracted.
+
+	p + n
+
+	Means address of the n-th object beyond the one 'p' currently points to
+
+	This is true REGARDLESS of the kind of object 'p' points to
+
+REMEMBER!!: 'n' is scaled according to the size of the objects 'p' points to (which is determined by the declaration of 'p')
+		- If an 'int' is four bytes, then the 'int' will be scaled by four. 
+
+
+	Subtraction:
+
+		If 'p' and 'q' point to elements of the same array, and 'p < q' then 'q - p + 1' is the number of	
+			elements from 'p' to 'q' inclusive. 
+
+
+NOTE: Pointer arithmetic is CONSISTENT across data types
+	- All pointer manipulations automatically take into account the size of the object pointed to
+
+Legal pointer operations:
+
+	1. Assignment of Pointers of the same type
+	2. Adding or subtracting a pointer and an integer
+	3. Subtracting or comparing two pointers to members of the same array
+	4. Assigning or comparing to zero
+
+	ALL OTHER ARITHMETIC IS ILLEGAL	
+		(Adding two pointers, multiple/divide/shift, adding float or double, 
+			assigning a pointer of one type to that of another without a cast, etc...)

@@ -1,0 +1,17 @@
+
+Second greedy strategy:
+
+	1. Continually select the edges in order of smallest weight
+	2. Accept an edge if it does not cause a cycle
+
+
+--------------------------
+
+Worst case running time:	O(|E| log|E|)
+
+	Since, |E| = O(|V|^2)
+
+Running time is actually:	O(|E| log|V|)
+
+
+In practice, the algorithm is much faster than this time bound would indicate.

@@ -1,0 +1,2 @@
+Changing the background COLOR of the selector is a good way of figuring out how SPECIFIC your selector is
+	(To what area of the page is it actually selecting?)

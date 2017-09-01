@@ -1,0 +1,266 @@
+An AVL (Adelson-Velskii and Landis) tree is a binary search tree with a BALANCE CONDITION.
+
+The balance condition must be easy to maintain, and it ensures that the depth of the tree is O(log N)
+
+The simplest ida for a balance condition:
+	
+	Require that the left and right subtrees have the same height. 
+
+Another idea:
+	
+	Every NODE must have left and subtrees of the same height.
+
+	If the height of an empty subtree is defined to be -1 (as is usual), then only perfectly balanced trees of 2^k - 1 nodes would
+	satisfy this criterion. 
+
+		Thus, although this guarantees trees of small depth, the balance condition is too rigid to be useful and needs to be relaxed. 
+
+
+An AVL tree is identical to a binary search tree, except that for EVERY NODE in the tree, the height of the left and right subtrees
+	can differ by at most 1. (No matter how big the subtree is for each node - even if we're talking about a root node and two immense branches)
+	
+	(The height of an empty subtree is defined to be -1). 
+
+REMEMBER: 
+
+	The HEIGHT of a node is the length of the longest path from the node to a LEAF (nodes with no children - effectively the end of a tree)
+
+	The HEIGHT of a TREE is the length of the longest path from the root to the FARTHEST LEAF (the very very bottom of the tree).
+
+All the tree operations of an AVL tree can thus be performed in O(log N) time, except possibly insertion (we'll assume lazy deletion).
+
+
+
+-----------------------Insertion------------------
+
+When we do an insertion, we need to update all the balancing information for the nodes on the path BACK to the root.
+	This means, however, that an insertion could VIOLATE the AVL Tree property
+	 	(It could cause a greater difference in height that exceeds 1 between the subtrees of a node)
+	
+	If this is the case, then this property has to be restored BEFORE the insertion step is CONSIDERED OVER. 
+
+This can always be done with a simple modification to the tree, known as: ROTATION
+
+After an insertion, only nodes that are on the PATH from THE INSERTION POINT to the ROOT might have their
+	balance altered (whose new balance violates the AVL property)
+
+	Because, only those nodes have their subtrees altered.
+
+
+Since any node has at most TWO children, and a height imbalance requries that the node's two subtrees' height differe by TWO,
+	we see four possible cases for why a violation might occur:
+
+	1. Insertion into the LEFT subtree of the LEFT child of the node
+	2. Insertion into the RIGHT subtree of the LEFT child of the node
+	3. Insertion into the LEFT subtree of the RIGHT child of the node
+	4. Insertion into the RIGHT subtree of the RIGHT child of the node
+
+The first case, and fourth case, where the insertion occurs on the "outside" (left-left, or right-right) is fixed by:
+		
+	a SINGLE ROTATION of the tree
+
+The second, and third case, in which the insertion occurs on the "inside" (left-right, right-left), is handled by:
+	
+	a DOUBLE ROTATION
+
+These are fundamental operations that will be used several times in balanced-tree algorithms. 
+
+
+--------------------------------------------Single Rotation-----------------------------------------------------
+
+Let's go through an example (Figure 4.31):
+
+	Scenario:
+		NodeK2 has a right subtree with a single-level subtree Z. 
+		NodeK2 has a left subtree of NodeK1. 
+			Node K1 has a two-level left subtree X, and a single-level right subtree Y.
+
+	NodeK2 violates the AVL balance property because its LEFT subtree is two levels deeper than its right subtree
+		(Height of subtree X + NodeK1 = Three levels)
+		
+		Its left-left subtree X has grown another level from an insertion, causing it to be two levels deeper than NodeK2's right subtree Z. 
+
+
+	To IDEALLY rebalance the tree, we need to move X up a level and Z down a level. 
+		TECHNICALLY this COMPLETELY balances the height, and is more than the AVL property requires
+
+
+Solution:
+
+	Make NodeK1 the new root.
+	NodeK2 becomes the right child of NodeK1
+	X remains as left child of K1
+	Z remains as right child of K2
+	Y, can then be placed as K2's LEFT CHILD 
+
+	Ordering requirements remain satisfied AND the tree is balanced now. 
+
+This work only requires a few link changes. 
+	X moves up on level
+	Y stays at the same level
+	Z moves down a level
+	K1 and K2 now have subtrees of exactly the same height
+
+FURTHERMORE:
+
+	The new height of the ENTIRE subtree is EXACTLY THE SAME as the height of the original subtree PRIOR to the insertion into X.
+	THUS, no further updating of heights on the path to the root is needed,
+		And consequently, NO FURTHER ROTATIONS are needed. 
+
+Think of it as an ACTUAL rotation (either clockwise OR counter-clockwise rotation)
+
+-----------------Using a Single Rotation----------------
+
+The left-left and right-right holds true LITERALLY for one PAIR of nodes. 
+Don't look at it in terms of the ENTIRE tree, if it's COMPLETELY ON THE OUTSKIRTS of the LARGER TREE.
+
+Left-left could still seem to look like it's INSIDE the LARGER TREE, but in terms of the PARENT node and its CHILD node.... 
+	if it's on the left of the CHILD's left subtree, THEN IT'S CASE 1 - ON THE OUTSIDE
+
+------------------------------------------Double Rotation-----------------------------------------------------------
+
+Let's look closer into the Y subtree from before (from Figure 4.31), and let it be a node with its own two subtrees.
+
+Basically, the node of Y goes up to the very top with the NodeK1 on its left subtree, and NodeK2 on its right subtree. 
+The original element on the left subtree of Y goes to the RIGHT subtree of NodeK1 (it's still on the left subtree of NodeY)
+The original element on the right subtree of Y goes to the LEFT subtree of NodeK2 (it's still on the right subtree of NodeY)
+
+Keep in mind that in diagram 4.35, NodeK1, NodeK2, and NodeK3 are labeled differently than how I described it here. 
+	There, NodeK2 is NodeY. 
+My descriptions are based on Figure 4.31
+
+
+Think of it as NodeY just going up to the top of both nodes 
+Then giving its LEFT subtree to the original root's LEFT child's RIGHT subtree
+Then giving its RIGHT subtree to the original root's RIGHT child's LEFT subtree     
+
+These child nodes are the nodes that were right above NodeY. 
+Right child is the above right.
+Left child is the above left. 
+					
+
+-----------Deciding if we need to do a Double Rotation----
+
+2. Insertion into the RIGHT subtree of the LEFT child of the node
+3. Insertion into the LEFT subtree of the RIGHT child of the node
+
+	NO MATTER HOW BIG THE TREE IS, look only in terms of ONE PARENT NODE, and its TWO CHILD NODES.
+
+-----------------------Step-By-Step----------------------------------
+
+A valid, unbalanced binary search tree: 3-2-4
+
+	1. Rot: Rotate 3 and 2. (so that they swap):  2-3-4
+	2. Rot: rotate 3 and 4
+
+		  3  
+		2 4
+	
+	   Now tree is balanced.
+
+Another example:
+
+			k1
+		k2		c
+	A	        k3			
+		   b1       b2
+
+We want k3 to be the root
+
+Rotation 1: Rotate k3 and k2
+
+			k1				
+		k3		c
+	k2	       b2
+      A	         b1
+
+Rotatation 2: Rotate k3 and k1
+
+			k3
+		k2		k1
+	      A               b1            b2               c
+
+Now it's balanced
+-----------------------------------------------------------Algorithm for Rotations---------------------------------------------------------
+
+1. Recursively insert X into the appropriate subtree of T
+2. 	If the heght of the subtree does not change, we're done.
+3. 	If a height imbalance appears in T:
+		We choose to either do a single or double rotation based on X and its RELATION to the rest of the items in T
+4. Update the heights - checking up on the path upwards 
+
+5. 	DONE 
+
+Because one rotation always suffices (either single or double), 
+	a carfully coded NON-RECURSIVE version generally turns out to be FASTER than a RECURSIVE version
+However, it's difficult to code a non-recursive one, whereas a recursive implementation is easily readable
+
+STORAGE OF HEIGHT INFORMATION:
+
+	Because the difference in height is guaranteed to be small, we could just use TWO BITS (+1, 0 -1)
+	HOWEVER: this results in some loss of clarity
+	The slight speed advantage obtained by storing balance factors is hardly worth the loss of clarity and relative simplicty of the code
+	
+	Furthermore, most machines will align to at least an 8-bit BYTE anyway, allowing us to store heights up to 127. 
+		Because the tree is balanced, this amount of space is plenty sufficient. 
+
+
+----------------------------------------------------------------------Example Code---------------------------------------------------------------------
+
+First, we need to write the AvlNode class. 
+
+
+	private static class AvlNode<AnyType> 
+	{
+		// Constructors
+		
+		AvlNode( AnyType theElement ) 
+		{
+			this( theElement, null, null ); 
+		}
+
+		AvlNode( AnyType theElement, AvlNode<AnyType> lt, AvlNode<AnyType> rt )
+		{
+			element = theElement; 
+			left = lt;
+			right = rt;
+			height = 0;	
+		}
+
+		AnyType 			element;		// the data in the node
+		AvlNode<AnyType> 	left;		// left child
+		AvlNode<AnyType>	right;		// right child
+		int			height;		// height
+
+
+We also need a quick method to return the height of a node. 
+
+We need it to handle the case of a "null" reference.
+
+	/**
+	 *   Return the height of node t, or -1, if null.
+	  */
+	
+	private int height( AvlNode<AnyType> t )
+	{
+		return t == null ? -1 : t.height;		// if true (that t = null), then return "-1"
+							//	OTHERWISE, return "t.height"
+	}
+
+
+
+Now we write the basic insertion routine, compared to the other method,
+	we also add a line that invokes the "balance" method
+
+The "balance" routine applies a SINGLE or DOUBLE ROTATION if NEEDED,
+			UPDATES the HEIGHT,
+			and RETURNS the RESULTING TREE
+
+	/**
+	   * "x" is the item to insert
+	   * "t" is the node that ROOTS the subtree
+	   * RETURN the NEW ROOT of the subtree
+	  */
+
+	 private AvlNode<AnyType> insert( .......... [continue later after written homework or if necessary for homework]
+	

@@ -1,0 +1,15 @@
+------------Malloc/Heap Allocation----------
+
+int *test() {	//This can be fixed by MALLOC
+	int *x = 5;
+	return x;
+}
+
+int *p = (int *) malloc(100*sizeof(int));	// Returns *void - can cast into any type of pointer we want
+if (p == NULL) {
+	perror("malloc failed");
+	exit(1);
+}
+
+free(p);	- Must free the memory for every malloc block we have
+

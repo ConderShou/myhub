@@ -1,0 +1,20 @@
+-------------Recursion------------------------
+
+public class Fibonacci {
+	
+	public static long fib(in n) {
+		if (n==1)
+			return 1;		- No "else" is required cause "return" terminates the function.
+		if (n==2)
+			return 2;	
+
+		return fib(n-1) + fib(n-2);
+	
+	}
+
+	public static void main(String[] args) {
+
+		int n = Integer.parseInt(args[0]);		- Reads from the command line as an Integer
+		System.out.println(fib(1))
+
+PROBLEM: This problem is growing 

@@ -1,0 +1,30 @@
+To change color, you must supply an object of type Color.java
+		
+This uses the RGB color model, specify color by amounts of primary colors - red, green, and blue
+
+Amount is represented by integers between 0 (primary color not present) and 255 (maximum amount present)
+
+Ex:
+
+	Color magenta = new Color(255, 0, 255);	- Maximum red, no green, maximum blue
+	
+-------
+
+For our convenience, a variety of colors have already been pre-defined:
+
+	Color.PINK		(the same as: new Color(255, 175, 175))
+
+
+--------------Drawing shapes in color------------
+
+First set the color of the Graphics2D object, then call the draw method:
+
+g2.setColor( Color.Red );
+g2.draw(circle);   	// Draws the shape in red
+
+-----------Coloring inside the shape----------
+
+Use the fill method:
+
+	g2.fill(circle);
+

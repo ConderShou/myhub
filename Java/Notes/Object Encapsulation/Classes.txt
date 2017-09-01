@@ -1,0 +1,67 @@
+Objects of the same structure (same variables and methods) belong to the same "class".
+	- Does not mean they have the same values in the variables
+
+1. Define classes 
+2. Instantiate objects
+
+An object is an instance of the class.
+
+This process is called "instantiation"
+
+-----------------------------------------------------------------------
+
+class Car {			- "Car" = name of class. Remember to capitalize
+	boolean lights;		- Attributes/variables of objects of this class
+	String color;
+
+	....
+
+	void turnHeadlightsOn() {lights = true;}		- Methods that all objects of this class will have.
+    public	void turnHeadlightsOff() {lights = false;}		- Unlike constructors, these NEED return and access SPECIFIERS (public void...)
+	void moveForward() {....;}
+	void moveBackward() {...;}
+	void turnRight() {...;}
+	void turnLeft() {...;}
+
+---------------------Constructors----------------------------
+
+Constructors: special methods included in the body of the class definition.
+Notice that there is no result type given.
+	The result is an object of the class Car. 
+
+Car() {lights = false; color="white";}			- Notice: no return type
+Car(String c) {lights=false; color=c;}			- Notice: constructors have the name of the class
+Car(boolean b) {lights = b; color = "white";}
+
+Car(boolean b, String c)
+	{lights = b; color=c;}
+
+	- We can choose to include any or none of these constructors
+		- If we decide to include none of them, the object will be created with default values when the constructor is called
+
+---------------Calling Constructors-----------------------
+
+Note that classes work like types (types meaning int, String, boolean,etc..)
+
+1. Choose which class this object shall be from 			- Car
+1. Define an object with a name. Stay simple. Follow format 	- c1
+2. "new" 
+3. Call to constructor 					- Car(), Car("green"), etc..
+
+Car c1 = new Car();			- The object car is named "c1"
+					- Because there are no arguments, this immediately uses the Car() construct
+	
+	- As a result, the "car" created would be one with NO headlights and colored WHITE
+
+Car c2 = new Car("green");		- Uses the "Car(String c)" construct defined earlier 
+					- GIVEN THAT WE INCLUDED IN THE CLASS DESCRIPTION
+	
+	- NO headlights and color GREEN
+
+Car c3 = new car(true);		- Uses the "Car(boolean b)" construct
+
+	- HEADLIGHTS and color WHITE
+
+Car c4 = new Car(true, "red");		- Uses the "Car(boolean b, String c)" construct
+
+	- HEADLIGHTS and color RED

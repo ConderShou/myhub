@@ -1,0 +1,54 @@
+---------Multidimensional Arrays----------
+
+M(k1, k2, k3)  	- k1: row
+		- k2: column
+		- k3: page (which set of 2D array)
+		- Can have more....
+
+----------Cell Arrays----------------------------
+
+Arrays aggregate elements that are of the same class. Individual elements are referenced by integer indices.
+	M(k, n)		-all numbers within this array
+	isOn(iswitch)	-all logic operators within this array
+
+Cell arrays, by contrast, can aggregate elements of different classes. Individual elements are also referenced
+by integer indices.
+
+------------
+
+C{1,1} = 57.23;		-Curly brackets indicate Cell Arrays
+C{1,2} = 'Moses';
+C{2, 1} = rand(2);
+C{2, 2} = 4+7i;
+
+Output:
+
+C = 
+
+	[57.23]		'Moses'
+	[2x2 double]	[4 + 7i]
+
+
+C{2, 1}(1, 2)	-Gets the row 1 column 2 value of the matrix within the row 2 column 1 of the cell array
+
+-------------
+
+Cell arrays can hold strings of different lengths in one cell array
+
+--------------
+
+% list Lawyers
+
+partners{'Warpe', 'Wistful', 'Kibutschek'};
+
+np=length(partners);
+partners{np+1}='McMingus';
+
+clc
+np=length(partners);
+disp('Law partners: ')
+for ip = 1:np
+	disp(partners{ip});			
+end
+
+--------------------

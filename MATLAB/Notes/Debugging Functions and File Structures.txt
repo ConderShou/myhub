@@ -1,0 +1,36 @@
+-----Debugging MATLAB functions------
+
+Cannot run function without argument by pressing green save-and-run button
+
+
+1. Execute from command line with specific arguments:
+
+	gauss(0, 0, 0.25)
+
+To see if it correlates with the right value
+
+
+2. Run simple function in outside program
+	-Plotting, calculating some number, etc…
+
+3. Modify run button
+	-Click on bottom arrow on Green Run-and-Save button
+	-Enter the inputs of function 
+		-Ex: gauss(0, 0, 0.5)
+
+	-To remove this function, right click the run-and-save option and press delete
+
+-----------------
+Can have several functions in one file
+
+1st function must have same name as file (primary function)
+	-Other functions are called subfunctions
+
+Other functions must still have function declaration (but don’t have to have an end associated with them)
+
+Subfunctions can only be executed by another function in the file (whether it be primary function or some other sub function)
+
+---------
+Keep functions organized in same folder
+
+DO NOT USE “ADD TO PATH”

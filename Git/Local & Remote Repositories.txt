@@ -1,0 +1,48 @@
+In Github:
+
+	.gitignore			//Files added here are IGNORED by GIT. 
+				//Like the id information from Firebase
+
+You can use the "Make git repository" option when creating Xcode project to effectively "git init"
+
+	- You can use Terminal to reach the same directory and execute git commands
+
+Make a repository on GitHub.
+
+
+git remote -v		// Shows all remote repositories
+
+git remote add origin <paste the github repo SSH link>
+
+git pull origin <branch>	//Brings the changes 
+
+	- git pull origin master	//The default starting branch is called "master"
+
+"pull" does "fetch" and then "merge" for us
+
+	We could:
+			git fetch origin master
+			git merge origin master
+		
+	But that's two steps.
+
+
+git push origin master	//Pushes changes to the remote repository named "origin" to the branch "master"
+
+
+----------------Making a local repository first then connecting it to GitHub-------------
+
+Instructions are given in the repo you make in Github. 
+
+1. git add and commit all the files you have in your local repo.
+
+2. git remote add origin <ssh github repo code>
+
+3. git push -u origin master
+
+
+--------------------When Making Changes---------------
+
+1. git add and commit everything
+2. git pull origin master (merge other changes)
+3. git push origin master

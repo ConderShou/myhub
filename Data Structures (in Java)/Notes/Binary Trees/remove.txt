@@ -1,0 +1,65 @@
+As is common with many data structures, DELETION is the hardest operation. 
+
+There are several possibilities to consider:
+
+	If the node is a leaf, it can be deleted immediately.
+	If the node has one child, the node can be deleted after its parent adjusts a link to bypass the node
+	
+	What if there's a node with two children?
+
+		1. We replace the data of the chosen node with the SMALLEST node of the RIGHT subtree
+	
+		2. Recursively delete the node whose data was just used to replace the deleted node 
+
+			Because the smallest node in the right subtree can't have a left subtree, 
+			this "remove" is an easy one.
+			
+			This second "remove" of this smallest node is the same as deleting a node that only has one child
+
+		The code below performs this deletion, but is inefficient: it makes TWO passes down the tree to find and delete the 	
+			smallest node in the right subtree when it's appropriate
+		This efficiency can be quickly removed by writing a special "removeMin" method
+
+	Ex:
+		*we return the new root of the subtree* 
+		* "t" is the node that rots the subtree *
+		* "x" is the item to remove *		
+
+		private BinaryNode<AnyType> remove( AnyType x, BinaryNode<AnyType> t )
+		{
+			if ( t == null ) 
+				return t;	// item is not found; do nothing
+		
+			int compareResult = x.compareTo(element);
+
+			if( compareResult < 0 )
+				t.left = remove( x, t.left );
+			else if ( compareResult > 0 )
+				t.right = remove( x, t.right );
+			else if ( t.left != null && t.right != null ) 		// two children
+			{
+				t.element = findMin( t.right ).element;		// setting the node that is to be "removed" to the smallest node on the right subtree	
+				t.right = remove ( t.element, t.right );		// removing the smallest node on the right subtree (that we just assigned to the replaced, or "removed" node)
+			}
+			else
+				t = ( t.left != null ) ? t.left : t.right;
+			return t;
+		}
+
+----------------------------------------------
+
+lazy deletion:
+	
+	When an element is to be deleted, it is left in the tree and merely MARKED as being deleted.
+		This could be as simple as "valid = false".
+		This means we must change the methods accordingly to accommodate this marker. 
+	
+	This is popular especially if duplicate items are present, because then the field that keeps count of frequency
+		of appearance can be decremented
+	
+	If the number of real nodes in the tree is the same as the number of "deleted" nodes, then the depth of the tree
+		is only expected to go up by a small constant
+		
+		Therefore, there is a very small time penalty for lazy deletion.
+	
+	Also, if a deleted item is REINSERTED, the big structure of allocating a new cell is avoided

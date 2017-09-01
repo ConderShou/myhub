@@ -1,0 +1,15 @@
+Don't put any capitalized letters in the name of the package.
+
+Don't change the name of the package AFTER PUBLISHING the app.
+	- MUST be SAME for updates to an existing app
+
+The Android's SDK and API levels are used interchangeably.
+
+Each version of the SDK has a corresponding API number.
+
+	Lower API levels target more devices, but have fewer features available.
+
+Not using the lowest available API level allows us to not have to worry about making any additional changes
+	to make the app BACKWARDS COMPATIBLE
+
+Whatever API level there is, it should still run as each new release comes out.

@@ -1,0 +1,125 @@
+public interface List<AnyType> {
+	
+	//delete all elements from list
+	void clear();
+
+	//get the size of the elements in the lists
+	int size();
+
+	boolean isEmpty();
+
+	AnyType get(int k);
+
+	AnyType set (int index, AnyType x);
+
+	void add( int index, AnyType x);
+
+public class MyArrayList<AnyType> implements List<AnyType> {		- Implementing List interface in generic ArrayList
+
+	....
+	
+	private AnyType[] theItems;
+	private int theSize;
+
+
+	public MyArrayList() {
+		clear();
+	}
+
+	public void clear() {
+		theSize = 0;
+		ensureCapacity(DEFAULT_CAPACITY);
+	}
+
+	----
+	
+----------------------------
+
+public int find(Anytime x) {
+	for (int i = 0; i < theSize; i++)
+		if (theItems[i].equals(x))	- We're not using the double equality evaluator (==) because we're comparing OBJECTS, not primitive data types
+			return i;
+}
+
+public AnyType get(int indx) {
+	if (indx < 0 || idx >= size())
+		throw new ArrayIndexOutofBoundsException( "Index" ....);		- check for exceptions in later assignments
+	.....
+}
+
+----------------------Insertion/Remove--------------------
+
+Worst case:
+	Adding/removing an element in the beginning, requires you to move all the elements forward/backward 
+
+
+------------------------
+
+public void add(int idx, AnyType x ) {...
+	if (theItems.length ==size())
+		ensureCapacity(size() * 2 * + 1);	- Doubling the size of the array, so that you dont have to grow the array each iteration after you reach the limit
+	...
+
+----------------Expanding Array Lists------------------------
+
+private void ensureCapacity (int newCapacity) {
+
+if(newCapacity < theSize)
+	return;
+
+newCapacity = arr.length * 2;			- Copying the array into a new array of greater capacity
+Integer[] old = theItems;
+theItems = new Integer[newCapacity];
+for( int i = 0; i <theSize; i++)
+	theItems[i] = old[i];
+}	
+
+--------------------------------
+
+Interfaces extend each other. Don't use "implement"
+
+-------Iterables------------
+
+for (T item: someIterable())
+	System.out.println(item.toString());		 - no need to call next() repeatedly with this enhanced Itereable for loop
+}
+
+contains a single method called Iterator
+	- hasNext()				returns true if list has more elements
+	- next()
+	-remove()
+
+------
+
+interface Iterable<T> {
+	Iterator<T> iterator();
+}
+
+----------------Using Iterables and Iterators-------------
+
+Iterator<T> someIterator = someIterable.iterator()
+
+while (someIterator.hasNext() {				- Using the hasNext() and next() functions of an Iterable
+	T nextItem = someIterator.next();
+	....
+} 
+----------------------------
+
+If you have a nested class inside another, the nested class has access to all private information in the larger class
+
+----
+
+get(current_position++);
+
+	= the same thing as = 
+
+AnyType result = get(current_position);
+current_position++;
+
+--------------------------
+
+ListIterator
+
+	- Because a List has ordering, a ListIterator allows you to move BACKWARDS
+
+---------To be Continued for Linked Lists----------------

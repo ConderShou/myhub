@@ -1,0 +1,34 @@
+public void turnHeadlightsOn(){
+        if (Greenfoot.isKeyDown("space") && !isKeyDown){
+            if (areHeadlightsOn == false){
+                areHeadlightsOn = true;
+                setImage(image2);
+                isKeyDown = true;				- Because this is set to true when you first press it, the "turnHeadlightsOff" function won't trigger now because isKeyDown (just a simple variable we created) is NOT false 
+							 															(Not not-true)
+            }							- !isKeyDown = isKeyDown is false
+								- This prevents the car from continuously switching bewteen headlights on and off while you hold down the spacebar
+
+        }
+        if (!Greenfoot.isKeyDown("space") && isKeyDown){
+            isKeyDown = false;				- Then when spacebar is released, "isKeyDown" is set to false so that you can trigger the methods again when you press the spacebar the next time
+        }           
+    }   
+
+    /**
+     * Turn the headlights off when the key "space" is pressed.
+     * The attribute isKeyDown is used to prevent setting the headlights off and on when the key "space" is pressed (and remains pressed for some time)
+     */          
+
+    public void turnHeadlightsOff(){
+        if (Greenfoot.isKeyDown("space") && !isKeyDown){
+            if (areHeadlightsOn == true){
+                areHeadlightsOn = false;
+                setImage(image1);
+                isKeyDown = true;
+            }
+
+        }
+        if (!Greenfoot.isKeyDown("space") && isKeyDown){
+            isKeyDown = false;
+        }           
+    }      

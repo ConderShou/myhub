@@ -1,0 +1,40 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf810
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww33400\viewh20520\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \
+The server you host your web app will parse the server URL first. \
+\
+You must ensure that the web server returns the \'91index.html\'92 file if it doesn\'92t recognize a route (which it won\'92t -apparently?- because you only have \'91index.html\'92)\
+\
+If you need to get this to work\'85.\
+\
+\
+==app-routing.module.ts==\
+\
+
+\b @NgModule (\{\
+\
+	imports: [\
+\
+		
+\b0 //Setting the hash to True tells the webserver to ONLY worry about the part of the URL before the hash (the hash is placed right after the root path element)\
+\
+    //  The part of the URL AFTER the hash is then parsed by Angular itself \
+\
+    //Only use this if you have to - otherwise use the prettier version of the URL\
+
+\b \
+		
+\b0 // RouterModule.forRoot(appRoutes, \{useHash: true\})\
+\
+
+\b \
+   		 RouterModule.forRoot(appRoutes)\
+	],\
+\
+		exports: [RouterModule]\
+\})}

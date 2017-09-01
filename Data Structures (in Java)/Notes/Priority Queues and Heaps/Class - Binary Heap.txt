@@ -1,0 +1,21 @@
+A binary heap tree must satisfy two conditions:
+
+	1. Be complete
+	2. Contain the min-heap order 
+		The top must be the smallest, each level must be greater than the level below it
+	
+
+------------------------------------------deleteMin--------------------------------------------------------------------------------
+
+	1. Remove top node (the minimum value)
+	2. Remove the right-most value at the bottom row
+ and replace it with the top (so there's no empty root node)
+	3. PERCOLATE DOWN - move the right-most value down the tree
+	4. Switch the smallest value of second highest level with the value at the root node. 
+	5. Keep swapping with the smaller of the two children until it's not smaller anymore, or when it's at a leaf
+
+
+---------------------------------------------------------Storing the heap-----------------------------------------------------------------
+
+We find that we fill in the array from left to right.
+	The right of the array being the right-most of the tree

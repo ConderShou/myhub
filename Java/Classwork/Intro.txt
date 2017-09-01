@@ -1,0 +1,23 @@
+Algorithm: a step-by-step method of accomplishing or solving some mathematical task; 
+		frequently involving repetition of an operation
+
+Computer Science:
+
+	The study of algorithms including:
+
+Their formal and mathematical properties
+Their hardware realizations
+Their linguistic realizations
+Their applications
+
+-------First Algorithm-----------
+
+Linear Search: (also called sequential search)
+ 
+Algorithm to determine whether a given name "x" appears on a list
+
+Input: A list of n >= 1 names A[1], A[2], ... , A[n], and a given name "x"
+
+Output: The message "Sorry, x is not on the list" if "x" is not on the list.
+
+Otherwise, the message: "x occurs at position i on the list."

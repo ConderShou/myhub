@@ -1,0 +1,51 @@
+You can think of Classes like Types. 
+	And objects as complex values.
+
+When defining methods and constructors, classes take the role of types.
+We have used strings in the same way as integers for defining methods and variables. 
+
+int a = 3;
+String b = "abc";
+
+String repeat(String s, int n){			- This just means the output of this function/method will be a string?
+	String t = "";
+	for (int i = 0; i<n; ++i) {t = t+s;}
+}
+
+-------------Wrapper classes-------------------
+
+For each primitive type, there is a  corresponding class called "wrapper class."
+
+Ex:
+	"int" and "Integer"		- "Integer" is the wrapper class
+
+----
+
+An object of class "Integer" contains an attribute that holds an "int" number and a method 
+	that returns the "int" stored in that object.
+
+Ex:
+	Inside boxI there is:
+
+	int intValue();
+		----
+
+          Converting between Wrapper Classes and Primitive Types
+
+	Integer boxI = new Integer(i);			- Converting an "int" to an "Integer" object, setting it to "intValue"
+
+	 
+
+	int i = boxI.intValue();			- Converting "Integer" object to an "int" value using the method "intValue" of the "Integer" class
+
+-----------------Classes inside Classes-----------
+
+class Car {
+	boolean lights;
+	String color;
+	Engine eng;		- If we defined the class "Engine" earlier, we could also use it inside this class
+					- NOTE: An object of class "Engine" can be an "attribute" of class "Car"
+	....
+}
+
+When Classes refer to other Classes it's called a "has-a relationship"

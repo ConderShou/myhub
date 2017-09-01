@@ -1,0 +1,77 @@
+The SCOPE of a name is the portion of the program within which the name can be used. 
+
+	Automatic/Local Variables:
+		Scope is for the function in which the name is declared.
+	
+		Parameters of the function are in effect, also local variables.
+
+	External Variables:
+		Lasts from the point at WHICH it is declared to the END of the file being compiled
+
+Ex:
+	main(){...}
+	int sp = 0;
+	double val[MAXVAL];
+	
+	void push(double f) {...}
+	double pop(void) {...}
+
+
+The variables 'sp' and 'wal' can be used in 'push and 'pop' BUT all of them are NOT visible to 'main' 
+	because they were declared AFTERWARDS
+
+
+----
+
+- If an external variable is to be referred to BEFORE it is defined.
+	OR
+   If it is defined in a different source file.
+	
+	THEN you have to use an 'extern' declaration
+
+
+------------------------Declaration and Definition----------------
+
+Declaration:	Announces properties of a variable (primarily its type)
+
+Definition:	Sets aside storage for the variable.
+
+Ex:
+	int sp;			//implicit definition
+	double val[MAXVAL];	//allocates how much in array
+
+	These are BOTH declarations and definitions.
+	They define the external variables 'sp' and 'val', causing storage to be set aside, 
+		AND serve as declaration for the rest of the source file
+
+!!!!On the OTHER HAND:
+
+	extern int sp;
+	extern double val[];
+
+	- These DECLARE for the rest of the source file that:
+		 'sp' is an 'int' 
+		'val' is a 'double' array
+	
+	- They DO NOT create the variables or reserve storage for them
+
+	- Initialization of an external variable goes ONLY with the DEFINITION
+
+
+-------------External Variables Across Files-----------
+
+in File1:
+	extern int sp;
+	extern double val[];
+	
+	void push(double f) {....}
+	double pop(void) {...}
+
+In File2:
+	int sp = 0;
+	double val[MAXVAL];
+
+
+- The 'extern' declarations in File1 lie AHEAD of and OUTSIDE the function definitions
+	Therefore: they apply to ALL functions in File1
+			

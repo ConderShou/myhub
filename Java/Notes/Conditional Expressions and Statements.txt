@@ -1,0 +1,55 @@
+Expressions evaluate to a value
+	
+	x + 2
+
+Statements produce an effect
+	
+	x = x+1
+
+-------- The Ternary Operator--------------
+
+b? e1:e2		- a question mark is used after the condition for the "true" case
+		- a colon separates the "true" (e1) and "false" (e2) expression
+
+	(if "b" evaluates to true, then "e1" the true expression is evaluted, if "b" is false, then "e2" is evaluted)
+
+x = b ? m : n
+
+is equivalent to:
+	
+	if (b) {x = m;}
+	   else {x=n;}
+
+	Ex:	true ? 1 : 2	Result: 1
+
+		false ? 1 : 2	Result: 2
+
+--------Simplifying Conditional Expressions----
+
+if (b==true) {S1;} else {S2;}
+
+	When b is true, b == true is true
+	When b is false, b == true is false
+	When b is undefined, b == true is also false
+
+	Therefore, just freaking write "b" instead of "b==true"
+
+--------------------------------------------------------------
+
+b ? c : false
+
+	Equivalent to:
+	
+		b && c
+
+b ? true : c
+
+	Equivalent to:
+
+		b || c
+
+y = x = x + 1
+
+	Equivalent to:
+
+		y = (x = x + 1);

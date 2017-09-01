@@ -1,0 +1,36 @@
+-----------Numerical Integration of a Tabulated Function: trapz--------------------
+
+Trapzoidal integration of a tabulated function:
+
+	I = trapz(x, y);
+
+-----------Integral command with functions------------
+
+function y = myfunc(x)
+
+I = integral( @myfunc, x1, x2);
+	
+	- @myfunc = function handle --> allows other functions to use it
+	- limits x1 to x2
+
+
+sinc = @(x) sin(x)./x;	-quickly creates a one-line function. sinc(x) : sin(x)./x
+			-is defined to be a function handle here
+				-Good for short functions
+
+x=linspace(0, 4*pi, 300);
+plot(x, sinc(x));
+grid on
+
+xmin = 0;
+xmax = 4*pi;
+I = integral(sinc, xmin, xmax);	- don't need @ sign here because sinc is already defined as function handle
+
+disp(['Integral is: ', num2str(I)]);
+
+------------------
+
+width = 1;
+g = @(x)    gauss(x, 0, width);		-makes a short function with only 'x' as input and calls another function: gauss
+I = integral(g, -width, width);
+

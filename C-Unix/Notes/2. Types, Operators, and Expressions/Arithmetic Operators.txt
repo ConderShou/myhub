@@ -1,0 +1,8 @@
+--------Arithmetic Operators-----------
+
++ - * / are all normal. 
+
+% cannot be applied to 'float' or 'double'.
+
+- The direction of truncation for '/' and the sign of the result for '%' are machine-dependent for negative operands.
+

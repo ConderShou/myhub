@@ -1,0 +1,35 @@
+------------------WHILE----------------
+
+m = 7;
+n = 2;
+
+int x=m;
+int y = 0;
+
+while (x>=n) {		- Typical 'while' statement stuff
+      x = x - n;
+      y = y + 1;
+}
+
+----------------------Using input value----------
+
+Keep a running total, a variable to which you add each input value. Of course, the total should be initialized with 0.
+
+double total = 0;
+while (in.hasNextDouble())		- user inputs a value each time
+{
+double input = in.nextDouble();
+total = total + input;
+}
+
+
+double input = in.nextDouble();
+while (in.hasNextDouble())
+{
+double previous = input;				
+input = in.nextDouble();		- NOTICE: the .nextDouble() is placed after "double previous = input" so that the input can be compared with previously inputted value
+if (input == previous)
+{
+System.out.println("Duplicate input");
+}
+}

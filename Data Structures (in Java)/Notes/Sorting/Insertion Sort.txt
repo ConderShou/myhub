@@ -1,0 +1,51 @@
+Can also refer to Intro to Java notes on this
+
+----------------------The Algorithm----------------------------
+
+Consists of N-1 passes
+
+For pass "p=1" through "N-1", elements in positions 0 through p are in sorted order.
+
+In pass 'p', we move the element in position 'p' LEFT
+	until its correct place is found among the first 'p+1' elements
+
+In the below code:
+	 The element in position 'p' is saved in 'tmp' 
+	 All larger elements prior to position 'p' are moved one spot to the right. 
+	 Then 'tmp' is placed in the correct spot
+
+	This is the same technique used in the implementation of BINARY HEAPS
+
+Ex:
+	/*
+	 * Simple insertion sort
+	 * @param a an array of Comparable items
+	*/ 
+	public static <AnyType> extends Comparable<? super AnyType>>
+	void insertionSort( AnyType[] a )
+	{
+		int j;
+	
+		for( int p = 1; p < a.length; p++ )
+		{
+			AnyType temp = a[p];
+		
+			for( j = p; j > 0 && tmp.compareTo( a[j-1] ) < 0; j--)
+				a[j] = a[j-1];
+			a[j] = tmp;
+		}
+	}
+
+
+-------------------------Analysis of Insertion Sort---------------------------------
+
+Nested loops => Insertion sort is O(N^2)
+
+This bound is tight, even an input in reverse order could achieve this bound. 
+
+However, if the input is presorted -> the running time is O(N)
+	Or even quicker, depending on how sorted the input already is
+
+
+AVERAGE: O(N^2)
+

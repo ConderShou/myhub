@@ -1,0 +1,79 @@
+new int[7][3]	- Array with 7 rows and 3 columns
+
+You store this reference in a variable of type "int[][]"
+
+Ex:
+	final int COUNTRIES = 8;
+	final int MEDALS = 3;
+	
+	int[][] counts = new int[COUTRIES][MEDALS];
+
+Alternatively, you can also declare and initialize arrays by grouping each row:
+
+	int[][] counts = 
+		{
+			{ 0, 3, 0 },
+			{ 0, 0, 1 },
+			{ 0, 0, 1 },
+			{ 1, 0, 0 },			- Initializing the array with 7 rows and 3 columns
+			{ 0, 0, 1 },
+			{ 3, 1, 1 },
+			{ 0, 1, 0 }
+			{ 1, 0, 1 }
+		};
+
+As with one-dimensional arrays, you cannot change the size of a two-dimensional array once it has been declared.
+
+
+---------------------Accessing Elements and .length's-----------------------------
+
+int medalCount = counts[3][1];
+
+
+To access all the elements in a two-dimensional array, you use NESTED LOOPS.
+
+Ex:
+	for (int i = 0; i < COUNTRIES; i++)
+	{
+		//Process the ith row
+
+		for (int j = 0; j < MEDLAS; j++)
+		{
+			// Process the jth column in the ith row
+
+			System.out.printlnf("%8d", counts[i][j]);
+		}
+		
+		System.out.println();	// Start a new line at the end of the row
+	}
+
+"counts.length" = number of ROWS
+counts[0].length = number of COLUMNS
+
+With these expressions, the new version is:
+
+	for (int i = 0; i < counts.length; i++)
+	{
+		for (int j = 0; j < counts[0].length; j++)
+		{
+			System.out.printf("%8d", counts[i][j]);
+		}
+		
+		System.out.println();
+	}
+
+
+--------------------Locating Neighboring Elements---------------------
+
+Some programs need to locate the elements adjacent to an element.
+
+Be careful about computing neighbors at the boundary of the array.
+There's no neighbors near those boundary elements.
+
+Let's compute the sum of neighbors to the top and bottom of the element "count[i][j]":
+
+	int total = 0;
+
+	if (i > 0) { total = total + counts[i-1][j]; }			// checks if the element is in upper boundary
+	if (i < ROWS - 1) { total = total + counts[i+1][j]; }		// checks if the element is in lower boundary
+

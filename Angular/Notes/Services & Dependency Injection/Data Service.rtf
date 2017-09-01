@@ -1,0 +1,142 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf810
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww33400\viewh21000\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \
+\
+1. Make a typescript class\
+2. Import it in other components\
+3. PAY ATTENTION TO THE HIERARCHY\
+	- Only import and inject into constructor in the the level of hierarchy below the chosen parent\
+	- Otherwise also put it in the provider array if it is the chosen parent component you are instantiating the service for the first AND ONLY time with\
+\
+\'97accounts.service.ts\'97\
+\
+
+\b export class AccountsService \{\
+	  accounts = [\
+    \{\
+      name: 'Master Account',\
+      status: 'active'\
+    \},\
+    \{\
+      name: 'Testaccount',\
+      status: 'inactive'\
+    \},\
+    \{\
+      name: 'Hidden Account',\
+      status: 'unknown'\
+    \}\
+  ];\
+\
+  addAccount(name: string, status: string) \{\
+\
+  	
+\b0 //Creating and pushing an object with 'name' and 'status' properties 
+\b \
+  	\
+  	this.accounts.push(\{name: name, status: status\});\
+  \}\
+\
+  updateStatus(id: number, status: string) \{\
+  	this.accounts[id].status = status;\
+  \}\
+\}\
+
+\b0 \
+\
+\
+\'97account.component.ts\'97\
+\
+
+\b import \{ Component, Input\} from '@angular/core';\
+\
+import \{ LoggingService \} from '../logging.service';
+\b0 \
+\
+//IMPORTANT: By importing this AGAIN here when we already did in AppComponent, we are giving this component a NEW INSTNCE OF ACCOUNTSSERVICE. \
+//    One that is SEPARATE from the one in AppComponent.\
+//  Therefore, when we update the status of the account here, it does not change the one being displayed by AppComponent\
+//  i.e. AppComponent is rendering another 'accounts' array from a different instance of AccountsService\
+\
+//Solution: Resolve this issue by just removing the service from the provider's array\
+\
+
+\b \ul import \{ AccountsService \} from '../accounts.service';\ulnone \
+\
+@Component(\{\
+  selector: 'app-account',\
+  templateUrl: './account.component.html',\
+  styleUrls: ['./account.component.css'],\
+
+\b0   \
+  //To use the same service instance as AppComponent, don't include the service in the provider array.\
+  // Keep everything else.\
+\
+  /\ul / providers: [LoggingService, AccountsService]\
+\
+
+\b   providers: [LoggingService]\
+\ulnone \})\
+\
+export class AccountComponent \{\
+  @Input() account: \{name: string, status: string\};\
+  @Input() id: number;\
+
+\b0   // @Output() statusChanged = new EventEmitter<\{id: number, newStatus: string\}>();\
+\
+
+\b   constructor(private loggingService: LoggingService,\
+              \ul private accountsService: AccountsService\ulnone ) \{\
+\
+  \}\
+\
+  onSetTo(status: string) \{
+\b0 \
+    //this.statusChanged.emit(\{id: this.id, newStatus: status\});\
+    \
+
+\b \
+\ul     this.accountsService.updateStatus(this.id, status);\
+\ulnone \
+\
+    this.loggingService.logStatusChange(status);\
+  \}\
+\}\
+\
+\
+
+\b0 \'97\'97new-account.component.ts\'97\'97\
+\
+
+\b import \{ Component, EventEmitter, Output \} from '@angular/core';\
+\
+import \{ LoggingService \} from '../logging.service';\
+\ul import \{ AccountsService \} from '../accounts.service';\ulnone \
+\
+@Component(\{\
+  selector: 'app-new-account',\
+  templateUrl: './new-account.component.html',\
+  styleUrls: ['./new-account.component.css'],\
+\
+  \ul providers: [LoggingService]\
+\ulnone \})\
+export class NewAccountComponent \{\
+  \
+  constructor(private loggingService: LoggingService,\
+    \ul private accountsService: AccountsService\ulnone ) \{\
+\
+  \}\
+\
+  onCreateAccount(accountName: string, accountStatus: string) \{\
+\
+\
+  \ul   this.accountsService.addAccount(accountName, accountStatus);\
+\ulnone \
+    this.loggingService.logStatusChange(accountStatus);\
+  \}\
+\}\
+}

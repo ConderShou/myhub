@@ -1,0 +1,64 @@
+echo		- Echoes its command-line arguments on a single line
+
+----------Arguments------
+
+When 'main' is called, it has TWO arguments:
+
+	First (argc, argument count):
+		Number of command-line arguments the program was invoked with
+
+	Second (argv, argument vector):
+		Pointer to an array of character strings that contain the arguments
+		ONE per string
+
+----
+
+echo hello, world
+
+PRINTS:
+
+hello, world
+
+
+Convention:
+		argv[0]	- name by which the program was invoked 
+			- 'argc' is thus AT LEAST one.
+			If 'argc' is 1, there are no command-line arugments after the program name.
+
+
+Above, 'argc' is 3. 
+
+	argv[0], argv[1], argv[2]
+	"echo" "hello,"  "world"
+
+--The first optional argument is 'argv[1]' and the last is 'argv[argc-1]'
+
+Standard requires that 'argv[argc]' be a NULL pointer
+
+
+Incrementing ++argv moves it along to the next argument
+
+	'*argv 'is then the pointer to that argument
+
+In the code for 'echo':
+
+NOTE:	'argc' is DECREMENTED when 'argv' is INCREMENTED
+
+	When 'argc' is decremented, and becomes ZERO, there are no arguments left to print.
+
+-----------------
+
+Optional arguments should be permitted in ANY order
+
+	And the REST of the program should be INDEPENDENT of the number of arguments that were present
+
+It is also convenient for users if OPTIONAL arguments can be COMBINED
+
+------
+
+In 'getline' program:
+	
+	(*++argv)[0] is the first character of the agument string
+
+	NOTE:
+		' *++argv[0] ' would be taken as ' *++(argv[0]) '

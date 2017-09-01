@@ -1,0 +1,40 @@
+Math.pow(3, 2) ---> 9
+	
+	Equivalent to 3^2
+
+Math.abs(-3.5) ----> 3.5
+
+Math.random() gives a random number between 0 and 1, inclusive, and INCLUDES DECIMALS.
+
+	REFACTORING: In order to get a random number within the range of 0 and 10, you must MULTIPLY by 10
+				Math.random() * 10
+
+	To generate random numbers between a minimum value "x" and a maximum value "i"
+		multiply the output of random with the difference between the maximum value "i" and the minimum value "x"
+			and then add the minimum value "x"
+	Ex:	
+		Math.random() * (max - min) + min
+
+Math.sqrt()
+
+-------------
+
+Ex:
+
+public class Pythagoras {
+
+   public static void main(String[] args) {
+   
+      double base = 10;
+      double height = 15;
+      double hypotenuse = Math.sqrt(Math.pow(base, 2) 
+                        + Math.pow(height, 2));
+      System.out.println(hypotenuse);
+   }
+}
+
+Ex:
+
+Which API call returns a random number greater than or equal to 10.0 and less than 100.0?
+
+90.0 * Math.random() + 10.0

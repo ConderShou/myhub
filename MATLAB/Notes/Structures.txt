@@ -1,0 +1,90 @@
+--------------Structures-----------------------
+
+A MATLAB structure, class struct, can aggregate elements of different classes.
+Individual elements are referenced, not by indices, but by "field names".
+
+------------------------
+
+Input:
+
+student.firstname = 'Galusha';
+student.lastname='Pennypacker';
+
+student
+
+Output:
+
+	firstname: 'Galusha'
+	lastname: 'Pennypacker'
+
+-----------------------
+
+Input:
+
+student.scores=[100, 99.5, 99];
+
+student
+
+Output:
+
+	scores: [100, 99.5, 99];
+
+-------------------------
+
+Input:
+
+disp['Most recent test score: ', num2str(student.scores(end))   ]);
+
+Output:
+
+Most recent test score: 100
+
+------------Fieldnames-----------
+
+Fieldnames have no particular order.
+Fieldnames can have no spaces.
+Data contained in each field can be of any class (including another struct)
+Structs can be aggregated into arrays.
+
+----------------------
+classlist(3).firstname		
+
+	-Robin
+
+for is = 1:length(classlist)
+	disp(classlist(is).firstname);		-classlist is a vector of firstname, lastname, gpa, and scores
+end
+
+	---goes down the list of names
+
+--------MATLAB data classes---------
+
+double
+char(string)
+logical
+complex
+handles
+handle objects
+function handles
+objects
+
+-------Aggregating Containers-------
+
+array: homogenous class
+	1D vector, 2D matrix
+	multidimensional
+	access; indices
+
+cell aray: heterogenous classes
+	access: indices
+
+struct: heterogenous class
+	access: field name
+
+maps
+
+
+
+
+
+

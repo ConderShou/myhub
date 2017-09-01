@@ -1,0 +1,30 @@
+In an interface, all the methods are abstract. 
+	UNLESS they are STATIC or DEFAULT
+
+public interface VehicleIF {
+
+	void moveForward();
+	void moveBackward();
+	String toString();
+	static void goHome() {...}		- This is only a RECENT update. 
+						Essentially, the interface is ENTIRELY ABSTRACT.
+}
+
+         In an interface, ALL methods are PUBLIC and ABSTRACT, same thing as:
+
+	public abstract void moveForward();
+	public abstract void moveBackward();
+	public abstract String toString();
+	public static void goHome() {...};
+
+There can also be attributes in an interface:
+	Attributes are automatically PUBLIC, STATIC and FINAL
+
+	public interface VehicleIF {
+		int SOS_PHONE = 112;	- This attribute is automatically PUBLIC, STATIC and FINAL (hence the capitalization)	
+						This means they are set constants. 
+		void moveForward();
+		void moveBackward();
+		String toString();
+	}
+

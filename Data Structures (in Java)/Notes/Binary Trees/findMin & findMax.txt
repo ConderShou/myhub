@@ -1,0 +1,60 @@
+These PRIVATE routines return a REFERENCE to the node containing the SMALLEST
+	and LARGEST elements in the tree, respectively (with the name of the functions)
+
+findMin:
+		1. Start at the root
+		2. Go left as long as there is a left child
+		3. The stopping point is the smallest element
+
+findMax has the same procedure as findMin except the branching is towards the right child
+
+This tends to be so easy that most do not bother with recursion
+
+We will code the routines both ways, doing "findMin" recursively and "findMax" nonrecursively
+
+
+--------------------------------------------------------------------------------
+
+findMin:
+
+	// recursive
+
+	private BinaryNode<AnyType> findMin( BinaryNode<AnyType> t) {
+	
+		if (t == null ) {
+			return null;
+		} else if ( t.left == null ) {
+			return t;
+		}
+		
+		return findMin( t.left );
+	}
+
+
+findMax:
+
+	// nonrecursive
+
+	private BinaryNode<AnyType> findMax ( BinaryNode<AnyType> t ) {
+	
+		if (t != null )
+			while ( t.right != null )
+				t = t.right;
+	
+		return t;
+	}
+
+
+Notice how carefully we handle the degenerate case of an empty tree. 
+	We place the test for emptiness first
+
+	This is especialy important in recursive programs
+
+Also notice that it is safe to change "t" in "findMax", since we are only working with a 
+	copy of the reference
+		Think variable scopes. 
+
+	HOWEVER: a statement like "t.right = t.right.right" will actually make changes
+		- Seems like it'll be an infinite loop since after being assigned "t.right.right", 
+			"t.right" never changes
+

@@ -1,0 +1,139 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf810
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww33400\viewh21000\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \
+\
+\'97-app.module.ts\'97-\
+
+\b \
+import \{ BrowserModule \} from '@angular/platform-browser';\
+import \{ NgModule \} from '@angular/core';\
+import \{ FormsModule \} from '@angular/forms';\
+import \{ HttpModule \} from '@angular/http';\
+\
+
+\b0 //Import Routes, RouterModule from @angular/router
+\b \
+\
+\ul import \{ Routes, RouterModule \} from '@angular/router';\ulnone \
+\
+import \{ AppComponent \} from './app.component';\
+import \{ HomeComponent \} from './home/home.component';\
+import \{ UsersComponent \} from './users/users.component';\
+import \{ ServersComponent \} from './servers/servers.component';\
+import \{ UserComponent \} from './users/user/user.component';\
+import \{ EditServerComponent \} from './servers/edit-server/edit-server.component';\
+import \{ ServerComponent \} from './servers/server/server.component';\
+import \{ ServersService \} from './servers/servers.service';\
+\
+
+\b0 //Defining our routes - an array becaus we will have multiple routes\
+//Each route is a Javascript object in the array\
+\
+//path \
+// - The part of the URL after the domain\
+//\
+// i.e. path: 'users' => localhost:4200/users\
+// Don't add the '/' in the path string\
+/*\
+  An empty path signifies the homepage domain.\
+\
+  path: '' => localhost:4200\
+\
+*/\
+\
+\
+//component \
+// - Load this component on this url/page \
+// Up to you to make sure that this component will look like a page
+\b \
+\
+\ul const appRoutes: Routes = [\
+  \{ path: '', component: HomeComponent \},\
+  \{ path: 'users', component: UsersComponent \},\
+  \{ path: 'servers', component: ServersComponent \}\
+];\ulnone \
+\
+@NgModule(\{\
+  declarations: [\
+    AppComponent,\
+    HomeComponent,\
+    UsersComponent,\
+    ServersComponent,\
+    UserComponent,\
+    EditServerComponent,\
+    ServerComponent\
+  ],\
+\
+
+\b0   //Import the RouterModule to be able to use 'appRoutes'\
+\
+  //.forRoot() registers our routes for the main application
+\b \
+  \
+  imports: [\
+    BrowserModule,\
+    FormsModule,\
+    HttpModule,\
+    \ul RouterModule.forRoot(appRoutes)\ulnone \
+  ],\
+\
+  providers: [ServersService],\
+  bootstrap: [AppComponent]\
+\})\
+export class AppModule \{ \}\
+\
+
+\b0 \
+\'97app.component.html\'97\'97\
+\
+
+\b <div class="container">\
+  <div class="row">\
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">\
+      <ul class="nav nav-tabs">\
+        <li role="presentation" class="active"><a href="#">Home</a></li>\
+        <li role="presentation"><a href="#">Servers</a></li>\
+        <li role="presentation"><a href="#">Users</a></li>\
+      </ul>\
+    </div>\
+  </div>\
+  <div class="row">\
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">\
+\
+
+\b0     <!-- Router Outlet\
+\
+    This DIRECTIVE marks the place where we load the currently selected route in the App Component -->\
+
+\b \
+      \ul <router-outlet></router-outlet>\ulnone \
+\
+    </div>\
+  </div>\
+\
+  
+\b0 <!-- We get rid of all this - We'll load this stuff through the router outlet as separate 'pages' -->\
+\
+ <!--  <div class="row">\
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">\
+      <app-users></app-users>\
+    </div>\
+  </div>\
+  <div class="row">\
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">\
+      <app-servers></app-servers>\
+    </div>\
+  </div> -->\
+
+\b \
+</div>\
+\
+\
+
+\b0 \
+}

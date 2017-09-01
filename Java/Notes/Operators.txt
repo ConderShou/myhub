@@ -1,0 +1,65 @@
+!= 	- not equals to ( Matlab has ~= )
+
+>=	- left side is "greater than or equal to" right side (MATLAB doesn't have this)
+
+%	Modulus operator - Divides the left hand operand by the right hand operand and returns remainder
+
+	Ex:
+		int n = 5;
+		System.out.println(n + 8/2);
+			
+			Prints: 9
+
+		System.out.println(n % 6);
+
+			Prints: 5		(it's 0 with remainder 5 - no decimas)
+
+x = 8/3	Integer divider	
+			Prints: 2 
+
+	Ex:
+
+		for (int i = 10; i> 0; i=i/3)
+		
+			- Here the loop runs 3 times. Because 10/3 equals 3. And 1/3 equals 0.
+				(integer division)
+
+!(x < 5 || 10 < x)  	Same thing as 	(5 <= x && x <= 10)
+	
+	- the not operator changes the "or" operator to "and" 
+	
+	- NOTICE: Even with the || or && operators, the entire argument must be within ONE set of parentheses)
+
+++	increases the value of the operand by 1
+
+--	decreases the value of the operand by 1
+
+x += 1	increment x by 1 (x = x + 1)
+	
+	x += 2 --> increment x by 2
+
+x -= 2	decremented by 2 (works in same way as increment operator)
+	
+	*=
+	/=
+	%=
+
+-------------------
+++x; 	increments x only by 1
+
+	- Increments x first then shows the value of x
+
+x++;	increments x only by 1
+
+	- Shows the value of x first THEN increments by one
+
+Works the same way with -- (minus minus) except it's for decrements
+
+x = 3;
+y = ++x;
+z = x++;
+
+	- "y" equals 4
+	- HOWEVER, "z" also equals 4 even though "x" equals 5
+
+This doesn't impact: if (x++==4) .... 	- The if statement is still considering a variable "x" equal to 0 whether or not it's ++x or x++

@@ -1,0 +1,36 @@
+-----------------------------------Adding Navigation: Hyperlinks and Lists------------------------
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Conder Shou | Developer</title>
+	</head>
+  
+	<body>
+		<header>	
+			<a href="index.html">		- Anchor elements ANCHOR a URL to some text on a page. Can link two HTML pages together.	
+				<h1>Conder Shou</h1>		- The "href" attribute means hyper link reference. The destination of the link is "index.html" (happens to be the current file)
+				<h2>Developer</h2>			
+			</a>					- Remember to close this tag after including the elements you wanted to hyperlink
+			<nav>				- The navigation element just indicates where the code for the navigation of the page is. It doesn't show anything visual. 
+				<ul>			- "ul" means Unordered List (not "ol" - ordered list - list of numbers)
+								- Until we add our own styling, this unordered list will look like a bulleted list
+					<li><a href="index.html">Portfolio</a></li> 	- A list item element. Each list item element should go inside of an ordered or unordered list element
+					<li><a href="about.html">About</a></li>	- The destination "about.html" refers to that html file as the destination (if it's not created yet, then this is a broken link")
+					<li><a href="contact.html">Contact</a></li>
+				</ul>
+			</nav>
+		</header>
+		<section>					
+			<p>Portfolio will go here.</p>	
+		</section>
+		<footer>					
+								
+			<p>&copy; 2016 Conder Shou.</p>	
+		</footer>						
+	</body>							
+</html>
+
+
+

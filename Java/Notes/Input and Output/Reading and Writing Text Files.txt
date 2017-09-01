@@ -1,0 +1,97 @@
+To read input from a disk file, the "Scanner" class relies on another class, "File".
+
+"File" describes disk files and directories.
+	It contains a breadth of methods that modify a file, but we willl only go into some of them here. 
+
+
+---------------------------------------------------------Constructor---------------------------------------------------------------------
+
+Construct "File" object with the name "inputFile":
+
+	File inputFile = new File("input.txt");
+
+
+Use "File" object to construct "Scanner" object:
+	
+	Scanner in = new Scanner(inputFile);
+
+
+This Scanner reads text from the file "input.txt", you can use the "nextInt, nextDouble, etc.." methods for this
+
+
+----------------------------Using While Loop-------------------------
+
+Use the following loop to process numbers in the input file
+
+Ex:
+	while (in.hasNextDouble())
+	{
+		double value = in.nextDouble();
+		---Process value here-----
+	}
+
+
+-------------------------------------------------Writing Output to a File: PrintWriter------------------------------------------------
+
+Construct a "PrintWriter" object with the desired file name:
+
+	PrintWriter out = new PrintWriter("output.txt");
+
+
+If the output file ALREADY exists, it's EMPTIED before the new data is written into it.
+
+If the file DOESN'T exist, an EMPTY FILE is CREATED.
+
+
+NOTE: "PrintWriter" is an enhancement of the "PrintStream" class ("System.out" is a part of the "PrintStream" object)
+
+          THUS ,you can use the familiar "print", "println", and "printf" methods with any "PrintWriter" object
+
+	Ex:
+		out.println("Hello, World!");
+		out.printf("Total: %8.2f\n", total);
+
+--------------
+
+When you are DONE PROCESSING a file, be sure to CLOSE the Scanner or PrintWriter:
+
+	in.close();
+	out.close();
+
+If your program exits WITHOUT CLOSING the "PrintWriter", some of the output may NOT be written to the disk file
+
+
+------------------------------------------------FileNotFoundException---------------------------------------------------------------------
+
+If the input file for a "Scanner" DOES NOT EXIST, or if "PrintWriter" CANNOT OPEN the file for writing:
+
+	"FileNotFoundException" occurs when the "Scanner"/"PrintWriter" object is constructed.
+
+
+The compiler mandates that we specify what the program should do when that happens.
+
+
+-----------------Throws Declaration--------------
+
+We want to terminate the "main" method if the exception occurs.
+
+As a result, we LABEL the "main" method with a "throws" declaration.
+
+Ex:
+	public static void main(String[] args) throws FileNotFoundException
+
+
+----------------------------------------------------Reading Web Pages----------------------------------------------------------------
+
+You can read the contents of a web page with this sequence of commands.
+
+	String address = "http://horstmann.com/index.html";
+	URL pageLocation = new URL(address);
+	Scanner in = new Scanner(pageLocation.openStream());
+
+Now you can read through the contents of the web page in the usual way. 
+
+The URL constructor and "openStream" method can throw an IOException, so address that in the main method. 
+
+The URL class is contained in the "java.net" package. 
+

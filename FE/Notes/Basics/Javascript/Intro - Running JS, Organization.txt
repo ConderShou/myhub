@@ -1,0 +1,52 @@
+One statement only runs after the statement before it is complete.
+
+----script.js--------
+
+alert("Hello from Treehouse");		
+
+	- Alert command: Browser sends alert that displays the text passed as a parameter
+
+document.write("<h1>Welcome to Javascript Basics</h1>");
+
+	- DISPLAYS this text in the document according to the html tags (doesn't animate the 'writing')
+
+	- Notice how the quotation marks simply CONTAIN the code/parameter/argument passed within and 
+		NOTHING MORE?
+
+alert("Thanks for visiting.");
+
+	- This alert only pops up after the previous statements are completed (and when the user moves on from them)
+		- I.E. User has to CLOSE the first alert in order for the rest of the statements to execute
+
+
+----------------------------------------------
+
+Javascript files can be wholly separate files or typed directly into HTML.
+
+Usually we create a separate file, [insert-name].js
+
+	This will ONLY contain Javascript
+
+
+To LINK the Javascript file to HTML, we use:
+		
+	<script src = "scripts.js"></script>
+
+	Equated to 'src' should be the javascript file location (i.e. "js/app.js")
+
+
+To type DIRECTLY into html, use:
+
+	<script>alert("Here's another message.");  </script>
+
+
+**NOTE: The HTML executes the Javascript files along with the rest of the HTML/JS
+	ACCORDING TO THE ORDER of when you call/code the file with the <SCRIPT> tags
+
+
+	They're usually placed in the HEAD of the page RIGHT BEFORE the closing head tag '</head>'
+
+	OR
+		
+	Within the body of the page, just before the closing body tag, '</body>' 
+		This allows the webpage to load ALL HTML BEFORE loading the Javascript

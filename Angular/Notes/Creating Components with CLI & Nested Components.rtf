@@ -1,0 +1,75 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf810
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww33400\viewh21000\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \
+We can use component selectors in any other template in any other component\
+\
+\'97\'97Command Line\'97\'97
+\b \
+\
+
+\b0 //Creates new component named \'93servers\'94 with all the \'91.ts\'92/.html/.css/.spec.ts\'92 templates (the same type of files that you see for app.module)\
+
+\b \
+ng generate component servers\
+
+\b0 \
+OR (shorthand):\
+\
+
+\b ng g c servers\
+\
+
+\b0 NOTE: \'92.spec.ts\'92 is for 
+\i testing
+\i0 , we\'92ll get into this later\
+\
+\
+\
+\'97\'97\'97servers.component.html\'97\'97\'97\
+\
+We can use the component \'93server\'94 
+\i as often as we want
+\i0  just by using the 
+\i \ul selector
+\i0 \ulnone  as often as we want\
+\
+
+\b <app-server></app-server>\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 <app-server></app-server>\
+\
+\
+
+\b0 \'97\'97app.module.ts\'97\'97\'97\
+\
+Angular also 
+\i automatically
+\i0  connects the generated component to app.module\
+\
+
+\b import \{ ServersComponent \} from './servers/servers.component'; \
+\
+@NgModule(\{\
+  declarations: [\
+    AppComponent,\
+    ServerComponent,\
+    ServersComponent\
+  ],\
+\
+\
+
+\b0 \'97\'97\'97app.component.html\'97\'97\
+\
+We can update the component in the app component html now. (This is done 
+\i manually
+\i0 )\
+\
+
+\b <h3>Hey I'm in the App Component</h3>\
+<hr>\
+<app-servers></app-servers>}

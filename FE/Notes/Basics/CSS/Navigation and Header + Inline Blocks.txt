@@ -1,0 +1,71 @@
+header {
+  float: left;
+  margin: 0 0 30px 0;
+  padding: 5px 0 0 0;
+  width: 100%;
+}
+
+
+For the four-value 'margin' and 'padding', think CLOCKWISE: Top - Right - Bottom - LEFT
+
+The float will be useful for styling the DESKTOP layout later on. 
+
+We remove the awkward white space at the top by setting the top margin to 0, while separating it from bottom elements.
+
+We set top padding to 5px, giving it padding at the top
+
+NOTE: A floated element does not have an explicit width anymore. 
+
+	We must SPECIFICALLY say that we want this element to stretch across this ENTIRE page 
+	
+	Hence the 'width: 100%'
+
+
+-------Styling Navigation-------
+
+nav ul {
+	list-style: none;
+	margin: 0 10px;
+	padding: 0;
+}
+
+
+Remove any list-styles just in case.
+
+Margins of 10pixels on LEFT and RIGHT
+
+Remove any padding.
+
+
+---display----
+
+nav li {
+	display: inline-block;
+}
+
+
+Every element has a display property by default.
+
+	It's set to either BLOCK or INLINE 
+
+Block:
+	Takes up space on the page
+	Appears to push other things out of the way
+	
+	Ex: sections, divs, etc...
+
+Inline:
+	Mostly just text
+
+	Ex: An anchor element doesn't push any lines of text or images away
+		it appears in the SAME line as the rest of the text 
+
+Inline block:
+	 We can have inline block items SIDE by SIDE (like inline items) but they'll still have a WIDTH and HEIGHT
+
+	Ex: nav, list items, etc..
+
+
+Result: 	Our links are now in a neat row. 
+
+

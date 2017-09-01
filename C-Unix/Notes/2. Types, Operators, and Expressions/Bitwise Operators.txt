@@ -1,0 +1,53 @@
+Only 6 operators for bit manipulation.
+
+	Can only be applied to integral operands:
+		
+		i.e.	'char', 'short', 'int', and 'long'	(whether SIGNED or USIGNED)
+
+(Logical Operators - Just like in Fundamentals of Computer Sys)
+	
+These operators will compare BIT by BIT. 
+
+&	AND
+|	OR
+^	XOR (exclusive OR)
+<<	left shift
+>>	right shift
+- 	one's complement (unary)
+~	flips bits 		(i.e. z = ~z)
+
+&	- Used to mask off some set of bits;
+
+	Ex:	n = n & 0177;
+			Sets to ZERO all but the low-order 7 bits of 'n'
+
+|	- Turn bits on
+
+	Ex: 	x = x | SET_ON;
+			Sets to ONE in 'x' the bits that are set to one in SET_ON
+
+^	- Sets a ONE in each bit position where its operands have different bits. 
+		ZERO where they are the same. 
+
+
+If x is 1 and y is 2, then:
+	x & y	 = 0
+	x && y 	 = 1
+
+
+>> and << perform right and left shifts of their LEFT operand by the number of bit positions GIVEN by the RIGHT operand
+	- Right operand must be positive
+
+Ex:
+	x << 2	
+		Shifts the value of 'x' LEFT by TWO positions.
+		Fills vacated bits with ZERO
+
+		This is equivalent to MULTIPLICATION by 4
+
+- 	yields the one's complement of an integer: Converts each 1-bit into a 0-bit, and VICE VERSA
+
+	x = x & -077	sets the last six bits of x to zero. 
+
+
+-- Revisit section in textbook if needed

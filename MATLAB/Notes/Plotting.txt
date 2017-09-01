@@ -1,0 +1,45 @@
+Plot used for vectors of equal-length
+
+x=[1,4,6];
+y=[0,1,3];
+plot(x,y)  - Plots the vectors together as x-y coordinate system
+
+
+plot(x,y,'color/marker/type of line)
+
+plot(x,y,'o-') - Marks the points on the graphical representation  (d - diamond marker, etc..)
+........ 'ro-') - Graphed line becomes red (g - green, b - blue, etc..)
+........ 'r--') - Makes the line dashed
+
+axis([0, 7, 0, 4)])  - X-axis now goes from 0 to 7 and Y-axis goes from 0 to 4 (RESETS when vectors are regraphed)
+		     - 'inf' means infinity
+
+grid on - Turns on grid (RESETS when vectors are regraphed)
+grid off
+
+help plot - A bunch of information about colors, markers, and types of line available
+doc plot - Even more information that opens up in a separate document
+
+----Two ways to layer graphs
+
+plot(x1, y1, ' o', x2, y2, '-')       - Two graphs at once
+
+plot(x1, y1, 'o')		      - Freezes the graph and then (in the command after 'hold on')
+hold on					adds in another axis
+	plot(x2, y2, '-')
+hold off
+------------------------------------------------------------------------------------------------------------------------------
+
+--PlotQuadratic outline saved
+xlabel('x (m)'); 		   - labels X-axis 'x (m)'
+ylabel('f') 			   - labels Y-axis 'f'
+title('Quadratic function f=x^2'); - Titles the graph with the string mentioned
+title(['<text>', '<text>', num2str...]) - Need the BRACKETS to include multiple strings and commands
+						-Like disp([ ])
+----
+Click on Figure. Go to Edit. Copy it. 
+----
+Double click on arrays in Workspace to open a table that contains the array
+----
+Right-click on Workspace and go to Choose Columns and select size and whatnot
+

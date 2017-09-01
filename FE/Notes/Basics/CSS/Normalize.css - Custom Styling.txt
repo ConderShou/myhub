@@ -1,0 +1,6 @@
+Use normalize.css to reset the default browser styles. Each browser has different default styles. 
+So this evens out the playing field. 
+
+The webpage's font, spacing, bulleted lists, etc.. are normalized.
+
+NOW apply your custom css and styling ON TOP of this file. 

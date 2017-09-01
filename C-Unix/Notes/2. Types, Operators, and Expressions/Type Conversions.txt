@@ -1,0 +1,107 @@
+- The only automatic conversions are those that convert a "narrower" operand into a "wider" one without losing information.
+
+	- Ex: int -> float
+		(f + i)
+
+- Expressions that might lose information, from longer integer type to shorter one, will give warnings, but are NOT illegal
+
+- 'char' is just a small integer, and so can be freely used in arithemtic expressions
+	- Characters in the standard machine's printing set will never be negative. 
+	- When 'char' is converted to an 'int', it may or may not be possible for it to be negative DEPENDING on the machine
+
+
+Expression:  s[i] - '0'
+
+	Gives numeric value of the character stored in s[i]
+		- b/c values of '0', '1', etc.. are in a contiguous increasing sequence. 
+
+
+-------------lower--------------------
+
+A function that maps a single character to lower case for the ASCII character set. 
+
+	- If it's not an uppercase letter, 'lower' returns it unchanged. 
+
+int lower(int c)
+{
+	if (c >= 'A' && c <= 'Z')
+		return c + 'a' - 'A';
+	else
+		return c;
+}
+
+This works because upper and lower case letters are a FIXED distance apart as numeric values
+	- each alphabet is contiguous (just letters between A to Z)
+
+
+---------------ctype.h-------------------------
+
+Defines a family of functions that provide tests and conversion that are independent of character set (ASCII, EBCDIC, etc..)
+
+Ex:
+	tolower(c)
+	
+		Returns the lower case value of 'c' if 'c' is an upper case
+
+	isdigit(c)
+		If something is a digit
+
+
+We'll use <ctype.h> from now on. 
+
+
+----------------Implicit Arithmetic Conversions-------------
+
+If either operand is 'long double', convert the other to 'long double'
+
+Otherwise, if either is 'double', convert the other to 'double'
+
+Otherwise, if 'float', then 'float'
+
+Otherwise, convert 'char' and 'short' --> 'int'
+
+Then, if either operand is 'long', convert the other to 'long'
+
+
+- The main function of 'float' is to save storage in large arrays - OR (less often) - 
+	to save time on machines were double-precision arithmetic is particularly expensive
+
+
+--------Conversions in Assignments----
+
+- The value from the RIGHT side is converted to the type of the LEFT,
+	which is the type of the RESULT
+
+This means:
+
+	int i;
+	char c;
+
+	i = c;
+	c = i;
+
+Leaves the value of 'c' unchanged. This would be different if the order were REVERSED
+
+
+-----------------
+
+In the absence of a function prototype, 'char' and 'short' become 'int'.
+				'float' becomes 'double'.
+
+This is why function arguemtns are DECLARED to be 'int' and 'double' even when the function is CALLED with 'char' 
+	and 'float'
+
+
+--------------------------------------Casting----------------------------------------
+
+'sqrt' expects a 'double' argument. 
+
+- Therefore, if 'n' is an integer, we can use 'sqrt((double) n)' to convert the value of 'n' to 'double'
+
+
+- NOTE: If arguments are declared by a function prototype (AS THEY SHOULD BE), the declaration AUTOMATICLALLY
+	casts any arguments into the needed type
+	(No need for casts in this case)
+
+
+

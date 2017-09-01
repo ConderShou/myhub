@@ -1,0 +1,260 @@
+Computer science		1. Study the behavior of algorithms to determine if they are correct and efficient
+						(their formal and mathematical properties)
+
+			2. Designing and building computer systems that are able to execute algorithms
+						(hardware capabilities)
+
+			3. Designing programming languages and translating algorithms into these 
+			     languages so that they can be executed by the hardware 
+						(linguistic realizations)
+
+			4. Identifying important problems and identifying correct and efficient
+			      software packages to solve these problems
+						(applications)
+
+------------------------Basics--------------------------------
+
+Computer program		- tells a computer, in extreme detail, the SEQUENCE of STEPS needed to fulfill a task
+
+Hardware			- the physical computer and its PERIPHERAL devices
+				(peripheral - things that are able to be attached to the computer, that aren't
+					           actually a crucial part of the computer itself)
+
+Peripheral devices		- a keyboard, mouse, speakers, etc..
+
+Software			- the programs that the computer executes
+
+Programming		- the act of designing and implementing computer programs
+
+
+----------------------Anatomy--------------------------------
+
+CPU (Central Processing Unit)		- Composed of transistors
+				- Performs program control and data processing
+					- Locates and executes the program instructions
+					- Ex: arithmetic operations, fetching data from external memory,
+						placing processed data into storage, etc....
+				- Made of the ALU (Arithmetic Logic Unit) and control unit
+
+-----Two Kinds of Storage---
+
+Memory (Primary storage)		- The functional unit of a computer that STORES and RETRIEVES instructions
+					and data
+				- Made from electornic circuits that store data (if supplied with electricity)
+				
+	
+Secondary storage			- usually a HARD DISK, provides slower and less expensive storage that 
+					persists without electricity
+				- Can retain information without power
+					
+-----------------------------------------------
+
+Von Neumann Architecture		- Four major subsystems:
+					Memory	
+					I/O (input/output)
+					Arithmetic Logic Unit
+					Control Unit
+	
+			 	  ALU + Contronol Unit = CPU (Central Processing Unit)
+
+				- Stored program concept:
+					Instructions to be executed by the computer are represented as
+					BINARY values and STORED in MEMORY
+
+MAR (Memory Address Register)	- Holds the address of the cell to be accessed (Ex: LOAD 345)
+				- Must be at least N bits where, where 2^N is the address space of the computer
+					Addresss space: Maximum theoretical memory size 
+						(might have that many addresss bits, but not as much memory cells)
+
+MDR (Memory Data Register) 		- Contains data value being fetched or stored
+				- Typically 32 or 64 bits wide
+
+ALU (Arithmetic Logic Unit)		- Performs mathematical and logical operations in the CPU
+				- Made up of the register, connections between components, and ALU circuity
+
+register				- a special high-speed storage cell that holds the OPERANDS of an arithmetic operation
+				- When operation is complete, it then holds the RESULT
+				
+				- The FASTEST of all memory storages (register > cache > RAM > hard drive)
+				
+				Ex: An ALU might have three registers called A,B,C. 
+					A and B hold two input operands	
+					C holds the result
+				      A typical ALU will have much more, between 16 and 128. 
+
+control unit 			- 1. Fetches from memory the next (MACHINE LANGUAGE) instruction to be executed
+				  2. Decode it - to determine what is to be done, what the instruction says
+				  3. Execute it - issuing the proper command to ALU, memory, or I/O controllers
+
+Machine language			- Instructions in this language are expressed in BINARY
+
+RAM (Random Access Memory)	- VOLATILE memory - information disappears when the computer is turned off
+				- Divided into fixed-size units called "cells". 
+				- standard size cell is 8 bits = 1 byte, so nowadays, one cell is one byte. 
+			
+				- All accesses to memory are to a specified address, a cell is the minimum unit of access
+					Always fetch or store the complete cell
+
+				- The time it takes to fetch or store the contents of a single cell is the same
+					for all cells in memory
+
+cache memory			- The first time the computer references a piece of data, it copies the data from 
+					regular RAM memory to a high-speed memory called cache memory
+				- System first looks into the cache memory for information, if not, then RAM
+					Copy the data just fetched into cache along with the nearby memory locations
+					Overwrite, if cache is full items that have not been recently accessed
+	
+mass storage			- NONVOLATILE memory - informatino that DOES NOT DISAPPEAR when machine is turned off
+				Ex: disks, flash drives, tapes, etc....
+
+instruction set			- the set of ALL operations that can be EXECUTED by a PROCESSOR
+	
+address				- the unique identifier of a cell for its location in RAM memory
+					
+
+I/O Controller			- A special-purpose computer whose responsibility is to handle the details of input/output
+					and to compensate for any speed differences between I/O devices
+					and other parts of the computer
+				- Made of the I/O Buffer (a small amount of memory) 
+					and  I/O Control and Logic Processors 
+
+I/O Buffer			- A small amount of memory of the I/O Controller
+				- information goes to BUFFER first, and then the processor instructs I/O Controller
+					to BEGIN output operation
+
+accessor method		- a method that ACCESSES an object and RETURNS some information about it
+				WITHOUT changing the object
+			- a "get" method
+
+mutator method		- a method whose purpose is to MODIFY the internal data of an object
+			- Could be a "set" method, or some variations of just MODIFYING instance variables
+
+actual parameter		- the argument of the method, ANY argument/input.
+				- INCLUDING the OBJECT that the method is ACTING on
+
+explicit parameter		- a parameter of a method OTHER THAN the object that the method is acting upon
+				- Yeah, the object that the method is acting on is considered a parameter
+					- (the object is considered an implicit one)
+
+	Ex:
+		me.setAge(10);		 // the method is:
+					//	public void setAge(int age) {...}
+
+		me: ACTUAL IMPLICIT parameter
+	
+		10: ACTUAL EXPLICIT parameter
+
+		age: FORMAL EXPLICIT parameter	- describes what the input is a REPRESENTATION OF
+
+	NOTICE: 
+		Both "me" - the object that the method "setAge" is acting on - is an actual parameter.
+		HOWEVER, "10" is ALSO an actual parameter. 
+
+		Only "10" and "age" are EXPLICIT PARAMETERS.
+
+		Only "me" is an IMPLICIT PARAMETER	- the OBJECT being ACTED UPON BY THE METHOD
+		
+	A FORMAL IMPLICIT parameter would be the use of "this"
+
+algorithm		- a SEQUENCE of steps that is UNAMBIGUOUS, EXECUTIABLE, and TERMINATING
+				- and a SOLUTION to a problem
+
+argument		- Any VALUE that a method needs to carry out its task
+			- ANY PARAMETER of a method
+
+method			- a collection of programming instructions that describe HOW to CARRY OUT a particular TASK
+	
+parameter passing		- Specifying expressions to be arguments for a method when it is called
+			- The action of describing WHAT KIND of variables and expressions will be put into the method
+				 to server as ARGUMENTS
+			
+			Ex:
+				public int add( int a, int b ) {...}	
+	
+			Declaring that the method will use TWO INTEGERS as INPUTS is called PARAMETER PASSING
+
+ASCII			- an ENCODING for 128 characters
+			- Includes upper and lowercase alphabet/latin letters and digits and common +*&% symbols
+
+bit			- a unit of information expressed as either a 0 or 1 in binary notation.
+
+byte			- Made of 8 bits
+			- A BYTE is always EIGHT times BIGGER than a BIT
+				- 1 gigabyte is 8 times bigger than 1 gigabit, etc...
+
+----------------Primitive Types--------------------
+
+primitive data type		- In JAVA, a number type (double, int, float, etc..) OR boolean
+
+boolean		- 1 bit
+		- Either has the value for "False" or "Truth"
+
+boolean expression		- An expression that expresses either a TRUTH or a FALSE
+
+			Ex: 	input == 1, x < 5, etc...
+
+boolean operator		- An operator that combines boolean conditions (A, B, where A and B are boolean values)
+				and expressions
+
+			Ex: ||, &&	(NOT <, >, ==, != because those MAKE a boolean expression)
+
+--------------------------------------------------------------
+
+white space		- spaces, tab characters, newline characters that separate lines
+			- Input characters that are white spaces are REMOVED from the input
+			- White spaces are NOT a part of the word
+
+			- The first character that is NOT a white space becomes the FIRST CHARACTER of the
+				word.
+			   More characters are ADDED until EITHER ANOTHER white space occurs , or the end 
+				of the input file has been reached
+
+			- If the end of the input is reached BEFORE ANY CHARACTER is ADDED:
+				a "NoSuchElementException" occurs
+	    
+cast			- Converts from one type to another
+			- The cast OPERATOR consists of a TYPE within PARENTHESES
+
+			Ex: double balance = total + tax;
+			     int dollars = (int) balance;
+
+				balance is casted to be an INTEGER (converted from a DOUBLE)
+				"(int)" is the operator
+
+encapsulation		- The process of hiding implementation details while publishing an interface
+-			- In JAVA, the "class" provides encapsulation
+			- The "interface" is the public methods of a class through which the private implementation
+				is manipulated
+
+terabyte			- 2^40 bytes = 10^12 = One million million
+			- 2^10 gigabytes = 1024 gigabytes
+
+gigabyte			- 2^30 bytes
+			- 2^10 MEGABYTES = 1024 megabytes
+
+megabyte			- 2^20 bytes
+			- 2^10 KILOBYTES = 1024 kilobytes
+
+kilobyte			- 2^10 bytes
+			- 1024 bytes
+
+IDE (Integrated Development Environment)	- Software that you can use to WRITE and TEST programs
+
+Instance variables		- Variables - declared OUTSIDE OF METHODS - where the OBJECT stores its data in
+			- Present in EACH OBJECT of the class
+
+Object			- An INSTANCE of a class
+
+Object reference		- The MEMORY LOCATION of an object
+		
+			Ex:	Rectangle  box = new Rectangle(5, 10, 20, 30);
+	
+				The variable "box" REFERS to the "Rectangle" object that the "new" operator constructed
+			
+			The "new" operator returned a REFERENCE to the NEW OBJECT.
+			That REFERENCE is STORED in the "box" variable
+
+Object-Oriented Programming	- Prorgramming around the ideas of "objects", their "properties" instead of data,
+					and their relationships.
+
+scope			- the part of the program in which the variable is defined for

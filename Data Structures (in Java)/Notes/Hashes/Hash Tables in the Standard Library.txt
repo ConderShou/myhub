@@ -1,0 +1,91 @@
+The Standard library includes hash table implementations of "Set" and "Map",
+	namely HashSet and HashMap.
+
+The items in the HashSet (or the keys in the HashMap) must provide an "equals" and a "hashCode" method
+	as described earlier.
+
+The HashSet and HashMap are currently implemented using SEPARATE CHAINING HASHING. 
+
+These classes can be used if it is NOT IMPORTANT for the entries to be viewable in SORTED ORDER.
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+There were three maps this textbook has apparently showcased already:
+
+	1. A map in which the key is a WORD LENGTH, and the value is a collection of all words of that word length
+	
+	2. A map in which the key is a REPRESENTATIVE, and the value is a collection of all words with that REPRESENTATIVE
+
+	3. A map in which the key is a WORD, 
+		and the value is a collection of all words that differ ONLY ONE CHARACTER from that word. 
+
+
+Because the order in which word lengths are processed DOES NOT MATTER, the first map can be a HASHMAP.
+
+Because the representatives are NOT EVEN NEEDED after the second map is built, the second map can be a HASHMAP
+
+The third map can also be a HASHMAP, unless we want to spell out something alphabetically (as apparently the
+	program did in whatever example the textbook is referencing here)
+
+
+The performance of a HASHMAP can often be SUPERIOR to that of a TREEMAP, but it's hard to know for sure 
+	without writing the code both ways.
+
+
+As a result, in cases where EITHER a HashMap or TreeMap is acceptable, it's preferable to declare variables using the 
+	interface type MAP.
+
+	And THEN change the instantiation from a TreeMap to a HashMap, and perform timing tests.
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+In Java, library types that can be reasonably inserted into a HashSet or as KEYS into a HASHMAP already have 
+	"equals" and "hashCode" methods defined
+
+Because the expensive part of the hash table operations is computing the HASH CODE, 
+	EACH String object stores INTERNALLY the value of its hashCode.
+
+	Initially, the property is zero for each object.
+	However, if invoked, the value is remembered.
+
+THUS: if hashCode is computed on the same String object a second time, we can avoid the expensive computation.
+
+This technique is called CACHING THE HASH CODE
+
+Ex:
+	public final class String
+	{
+		public int hashCode()
+		{
+			if( hash != 0 )
+				return hash;
+		
+			for( int i = 0; i < length(); i++ )
+				hash = hash * 31 + (int) charAt( i );
+			
+			return hash;
+		}
+
+		private int hash = 0;
+	}
+
+
+NOTE: Caching the hash code ONLY works because Strings are IMMUTABLE (unable to be changed)
+	
+	If the String were allowed to change, it would invalidate the hashCode, and the hashCode would reset back to 0. 
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+One situation where caching  the hash code helps occurs during REHASHING,
+	because all the Strings involved in the rehashing have already had their hash codes CACHED.
+
+However, caching the hash code does not help in the representative map for the word changing example 
+	(the second bullet above - whatever example the textbook happens to be referring to......)
+
+	Each of the representatives is a different String computed by removing a character from a larger String,
+		thus each individual String has to have its hash code computed separately
+
+HOWEVER, in the third map, caching the has code DOES HELP, because the keys are only STRINGS that were stored
+	in the original array of Strings.

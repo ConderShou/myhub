@@ -1,0 +1,61 @@
+------------------------List------------------------
+
+- The heart of Python:
+	
+	Much of the art of Python involves getting good at manipulating lists
+
+
+List:	
+	Holds an ordered sequence of objects
+
+	Duplicates are allowed
+
+	DO NOT have to be the same type
+
+
+- List are ZERO ORIGIN
+	- Index of the first element is 0
+
+- Lists are MUTABLE (can be modified at any time)
+
+	- NOTE: SOME methods, like 'index' and 'count', DO NOT modify the list
+
+	              Others, like 'reverse', DO modify the list
+
+- Methods that modify the list typically return 'None'
+
+- The 'type' of a list, is 'list'
+------------------------
+
+
+Can make a list by just typing it in
+------------------------
+
+[1, 2, 3]
+
+O:
+
+[1, 2, 3]
+
+-
+
+type([2, 3, 4])
+
+O:
+
+list
+
+----------------------------------
+
+# instead of 
+
+pt = [3,4]
+
+xcord = pt[0]
+ycord = pt[1]
+
+# can use destructuring...
+
+xcord, ycord = pt
+
+[xcord, ycord]

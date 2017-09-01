@@ -1,0 +1,88 @@
+------------Looking for Available Positions in a Maze----------------------------
+
+public class Main {
+	// 0 - obstacle
+	// 1 - open space
+	// 2 - path taken
+	// 3 - goal 
+	private static int[][] maze = 
+		{{0, 0, 1, 1, 1, 1, 1, 1},
+		{2, 0, 1, 0, 0, 0, 1, 1},
+		{1, 0, 1, 0, 0, 0, 0, 0},
+		{1, 1, 1, 0, 0, 0, 0, 0},
+		{0, 0, 1, 0, 1, 3, 1, 1},
+		{0, 0, 1, 0, 1, 0, 0, 1},
+		{1, 0, 1, 1, 1, 0, 0, 0},
+		{1, 1, 1, 0, 1, 1, 0, 0}};
+
+	//Testing available positions
+	public static void main(String[] args) {
+		System.out.println("Checking available positions...");
+		System.out.println("Is (0,0) available?: " + isAvailablePosition(0,0));
+		System.out.println("Is (0,1) available?: " + isAvailablePosition(0,1));
+		System.out.println("Is (0,2) available?: " + isAvailablePosition(0,2));
+		System.out.println("Is (10,0) available?: " + isAvailablePosition(10,0));
+		System.out.println("Is (1,0) available?: " + isAvailablePosition(1,0));
+		}
+	
+
+
+	// A position is available if: (1) it is inside the bounds of the maze 
+	// (2) if it is an open space or (3) it is the goal 
+	private static boolean isAvailablePosition(int row, int col) {
+		boolean result =  row >= 0 && row < maze.length
+				&& col >= 0 && col < maze[row].length
+				&& (maze[row][col] == 1 || maze[row][col] == 3 ||
+				    maze[row][col] == 2 );
+				return result;
+	}
+
+	
+}
+
+Prints:
+
+Checking available positions...
+Is (0,0) available?: false
+Is (0,1) available?: false
+Is (0,2) available?: true
+Is (10,0) available?: false
+Is (1,0) available?: true
+
+--------Looking for UNavailable Positions---------------------
+
+      .........
+
+	//Testing available positions
+	public static void main(String[] args) {
+		System.out.println("Checking unavailable positions...");
+		System.out.println("Is (0,0) unavailable?: " + isAvailablePosition(0,0));
+		System.out.println("Is (0,1) unavailable?: " + isAvailablePosition(0,1));
+		System.out.println("Is (0,2) unavailable?: " + isAvailablePosition(0,2));
+		System.out.println("Is (10,0) unavailable?: " + isAvailablePosition(10,0));
+		System.out.println("Is (1,0) unavailable?: " + isAvailablePosition(1,0));
+		}
+	
+
+
+	// A position is available if: (1) it is inside the bounds of the maze 
+	// (2) if it is an open space or (3) it is the goal 
+
+	private static boolean isAvailablePosition(int row, int col) {
+		boolean result =  row < 0 || row >= maze.length
+				|| col < 0 || col >= maze[row].length
+				|| (maze[row][col] == 0);
+				return result;
+	}
+
+	
+}
+
+Prints: 
+
+Checking unavailable positions...
+Is (0,0) unavailable?: true
+Is (0,1) unavailable?: true
+Is (0,2) unavailable?: false
+Is (10,0) unavailable?: true
+Is (1,0) unavailable?: false

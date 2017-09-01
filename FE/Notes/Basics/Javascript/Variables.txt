@@ -1,0 +1,8 @@
+var message = "Hello!";
+
+alert(message);
+
+
+	Don't insert quotes in alert() or else the message will be "message".
+
+	Seems like Javascript has a general declaration of variables, without needing to declare the type.

@@ -1,0 +1,21 @@
+--------Digital Representation of Images-----------
+
+We can use Matlab 8-bit binary to represent light. 0 being black, and 255 being completely white. 
+(8-bit unsigned integers --> 255 is maximum numerical representation)
+
+Color of a gray sphere: represented by a bunch of digits ranging from 0 to 255
+
+Can represent color using three 8-bit integers (Three 0 to 255 scales. For Red, Green, and Blue - RGB)
+
+--in Matlab---
+
+rects = imread('Rectangles.png')	- Reads image into matlab and stores it into 'rects' variable
+
+image(rects)			- Matlab displays image stored in 'rects'
+
+rects(:, :, 1) -Plane containing red rectangle
+rects(:, :, 2) -Plane containing green recetangle	-Displays the matrix of numbers 0-255 of brightness
+rects(:, :, 3) -Plane containing blue rectangle
+
+	-An RGB image is stored in matrix of size Nrow x Ncol x 3
+		-Each sheet (1,2,3) represents a color component

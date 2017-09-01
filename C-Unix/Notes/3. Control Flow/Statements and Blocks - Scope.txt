@@ -1,0 +1,35 @@
+Things become 'statements' when followed by a semicolon.
+
+	x = 0;
+	i++;
+	printf(...);		- clarification: this is a function prototype
+
+Braces { } are used to group declarations and statements together into a COMPOUND STATEMENT, or BLOCK. 
+
+There is no semicolon after the RIGHT brace that ends a block. 
+
+	Ex: printf(...){....}
+
+
+-----------Scope----------------
+
+{
+	int x = 0;
+
+	{
+		int x = 1;
+		printf("%d", x);
+	}
+	
+	printf("%d", x);
+}
+
+
+- 'x' is an Automatic, Local, and Stack variable
+
+- The 'x' declared ONLY exists within the two braces it is declared in. 
+
+	x = 0 exists throughout the entire function, but is replaced by the second 'x'.
+
+	Outside of the inner block, the 'x' with value 0 is printed. 
+

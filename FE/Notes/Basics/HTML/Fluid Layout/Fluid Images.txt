@@ -1,0 +1,17 @@
+First rule for creating a fluid layout:
+
+	1. Using relative units to define dimensions
+
+
+We've been doing this from the start with 
+
+img {
+	max-width: 100%;
+}
+
+
+and also by defining our width with PERCENT rather than pixels.
+	(Percent = relative units that change the width based on relative width of parent container)
+
+
+Make sure all your nested elements are using PERCENTAGES to define their DIMENSIONS

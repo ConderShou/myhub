@@ -1,0 +1,81 @@
+<ul id = "gallery">
+
+          <li>
+            <a href="img/numbers-01.jpg">
+              <img src="img/numbers-01.jpg" alt="">
+              <p>Experimentation with color and texture.</p>
+            </a>
+          </li>
+           <li>
+            <a href="img/numbers-02.jpg">
+              <img src="img/numbers-02.jpg" alt="">
+              <p>Playing with blending modes in Photoshop.</p>
+            </a>
+          ......
+        </ul>
+
+
+We ID the unordered list tha contains all our pictures and their links/captions
+
+
+--------------Optimizing Images for Mobile Website-----------
+
+This 'gallery' will take up two columns on mobile
+
+
+In main.css:
+
+img {
+   max-width: 100%;
+}
+
+
+Tells images to fill the width of the parent container. 
+
+	If the container shrinks down in size, then the image will shrink down with it. 
+
+
+------List-Style------
+
+#gallery {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+List-style will remove any bullet points from a list.
+
+
+-------------
+
+#gallery li {
+    float: left;
+    width: 45%;
+    margin: 2.5%;
+    background-color: #f5f5f5;
+    color: #bdc3c7;
+}
+
+
+Floating elements will make the images appear side by side. Other elements FLOAT around these elements
+	(Footer would flow around these images as well when the webpage is shrunk unless properly formatted
+		See: Styling Image Captions)
+
+Each width of the image will only ever take up 45% of the TOTAL WIDTH of its PARENT ELEMENT.
+	This causes the images to SHRINK and GROW as the WEBPAGE grows and shrinks
+	The parent elements, because they are not set, DEFAULT to 100%
+
+****NOTE****: A width of 45% means that the page will be able to fit TWO images side by side 
+	                     (which makes up 90% of the total width)
+                       And the 10% left over is used to CREATE SPACE between the images
+
+To use that 10% space, we use the 'margin' property and set it to 2.5%.
+	That means EACH image has a margin on EACH SIDE of 2.5%.
+	
+	Two images with 2.5% margins on each side = 2.5% * 4 = 10%
+
+****NOTE****: We must MANUALLY use up that remaining space. 
+
+Background color is given to our caption text underneath. 
+
+The caption text itself is given a gray color that ONLY SHOWS, if the text is UNLINKED for some reason. 

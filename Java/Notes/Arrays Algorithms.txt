@@ -1,0 +1,165 @@
+FOR ALL THESE ALGORITHMS BELOW:
+
+	If you use a partially filled array,
+	
+	remember to REPLACE "values.length" with the COMPANION VARIABLE 
+		(the variable representing the current size of the array)
+			- commonly named: "currentSize"
+
+------------Filling-------------------
+
+for (int i = 0; i < values.length; i++)
+{
+	values[i] = i * i;
+}
+
+
+-----------Sum and Average Value----------------
+
+double total = 0;
+
+for (double element : values)
+{
+	total += element;
+}
+
+double average = 0;
+
+if (values.length > 0) { average = total / values.length; }
+
+
+------------------Maximum and Minimum--------------------------
+
+double largest = values[0];
+
+for (int i = 1; i < values.length; i++)
+{
+	if (values[i] > largest)
+	{
+		largest = values[i];
+	}
+}
+
+
+-----------------------Element Separators----------------------------------
+
+When you display the elements of an array, you usually want to separate them, like this:
+
+	32 | 54 | 67.5 | 29 | 35
+
+Note that there is one fewer separator than there are numbers. 
+
+Print the separator before each element in the sequence EXCEPT the initial one (at index 0):
+
+for (int i = 0; i < values.length; i++)
+{
+	if ( i > 0 )
+	{
+		System.out.print(" | ");
+	}
+	System.out.print(values[i]);
+}
+
+To get comma separators,surrounded by brackets, use the "Arrays.toString" method:
+
+Arrays.toString(values)
+
+
+----------------------------Linear Search----------------------------------
+
+int searchedValue = 100;
+int pos = 0;
+
+boolean found = false;
+
+while (pos < values.length && !found)
+{
+	if (values[pos] == searchedValue)
+	{
+		found = true;
+	} else {
+		pos++;
+	}
+}
+
+if (found) { System.out.println("Found at position: " + pos); }
+else { System.out.println("Not found"); }
+
+
+-----------------------------Binary Search------------------------------
+
+Chapter 14
+
+
+-----------------------------Removing an Element-------------------------------
+
+You need a COMPANION VARIABLE for tracking the number of elements in the array
+
+
+------Unordered Array-----
+
+If the elements in the array are NOT in any particular order, 
+	simply OVERWRITE the element to be removed with the LAST element of the array
+Then decrement the "currentSize" (companion variable)
+
+Ex:
+	values[pos] = values[currentSize - 1];
+	currentSize--;
+
+
+------Ordered Array------
+
+You must MOVE all elements following the element to be removed TO A LOWER INDEX,
+	then decrement the variable holding the size of the array (companion variable)
+
+for (int i = pos + 1; i < currentSize; i++)
+{
+	values[i-1] = values[i];
+}
+currentSize--;
+
+
+--------------------------------Inserting Element---------------------------------------
+
+When you REMOVE an element, you're moving the elements to a lower index until you reach the end of the array
+When you INSERT an element, you START at the END of the array, and move the element to a HIGHER index 
+	until you reach the INSERTION LOCATION
+
+-----Unordered Array----
+
+You can simply insert new elements at the end, incrementing the variable tracking the size
+
+if (currentSize < values.length)		- If partially filled array, then "values.length" = currentSize
+{						and "currentSize" = pos (or some other tracking variable)
+	currentSize++;
+	values[currentSize - 1] = newElement;
+}
+
+
+----Ordered Array-----
+
+Move all elements AFTER the insertion location to a HIGHER INDEX
+
+if (currentSIze < values.length)
+{
+	currentSize++;
+	for (int i = currentSize - 1; i > pos; i--)
+	{
+		values[i] = values[i-1];
+	}
+	values[pos] = newElement;
+}
+
+THEN insert the new element.
+
+
+-------------------------------------------Swapping Elements--------------------------------
+
+To swap values[i] and values[j]:
+
+	double temp = values[i];
+
+	values[i] = values[j];
+
+	values[j] = temp;
+

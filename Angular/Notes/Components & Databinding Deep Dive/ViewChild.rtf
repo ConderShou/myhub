@@ -1,0 +1,77 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf810
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww33400\viewh20520\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \
+\
+\'97\'97cockpit.component.html\'97\'97\
+\
+
+\b <label>Server Name</label>\
+  <input \
+      type="text"\
+       class="form-control" \
+       #serverNameInput>\
+\
+      <label>Server Content</label>
+\b0 \
+\
+ <!-- ViewChild \
+\
+          Using ViewChild, we can get access to this local reference from within the TypeScript code.\
+\
+          See .ts file for details\
+      -->\
+      \
+   
+\b    <input \
+      type="text" \
+      class="form-control" \
+      \ul #serverContentInput\ulnone >\
+
+\b0 \
+\
+\
+\
+\'97cockpit.component.ts\'97\'97 \
+\
+
+\b import \{ Component, OnInit, EventEmitter, Output, \ul ViewChild, ElementRef\ulnone  \} from '@angular/core';
+\b0 \
+\
+ // ViewChild\
+  //  1. Import ViewChild angular/core\
+  //  2. The argument of the ViewChild() decorator references the local reference we defined in the HTML\
+  //  3. The element being referenced is stored in 'srvContentInput'\
+  //\
+  // NOTE: ViewChild returns a type of 'ElementRef' NOT the literal HTML element like Local Reference does\
+  //    4. Import ElementRef to define this type\
+\
+
+\b   \ul @ViewChild('serverContentInput') srvContentInput: ElementRef;\ulnone \
+\
+\'85.\
+constructor() \{\}\
+\'85\
+\
+\
+onAddServer(srvNameInput: HTMLInputElement) \{\
+\
+    this.serverCreated.emit(\{\
+      serverName: srvNameInput.value, \
+\
+     
+\b0  // ElementRef \
+      //'Native element' now gives us access to the UNDERLYING HTML element that ElementRef refers to\
+\
+
+\b \ul       serverContent: this.srvContentInput.nativeElement.value\ulnone \
+\
+     
+\b0   //DO NOT USE ELEMENTREF TO CHANGE THE DOM ELEMENT:\
+       //  DO NOT DO THIS: this.srvContentInput.nativeElement.value = 'Something';\
+       // Using string interpolation, property binding, etc...\
+       // We'll learn of a better way further on as well}

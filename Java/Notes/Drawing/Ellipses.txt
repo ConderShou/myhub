@@ -1,0 +1,27 @@
+-----------Constructing Ellipses-----------
+
+Use either:
+
+Ellipse2D.Float		- single precision floating-point values
+Ellipse2D.Double		- double precision floating-point values
+
+Use contructor:
+
+	Ellipse2D.Double ellipse = new Ellipse2D.Double(x, y, width, height);
+
+-----
+
+import java.awt.geom.Ellipse2D;
+
+
+----Drawing---
+
+g2.draw(ellipse);
+
+
+-------------Drawing Circle-----------
+
+Ellipse2D.Double circle = new Ellipse2D.Double(x, y, diameter, diameter);
+g2.draw(circle);
+
+

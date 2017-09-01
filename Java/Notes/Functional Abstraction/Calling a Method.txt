@@ -1,0 +1,3 @@
+y = square(3) + square(4);		- Using the name of the method with the appropriate type of input will call the method
+
+	- This calls the method two independent times and THEN adds each individual return value together

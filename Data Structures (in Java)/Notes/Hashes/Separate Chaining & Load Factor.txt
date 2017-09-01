@@ -1,0 +1,316 @@
+If, when an element is inserted, it hashes to the same value as an already inserted element,
+	then we have a COLLISION and a need to resolve it. 
+
+Two of the simplest methods for dealing with this are: Separate chaining and Open Addressing.
+
+
+
+---------------------------------------------Separate Chaining---------------------------------------------------------
+
+Separate chaining is keeping a LIST of all elements that hash to the same value. 
+
+We can use the standard library list implementations. 
+
+To perform a search, we use the hash function to determine which list to traverse, and then search
+the appropriate list. 
+
+To perform an insert:
+	
+	We check the appropriate list to see whether the element is already in place.
+
+	If duplicates are expected, a counter is kept that increments in the event of a match. 
+
+	If the element is new, it's inserted at the front of the list 
+		(convenient and also because recently inserted elements are most likely to be accessed
+			in the near future)
+
+
+NOTE: The hash table stores an ARRAY of LINKED LISTS, which are allocated in the CONSTRUCTOR.
+
+
+--------MyHash-----Appropriate Objects to be Used in a Hash Table----------
+
+Just like the binary search tree only works for objects that are "Comparable", the hash tables we use in this chapter
+	work ONLY for objects that provide:
+
+		An appropriate "equals" method  
+		A "hashCode" method that returns an "int"
+
+	The hash table can then scale this "int" into a suitable array index via "MyHash"
+
+Ex: 
+	private int myhash( AnyType x )
+	{
+		int hashVal = x.hashCode();
+
+		hashVal %= theLists.length;
+		if( hashVal < 0 )
+			hashVal += theLists.length;
+
+		return hashVal;			- This is the INDEX value of the hash table ARRAY
+	}
+
+
+An object that could be stored in a hash table would be something like an object of the "Employee" class given below
+
+Ex:
+	public class Employee 
+	{
+		public boolean equals( Object rhs )
+			{ return rhs instanceof Employee && names.equals( ((Employee)rhs).name ); }
+
+		public int hashCode() 
+		{ return name.hashCode(); }		- NOTICE: it uses the hashCode defined in the standard
+							String class
+		private String name;
+		private double salary;
+		private int seniority;
+
+		//Additional fields and methods, etc....
+	}
+
+
+This "Employee" class provides an "equals" method and a "hashCode" method BASED on the Employee's "name"
+
+NOTE: The hashCode for this class works by using the "hashCode" defined in the Standard String class.
+
+	- That hashCode is BASICALLY like a portion of a hash function we saw previously, so essentially like this: 
+
+		public static int hash( String key, int tableSize )
+		{
+			int hashVal = 0;
+	
+			for( int i = 0; i < key.length(); i++) 
+				hashVal = 37 * hashVal + key.charAt( i );
+		
+			//Removed portion
+
+			/* hashVal %= tableSize;	NOTICE: This is instead the function of "myhash"
+			  *if( hashVal < 0 )			as seen earlier
+			  * hashVal += tableSize;
+			 */
+
+			return hashVal;
+		}
+
+
+----Constructors and makeEmpty-----
+
+//Construct the hash table
+	
+	public SeparateChainingHashTable()
+	{
+		this( DEFAULT_TABLE_SIZE );
+	}
+
+
+/**
+ * Construct the hash table.
+* @param size approximate table size 
+*/
+
+	public SeparateChainingHashTable( int size )
+	{		
+		theLists = new LinkedList[ nextPrime( size ) ];	- The "array" is a linked list here
+		for( int i = 0; i < theLists.length; i++ )
+			theLists[ i ] = new Linkedlist<>();	
+	}
+
+NOTICE: 
+
+	As mentioned before, we want to keep the table size PRIME to ensure a good distribution.
+
+	EACH element of the list is ALSO a LINKED LIST.
+
+/**
+ *   Make the hash table logically empty.
+ */
+
+	public void makeEmpty()
+	{
+		for( int i = 0; i < theLists.length; i++ )
+			theLists[ i ].clear();
+		
+		currentSize = 0;
+	}
+
+
+---------------------------Contains-------------------------
+
+For the "contains" method of the hash table, we use the "contains" method from the Standard LinkedList class.
+
+./**
+    * Find an item in the hash table.
+    * @param x the item to search for.
+    * @return TRUE if x is NOT FOUND
+  */
+
+	public boolean contains( AnyType x )
+	{
+		List<AnyType> whichList = theLists[ myhash( x ) ];
+		return whichList.contains( x );			- Using the "contains" method from
+								  LinkedLists
+	}
+
+
+-------------------------Insert----------------------------------------
+
+In the insertion routine, if the item to be inserted is ALREADY PRESENT, then we DO NOTHING.
+	Otherwise, we place it in the list.
+	
+		The element can be placed anywhere in the list, but using "add" is most convenient
+		in our case. (Adding it to the end of the list)
+
+/**
+   * Insert into the hash table.
+   * If the item is already present, then do nothing.
+   * @param x the item to insert	
+    */
+
+	public void insert( AnyType x )
+	{
+		List<AnyType> whichList = theLists[ myhash( x ) ];
+		
+		if ( !whichList.contains( x ) )
+		{
+			whichList.add( x );
+		
+			//Rehash: we study this later in the next chapter section
+				
+			if ( ++currentSize > theLists.length ) 
+				rehash();
+		}
+	}		
+	
+
+--------------------------Remove--------------------------------------
+
+/**
+   * Remove from the hash table.
+   * @param x the item to remove
+  */
+
+	public void remove( AnyType x ) 
+	{
+		List<AnyType> whichList = theLists[ myhash( x ) ];
+
+		if( whichList.contains( x ) )
+		{
+			whichList.remove( x );
+			currentSize--;
+		}
+	}
+
+
+-------------------------------------------Separate Chaining CLASS SKELETON---------------------------------------------------------------
+
+The class skeleton for the implementation of separate chaining is shown below:
+
+Ex:
+	public class SeparateChainingHashTable<AnyType>
+	{
+		public SeparateChainingHashTable()
+		{
+		}
+		
+		public SeparateChainingHashTable( int size )
+		{
+		}
+
+		public void insert( AnyType x )	
+		{
+		}
+		
+		public void remove( AnyType x )
+		{
+		}
+			
+		public boolean contains( AnyType x )
+		{
+		}
+	
+		public void makeEmpty()
+		{
+		}
+
+		private static final int DEFAULT_TABLE_SIZE = 101;
+
+		private List<AnyType> [] theLists;
+		private int currentSize;
+
+		private void rehash()
+		{
+		}
+	
+		private int myhash( AnyType x )
+		{
+		}
+
+		private static int nextPrime( int n )
+		{ See online code }
+		
+		private staticc boolean isPrime( int n )
+		{ See online code }
+
+
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+
+Any scheme can be used besides Linked lists to resolve the collisions.
+	Ex: binary search tree, another hash table, etc...
+
+HOWEVER, we EXPECT that if the:
+
+		 TABLE is LARGE  
+			&
+		 HASH FUNCTION is GOOD
+
+ALL LISTS should be SHORT
+
+
+-----------------------------------------------------------------------------
+---------------------------Load Factor------------------------------------
+
+Load factor, LAMBDA is defined as: 
+	
+	Ratio of the number of elements in the hash table to the table size
+
+In the example above, LAMBDA is 1.0. 
+
+The average length of a list is LAMBDA. 
+
+
+The effort required to perform a search is:
+
+	 the constant time required to evaluate the hash function  +  the time to traverse the list
+
+
+In an UNSUCCESSFUL search, the number of nodes to examine is LAMBDA on average.
+A SUCCESSFUL search requires that about 1 + (LAMBDA/2) links be traversed. 
+
+	Notice, for example, that the list being searched contains the one node that STORES the match PLUS
+		zero or more OTHER nodes.
+
+
+The expected number of "other nodes" in a table of N elements and M lists is:
+	
+	(N - 1)/M = LAMBDA - 1/M
+
+
+On AVERAGE, HALF the "other nodes" are searched, so combined with the matching node, we obtain an
+	average search cost of:
+
+			1 + LAMBDA/2 nodes.
+
+
+THUS: The table size is not really important, but the LOAD FACTOR IS. 
+
+
+General rule:
+		Make the table size about as large as the number of elements expected
+
+			In other words: LAMBDA ~= 1
+
+In the previous code for "insert", we EXPAND the table size by calling "rehash", discussed ater.
+
+AS ALREADY MENTIONED, it's good to keep the table size PRIME to ensure a GOOD DISTRIBUTION.

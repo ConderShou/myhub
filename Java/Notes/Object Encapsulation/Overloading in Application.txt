@@ -1,0 +1,64 @@
+public ComplexNumber(double real){
+    this.real = real;
+    this.imag = 0;
+}
+
+--It could seem that we cannot call the other constructor (because constructors have no name). Or can we?
+	In fact, we can use the method this() within the class to "name" the constructor. Thus, the previous definition will be changed like this:
+
+ public ComplexNumber(double real){
+    this(real,0);
+}
+
+--Leaving the checking of the parameters to the most complex constructor will save us time and will make our code less error-prone.
+
+-----------------------------------------------------------------
+
+public class MyVector3D{
+Line 02:     private double[] v;
+Line 03:     MyVector3D(double x, double y, double z){
+Line 04:         v = new double[3];
+Line 05:         v[0] = x;
+Line 06:         v[1] = y;
+Line 07:         v[2] = z;
+Line 08:     }
+Line 09: 
+Line 10:     MyVector3D(double x, double y){
+Line 11: 		//MUST ADD:
+			this(x, y, 0);	 - These refer to the constructor that has THREE parameters in it. 
+								Which HAPPENS to be the original one above
+Line 12:     }
+Line 13: 
+Line 14:     MyVector3D(double x){
+Line 15: 		//MUST ADD:
+			this(x, 0, 0);
+Line 16:     }
+Line 17: 
+Line 18:     MyVector3D(){
+Line 19: 		//MUST ADD:
+			this(0, 0, 0);
+Line 20:     }
+Line 21: 
+Line 22:     void print(){
+Line 23:         System.out.println("("+v[0]+", "+v[1]+", "+v[2]+")");
+Line 24:     }
+Line 25: 
+Line 26:     public static void main(String[] args){
+Line 27:     
+Line 28:         MyVector3D v1 = new MyVector3D(1,2,3);
+Line 29:         MyVector3D v2 = new MyVector3D(1,2);
+Line 30:         MyVector3D v3 = new MyVector3D(1);
+Line 31:         MyVector3D v4 = new MyVector3D();
+Line 32:         v1.print();
+Line 33:         v2.print();
+Line 34:         v3.print();
+Line 35:         v4.print();
+Line 36:     }
+Line 37: }
+
+OUTPUT (AFTER ALL THE ADDITIONS):
+
+(1.0, 2.0, 3.0)
+(1.0, 2.0, 0.0)
+(1.0, 0.0, 0.0)
+(0.0, 0.0, 0.0)

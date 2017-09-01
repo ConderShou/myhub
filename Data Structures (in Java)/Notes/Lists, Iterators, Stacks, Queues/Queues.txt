@@ -1,0 +1,64 @@
+Like stacks, queues are lists. 
+
+However, while insertion is done at one end, deletion is done at THE OTHER.
+
+---------Basic Operations-----------
+
+enqueue		- inserts an element at the end of the list (the rear)
+
+dequeue		- deletes AND RETURNS the element at the start of the list (the front)
+
+
+-------------------------------------
+
+Like stacks, any list implementation can work for queues. 
+
+Both the linkedlist and the array implementations give fast O(1) (constant) running times for every operation. 
+
+The linkedlist implementation is very straightforward - just look at the commands it has. 
+
+We will instead discuss the array implementation of queues. 
+
+
+-------------------------Array Implementation of Queues--------------------------
+
+theArray		- the array we're using
+
+front 		- the front position in the array
+
+back 		- the back position in the array (the ends of the queue)
+
+currentSize	- the number of elements that are in the queue
+
+
+------Operations------
+
+To "enque" an element "x":
+
+	1. increment "currentSize"
+	2. increment "back"
+	3. set "theArray[back] = x"
+
+To "dequeue" an element "x":
+
+	1. set return value to "theArray[front]"
+	2. decrement "currentSize"
+	3. increment "front"
+
+Other strategies are possible.
+
+
+----Circular Array Implementation-----
+
+When "front" or "back" gets to the end of the array, it is wrapped around to the beginning.
+	- This is because even though we might've enqueued a lot to the point that the queue seems full,
+		we might've also DEQUEUED a lot, so that there were barely any elements in the FRONT of the array
+
+As a result, that's why we implement "circular array" implementation. 
+
+Only a minimal amount of code is required to implement this:
+
+	If incrementing EITHER "back" or "front" causes it to go past the array, the value is reset to the 
+		first position in the array.
+
+	Remember: "back" and "front" travel IN THE SAME DIRECTION along the array. Both move forward

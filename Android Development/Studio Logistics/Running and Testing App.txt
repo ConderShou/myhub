@@ -1,0 +1,40 @@
+Gradle	- The name of a build system
+
+	- Transforms all the materials for our app in Android Studio, into something that can be installed on a device
+	
+	- Compiles our code for the Android device
+
+Gradle build errors show what is preventing your project from being built
+
+---------
+
+NEVER change the PACKAGE name of the app. 
+	You need it in order to update the app in the future. 
+
+----------
+
+In the Android Monitor:
+	
+	'logcat' keeps track of the system logs - compiling the code
+
+		- Use this to help debug your code
+		- Double click on the error message to be directed to the point of error in your code
+
+'Messages' keeps track of the process of BUILDING your app
+
+------Building Project----
+
+Click the 'Gradle Sync Button' on the toolbar to build the app.
+
+	- Testing your code without having to run the emulator
+
+
+--Alternative--
+
+'Build' on the Menu bar above and click 'Make Project'  to run the Gradle Build as well
+
+	- 'Clean Project' cleans up the background files and rebuilds the project
+
+--------
+
+Hovering your mouse over the GRAY SQUARE in the bottom left corner allows you to access ANY VIEW

@@ -1,0 +1,265 @@
+
+----------------------------------Reading Words-------------------------------------
+
+---next----
+
+"next" reads the next String
+
+Ex:
+	while (in.hasNext())
+	{
+		String input = in.next();
+		System.out.print,n(input);
+	}
+
+
+If input is:
+		Mary had a little lamb.
+
+The output is:
+		Mary
+		had
+		a 
+		little
+		lamb.
+
+However, notice that punctuation is still included. 
+
+
+---useDelimiter----
+
+In order to discard anything that isn't a letter, call the "useDelimiter" method
+
+Ex:
+	Scanner in =  new Scanner(...);
+	in.useDelimiter("[^A-Za-z]+");
+
+Punctuation and numbers are not included in the words returned by the next method here. 
+
+
+-------------------------------------Reading Characters------------------------------------------
+
+Reading a file one character at a time.
+
+Ex:
+	Scanner in = new Scanner(...);
+	in.useDelimiter("");
+
+Now, the "useDelimiter" returns a string consisting of a single character.
+
+
+Here's how you process the characters:
+
+	while (in.hasNext())
+	{
+		char ch = in.next().charAt(0);
+		-------Process ch-------
+	}
+
+
+---------------------------------------------Classifying Characters----------------------------------------
+
+The "Character" class has several useful methods for telling you what kind of character the character is. 
+
+Each of these methods has an argument of type "char" and returns a "boolean" value
+
+Ex:
+	Character.isDigit(ch)
+
+This returns "true" if "ch" is a digit ('0'....'9') or a digit in another writing system
+	It returns "false" otherwise.
+
+
+Other methods:
+
+	isDigit
+	isLetter
+	isUpperCase
+	isLowerCase
+	isWhiteSpace	- i.e. space, newline, tab
+
+
+-------------------------------------------------Reading Lines--------------------------------------------------------
+
+"nextLine" 	- reads entire lines 
+	
+Ex:
+	String line  = in.nextLine();
+
+Here, the next input line is placed into the string "line"
+
+You can take the line apart for further processing
+
+
+"hasNextLine" 	- returns TRUE if there is at least one more line in the input, 
+		FALSE when all the lines have been read
+
+		Make sure you call "hasNextLine" before calling "nextLine"
+
+---------
+
+Say we want to read through a file with population data.
+
+It contains lines like the following:
+
+	China 1330044605
+	United States 303824646
+	....
+
+If we use "next" to read word by word, and we encounter "United",
+	it'd be very hard for us to get our program to know that it needs to read
+	another word before reading the population count.
+
+Ex:
+	while (in.hasNextLine())
+	{
+		String line = nextLine();
+		----Process line-----
+	}
+
+Use the "isDigit" and "isWhiteSpace" methods to find out WHERE the NAME ENDS and the NUMBER STARTS
+
+	//Locate the first digit:
+	int i = 0;
+	
+	while (!Character.isDigit(line.charAt(i))) { i++;}
+
+	//Then extract the country name and publication
+	String countryName = line.substring(0, i);
+	String population = line.substring(i);
+
+	//Use "trim" to remove the spaces at the end of the country name
+	countryName = countryName.trim();
+
+	//Convert "population" string to number....
+	....refer to section below.......
+
+"trim" 	- returns the string with ALL WHITE SPACE at the beginning and at the end REMOVED
+
+
+--------------------------------------------------------Scanning a String-----------------------------------------------------
+
+Another approach to the above problem also works:
+	
+	Scanner lineScanner = new Scanner(line);
+	
+	String countryName = lineScanner.next();
+
+	//Add more words to "countryName" until number is encountered
+	
+	while(!lineScanner.hasNextInt())
+	{
+		countryName = countryName + " " + lineScanner.next();
+	}
+	int populationValue = lineScanner.nextInt();
+
+
+----------------------------------------------------Converting Strings to Numbers--------------------------------------------------
+
+Integer.parseInt	- Converts string into number
+
+Ex:
+	int populationValue = Integer.parseInt(population.trim());	//"population" is a String from earlier
+		
+	//populationValue is the integer representation of population
+	//NOTICE USE OF "trim" - READ BELOW WARNING
+
+Double.parseDouble	- converts a string containing FLOATING-POINT digits to its floating-point VALUE
+
+Ex:
+	//Suppose "input" is the string "3.95"
+	double price = Double.parseDouble(input);
+	
+	//price is the floating-point number representation of input: 3.95
+
+WARNING: Integer.parseInt and Double.parseDouble must NOT have ANY ADDITIONAL CHARACTERS other than
+	  DIGITS
+		  NOT EVEN SPACES!!
+	
+	That's why we use "population.trim()" as the parameter of ".parseInt", not just "population"
+
+
+-------------------------------------------------Avoiding Errors when Reading Numbers---------------------------------------------
+
+Point is:
+	ALWAYS use "hasNextDouble", "hasInt", "hasNext", etc.. when calling their corresponding 
+		"nextDouble", "nextInt", etc.. methods
+
+
+-----------------------------------------Mixing Number, Word, and Line Input-------------------------------------------------------
+
+IMPORTANT:
+		"nextInt" DOES NOT CONSUME a newline character, like "nextLine" does.
+		If "nextLine"is used after a "nextInt" during the processing of a line
+			- IT WILL RETURN AN EMPTY STRING
+
+		THEREFORE, DO THIS:
+
+			String countryName = in.nextLine();
+			int population = in.nextInt();
+			
+			in.nextLine());	//CONSUME THE NEWLINE BEFORE MOVING ON
+
+		The last call to "nextLine" consumes any remaining white space AND the newline character
+
+
+----------------------------------------------------------Formatting Output------------------------------------------------------------
+
+&-10s		- forms a left-justified string
+		- the "-" indicates that the string is placed on the LEFT,
+			 followed by sufficient spaces to reach a width of 10
+
+%10.2f		- formats a floating point number, also in a field 10 characters wide
+		- HOWEVER: the spaces appear to the left and the value to the RIGHT
+
+By default, the "printf" method lines up values to the right, to specify LEFT ALIGNMENT:
+		
+	System.out.println("%-10s%10.2f", items[i] + ":", prices[i]);
+
+Here, the "items[i] + ':'" is justified to the LEFT for a width of 10
+Then, the "prices[i]" is justified to the RIGHT for  its OWN total width of 10
+
+
+----Format Flags-----
+						      ----Examples----
+
+-	Left alignment				1.23 following be spaces
+0	Show leading zeroes			001.23
++	Show a plus sign for positive numbers		+1.23
+(	Enclose negative numbers in parentheses	(1.23)
+,	Show decimal separators			12,300
+^	Convert letters to uppercase			1.23E+1
+
+
+---------Format Specifier---------
+
+%-10s and %10.2f are called FORMAT SPECIFIERS
+
+Format specifiers have the following structure:
+	
+	The first character is a "%"
+	
+	Next, there are three optional "flags" that modify the format
+
+	Next is the FIELD WIDTH, the total number of characters in the field 
+		(including spaces used for padding)
+	    followed by an optional precision for floating-point numbers (refer to other set of notes)
+	
+	Ends with the FORMAT TYPE,
+		 such as "f" for floating-point values
+		or "s" for strings, etc... 
+			(refer to list below)
+
+---Format Types----
+
+d	Decimal Integer			123
+
+f	Fixed floating-point		12.30
+
+e 	Exponential floating-point		1.23e+1
+
+g	General floating-point		12.3
+	(exponential notation is used for
+	very large or very small values)
+
+s	String				Tax:

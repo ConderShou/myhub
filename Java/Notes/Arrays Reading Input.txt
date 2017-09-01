@@ -1,0 +1,51 @@
+--------------------Known Number of Inputs-------------------------
+
+If you know how many inputs the user will supply, then we place them an array as such:
+
+	double[] inputs = new double[NUMBER_OF_INPUTS];
+	
+	for (i = 0; i < inputs.length; i++)
+	{
+		inputs[i] = in.nextDouble();
+	}
+
+
+HOWEVER, this technique DOES NOT work if you need to read a sequence of UNKOWN length.
+
+
+----------------------Unknown Number of Inputs---------------------------------
+
+In that case, add inputs to an array until the END of the input has been reached
+
+	int currentSize = 0;
+	
+	while (in.hasNextDouble() && currentSize < inputs.length)
+	{
+		inputs[currentSize] = in.nextDouble();
+		currentSize++;
+	}
+
+Now "inputs" is a partially filled array, with "currentSize" set to the number of inputs.
+
+
+-------------------------Growing Array to Hold All Inputs--------------
+
+double[] inputs = new double[INITIAL_SIZE];
+int currentSize = 0;
+
+while (in.hasNextDouble())
+{
+	// This if statement grows the array if it has been completely filled
+
+	if (currentSize >= inputs.length)
+	{
+		inputs = Arrays.copyOf( inputs, 2 * inputs.length);
+	}
+
+	inputs[currentSize] = in.nextDouble();
+	currentSize++;
+}
+
+THEN, when you need to discard any EXCESS elements:
+
+inputs = Arrays.copyOf( inputs, currentSize );

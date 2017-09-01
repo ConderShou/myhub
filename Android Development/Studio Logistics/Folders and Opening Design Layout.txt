@@ -1,0 +1,37 @@
+Above the left window with all the files and folders is the 'Android' drop down box.
+
+	Select 'Project' to go to ALL the files of the project
+
+
+In the 'app' folder:
+	
+	You should NEVER need to change anything in the 'build' folder 
+	
+	'libs' contains any optional libraries of code we might need in our project
+
+	'test' and 'androidTest' are used for different kinds of testing - we'll get into it later
+
+	'main' has all the files that we'll be WORKING with
+
+	
+	Inside 'main':
+
+		'java' has all our java files
+
+		'res' = resources, everything we can see or hear in the app
+			Contains the layout information of the app in the phone as well
+
+		Inside 'res':
+
+			Inside 'layout':
+					'activityfunfacts.xml'
+
+This xml file is for DESIGNING screen layouts
+
+
+SOMETIMES, however, we want to modify the CODE DIRECTLY rather than use the DESIGN view
+
+
+To modify the CODE DIRECTLY:
+	
+	Click the 'text' tab at the bottom of the page

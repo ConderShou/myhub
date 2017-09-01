@@ -1,0 +1,93 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf810
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww33400\viewh21000\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \
+\'97google_map.js\'97\
+\
+
+\b import React, \{ Component \} from 'react';\
+\
+class GoogleMap extends Component \{
+\b0 \
+\
+\
+    //---- Intro to Integrating with Third Party Libraries---\
+    // ( more later )\
+\
+    //Called immediately after the component has been rendered onto the screen\
+\
+    //Google maps is going to take the div and render an embedded map into it\
+   
+\b  componentDidMount() \{\
+        new google.maps.Map(this.refs.map, \{\
+            zoom: 12,\
+            center: \{\
+                lat: this.props.lat,\
+                lng: this.props.lon\
+            \}\
+        \})\
+    \}\
+    render() \{\
+
+\b0 \
+        //Now, anywhere in this component, I can refer to this HTML element with 'this.refs.map'\
+        
+\b return <div ref="map" />;\
+    \}\
+\}\
+\
+export default GoogleMap;\
+\
+\
+\
+
+\b0 \'97weatherlist\'97\
+\
+
+\b renderWeather(cityData) \{\
+\
+ \'85.\
+
+\b0 \
+//ES6 syntax\
+\
+        //Get respective properties and name them like so\
+\
+        // lon = cityData.city.coord.lon;\
+        // lat = cityData.city.coord.lat;\
+\
+       \ul  
+\b const \{ lon, lat \} = cityData.city.coord;\ulnone \
+\
+        return (\
+
+\b0 \
+            // Remember that the key should be placed in the parent-most html of the array element\
+           
+\b  <tr key=\{id\}>\ul \
+                <td><GoogleMap lon=\{lon\} lat=\{lat\} /></td>\
+\ulnone                 <td><SparkChart data=\{temps\} color="orange" units="K"/></td>\
+                <td><SparkChart data=\{pressures\} color="green" units="hPa" /></td>\
+                <td><SparkChart data=\{humidities\} color="black" units="%"/></td>\
+            </tr>\
+            );\
+    \}\
+\
+\
+
+\b0 \'97style.css\'97\
+
+\b \
+
+\b0 /* Get first 'td' and get the child div of the first 'td' */
+\b \
+td:first-of-type, td:first-of-type > div \{\
+    height: 200px;\
+    width: 250px;\
+\}\
+\
+}

@@ -1,0 +1,31 @@
+class Vehicle {
+	var tires = 4
+	...
+	var currentSpeed: Double = 0
+	
+	init() {	//Every class has an 'init' WHETHER you DEFINE it OR NOT
+		print("I am the parent")
+	}
+
+	func drive(speedIncrease: Double) {
+		currentSpeed += speedIncrease * 2
+	}
+}
+
+class SportsCar: Vehicle {	//Subclass for Vehicle
+
+	override init() {
+		super.init() 
+		print("I am the child")
+		make = "BMW"
+		model = "3 series"
+	}
+
+	override func drive (speedIncrease: Double) {
+		currentSpeed += speedIncrease * 3
+	}
+}
+
+let car = SportsCar()		//Prints the parent statement, then the child statement
+			// super.init() calls the 'init' of the Parent class
+			//You will probably ALWAYS call 'super.init()'

@@ -1,0 +1,30 @@
+----------------------------------------Using Array Algorithms with Array Lists-------------------------------------------
+
+The array algorithms discussed earlier can be converted to array lists simply by using the array list METHODS
+	instead of the array syntax
+
+For example, to find the largest element in an array:
+
+	Regular array:
+
+		double largest = values[0];
+	
+		for (int i = 1; i  < values.length; i++)
+		{
+			if (values[i] > largest)
+			{
+				largest = values[i];
+			}
+		}
+
+	Array list:
+
+		double largest = values.get(0);
+		
+		for (int i =1; i < values.size(); i++) 
+		{
+			if (values.get(i) > largest)
+			{
+				largest = values.get(i);
+			}
+		}

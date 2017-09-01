@@ -1,0 +1,7 @@
+1. Automatic/Local/Stack
+
+2. Static
+
+	- Global static:	extern
+	- file static
+	- function static

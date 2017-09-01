@@ -1,0 +1,123 @@
+
+One of the best third-party sites:
+
+	google.com/fonts
+
+
+----------------------------------------------------------------
+
+In Google:
+
+	Copy the link under 'Embed Font'
+		(The font link specified for WEBSITE use)
+
+
+------------
+
+In index.html:
+
+	Paste just BELOW the link for 'normalize.css'
+	
+	but just ABOVE the link for your CUSTOM CSS 
+		(i.e. 'main.css')
+
+Referring to the Cascading Rule, our custom CSS will be referring to the custom font, so in order for it
+to see the font link, the font link must come BEFORE the Custom CSS link is called
+
+
+-----------
+
+Google actually states how to integrate fonts into CSS.
+
+
+In main.css:
+
+
+h1 {
+    font-family: 'Changa One', sans-serif;
+}
+
+
+In case 'Chango One' is no longer available in Google Fonts, or in case Google Fonts goes down,
+
+	it will use the generic 'sans-serif' font instead as a BACKUP.
+
+
+-----
+
+h1 {
+    font-family: 'Tangerine', sans-serif;
+    margin: 15px 0;
+    font-size: 1.75em;
+}
+
+
+The margin will be 15 pixels above and below, and 0 pixels on the left and right
+
+1em = the current default font size of the browser (usually 16 pixels)
+	
+	We're adjusting font size relative to the default size, or in this case, 16 pixels. 
+	
+	1.75 is basically the multiplier. 
+
+This is called a RELATIVE UNIT.
+
+
+---Font Weight-----
+
+h1 {
+.....
+  font-weight: normal;  
+}
+
+
+Headlines are BOLD by DEFAULT.
+
+This will therefore UNBOLD our headline. 
+
+
+----Line Height-----
+
+h1 {
+   ...
+   line-height: 0.8em;
+}
+
+
+Determines the amount of space between each line of text
+
+
+----More on Margin----
+
+h2 {
+...
+    margin: -5px 0 0;
+    ...
+}
+
+First value: Top
+Second value: Left and Right
+Third value: Bottom
+
+We're bringing elements closer together. 
+
+
+----------------Body and Specification---------------------
+
+body {
+  font-family: 'Open Sans', sans-serif;
+}
+
+We apply Open Sans to the whole body, BUT because we specify another font for the FIRST HEADLINE,
+Cascading Rule says we will override the Headline font with 'Changa One'
+
+
+----Padding-Top----
+
+footer {
+....
+ padding-top: 50px;
+....
+}
+
+Specificies that this is padding for the top. 

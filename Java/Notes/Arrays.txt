@@ -1,0 +1,118 @@
+------------Arrays----------------------
+
+a[0] 	- Refers to the first position of the array "a" (yes, unlike Matlab, Java includes the 0th index - like strings)
+
+An array can be made of any length, BUT once defined, the length at the declaration remains fixed (not like Matlab)
+
+---Declaring arrays----
+
+int[] 	anArrayofInts;		
+double[] 	anArrayofDoubles;
+boolean[] 	anArrayofBooleans;
+String[] 	anArrayofStrings;
+
+byte...
+short...
+long...
+float...
+char...
+
+	- Write type of element with the open/close square brackets
+	- Then write the name we have chosen for our array
+
+		-Notice that the base type can be any type
+
+	- All elements of an array have to be the same type
+
+---Creating arrays-----
+
+a = new int[4];		- creating the amount of space in the array
+
+int[] a = new int[4];		- Declaring and creating in one line like such if we so wish
+
+---Storing values----
+
+a[0] = 2;			- Assigning values individually to each index of the array
+a[1] = 0;
+a[2] = 1;
+a[3] = 2*a[0] + a[2];
+
+int[] a = {2, 0, 1, 5};		-  Declaring, creating, and initializing an array all at once
+
+-------------------------------
+
+An array of char and a string are NOT the same thing
+	But we can convert between two fairly straightforwardly
+
+
+-----------------Printing Arrays-------------------------
+
+Must convert to String first.
+
+System.out.println(Arrays.toString(arrayOrArrayElement));
+
+
+---Multi-dimensional arrays---------
+
+It is possible for an element of an array to also be an array.
+
+[[], [3]. [5, 6]]	- The arrays contained within the array need NOT have the same length or dimensions
+
+[[1,2], [3,4], [5,6]]
+
+[[1,2],
+ [3,4],
+ [5,6]]
+
+-------Example with Casting-------------
+
+Vehicle[] arrayV = {new Car(), new Car(), new Bike()};
+
+
+----------------------Partially Filled Arrays-----------------------
+
+Because we cannot change the size of an array at runtime, 
+	we must come up with a GOOD GUESS on the max number of elements we need to store
+
+Typically, only a part of the array will be occupied by actual elements.
+	- This is called a PARTIALLY FILLED ARRAY
+
+We must keep a COMPANION VARIABLE that COUNTS how many elements are ACTUALLY USED
+
+When we call the arary, we use this COMPANION VARIABLE to only go as far as WE NEED TO in the array
+
+Ex:
+	final int LENGTH = 100;
+	double[] values = new double[LENGTH];
+
+	int currentSize = 0;
+	Scanner in = new Scanner(System.in);
+	while (in.hasNextDouble())		- "if Scanner has a double value entered...."
+	{
+		if (currentSize < values.length)
+		{
+			values[currentSize] = in.nextDouble();
+			currentSize++;
+		}
+	}
+
+ (NOTE:)  for (int i = 0; i < currentSize; i++)
+               {
+		System.out.println(values[i]);
+	}
+
+
+-------------------Object Arrays--------------------
+
+INSTEAD OF:
+	
+	BankAccount[] accounts = new BankAccount[10];
+
+You have to PHYSICALLY CREATE a NEW OBJECT for EACH ARRAY ELEMENT:
+
+	for (int i = 0; i < 10; i++)
+	{
+		accounts[i] = new BankAccout();
+	}
+
+

@@ -1,0 +1,63 @@
+Word misspelled at line #1: twiec
+Suggested valid words:
+twice
+
+Word misspelled at line #2: iss
+Suggested valid words:
+hiss
+isms
+isis
+diss
+is
+kiss
+sis
+piss
+miss
+
+Word misspelled at line #2: withuot
+Suggested valid words:
+without
+
+Word misspelled at line #2: sens
+Suggested valid words:
+sense
+sen
+sends
+
+Word misspelled at line #2: certaiinty
+Suggested valid words:
+certainty
+
+Word misspelled at line #3: yse
+Suggested valid words:
+se
+yes
+ye
+
+Word misspelled at line #3: cnat
+Suggested valid words:
+nat
+cat
+cant
+
+Word misspelled at line #3: bbut
+Suggested valid words:
+but
+
+Word misspelled at line #3: theer
+Suggested valid words:
+thee
+there
+
+Word misspelled at line #4: spelllchecker
+Suggested valid words:
+
+Word misspelled at line #5: daer
+Suggested valid words:
+dear
+dare
+
+Word misspelled at line #5: freinds
+Suggested valid words:
+friends
+

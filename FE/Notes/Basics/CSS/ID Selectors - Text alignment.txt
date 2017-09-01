@@ -1,0 +1,22 @@
+<a href="index.html" id = "logo">
+        <h1>Conder Shou</h1>
+        <h2>Developer</h2>
+        </a>
+
+
+- We added "logo" ID to the anchor element (which contains the HEADLINES)
+
+
+-------------------Text-align------------------
+
+#logo {
+	text-align: center;
+	margin: 0;
+}
+
+
+text-align: center;
+	
+	- Aligns text to CENTER
+
+	(Essentially aligning the HEADLINES)

@@ -1,0 +1,67 @@
+sqrt(2) *sqrt(2) - 2 does not precisely equal zero in the system.
+
+Instead, we test whether they are close enough.
+
+The threshold value is often called epsilon, commonly set to 10^-14
+
+Test the program:
+
+	final double EPSILON = 1E-14;
+	if (Math.abs(x-y) <= EPSILON)
+	{
+		// x is appoximately equal to y
+	}
+
+-------------------Comparing Strings------------------
+
+if (string1.equals(string2)) .....		- You must use this instead of "==" (the == tests if the strings are in the same memory location, which is useless for this)
+
+string1.compareTo(string2) < 0 			- compares lexographically
+				- If this condition is true, then string1 comes before string2 in the dictionary, alphabetically
+
+	If string1.compareTo(string2) > 0, then string1 comes after string2. 
+
+	If string1.compareTo(string2) == 0, then string1 and string2 are equal.
+
+In Java, alphabetical means:
+
+	Uppercase comes before lowercase: "Z" comes before "a"
+	Space character comes before all printable characters
+	Numbers come before letters
+	Check online to see ordering of punctuation marks
+
+----------------Comparing Objects-----------------------
+
+Rectangle box1 = new Rectangle(5, 10, 20, 30);
+Rectangle box2 = box1;
+Rectangle box3 = new Rectangle(5, 10, 20, 30);
+
+box1 == box2 is true.
+HOWEVER, box1 == box3 IS NOT TRUE, because these are still DIFFERENT OBJECTS, even though they have the SAME PROPERTIES. 
+
+box1.equals(box3)		- This tests if the CONTENTS of the objects are the same
+
+---------------Equals Method In General----------
+
+Be careful when using it.
+
+Each class has its own implementation of the equals method.
+
+For our own classes, we must supply our own appropriate "equals" method
+
+-------------------null---------------------
+
+An object reference have the special value "null" if it refers to no object at all or if a value has not been set.
+
+	String middleInitial = null;
+
+Use the "==" operator to test for null
+
+if (middleInitial == null) 
+{
+	...
+}
+
+NOTICE: a null reference is NOT THE SAME as an empty string ""
+	- An empty string has a valid length of 0
+	- Null indicates that a string variable refers to NO STRING AT ALL

@@ -1,0 +1,478 @@
+------------------------Range------------------------
+
+- The 'range' form is often used to specify a list of numbers
+
+- Often used for ITERATION purposes
+
+- Range evaluates to ITSELF
+
+- Range is the first example of: 'lazy evaluation'
+	- MAJOR theme in Python 3.X
+
+------------------------
+
+
+To see the corresponding list, use the LIST function.
+------------------------
+
+range(0, 10)
+
+O:
+
+range(0, 10)
+
+- 
+
+list(range(0, 10))
+
+O:
+
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+
+NOTE: range arguments are INCLUSIVE/EXCLUSIVE
+	(There's no 10 in the list above)
+
+
+Range with just one input assumes 0 as the starting value
+------------------------
+
+list(range(10))
+
+O:
+
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+
+The 3rd argument is the INCREMENT value
+------------------------ 
+
+list(range(0, 10, 2)
+
+O:
+
+[0, 2, 4, 6, 8]
+
+
+Can go backwards too
+------------------------
+
+list(range(12, 0, -3))
+
+O:
+
+[12, 9, 6, 3]
+
+
+NOTE: There's no 0 in the list. INCLUSIVE/EXCLUSIVE STILL APPLIES
+
+
+LEN forces evaluation(?whats this mean?) and returns the LENGTH of a collection object
+------------------------
+
+len(range(12, 0, -3))
+
+O:
+
+4
+
+
+ORDER MATTERS for lists
+------------------------
+
+[1, 2, 3] == [2, 1, 3]
+
+O:
+
+False
+
+-
+
+[2, 1, 3] == [2, 1, 3]
+
+O:
+
+True
+
+
+DUPLICATES are ok in a list
+------------------------
+
+[1, 1, 2, 3]
+
+O:
+
+[1, 1, 2 , 3]
+
+
+In Python, you can write DIRECTLY into a list
+------------------------
+
+x = [0, 111.111, "zap", True, None]
+y = x
+x
+
+O:
+
+[0, 111.111, "zap", True, None]
+
+
+Note: The assignment state DOES NOT PRINT the right hand side value
+
+
+Variable BY ITSELF PRINTS its value
+------------------------
+
+x
+
+O:
+
+[0, 111.111, "zap", True, None]
+
+
+
+-----------------------Len, Count, Reverse Functions'----------------------
+
+
+LEN returns the length of a list
+------------------------
+
+len(x)
+
+O:
+
+5
+
+
+COUNT method returns a value - DOES NOT MODIFY the list
+------------------------
+
+- Search for the number of '2343''s
+- the 'dot syntax' is used to invoke the class list 'count method'
+
+x.count(2343)
+
+O:
+
+0
+
+
+REVERSE returns None (a HINT that it modifies the list)
+------------------------
+
+x.reverse()
+
+O: 
+
+None
+
+-
+
+x
+
+O:
+
+(Basically returns the list but REVERSED in order) - [None, True, 'zap', 111.111, 0]
+
+
+y IS ALSO AFFECTED --> It's REFERENCING the 'x' variable, so it SEES the REVERSE
+------------------------
+
+y
+
+O:
+
+(The reversed list of 'x' that we just returned earlier) - [None, True, 'zap', 111.111, 0]
+
+
+------------------------------------Accessing List Elements---------------------
+
+
+The list at this state (after being reversed from earlier):
+
+	[None, True, 'zap', 111.111, 0]
+
+
+Can index into the list LIKE AN ARRAY and retrieve the element
+------------------------
+
+x[2]
+
+O:
+
+'zap'
+
+
+NEGATIVE index STARTS from the LAST list element (-2, -3, etc.. follow suit to the next element in that same direction)
+------------------------
+
+x[-1]
+
+O:
+
+0
+
+
+
+----------------Slicing--------------
+
+
+SLICING a list - INCLUSIVE/EXCLUSIVE
+------------------------
+!!NOTE: Slices ALWAYS COPY the original list
+
+
+x[0:2]
+
+O:
+
+[None, True]
+
+
+Missing the second index means to CONTINUE slicing until the END of the list (INCLUDING the END of the list)
+------------------------
+
+x[3:]
+
+O:
+
+[111.111, 0]
+
+
+Missing first index means to START slicing at the BEGINNING of the list
+------------------------
+
+x[:2]
+
+O:
+
+[None, True]
+
+
+Can add an INDEX INCREMENT to a slice as a 3rd 'argument'
+	- Just ADD the increment to the starting index and so forth 
+	- Indices 0, 2, and 4 are referenced in this case
+------------------------
+
+x[0:8:2]
+
+O:
+
+[None, 'zap', 0]
+
+
+------------------------Copying a list----------------------
+
+Index missing on BOTH sides of the ':" - slice the WHOLE list
+	- This basically means to COPY the list
+------------------------
+
+x2 = x[:]
+
+print(x2)
+print(x2.reverse())		- Remember: this returns 'None'
+print(x2)			- Reversing 'x2' DOES NOT modify 'x' because it's referencing a COPY of x (slice = copies)
+print(x)
+
+O:
+
+[None, True, 'zap', 111.111, 0]
+None
+[0, 111.111, 'zap', True, None]
+[None, True, 'zap', 111.111, 0]
+
+
+-------------------------Setting List Elements----------------------
+
+x[0] = -1
+x
+
+O:
+
+[-1, True, 'zap', 111.111, 0]
+
+
+Setting SLICES
+----------------------
+
+x[3:5] = [2**8, False]
+x
+
+O:
+
+[-1, True, 'zap', 256, False]
+
+
+----------------------Finding an Element in the List--------------------
+
+
+IN operator: Is an element in the list?
+--------------------
+
+!!IMPORTANT!!: Uses '==' to test
+
+['zap' in x, 55 in x]
+
+O:
+
+[True, False]
+
+
+INDEX: Where is the element?
+--------------------
+
+x.index('zap')
+
+O:
+
+2
+
+-
+
+x.index("not in there")
+
+O:
+
+ValueError 	
+....
+....
+
+
+-------------------------------Adding/Subtracting Elements to/from Lists--------------------
+
+'+' CONCATENATES lists
+	- What '+' ACTUALLY does DEPENDS on the TYPE of its arguments
+---------------
+
+x = list(range(5))
+x + x
+
+O:
+
+[0, 1, 2, 3, 4, 0, 1, 2, 3, 4]
+
+-
+
+x
+
+O:
+
+[0, 1, 2, 3, 4]
+
+	NOTE: 'x' is not ITSELF modified 
+
+
+Add ONE element at the END
+---------------
+
+x.append([22,33])
+x
+
+O:
+
+[0, 1, 2, 3, 4, [22, 33]]
+
+
+Add N elements at the END
+---------------
+
+x.extend([22, 33])		- Note that although it uses BRACKETS here too, it appends EACH of the elements to the end
+x
+
+O:
+
+[0, 1, 2, 3, 4, [22, 33], 22, 33]
+
+
+Add ONE element ANYWHERE
+---------------
+
+-	insert(index, element)
+
+x.insert(2, 5)
+x
+
+O:
+
+[0, 1, 5, 2, 3, 4, [22, 33], 22, 33]
+
+
+POP method REMOVES and RETURNS a list element
+	- By DEFAULT, it's the LAST element
+---------------
+
+print(x.pop())
+print(x)
+
+O:
+
+33
+[0, 1, 5, 2, 3, 4, [22, 33], 22]
+
+
+You can SPECIFY which INDEX to POP
+---------------
+
+print(x.pop(2))
+print(x)
+
+O:
+
+5
+[0, 1, 2, 3, 4, [22, 33], 22]
+
+
+REMOVE first '4' found
+---------------
+
+x.remove(4)
+print(x)
+
+O:
+
+[0, 1, 2, 3, [22, 33], 22]
+
+
+-----------------------Sorting---------------
+
+
+sort MODIFIES the list
+---------------
+
+x = [34,3,5,22]
+x.sort()
+x
+
+[3, 5, 22, 34]
+
+
+PRESERVE the original list by using 'SORTED'
+	- Sorted makes a COPY of the input list
+---------------
+
+x = [34, 3, 5, 22]
+y = sorted(x)
+[x, y]
+
+O:
+
+[[34, 3, 5, 22], [3, 5, 22, 34]]
+
+
+------------------------------------Dir----------------------------
+
+- DIR shows the methods defined on a class
+
+- __XYZ__ are "special methods" - IGNORE them for now
+
+
+dir(list)
+
+O:
+
+['__add__',
+ '__class__',
+ '__contains__',
+ '__delattr__',
+
+        .......

@@ -1,0 +1,225 @@
+Used especially commonly in standard C++ libraries, and is the general sorting in the Java library for primitive types.
+
+Very fast.
+
+Average running time: 	O(NlogN)
+
+Worst case:		O(N^2)
+	- This can be exponentially unlikely with little effort
+
+If we combine quicksort with heapsort, we can achieve quicksort's fastest running time on ALMOST ALL inputs, 
+	with heapsort's O(NlogN) WORST-CASE running time
+
+Also a divide-and-conquer recursive algorithm
+
+
+------------------------------------------Classic Quicksort------------------------------------------
+
+To sort an array S.
+
+1. If the number of elements in S is 0 or 1, then return.
+
+2. Pick any element 'v' in 'S'. This is called the PIVOT.
+
+2. Partition S - {v} (the remaining elements in S) into 2 disjoint groups:
+	
+	 S1 = Smaller than the chosen item
+	 S2 = Larger than chosen item
+
+3. Return {quickSort(S1) followed by 'v' followed by quickSort(S2)}
+	(Recursively sorting the first and second set)
+
+Result: A sorted arrangement of the original list
+
+NOTE: Implementing 2 and 3 are what makes this sorting algorithm different
+	We discuss it below.
+
+If the list contains large numbers of duplicates with relatively few distinct items, 
+	then the performance is EXTREMELY GOOD
+
+
+--------------------Picking the Pivot---------------------
+
+Even though the algorithm works no matter which element is picked, some choices are obviously better than others
+
+DO NOT pick the FIRST element
+DO NOT pick the LARGER of the FIRST TWO
+
+	They either all go into S1 or all into S2.
+
+---Safe Maneuver---
+
+Safe to choose the pivot RANDOMLY
+
+This is perfectly safe. 
+
+
+----Median of Three Partitioning---
+
+The median of a group of N numbers is the [N/2]th largest number.
+
+BEST CHOICE of Pivot:	MEDIAN of an array
+
+Unfortunately: 
+		Hard to calculate
+		Slows down quicksort CONSIDERABLY
+
+Instead:
+	Use as the pivot the MEDIAN of the LEFT, RIGHT, and CENTER elements
+		(the array will be unsorted, so this is just as good as picking randomly)
+
+
+----------------Partitioning Strategy--------------
+
+'Large' and 'small' will be used with respect to the pivot.
+
+1. Swap pivot element with the last element to get it out of the way
+
+2. The counter 'i' starts at the FIRST element, the counter 'j' starts at the NEXT-TO-LAST element
+
+3. While 'i' is to the LEFT of 'j', we move 'i' RIGHT - SKIPPING OVER elements that are SMALLER than pivot 
+	-Stops at a value greater than pivot
+
+4. We move 'j' LEFT - SKIPPING OVER elements that are LARGER than the pivot
+	- Stops at a value smaller than pivot
+
+5a. When BOTH 'i' and 'j' have STOPPED, 'i' is pointing at a large element, and 'j' is pointing at a small element
+
+5b. In another scenario: BOTH 'i' and 'j' STOP if one of the counters reach an element EQUAL to the pivot.
+
+6. If 'i' is to the left of 'j', those elements are swapped. (EVEN IF one of the elements is EQUAL)
+
+	The effect is that a large element is pushed to the right, and a small element to the left. 
+
+7. After 'i' and 'j' cross, NO SWAP is performed. 
+
+8. Now, SWAP PIVOT with 'i'
+
+
+----Small Arrays-----
+
+DO NOT use quicksort for SMALL ARRAYS
+
+Use Insertion sort or some other sorting algorithm efficient for small arrays
+
+A good cutoff for the size of the array is 10, and anywhere between 5 and 20 would work. 
+
+--------------------------------Actual Quicksort Routines----------------------------------
+
+Ex:
+	/**
+	 * Quicksort Algorithm
+	 * @parm a an array of Comparable items
+	 */
+	public static <AnyType extends Comparable<? super AnyType>>
+	void quicksort( AnyType[] a )
+	{
+		quicksort( a, 0, a.length - 1 );
+	}
+
+	/**
+	 * Return median of left, center, and right.
+	 * Order these and hide the pivot.
+	 */
+	private static <AnyType extends Comparable<? super AnyType>>
+	AnyType median3( AnyType[] a, int left, int right )
+	{
+		int center = ( left + right ) / 2;
+		
+		      //Better to sort the a[ left ], a[ right ], and a[ center ]
+ 		      // smallest winds up in a[ left ], largest in a[ right ], median in a[ center ]
+		if( a[ center ].compareTo( a[ left ] ) < 0 )		
+			swapReferences( a, left, center );
+		if( a[ right ].compareTo( a[ left ] ) < 0 )
+			swapReferences( a, left, right );
+		if( a[ right ].compareTo( a[ center ] ) < 0
+			swapReferences( a, center, right );
+
+		      // Place pivot at position right - 1
+		swapReferences( a, center, right - 1 );
+		
+		return a[ right - 1 ];
+	}
+
+
+----NOTE on the Quicksort Routine Below-----
+
+'i and 'j' are initialized to 1 past their correct values to avoid having to consider any special cases
+
+Sometimes the 'swapReferences( a, i, j )' is written explicitly for speed purposes 
+	(helps to compile this code inline)
+
+The for loop shown is the reason why quicksort is so fast
+	- It's just an increment/decrement, a test, and a jump
+
+
+---Ex---
+
+	/**
+	   * Internal quicksort method that makes recursive calls
+	   * Uses median-of-three partitioning and a cutoff of 10
+	   * @param a an array of Comparable items
+	   * @param left the left-most index of the subarray
+	   * @param right the right-most index of the subarray
+	*/
+	private static <AnyType extends Comparable<? super AnyType>>
+	void quicksort( AnyType[] a, int left, int right )
+	{
+		if( left + CUTOFF <= right )
+		{
+			AnyType pivot = median3( a, left, right );
+		
+			     //Begin partitioning	
+			int i = left, j = right - 1;
+	
+			for( ; ; )
+			{
+				while( a[ ++i ].compareTo( pivot ) < 0 ) { }	//Do not have i++ and j-- within the body of the while loop instead. 
+				while( a[ --j ].compareTo( pivot ) > 0 ) { }	//   This causes an infinite loop when a[ i ] = a[ j ] = a[ pivot ]
+				if( i < j )
+					swapReferences( a, i, j );
+				else
+					break;
+			}
+			
+			swapReferences( a, i, right - 1 );	//Restore pivot
+
+			quicksort( a, left, i - 1 );	//Sort small elements
+			quicksort( a, i + 1, right );	//Sort large elements
+
+		}
+		else 	//Do an insertion sort on the subarray
+			insertionSort( a, left, right );
+	}
+
+
+-----------------------Analysis----------------------------
+
+The running time of quicksort = running time of the 2 recursive calls + linear time spent in partition
+	
+The pivot selection takes constant time
+
+
+------Worst Case------
+
+O(N^2) = Worst-case bound for quicksort
+
+
+------Best Case-------
+
+O(NlogN)
+
+
+-----Average Case-----
+
+O(NlogN)
+
+
+-------------QuickSelect(???????)----------------------
+
+
+
+
+
+
+

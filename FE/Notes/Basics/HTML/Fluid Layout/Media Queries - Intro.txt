@@ -1,0 +1,74 @@
+Using media queries allows us to adjust the page layout based on the width of the page
+
+Each media query we add is referred to as a BREAK POINT.
+
+	This means our layout can only be stretched so far before it doesn't look good anymore
+
+	These break points may be based on the screen resolutions of popular devices
+
+	Add in a media query AFTER determining what the break points are
+
+
+------------------
+
+Creating new file:	responsive.css
+
+
+----In index.html----
+
+Right after:      <link rel="stylesheet" href="css/main.css">
+    
+Place in: 	        <link rel="stylesheet" href="css/responsive.css">
+
+
+NOTE:     We need to do this for ALL of our HTML files
+
+
+-------------------------------Media Query-----------------------
+
+Media queries use a special CSS syntax called a CSS RULE.
+
+Inside each media query rule, we'll add additional CSS that will only apply if the conditions of our media query are TRUE.
+
+
+--In responsive.css---
+
+@media screen and (min-width: 480px) {
+
+}
+
+
+"Screen" - we're targetting digital screens when the webpage is printed out (as opposed to print media)
+
+'and' - joins 'screen' and the statement inside the parentheses
+
+'min-width: 480px'	- if the screen width is any larger than 480 pixels, then this condition is true
+	
+	- 480 pixels is a common size for SMART PHONES in landscape mode
+	- THEREFORE, this condition applies to TABLETS and DESKTOPS (or very large smartphones)
+
+
+Both 'screen' and 'min-width: 480px' must be TRUE in order for the CSS we're about to type within the curly braces
+	to APPLY
+
+The CSS within can be any CSS code that you would regularly write. 
+
+
+-----Query for Large Tablets and Normal Size Desktops-----
+
+Cutoff is at about 660 pixels.
+
+----In responsive.css---
+
+	@media screen and (min-width: 660px) {
+		body {
+			//insert CSS 
+		}		
+	} 
+
+
+***NOTE*****
+	Following the Cascading Rule in CSS, this larger min-width media query is written AFTER the min-width 480px
+	media query. The 660px will OVERRIDE the 480 one.  
+	
+	

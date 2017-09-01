@@ -1,0 +1,12 @@
+ionic start chapter2
+
+	Creates a new ionic project titled "chapter2"
+
+ionic serve
+	
+	Run app in the browswer (initial development)
+
+ionic run ios (or android/browser)
+
+	Run on device or emulator
+

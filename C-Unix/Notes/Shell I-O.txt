@@ -1,0 +1,108 @@
+C standard library automatically provides every running program with 3 I/O channels:
+
+	stdin	(standard input):
+		- incoming character stream, normally from keyboard
+
+	stdout (standard output):
+		- outgoing character stream, normally to terminal stream
+		- buffered until newline comes or when buffer is filled
+			(not sent to screen until newline character is sent out)
+
+	stderr (standard error):
+		- outgoing character stream, normally to terminal screen
+		- unbuffered - immediately sent to destination
+
+Must #include <stdio.h>
+
+------stderr--------------
+
+	fprintf(stderr, "hello);
+
+Better for debugging
+
+
+---Redirection---
+
+Can redirect the input/output from/to a file
+
+
+./isort	< file_containing_a_number
+
+	- INPUT redirection
+	- Can have 'stdin' come from file rather than keyboard
+	- Contents of the file on THE RIGHT of the operator servers as the STANDARD INPUT of the LEFT argument 	
+
+	Ex: (drawing from the 'hi.txt' example below'
+		
+		cat < hi.txt 	- prints "hello world" to the console (which is the function of cat)
+
+./isort > my_sorting_result_file
+
+	- 'stdout' can go to a file rather than screen
+	- redirects standard output of the LEFT argument TO the RIGHT argument
+
+	Ex: echo "hello world" > hi.txt	
+		will write the words "hello world" to a file called 'hi.txt'
+
+./myprogram 2> myerrors
+
+	- '2>' redirects 'stderr'
+
+./myprogram >> myoutput_file_of_multiple_runs
+./myprogram 2>> myerrors_of_multiple_runs 
+
+	- Use '>>' to APPEND to an existing file	
+	- Notice that the '2' outputs the errors, 'stderr'
+	- '>' REWRITES the file
+
+./myprogram > myoutput_and_errors 2>&1
+
+DOES NOT WORK LIKE THIS:	./myprogram 2>&1 > my_output_and_errors (ORDER MATTERS)
+
+	- '2>&1' causes 'stderr' to go to the same place that 'stdout' is going to
+
+Note the valgrind command and how it uses this:
+
+	valgrind --leak-check=yes ./my_program >> README.txt 2>&1
+
+----------------PRACTICE---------------
+
+Try and Predict & then Test:
+
+[1] $ cat myfile.c 
+     [2] $ cat < myfile.c 
+     [3] $ cat myfile.c > cat
+     [4] $ cat myfile.c > myfilecopy.c
+     [5] $ cat myfile.c >> myfilecopy.c
+     [6] $ valgrind ./myprogram 2> myerrors
+     [7] $ valgrind ./myprogram > myoutput
+     [8] $ valgrind ./anotherprogram 2>> myerrors
+     [9] $ valgrind ./anotherprogram >> myoutput
+    [10] $ valgrind ./myprogram > ALLthethings 2>&1
+    [11] $ valgrind ./anotherprogram >> ALLthethings 2>&1
+
+-----Formatting------
+
+Read 153-154 in K&R. Make sure to understand the two statements below:
+
+printf("%-15.10s", "hello, world");
+sscanf("25 Dec 1988", "%d %s %d", &day, month, &year);
+
+
+--------size_t--------
+
+'malloc' expects its parameters in this form.
+
+Certain file operations willa lso return then number of bytes read in this file form.
+
+size_t 	- an UNSIGNED INTEGER type
+
+	(An integer that CAN'T represent NEGATIVE values)
+
+size_t x = 5;
+size_t y  = 3;
+
+int z = y - x;	//This DOES NOT WORK
+
+
+

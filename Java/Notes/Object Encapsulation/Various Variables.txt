@@ -1,0 +1,68 @@
+Ex:
+
+public class Car {
+	private int gas;
+	...
+	public Car() {gas=0;}
+	public int getGas() {return gas;}	- Even when we want to freely set variables and get the value, we should still make the variables private
+						THEN we define public methods to set the variables and get the values
+	public void setGas(int g) {gas = g;}
+	...					
+	}
+
+----------------------------Instance variables i.e. this.gas---------------------------------
+
+Use keyword "this" to refer these kinds of variables
+They get created for every object instantiated from the class but each object might have a different value stored in that variable. 
+Ex:
+
+	public class Car {
+		private int gas;
+		...
+		public Car () {gas = 0;}
+		public int getGas() {return gas;}
+		public void setGas(int gas) {this.gas = gas;}	- Sometimes we should name the parameter of the "set" method (i.e. setGas) with the same name as the instance variable
+				- Here, the "gas" on the right refers to the parameter defined in "setGas"
+				        and "this.gas" refers to the gas defined earlier as private in the class
+		...	
+		}
+
+----------Class variables------------
+
+
+Ex:
+
+	public class Car {
+		static int noWheels = 4;		- These attributes in a class are a common value for ALL objects IN the class
+				- However, these variables don't get created for every object instantiated from the class.
+					They exist only once for all the objects and can be changed.
+						All objects SHARE the same "noWheels" variable.
+							!!! When one method changes the value of "noWheels", it changes "noWheels" for all other methods as well
+		....
+	}
+
+
+	Alt Ex:
+
+		public class BankAccount
+		{
+			private double balance;
+			private int accountNumber;
+			private static int lastAssignedNumber = 1000;
+			public BankAccount()
+		{
+			lastAssignedNumber++;
+			accountNumber = lastAssignedNumber;
+		}
+		. . .
+		}
+
+	
+Ex:
+	public class Car {
+		static final int NOWHEELS=4;		- With "final", this variable CANNOT be changed. They can only be assigned (given a value) ONCE - aka the first time they're defined.
+						- It's convention to write ALL CAPS with these variable names
+		...
+	}
+
+We can do these things with class and instance variables.

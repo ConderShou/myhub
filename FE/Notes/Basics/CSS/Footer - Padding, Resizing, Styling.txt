@@ -1,0 +1,60 @@
+nav a {
+	font-weight: 800;
+	padding: 15px 10px;
+}
+
+
+Font-weight can be set to NORMAL or BOLD.
+
+	It can also be set to a specific number
+
+***Adding padding on ALL sides of our links: 
+	Allowing our CLICKS to hit the links EASIER with a mouse or a touch screen device
+	(Padding area = target area)
+
+	This padding also applies to EACH text/area/space that has a link embedded in it
+		(The navigation tabs are now spaced out)
+
+
+---------Stying Footer-------
+
+Making the social media icons less prominent
+
+****NOTE****
+
+	Creating the images at twice the size and resizing them downward using CSS
+		allows the pixels to still be there for HIGH RES displays
+
+
+In index.html:
+
+	<a href="http://twitter.com/nickrp"><img src="img/twitter-wrap.png" alt="Twitter logo" 
+		class="social-icon"></a>
+	<a href="http://facebook.com/conshou"><img src="img/facebook-wrap.png" alt="Facebook Logo" 
+		class="social-icon"></a>
+
+Here we use classes.
+	
+	We could've also used: footer a {....} 
+
+
+In main.css:
+
+	.social-icon {
+		width: 20px;
+		height: 20px;
+		margin: 0 5px;
+	}
+
+Width is set to 20pixels.
+Height is set to 20 pixels.
+	(The icons are originally 40 pixels, we resize them down to half the size)
+Margin of 5 pixels on the LEFT and RIGHT (separation between the two icons)
+
+
+We can also select the 'social-icon' class with:
+	
+	footer a img.social-icon {
+		....
+	}
+	 

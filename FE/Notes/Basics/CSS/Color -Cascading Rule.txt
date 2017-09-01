@@ -1,0 +1,22 @@
+<style></style> 		- We can write CSS within these tags to change the visual presentation of the HTML
+
+<style>
+
+	h1 {			- "h1" is an ELEMENT SELECTOR. It tells the browser which HTML element we would like to apply our styling to
+	       	color: blue;	- "color" is a PROPERTY. "blue" is a VALUE.	  
+	}
+</style>
+
+----------------The Cascading Rule of CSS-----------------
+
+<style>
+	footer {			
+		color: green;
+	}
+	footer {
+		color: orange;	- This second and MORE RECENT color command overrules the first color command. 
+	}				- Footer text is now orange. 
+</style>
+
+
+

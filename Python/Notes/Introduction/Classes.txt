@@ -1,0 +1,20 @@
+---Class-----
+
+- Classes define "templates or blueprints" for building objects
+
+- Once a class is defined, any number of objects can be "constructed/instantiated"
+
+- EVERYTHING in Python is an OBJECT
+
+- ALL Python objects "live" in the heap
+
+- Each object has a FIXED type, which can be accessed via the 'type' function
+
+- NAMED Objects	- Objects with attributes
+
+- Method		- Attribute holding a function object
+		- Can access and modify the object attributes
+
+- Class methods are invoked by functions, operators, and the "." syntax	(See List)
+
+	

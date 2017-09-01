@@ -1,0 +1,58 @@
+Text stream	- sequence of charactes divided into lines
+		- Each line consists of 0 or more characters followed by a newline character
+
+
+-----char------
+
+getchar()		- reads next input character (by KEYBOARD) and returns it as a value
+
+Ex:
+	c = getchar()	- 'c' contains next character of input
+
+
+putchar(c)		- Prints contents of variable 'c' as a character (on to the screen)
+
+
+-----------File Copying--------------
+
+
+#include <stdio.h>
+
+main()
+{
+	int c;
+	
+	c = getchar();
+
+	while (c != EOF) {
+		putchar(c);
+		c = getchar();
+	}
+}
+
+
+'getchar' returns a EOF, "end of file", when there is no more input.
+
+
+!!NOTE:	We can't initialize 'c' as "char" because it must be big enough to hold EOF in addition to any possible char.
+	Therefore we use 'int'.
+
+EOF is defined in <stdio.h>.
+
+By using the symbolic constant, we make sure that NOTHING in the program depends on that SPECIFIC numeral value.
+
+
+
+NOTE::
+	while( (c = getchar()) != EOF)
+
+This is better, HOWEVER, we MUST put PARENTHESES around 'c=getchar()'.
+
+	Otherwise it will do 'c = ( getchar() != EOF) ' and set 'c' to 0 or 1. 
+
+-------------------------
+
+++nc;
+	
+	Increment 'nc' by one. 
+	nc++ is also a thing, but use ++nc for some reason.

@@ -1,0 +1,29 @@
+Goto is never necessary.
+
+In practice, it is ALMOST ALWAYS easy to write code without it.
+
+Goto is not even used in the textbook.
+
+-----goto-----
+
+The most common method is to abandon processing in some DEEPLY NESTED structure 
+	- Like breaking out of two or more loops at once.
+		The break statement cannot be used directly since it only exits from the innermost loop. 
+
+Ex:
+	for (...)
+		for (...)
+		...
+		if (disaster)
+			goto error;
+
+	error:
+		clean up the mess
+
+
+Label		- Same form as a variable name, and is followed by a colon. 
+		- Can be attached to any statement in the same function as the goto
+		- The scope of the label is the ENTIRE function
+
+
+Code involving a goto can always be written without one. 

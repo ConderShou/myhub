@@ -1,0 +1,142 @@
+int *p;
+
+p = &x	- memory address of x (communicating with what *p is pointing to)              
+
+y = *p	- DEREFERENCES 'p' (uses the VALUE that *p points to)
+
+- Understand how to read the types with POINTERS
+
+Ex:
+
+	&*p = p
+	
+		-'p' =  int *
+		- '*p' = in	t
+		- '&*p' = int *
+
+Remember: 'int *' is a TYPE
+	
+	&p
+	
+		- 'p' = int *
+
+		- '&p' = int **	(memory address of the pointer variable)
+
+	int **q
+	q = &p;
+
+		- int  ** is also a type, and it goes on.... 
+		- Usefulness pretty much stops at 'int **'
+
+
+----------------------Arrays--------------------
+
+Doesn't check if an assignment is out of the array bounds. 
+
+	(Very different from Java)
+
+-----
+
+char b[4] = {97, 98, 99, 0}	- You can OMIT the four if needed
+
+char b[4] = {'a', 'b', 'c', '\0'}	- Characters are integers
+
+char b[] = "abc";		- USE DOUBLE-QUOTES
+
+	- These are all equivalent
+
+----------------------------------
+
+int a[10] = {100.....109};
+
+int *p;
+
+p = &a[0];		- Points to the first element of the array
+
+int x = *p;	- Gets the value of the first element of the array (the '*' dereferences 'p')
+
+
+----
+
+	x = *(p+1);
+
+		- Adding a ONE to a pointer = Adding the SIZE of *p to p
+
+
+		- This means: INCREMENTING POINTER TO THE NEXT ELEMENT OF THE ARRAY
+
+	Each element of the array takes up a "word" remember: 	
+
+		First element: memory address 2000
+		2nd element : memory addres 2004
+
+	- Pointer that used to point at the FIRST ELEMENT (address 2000) would now point to SECOND element 
+		(memory address 2004)
+
+
+-----------------------Iterating through array--------------------
+
+
+int i;
+for (i = 0; i < 10; i++)
+	// printf("%d", a[i]);
+	   printf("%d", *(p+i));
+
+	- Same ways of iterating through an array
+	Ex: 
+		a[i] = *(p+i)
+		a[0] = *(p+0) = *p
+
+
+for(i = 0; i < 10; i++)
+	printf("%d", *p++);
+
+	- Another way of doing it
+
+*p++ == *(p++)
+
+
+------------
+
+int a[10] = {....}'
+
+a --> &a[0] --> p 	- The array variable itself points to the first element of the array. 
+
+a[0] --> (&a[0])[0] --> p[0]	
+
+*a --> *(&a[0]) --> a[0]	- Dereferencing 'a' and getting value that it's point at ... aka a[0]
+
+*(a+5) ---> *(&a[0] + 5) --> a[5]
+
+p[5] = (&a[0])[5] = a[5]	- ONLY IF 'p' was ALREADY POINTING TO a[0]
+
+*(a + 5) --> *(p + 5)
+
+
+How array index calling works:
+
+b[i] = *(b + i)
+
+
+------------------------
+
+1. 
+	sizeof(p) = 8	- pointer points only to the first element (or whatever element it was incremented to)
+	sizeof(a) = 40	- the array itself
+
+2. 
+	p++
+	'a' DOES NOT WORK WITH 'a++'
+		You can't increment 'a' "along an array" like you would a pointer
+
+
+int *p = a;
+p += 5;		- To INCREMENT the VALUE of the variable that 'p' points to: *p += 5	(DE-REFERENCE IT)
+int x = p[2];
+
+             p[2] --> *(p+2)
+
+
+0[a] = a[0]
+	
+	-0[a] =  *(0 + a) = *(a + 0) = a[0]

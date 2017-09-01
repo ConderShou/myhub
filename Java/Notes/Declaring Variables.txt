@@ -1,0 +1,122 @@
+
+In JAVA, we must first declare the variables in order to use them.
+
+-------------------------------------------------------------------------------------
+
+The declaration has to include first the data type of the variable:
+
+	int x;
+
+		- "int" declares a variable to be any integer (positive or negative)
+		- "x" is the variable name (however there are a few restrictions for what can be used as variable names)
+
+	boolean b;
+
+		- for booleans
+
+	double variableName;
+
+		- data type for representing decimal values
+		- 64 bit
+
+	float variableName;
+
+		- 32 bit
+
+------Names for Variables-------------------------
+
+Names have to start with a letter or underscore symbol
+
+Digits can only be included after the first letter or underscore
+
+They cannot contain:
+
+	 1. Other special symbols 
+		Exception: the dollar sign "$" is used at the beginning for automatically generated variables
+
+	2. Reserved keywords ("int", "boolean", "true", "false", etc..)
+
+	3. Spaces 
+
+CORRECT names:				INCORRECT names:
+	
+	int n;				int int;	
+	int _n;				int n?;
+	int n1;				int 1n;
+	int noMore;			int no More;
+					int no; int no;	--Cannot declare same name in the same scope		
+	---------------Declaring multiple variable names---------
+	int no; int more;	
+
+With naming, it's good practice to:
+
+	1. give names meaning 
+		"average" - if that's what's being computed
+	2. leave the first word in lowercase and capitalize following words
+		"finalBalance"
+	3. Capitalize all letters of a variable that is not going to change value
+		int ONE;
+
+-------Assignment of Variables-------------
+
+boolean b = true;
+
+	-Assigns the boolean variable "b" to be true
+
+CANNOT DO --> int n = true;
+	
+	- "n" is an integer variable not a boolean variable
+
+----------------------Integer and Floating-Point Values-------------------------
+
+If you mix integer and floating-point values, the answer will be a floating-point value.
+
+7 + 4.0 = 11.0
+
+Same goes for multiplication/division/etc....
+
+-----------------Integer Division----------------------
+
+If you divide an integer with another integer. It will be solely an integer division, without decimals or remainders.
+
+7/4 = 1 remainder of 3
+
+The program will throw out the 3 and simply output: 1.
+
+----------------Integer Max and Min-----------------------------
+
+Integer.MAX_VALUE = 2.14 billion
+
+Integer.MIN_VALUE = -2.14 billion
+
+---------------------------------Avoiding Negative Remainders--------------------
+
+Math.floorMod(direction + turn, 360);
+
+	Computes the correct remainder.
+	Math.floorMod(m, n) is always positive when "n" is positive
+
+----------------------Final and public declarations for Constants------------
+
+We use "final" variables for constants.
+
+public final double QUARTER_VALUE = 0.25;	- The value of a quarter always remains the same
+	
+	- A constant can be "public" because it cannot be modified anyways from the "final" statement
+
+So it's more convenient for us to do "CashRegister.QUARTER_VALUE" instead of calling a getter method.
+
+----------------------Char----------------------------
+
+Characters have numeric values. 
+
+"H" is a character, a value of type "char".
+
+"H" is  a string containing a single character, a value of type String.
+
+The "charAt" method returns a "char" value from a string.
+
+	Ex:
+		String name = "Harry";
+		char start = name.charAt(0);		- Sets "start" to the value of "H"
+		char last = name.charAt(4);		- Sets "last" to the value of "y"

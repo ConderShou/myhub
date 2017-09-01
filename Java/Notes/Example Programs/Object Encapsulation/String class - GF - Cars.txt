@@ -1,0 +1,60 @@
+public void populateWorld(){
+        Car car1 = new Car(new String("car1.png"), new String("car2.png"));	- REMEMBER: A "String" is another class in Java. 
+        Car car2 = new Car(new String("car3.png"), new String("car4.png"));		- You must CREATE THE String CLASSS TOO
+        		
+        addObject(car1, 400, 300);
+        addObject(car2, 400, 320);        
+    }
+
+
+For reference, the Car class is:
+
+ public Car(String file1, String file2){
+        setImage1(file1); // Sets the attribute image1 to file1
+        setImage2(file2); // Sets the attribute image2 to file2
+        
+        setImage(file1); // Sets the image that appears in the screen at the beginning to the one in file1
+    }
+
+
+--------------------------
+
+If we wanted to modify an attribute, we now do something like:
+
+car1.setareHeadlightson(true);		
+
+	- Remember "areHeadlightson" is a private variable and cannot be accessed directly. We use the method instead.
+
+		We CANNOT do:			
+
+			car1.areHeadlightson = true;
+
+Ex:
+
+Remember how we used the variable "iscar24" to assign which keys would control which car?
+ 
+(In MyWorld class)
+....
+        car2.setcar24(true);
+        car4.setcar24(true);
+
+(In Car class)
+
+private boolean iscar24 = false;
+...
+
+public void moveForward(){
+        if (Greenfoot.isKeyDown("up") && !iscar24){
+            move(5);
+        }
+    }
+
+   public void moveForward2(){
+        if (Greenfoot.isKeyDown("w") && iscar24){
+            move(5);
+        }
+    }
+
+ public void setcar24(boolean iscar24) {			- Making a public method to set (or if we wanted, to get) the value of "iscar24"
+        this.iscar24 = iscar24;
+    }

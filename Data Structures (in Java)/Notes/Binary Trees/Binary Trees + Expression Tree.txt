@@ -1,0 +1,181 @@
+A binary tree is a tree in which NO node can have more than TWO children
+
+The depth of an average binary tree is considerably smaller than N. 
+	The average depth is O(sqrt(N)).
+	For a BINARY SEARCH TREE, the average value of the depth is O(log N).
+
+	HOWEVER, the depth can be as large as N-1
+
+
+-------------------------------Implementation-------------------------------------
+
+Because a binary tree node has AT MOST TWO children, we can keep DIRECT LINKS to them. 
+
+For doubly linked lists, a node consists of the element information and TWO REFERENCES (left and right) to other nodes. 
+
+class BinaryNode {
+
+	// Friendly data; accessible by other package routines
+
+	Object element;	// the data in the node
+	BinaryNode left;	// left child
+	BinaryNode right;	// right child
+}
+
+
+---------------Example: Expression Trees---------------
+
+
+The leaves of an expression tree are OPERANDS (constants or variable names)
+
+The other nodes contain OPERATORS
+
+This tree is binary because all operators are binary
+
+Refer to pg. 109, Figure 4.14, to see what an expression looks like.
+
+----Using Inorder Traversal-----
+
+Using an expression tree, we can produce an overly parenthesized infix expression 
+	by recursively producing a parenthesized left expression, printing out the operator at the root,
+	and finally recursively producing a parenthesized right expression
+
+This strategy of (left, node, right) is known as an INORDER INTRAVERSAL
+
+	Ex:
+		left subtree: a + (b*c)
+		right subtree: ((d * e) + f) * g
+		
+		Total: (a + (b * c)) + ((d * e) + f) * g)
+
+--Using Postorder Traversal-----
+
+Recursively print out the left subtree, the right subtree, and THEN the operator (left, right, Node)
+	More like, moving from left to right, starting witht the operand and moving to the operator of the two operands afterwards, 
+	THEN proceeding to next operands, etc...
+
+	Ex:
+		a b c * + d e * f + g * +
+
+--Using Preorder Traversal------
+
+Print out operator first and then recursively print out the left and right subtrees (node, left, right)
+
+	Ex:
+		+ + a * b c * + * d e f g
+
+
+-------------------------Constructing an Expression Tree------------------------------
+
+Let's give an algorithm to convert a postfix expression into an expression tree
+	
+We already have an algorithm to convert infix to postfix, so we can generate expression trees from the two common types of input
+
+This method will strongly resemble the postfix evaluation algorithm from before with the Stacks chapter (and we will use stacks here too!)
+
+
+-----Example-----
+
+Input: 
+	a b + c d e + *  *
+
+1. The first two symbols are operands, so we create one-node trees and PUSH these trees onto a stack
+
+2. "+" is read, so two trees are POPPED, a NEW TREE is formed after merging these three elements, and this NEW TREE is PUSHED onto the stack
+
+3. "c", "d", and "e" are read. For each of the operands, a one-node tree is created and the corresponding tree is PUSHED onto the stack
+
+4. "+" is read, so two trees are POPPED (the tree with the "+" is now out) and merged with "+" as root, then PUSHED
+
+5. "*" is read, so two trees are POPPED and form a new tree with "*" as root, (a new tree is PUSHED onto the stack?)
+
+6. Last symbol, "*" is read, two trees are merged, and the final tree is left on the stack.
+
+
+-----In-Class Example------
+
+	class ExprNode {
+			char operator;
+			int operand;
+			ExprNode left;	
+			ExprNode right;
+	}
+
+	void postFix (ExprNode t) {
+		
+		if (t == null)
+			return;
+		
+		postFix( t.left );		- if there is no left or right, then we return null, as stated in the base case
+		postFix( t.right);
+	
+		if (t.left != null) 
+			System.out.println( t.operator  );
+		else
+			System.out.println( t. operand );
+	}
+
+
+---------Creating an Expression Tree class
+
+	public class ExprTree {
+	
+		private ExprNode root;
+
+
+		public ExprTree(String postfix) {
+
+			/* run through the stack based algorithm to	
+			  * buld the expr tree.
+			  * 
+			  * Remember, you're pushing ExprNode on to the stack.
+			  * When done, POP the stack and make that the root
+			  */
+		}
+
+		public int eval() {
+			// public version of the function
+			
+			return eval(root);	// allows us to hide more of the tree structure and keep things clean and organized
+		}
+
+		private int eval(ExprNode t) {
+	
+			// do your traversal to evaluate the tree rooted at t and return it
+		}
+
+		static private class ExprNode {
+	
+			int operand;
+			char operator;
+	
+			ExprNode left;
+			ExprNode right;
+		}
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                            

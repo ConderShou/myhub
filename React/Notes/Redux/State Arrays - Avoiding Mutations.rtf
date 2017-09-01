@@ -1,0 +1,33 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf810
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww33100\viewh20700\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \'97reducers/reducer_weather\'97\
+\
+//The weather data will be of multiple cities, so the state should be a null array where each element contains data on one city\
+
+\b export default function(state = [], action) \{\
+\
+    switch (action.type) \{\
+        case FETCH_WEATHER:
+\b0 \
+\
+            //Never mutate the state like:\
+            //  state.push(action.payload.data);\
+\
+            //Now, we are returning a NEW instance of state that has the new information on the city added on to it\
+            \
+            //The bottom is nearly equivalent to the same statement below:\
+            //     return state.concat([action.payload.data]);\
+    \
+            // Take an array, put 'action.payload.data' inside of it\
+            // '...' means take all entries of the array 'state' and insert it into THIS array \
+            //  Because '...state' is after the first element, it will insert the entries AFTER the first element\
+           
+\b  return [ action.payload.data, ...state ];\
+    \}\
+    return state;  \
+\}}

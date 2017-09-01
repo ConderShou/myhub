@@ -1,0 +1,55 @@
+The top bar is called the ACTION BAR
+
+	Navigates between multiple screens
+
+	Adding actions to the app
+
+Can hide it in Java code, but we can remove it completely using an app theme
+
+
+----------------------------------------------------
+
+Set the theme of our app in a file called:
+
+	AndroidManifest
+
+Look for AndroidManifest.xml
+
+
+-----------AndroidManifest--------
+
+Contains info on meta-information, like:
+
+	icon, name, and theme
+
+For theme it has:
+
+	android:theme="@style/AppTheme" 
+
+
+-----styles.xml----
+
+<style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+
+
+If we inherit from a system theme, we can CHOOSE what to customize.
+
+For now, we will just pick a new theme by using code completion.
+
+
+-----
+
+Delete 'DarkActionBar' and, LEAVING the cursor where it is, CTRL+SPACE
+
+Choose:
+	Theme.AppCompat.Light.NoActionBar
+
+
+
+POOF: ActionBar GONE

@@ -1,0 +1,34 @@
+Apple + Option + 0		- Right side
+(numbers to specify)
+
+Apple + 0			- Left Side
+(nunbers to specify)
+
+Apple + Shift + Y		- Bottom Debugger
+
+Apple + Shift + O		- Search bar for Code
+
+	Hold Control + Enter on the Resule	- Opens the file/code in Assistant Editor
+
+
+
+Apple + Option + Enter		- Opens Assistant Editor
+
+Apple + Enter			- Closes Assistant Editor
+
+
+-------------------Code-----------------
+
+Storyboard:
+
+	Hold Option and Hover over elements (Select element first?):		Shows distances it is from border
+		Hold Option and Dragging over Elements:		Shows distances from those elements
+
+
+
+-----------------StoryBoard----------------
+
+Command + Alt + Equals		- Updates frames to where they're supposed to be with their constraints for 
+				   all the iPhone versions
+
+Command + D			- Duplicates element in the storyboard (i.e. Label)

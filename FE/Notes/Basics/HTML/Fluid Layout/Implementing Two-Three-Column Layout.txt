@@ -1,0 +1,154 @@
+For screen sizes larger than smartphone but smaller than tablet (660px):  Two-Column Layout
+
+This means that smartphones will have a One-Column layout and things above it will 
+	AT LEAST have a Two-Column layout
+
+We'll create TWO new IDs and apply them to HTML
+
+
+@media screen and (min-width: 480px) {
+
+	/*******************************
+	TWO COLUMN LAYOUT
+	*******************************/
+	
+	#primary {
+		width: 50%;
+		float: left;
+	}
+
+	#secondary {
+		width: 40%;
+		float: right;
+	}
+
+}
+
+
+#primary 		- ID selector
+width: 50%	- Takes up half the width of the screen (so that it can be Two-Columns)
+float: left;		- This is the LEFT COLUMN**
+
+#secondary	
+width: 40%	- Takes up smaller width of the screen
+float: right;	- This is the RIGHT column
+			- **HOWEVER: even if float was to the LEFT it should still organize this to the RIGHT
+				AS LONG AS the primary and secondary IDs are in order in the HTML
+			- This is just in case there's browser issues.
+
+
+-------Contact.html-----------
+
+<section id = "primary">
+         <h3>General Information</h3>
+	.....
+
+ <section id = "secondary">
+        <h3>Contact Details</h3>
+	.....
+
+
+--------Images: index.html--------------
+
+--Calculations--
+
+2.5% margin on each side.
+
+2.5 * 2 = 5% for each margin space for each image
+
+3 images * 5% = 15% of the width needs to be MARGIN SPACE
+
+100 - 15% = 85% is width for IMAGES
+
+85 / 3 = 28.33333% of the total width for EACH IMAGE
+
+
+   /*******************************
+	PAGE: PORTFOLIO - INDEX.HTML
+      *******************************/
+  
+  #gallery li {
+    width: 28.3333333%;
+  }
+
+Notice that the CAPTION causes weird formatting to happen to the images below it when it wraps to the next line.
+
+
+------------Pseudo-class: nth child-------------
+
+Based on where the awkward spacing is, we want to clear every fourth item to get the images aligned properly 
+	(like backspacing some awkward space in Word)
+
+To do this:
+
+	#gallery li:nth-child(4n) {
+		clear: left;
+	}
+
+
+------------About.html--------------------
+
+We can just FLOAT the profile pictures to the left.
+
+
+  /*******************************
+	PAGE: ABOUT
+  *******************************/
+  
+  .profile-photo {
+      float: left;
+      margin: 0 5% 80px 0;
+  }
+
+80 pixels on bottom to prevent text wrap-around to the bottom.
+
+
+In the second media query for 660pixels min-width:
+
+   /*******************************
+	HEADER
+   *******************************/
+  
+  nav {
+    background: none;	/* this allows the green header background to now shine through as opposed to 
+    float: right;			the white nav background */
+    font-size: 1.25em;
+    margin-right: 5%;
+    text-align: right;
+    width: 45%;
+}
+
+
+------------Adjusting Header Logo to the Left--------------
+
+#logo {
+    background: none;
+    float: left;
+    text-align: left;
+    margin-left: 5%;
+    width: 45%;
+  }
+  
+  h1 {
+    font-size: 2.5em;
+  }
+
+  h2 {
+     font-size: 0.825em;
+     margin-bottom: 20px;	/* something like this looks best without need for fluid adjustment/percentages */
+
+
+-----Putting border at bottom of header: A little plain-----
+
+header {
+	border-bottom: 5px solid #599a68;
+	margin-bottom: 60px;
+}
+
+border-bottom: 5px solid #599a68;	- 5px = width of border
+				    Solid = type of line
+				   Hexadecimal value = color value
+    
+margin-bottom: 60px;		- Separates images from the border more.
+
+		NOTE: DOES NOT CREATE MORE WIDTH IN BORDER - Edit that in BORDER STATEMENT

@@ -1,0 +1,111 @@
+
+
+var lotteryW: Int?	//Signifies this may or may not have a value - You're supposed to check for it
+
+
+--NEVER implicitly unwrap something like this----
+
+print(lotteryW!)	//Unwraps the optional to reveal the value --> Program crashes if there is no value
+
+-Instead:
+
+if lotteryW != nil {
+	print(lotteryW!)
+}
+
+
+-OR:
+
+if let winnings = lotteryW {
+	print(winnings)	//Now you don't need an exclamation variable
+}
+
+
+----------------
+
+
+class Car {
+	var model: String?
+}
+
+var vehicle: Car?
+
+
+-----------------------
+
+-To get the model of the car:
+
+	if let v = vehicle {
+		if let m = v.model {
+			print(m)
+	}
+
+--Or to SIMPLIFY:
+
+	if let v = vehicle, let m = v.model {
+		print(m)
+	}
+
+-----------------Creating objects of the class
+
+vehicle = Car()
+vehicle?.model = "Bronco"	//If you're using an optional, make sure you put a question mark when using it
+
+Ex: putting this before the declaration of the class
+
+	print(vehicle?.model)		//This won't crash whether or not the variable has a value or not
+					// "I don't care if this runs or not, it may or may not
+	
+	print(vehicle!.model)		// Use this value RIGHT NOW - PROGRAM CRASHES if there's no value
+
+-------------------
+var cars: [Car]?		//This array may or may not have elements (Car elements)
+
+cars = [Car]()
+
+if let carArr = cars, carArr.count > 0 {		// if not 'nil', put it in 'carArr', AND only execute if it has more than 
+					//   0 elements
+} else {
+	cars?.append(Car())
+	print(cars?.count)
+}
+
+----------------------------------Implicitly Unwrapped Optional---------------------------
+
+class Person {
+	//var age: Int!	- I guarantee that there will be a value in here
+	
+	private var _age: Int!	//Outside functions can't access it because it's private
+				//If you don't know, just use a question mark.
+
+	var age: Int {		//Automatically checks and initializes it. Safety code. 
+		if _age == nil {
+			_age = 0
+		}
+
+		return _age
+	}
+	
+	func setAge(newAge: Int) {
+		self._age = newAge	//"self" = "this"
+	}
+}
+
+var jack = Person()
+
+print(jack._age)		//Outputs: nil
+print(jack.age)		//Outputs: 0
+
+
+-----------Alternative Ways to Initialize: CONSTRUCTOR-------------
+
+class Dog {
+	var species: String		//No exclamation or question mark --> We use constructor instead 
+					and STILL guarantee that there will be a value
+	init(someSpecies: String) {
+		self.species = someSpecies
+	}
+}
+
+var lab = Dog(someSpecies: "Black Lab")
+print(lab.species)				//Outputs "Black Lab"

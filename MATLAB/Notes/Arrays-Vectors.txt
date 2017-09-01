@@ -1,0 +1,86 @@
+M=[1,2,3;4,5,6] Creates array
+
+M(1,2) = 2 - Row 1 column 2 holds 2
+
+V=[5,4,3,4,7,6] - Vector is one row or one column array
+
+V(1)=5 - The number in the parentheses specifies what element of the array 
+
+vc=V' - Apostrophe makes the vector into the opposite organization (from row vector to column vector, or vice versa)          
+
+vc =
+3
+4
+5
+6
+
+arrayA(:, 2) - Display all values in the 2nd column, all rows - colon ':' function means all values
+	       and it's located in either the row or column value slot
+
+arrayA(3, :) - Display all values in the 3rd row, all columns 
+
+arrayA(3, 1) = 0 - Sets the specified element (Row 3 column 1) to 0--can set it equal to almost anything else
+
+arrayB=arrayA(2:3, 1:2) - Only Rows 2 to 3 and Columns 1 to 2 of array A are selected for array B
+------------------------------------------------------------------
+
+u=3*V  - Multiplies each vector component by 3 ---Division, Multiplication, Subtraction, Addition of Vectors (w=u+v)
+
+w=u+v - Only add vectors of same size
+
+
+--Period here is an element by element function
+
+w=u.*v - Multiplies vector element by element
+
+w=u./v - Divides vector element by element
+
+3./v - Divides 3 by each element of the vector
+
+2.^v - Raises 2 to the power of each element of the vector
+
+u=v1.*v2  - v1 and v2 must be the same size ---Division
+
+
+--Not element by element
+
+v1*v2 - Regular matrix multiplication
+
+--Outer/Inner product
+v=[1; 2; 3];
+w=[4; 5; 6];
+y=v'*w - Inner product (a scalar value, which is 32 here) Row vector * column vector
+
+y=v*w' - Outer product (matrix)
+
+y=[u, v] - Combines list of u and v. Starting with u. (Vice versa if it was y=[v,u])
+
+
+---------------------------------------------------------------------------------------------------------------------------
+
+w=zeros(1,5) - Creates a 1 row 5 column vector array of just zeros
+ =ones(
+
+x=linspace(0, 2, 12) - Creates an array of 12 columns that have equally spaced vaues between 0 and 2
+
+u=[4, 5, 6]
+length(u)=3 - Gives number of values in array; also used for number of characters in a string
+
+min(u) = 4 - Gives minimum number in element
+max(u) = 6 - Max
+sum(u) = 15  - Sum
+
+norm(u) - Square root of the sum of the squares of elements in u (Like calculating magnitude of vector)
+
+cross(a,b) - Cross product of vectors a and b
+dot(a,b) - Dot product of vectors a and b
+
+rand(nr, nc) - Array with 'nr' rows and 'nc' columns populated with random values between 0 and 1
+randi([a,b],nr,nc) - Array with 'nr' rows and 'nc' columns populated with random INTEGERS between [a,b] inclusive
+randi(a,nr,nc) - Array with such rows with random integers between 1 and 'a' inclusive
+
+rng('shuffle') - Resets random number generator
+
+
+
+

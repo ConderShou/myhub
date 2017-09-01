@@ -1,0 +1,61 @@
+Casting - converting from one class to another related one
+
+Upcasting - moving up in an inheritance relationship
+
+Downcasting - moving down in an inheritance relationship
+
+Casting words for primitive types too.
+
+Ex:
+	double balance = 5.23;
+	int dollars = (int) balance;
+
+-------------Upcasting-----------------
+
+Converting an object from a class to a superclass
+
+Ex:
+
+	Vehicle v = new Vehicle();
+	Car c = new Car();
+
+	v = (Vehicle) c;	- To upcast an object, prefix it with the name of the "superclass" in parentheses
+				- The Car object in "c" is now a Vehicle object in "v" and should be treated as such
+
+	v = c;		- You can leave this out (don't need to type it out)
+
+--------Downcasting--------------------
+
+Ex: 
+	Vehicle v = new Car();	- To force a general vehicle to become a car, it must be done explicitly. 
+					- Here, we declared a variable of type Vehicle but stored a car in it
+	Car c = new Car();
+
+	c = (Car) v;		- Now we explicitly downcast the "v" variable to store the car, which is in variable "v"
+					in a car variable, variable "c"
+
+--------Be careful when Downcasting and Upcasting--------------
+
+---Downcasting to a different subclass than defined above
+
+Ex: 
+	Vehicle v = new Car();
+
+	CANNOT DO:
+
+		Truck t = (Truck) v;		- You cannot downcast "v" to a truck variable because it has a CAR stored in it
+
+	CAN DO:
+
+		Car c = (Car) v;		- You can do this, because the content of the vehicle variable is a CAR
+
+---Casting between subclasses derived from the same superclass
+
+Ex:
+	Car c = new Car();
+	Truck t = new Truck();
+
+	CANNOT DO:
+	
+	t = (Truck) c;		- Cannot cast between classes that are "siblings", subclasses from the same superclass
+	c = (Car) t;

@@ -1,0 +1,138 @@
+Array lists can grow and shrink as needed.
+
+The "ArrayList" class supplies methods for common tasks,
+	such as inserting and removing elements
+
+
+--------------------------Declaring and Using--------------------------------------------------
+
+To construct an array list:	new ArrayList<typeName>()
+
+To access an element:	arraylistReference.get(index)
+			arraylistReference.set(index, value)
+
+ArrayList<String> friends = new ArrayList<String>();	- This is an array list object of size 0
+
+friends.add("Cindy");		- The "add" method APPENDS an element to the array list, increasing its size
+
+String name = friends.get(i);		- Use the "get" and "set" methods to ACCESS an element
+friends.set(i, "Harry");
+
+
+----------------------------------
+
+ArrayList<String> names = new ArrayList<String>();
+
+	The angle brackets around the "String" type tell you that the "String" is a TYPE PARAMETER
+	
+	You can replace "String" with any other class and get a different array list type,
+		BECAUSE OF THAT, it's called a GENERIC CLASS.
+
+	You cannot use primitive types as type parameters - NO Arraylist<int> or ArrayList<double>
+
+
+--------------------Size-------------------------
+
+Get size with ".size()"
+	The last valid index is "arraylistReference.size() - 1"
+	
+	Just like a regular array. 
+
+
+-----------------------------------------Remove---------------------------------------
+
+The "remove" method:
+			REMOVES the element at a GIVEN position
+
+			MOVES all elements AFTER the removed element DOWN by ONE position
+
+			REDUCES the size of the array list by 1
+	
+
+---------------Printing an ArrayList------------------
+
+System.out.println(names);		// Prints out the array list "names"
+
+
+
+-------------------------------------Using an Enhanced For Loop--------------------------------------
+
+You can use the enhanced for loop to visit all elements of an array list.
+
+	ArrayList<String> names = .......;
+
+	for (String name : names)
+	{
+		System.out.println(name);
+	}
+
+This is equivalent to the basic for loop version of:
+
+	for (int i = 0; i < names.size(); i++)
+	{
+		String name = names.get(i);
+		System.out.println(name);
+	}
+
+
+---------------------------------------Copying Array Lists--------------------------------------------------
+
+Just like with arrays, the array list variable holds REFERENCES.
+
+Copying the reference gives us two references to the SAME array list.
+
+	ArrayList<String> friends = names;
+	friends.add("Harry");
+
+Both "friends" and "names" reference the same array list,
+	 therefore "friends" added "Harry" to the same array list that "names" refers to. 
+
+TO COPY:
+
+	Construct the copy and pass the original list into the CONSTRUCTOR:
+
+		ArrayList<String> newNames = new ArrayList<String>(names);
+
+
+--------------------------Wrappers and Auto-Boxing----------------------------------
+
+In Java, you cannot insert primitive type vaules into array lists.
+
+Instead, you must use one of the WRAPPER CLASSES 
+
+ 		Primitive Type 	Wrapper Class
+	
+			byte		Byte
+			boolean 		Boolean		- Most of the differences are just uppercase characters
+			char 		Character		- Notice "Character" and "Integer" have different names
+			double 		Double
+			float 		Float
+			int 		Integer
+			long 		Long
+			short		 Short
+
+For ex:
+	To collect double values in an array list, you must use an ArrayList<Double>
+
+
+CONVERSION between primitive types and corresponding wrapper classes is AUTOMATIC.
+	This is called AUTO-BOXING.
+
+
+For ex:
+	If you assign a "double" value to a "Double" variable, the number is automatically "put into a box"
+	
+		Double wrapper = 29.95;
+	
+	Conversely, wrapper values are automatically "unboxed" to primitive types:
+
+		double x = wrapper;
+
+
+So, now you can do this:
+
+	ArrayList<Double> values = new ArrayList<Double>();
+	values.add(29.95);
+	double x = values.get(0);
+
+

@@ -1,0 +1,7 @@
+
+If the size of the collection NEVER CHANGES: 	Use an array
+
+If you collect a long sequence of PRIMITIVE TYPE values and you want EFFICIENCY: 	Use an array
+
+OTHERWISE:	Use an Array List
+

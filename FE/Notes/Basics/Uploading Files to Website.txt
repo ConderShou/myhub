@@ -1,0 +1,30 @@
+Cyberduck
+
+SFTP
+
+Set up server, username, password in web-hosting (i.e. Dreamhost admin dashboard)
+
+
+--Dreamhost-----
+
+'Users' --> Create User
+
+- SFTP Account
+
+- Create Username
+
+- Create password
+
+- Go to domains: Edit: Choose User to run the domain under
+
+
+----------
+
+
+In Server:		Enter domain of website (check documentation of web-hosting to make sure that this is the case)
+
+
+Upload the html, css, and any other files/folders to the website directory in Cyberduck
+
+
+

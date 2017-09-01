@@ -1,0 +1,36 @@
+
+<style>
+	footer {				- This entire thing about the footer is called a RULE	
+		color: green;			
+	}
+</style>
+
+------Rule-------------
+
+footer {				
+		color: green;			
+	}
+
+	- This entire thing about the footer is called a RULE
+	- Can contain multiple DECLARATIONS
+
+------Selector----------
+
+footer 		
+
+	- The SELECTOR tells browser which element on the page we're applying our styling to
+	- This specifically, is called an ELEMENT SELECTOR, selecting based on the name of the element
+
+-------Declaration-------------
+
+              {				
+	color: green;	- This part INSIDE the curly braces is called a DECLARATION, declaring some kind of styling to apply		
+	}	
+
+-------Property-------------------
+
+color			- Using the "color" PROPERTY to change the color of text
+
+---------Value---------------------
+
+green			- The input to the PROPERTY

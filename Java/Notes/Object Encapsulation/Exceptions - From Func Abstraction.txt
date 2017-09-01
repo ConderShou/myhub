@@ -1,0 +1,119 @@
+------------------------------------------Exceptions--------------------------------------------------------
+
+Exceptions allow us to classify and differentiate error types in a systematic way. 
+
+---ArithmeticException------
+
+For when an exceptional arithmetic condition occurs.
+	- like dividing an integer by zero
+
+In such a case:
+
+	int a = 1;
+	int b = 0;
+	System.out.println(a/b);
+	System.out.println(a%b);
+
+The exception does this:
+
+	void printDivision (int a, int b) {
+		if (b != 0) {				-Making sure the divider is not 0
+			System.out.println(a/b);
+		} else { 
+			System.out.println("NaN");
+		}
+	}
+
+---ArrayIndexOutOfBoundsException------
+
+When an array has been accessed with an illegal index.
+
+In such a case:
+
+	int[] array = {0, 1, 2, 3};
+	System.out.println(array[4]); 
+	System.out.println(array[-1]);
+
+The exception does this:
+
+	void printElementinArray (int[] array, int index){
+		if (index >= 0 && index < array.length) {			- Checking that the index is within the bounds of the array
+			System.out.println(array[index]);
+		} else {
+			System.out.println("The index is not correct");	- In the try-catch statement, you determine what the program says/does with this exception
+		}
+	}
+
+---NumberFormatException---------------
+
+For when a conversion is attempted on a string to a numeric type, such as a double or integer
+
+String op1 = "1";
+String op2 = "2";
+System.out.println(op1+op2); 					- Prints: 12
+System.out.println(Integer.parseInt(op1) + Integer.parseInt(op2));		- Prints: 3
+
+BUT when one of the strings is not in the form of a number....we throw in NumberFormatException
+
+
+String op1 = "1";
+String op2 = "s";
+System.out.println(op1+op2); 					- Prints: 1s
+System.out.println(Integer.parseInt(op1) + Integer.parseInt(op2));		- Prints: NumerFormatException
+
+------------------------Catching Exceptions-----------------------------------------------------
+
+The standard way to control those instructions that may throw an exception is to enclose them in a 
+try-catch statement.
+
+-------ArithmeticException-------
+
+	void printDivision(int a, int b) {
+
+		try{
+			System.out.println(a/b);			- This operation will be executed if the statement is valid for all cases
+
+		} catch(ArithmeticException e) {			- Otherwise Java will throw in an ArithmeticException with the message, "You can't divide by 0"
+
+			System.out.println("You can't divide by 0");
+		}
+
+	}
+
+-The program flow will continue as usual after catching this exception
+
+-----ArrayIndexOutOfBoundsException-------
+
+	void printElementinArray (int[] array, int index) {
+		try {
+			System.out.println(array(index));
+		} catch{ArrayIndexOutOfBoundsException e) {
+			System.out.println("The index is out of the bounds of the array");
+		}
+	}
+
+---------NumberFormatException---------------
+
+	void printInteger (String s) {
+		try {
+			System.out.println(Integer.parseInt(s));
+		} catch(NumberFormatException e) {
+			System.out.println("The argument received is not an Integer");
+		}
+	}
+
+----------------------------Try-Catch Statement----------------------------
+
+A try block can have several catch blocks, each of them dealing with a particular exception
+
+	void printElementInArray(int[] array, String index) {
+		try {
+			System.out.println(array(Integer.parseInt(Index)]);
+		} catch(NumberFormatException e) {
+			System.out.println("The index is not an integer");
+		} catch(ArrayIndexOutofBoundsException e) {
+			System.out.println("The index is out of the bounds of the array");
+		}
+	}
+
+

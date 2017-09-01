@@ -1,0 +1,76 @@
+-----Functions------
+
+First executable statement should be function declaration
+	Ex: function y = mypoly(x)
+
+	[then comments and the rest of the code]
+
+	a = 1;	
+	b = 2;
+	c = 3;
+
+	y = a*x.^2 + b*x + c; 	- the dots allow this function to work for vectors and matrices as well
+
+mypoly(0)
+
+	= 3
+
+x=linsapce(-5, 5, 200);
+z = mypoly(x);
+plot(x, z);			- Can plot functions
+
+
+-------Defining a function—
+
+First line must start with the word “function” and the declaration
+
+File name must be the same as the function name, including capitalization  (mypoly.m)
+
+Function must calculate at least one value to be returned
+
+Function can be used like other MATLAB functions;
+	Ex: z = mypoly(1.2);
+
+y = mypoly(x)
+
+y = return variable, mypoly = name, x = input
+
+
+-----------Function input and output--------
+
+a = 101;
+z = 2;
+f = mypoly(z);
+
+	-Calculates mypoly(2) to return 11. 
+	-HOWEVER, the ‘a’ assignment does not affect the ‘a’ variable within the function (this being a local variable)
+	-Only interacts with outside world by receiving an input and giving an output
+
+-------Intro to Debugging-------
+Function Call Stack:
+	-Change your view of inside or outside the function
+
+---------------
+
+help mypoly
+
+	-Displays all the comments written on the function
+	(all % lines before the first %%)
+
+
+Functions cannot alter the value of a variable in the calling statement (the z in mypoly(z))
+
+------Local Variables------
+
+Variables created inside the function are local 
+	-i.e. Not accessible outside the function
+
+Local variables can have same name as variables outside the function without conflict
+	-Each function has its own private workspace
+
+Local variables are temporary. 
+	-They are created when the function runs and disappear afterwards.
+
+-------Function Prime Directive------
+
+	Each function should do one thing and do it well. 

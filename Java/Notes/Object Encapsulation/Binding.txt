@@ -1,0 +1,77 @@
+When we define a method, we bind an identifier -- the name of the method -- to some code (the body of the method)
+
+public int sq(int x) {
+	return x*x;
+}
+
+Here, the identifier "sq" is binded to the method that muliplies "x" with "x".
+	This is normally done during compiling time.
+	While executing the program, the binding is usually fixed.
+
+This is called "early" or "static" binding. 
+
+---------Static Binding---------------
+
+These are all bound statically.
+
+Methods:
+
+	Overloaded
+	Private
+	Final
+	Static
+Attributes
+
+---------------------Dynamic Binding--------------------------
+
+Or "late" binding"
+
+The binding is done at run time, not compiling time. 
+
+Overloading: 
+	Resolved at compile time
+	Static binding
+
+	Ex:
+
+		public void p(Vehicle v) {
+			System.out.println("I am a vehicle");
+		}
+		pubic void p(Car c) {
+			System.out.println("I am a car");
+		}
+		public void p(Truck t) {
+			System.out.println("I am a truck");
+		}
+
+		for (int i = 0; i<3; i++) {
+			p(garage[i]);		
+		}
+			HOWEVER: because all "Cars" and "Trucks" are "Vehicles", the method will execute the "p" constructor 
+				that has the "Vehicle" parameter, without further distinguishing between "Car" or "Truck".
+					All cars and trucks now respond with the same "I am a vehicle" string. 
+
+			The "p" method here is bound at compile time.
+
+Overriding:
+	Resolved at run time
+	Dynamic binding
+	
+	Ex:
+		Vehicle[] garage = new Vehicle[4];
+		garage[0] = new Car(...);
+		garage[1] = new Car(...);
+		garage[2] = new Truck (...);
+		garage[3] = new Truck (...);
+
+		for (int i = 0; i<4; i++) {
+			System.out.println(garage[i].toString());		
+		}
+			
+			OUTPUT: "I am a car..."
+				"I am a car..."
+				"I am a truck.."			
+				"I am a truck..."
+
+		- With dynamic binding, the same method is applied, but different results are achieved.\
+

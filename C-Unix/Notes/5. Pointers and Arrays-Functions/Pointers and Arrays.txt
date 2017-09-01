@@ -1,0 +1,114 @@
+Any operation that can be achieved by array subscripting can also be done with pointers.
+
+The pointer versino will in general be faster but, slightly harder to understand.
+
+
+int a[10];
+
+int *pa;
+
+pa = &a[0];	- Points to element zero of 'a', in other words - contains the address of a[0]
+
+x = *pa		- Assigns contents of a[0] into 'x'
+
+-- If 'pa' points to a particular element in the array, 'pa+1' points to the next one.
+
+	'pa + i' points 'i' elements AFTER 'pa'
+
+	'pa - 1' points 'i' elments BEFORE 'pa'
+
+
+Thus:
+
+	If 'pa' points to a[0], *(pa+1) points to CONTENTS (cause of the *) of a[1]
+
+IMPORTANT:
+
+	'pa + i' is the ADDRESS of a[i]
+	'*(pa + i)' points to the CONTENTS of a[i]
+
+------------
+
+By definition, the VALUE of a variable or expression of type array is the ADDRESS of element ZERO of the array.
+
+	- In other words, the NAME of an array is a SYNONYM for the LOCATION of the INITIAL element
+
+pa = &a[0]; 	is the same thing as		pa = a;
+
+
+NOTE:	The reference to a[i] can also be written as *(a+i) 
+		- That's what 'C' converts it to immediately
+
+	'&a[i]' is THUS also equivalent to 'a+i'
+		- Address of i-th element beyond 'a'
+
+
+-- You can also use subscripts with pointers
+
+	pa[i] is identical to *(pa + i)
+
+
+-------------------Important Difference between an Array Name and a Pointer---------------
+
+A pointer is a variable:
+		pa = a
+		pa++
+
+	These are legal
+
+
+An array name is NOT a variable:	
+				a = pa
+				a++
+	
+			These are ILLEGAL
+
+We can have an expression that ADDS to the array name, but we CANNOT INCREMENT it. 
+
+
+----------------------------Passing Arrays into Functions-------------------------------------
+
+An array name PARAMETER is a POINTER.	(You can increment it inside the function)
+
+When an array name is passed into a function, the LOCATION of the INITIAL ELEMENT is passed
+
+	char s[];
+
+	char *s;
+
+	Are equivalent. (We prefere pointer notation)
+
+When an array name is passed to a function, the function can AT ITS CONVENIENCE believe that it has been handed
+	EITHER an array or a pointer, and manipulate it accordingly. 
+
+	Can even use both notations if it seems appropriate and clear. 
+
+
+-- It is also possible to pass PART of an array into a function
+
+We pass a pointer to the beginning of the subarray.
+
+Ex:	If 'a' is an array,
+
+	f(&a[2])
+	
+	and
+
+	f(a+2)
+
+	both pass to function 'f' the ADDRESS of the subarray that STARTS at a[2]
+
+	With 'f', the parameter declaration can read:
+	
+		f(int arr[])	{...}
+	or
+		f(int *arr) {...}
+
+---------
+
+If you're sure that the elements exist, you can also index BACKWARDS in an array:
+
+	p[-1] and p[-2] are legal for the elements that immediately PRECEDE a[0]
+
+	(Make sure they're there though because remember that C doesn't check for that)
+

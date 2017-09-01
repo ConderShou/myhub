@@ -1,0 +1,44 @@
+----------------------------Non-Terminating Program------------------------------
+
+public class Main{
+
+	static int factorial (int number){
+
+		System.out.println("At factorial(" + number + ")");
+		return number * factorial(number-1);
+	}
+
+	public static void main(String[] args){
+
+		System.out.println(factorial(4));
+	}
+}
+
+Prints:
+
+	At factorial(4)
+	..
+
+	At factorial (-1089)
+
+	....
+
+---------------------Fixed Non-Terminating Program with a Base Case/Termination Condition------------
+
+public class Main{
+
+	static int factorial (int number){
+
+		if (number <= 0) {				- Added this base case to prevent negative inputs into the factorial functions
+			return 0;
+		}
+	
+		System.out.println("At factorial(" + number + ")");
+		return number * factorial(number-1);
+	}
+
+	.....
+
+	}
+}
+

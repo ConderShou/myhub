@@ -1,0 +1,59 @@
+---WHILE statements----
+
+while <logical expression>
+	<statement block>
+end
+
+	---<logical expression> is evaluated continuously and as long as it's true,
+	<statement block> will be executed
+
+
+-------Basic example----
+
+sum=0;   	
+maxsum=10;	-Initialization
+k=1;			-Explicitly initialize all values involved (set a certain value for them)
+
+while sum<maxsum	-Condition
+	sum=sum+k;	-Work
+	k=k+1;		-Increment
+end
+
+----sayAmen----
+
+correctResp='Amen!';
+
+resp=input('Give me an Amen! ', 's');
+
+while ~strcmp(resp, correctResp)  -Remember, '~' means NOT
+	disp('I say it again!');
+	resp=input('Give me an Amen!', 's';
+end
+
+disp('Thank you!');
+
+-----------sayAmenN-------
+
+correctResp='Amen!';
+nTriesMax=4;
+nTries=1;
+
+resp=input('Give me an Amen! ', 's');
+done=strcmp(resp, correctResp);
+
+while ~done
+	if nTries < nTriesMax
+		disp('I say it again!')
+		resp=input( '	Give me an Amen! ', 's');
+		done=strcmp(resp, correctResp);      -Make sure you include this in loop so that it knows when to be done
+
+		if done
+			disp('Thank you!');
+		end
+
+		nTries=nTries +1;
+	else
+		disp('Never mind. God bless you!')
+		done=true;
+	end
+end

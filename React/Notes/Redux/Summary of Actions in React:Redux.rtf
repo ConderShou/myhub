@@ -1,0 +1,265 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf810
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww33400\viewh20520\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\b\fs24 \cf0 \ul \ulc0 NOTE: The application state stored in Redux is ENTIRELY SEPARATE from the component state (we ONLY connect it with with mapState/mapDispatch/connect)\ulc0 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\b0 \cf0 \ulnone \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\b \cf0 \ul \ulc0 1. Create action
+\b0 \ulnone \
+	\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\i \cf0 actions/index.js\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\i0 \cf0 \
+
+\b export function selectBook(book) \{
+\i\b0 \
+
+\i0 \
+    // Because this is an ActionCreator, it needs to return an Action\
+\
+    // An Action is an object with a TYPE property\
+    // It usually has TWO values: A TYPE and a PAYLOAD\
+    //   - The payload contains further information associated with the action - the data (another 'condition')\
+                // The payload isn't required for an action to be deemed acceptable\
+\
+    //   - The type is MANDATORY.\
+    //          - Must describe the PURPOSE of the action\
+\
+
+\b     return \{\
+
+\b0 \
+        //The type can be seen as a variable and not a string sometimes, we will go through this later\
+            // - The 100% right way is to pull the names out and into a file so that the naming always remains consistent\
+            \
+        
+\b  type: 'BOOK_SELECTED',\
+         payload: book\
+    \}\
+\}\
+\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 \ul \ulc0 2. Import Action, MapDispatchToProps, Use Action, Export MapDispatchToProps in Connect function\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\i\b0 \cf0 \ulnone Containers/book-list.js\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\i0\b \cf0 \ul \ulc0 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 \ulnone import \{ selectBook \} from '../actions/index'\
+\'85\
+\
+class BookList extends Component \{\
+    \
+    renderList() \{\
+        return this.props.books.map((book) => \{\
+            return (\
+\
+                
+\b0 //Remember that we need to provide a key when it comes to rendering a list \
+\
+                //Just insert whatever you think will be unique for each item\
+\
+                //After wiring the action up, we can now use onClick to call it knowing that it should affect the reducers\
+
+\b                 <li \
+                key=\{book.title\}\
+                \ul onClick=\{() => this.props.selectBook(book)\} \ulnone \
+                className="list-group-item"\
+                >\
+                    \{book.title\}\
+                </li>\
+                )\
+        \})\
+    \}\
+\
+    render() \{\
+        return (\
+            <ul className="list-group col-sm-4">\
+                \{this.renderList()\}\
+            </ul>\
+        )\
+    \}\
+\}\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 \ul \ulc0 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 \ulnone \'85..\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 \ul \ulc0 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\b0 \cf0 \ulc0 /\ulnone /Anything returned from this function will end up as props on the Booklist container\
+\
+//'selectBook' - the KEY - is now on our props, we can call 'this.props.selectBook'\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\b \cf0 function mapDispatchToProps(dispatch) \{
+\b0 \
+    //Whenever 'selectBook' is called within this component, the result is passed to all of our reducers\
+\
+    //The VALUE 'selectBook' is what we imported at the top\
+\
+    //'dispatch' is a function that sends it to all our reducers\
+    
+\b return bindActionCreators(\{ selectBook: selectBook \}, dispatch)\
+\}\
+\
+export default connect(mapStateToProps, mapDispatchToProps)(BookList);\
+\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 \ul \ulc0 3. When action (\'91selectBook\'92) is called, we send the action to ALL OUR REDUCERS\
+\
+\
+4. Create reducer to respond to the corresponding action type\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\i\b0 \cf0 \ulnone Reducers/reducer_active_book.js\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\i0\b \cf0 \
+
+\b0 //State argument is not application state, only the PIECE of the state this reducer is reponsible for - one part of the state stored in Redux\
+\
+//All reducers get two arguments: the current state, and our action\
+// Called whenever an action is dispatched by our app
+\b \
+\
+
+\b0 //State is by default set to null if there is no value in it when the this method is called\
+//  Ex: User just boots up the app 
+\b \
+export default function(state = null, action) \{\
+    \
+    switch(action.type) \{\
+        case 'BOOK_SELECTED':\
+\
+          
+\b0   //Only return fresh objects.\
+            // Don't mutate the state in between here before returning it.\
+            // i.e. \
+            //  DO NOT: state.title = book.title; return state; 
+\b \
+            return action.payload;\
+    \}\
+ \
+   
+\b0  //Adding a base case to return the state as it is if it's something that we don't care about\
+    //  Ex: If action is NOT of type 'BOOK_SELECTED'\
+    //    OR If user boots app up and they haven't chosen any active book yet (in this case we also set 'state' to null by default so that it is NOT UNDEFINED (we get an error for this))
+\b \
+    return state;\
+\}\
+\
+\
+NOTE: This reducer below doesn\'92t do anything with the action, so the \'91selectBook\'92 action doesn\'92t do anything but 
+\i EITHER: cause this function to return what it already has OR the function doesn\'92t get called because it doesn\'92t take an action parameter. The action will go through other reducers too but if their switch statement is looking for something else, THEN THOSE REDUCERS WILL JUST PASS THEIR PART OF THE STATE AS NORMAL
+\i0 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\i\b0 \cf0 \
+Reducers/reducer_book.js\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\i0\b \cf0 \
+ export default function() \{\
+    return [\
+    \{ title: 'Javascript: The Good Parts' \},\
+    \{ title: 'Harry Potter' \},\
+    \{ title: 'The Dark Tower' \},\
+    \{ title: 'Eloquent Ruby' \},\
+    ]\
+\}\
+\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 \ul \ulc0 5. Import reducer into root reducer, Assign it as a part of the Application state\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\i\b0 \cf0 \ulnone Reducers/index.js\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\i0\b \cf0 import \{ combineReducers \} from 'redux';\
+\
+
+\b0 //Importing the function and naming it as 'BooksReducer'
+\b \
+import BooksReducer from './reducer_books';\
+import ActiveBook from './reducer_active_book';\
+\
+
+\b0 //This is the mapping of our state. We're actually specifying what the state is in here.\
+//Ex: there is a piece of state right now called 'books' whose value is whatever is in 'BooksReducer'
+\b \
+\
+const rootReducer = combineReducers(\{\
+\
+ 
+\b0  //This is equivalent to books: [ \{title: 'Javascript'\}, \{ title: 'Harry Potter' \} ]
+\b \
+  books: BooksReducer,\
+  activeBook: ActiveBook\
+\
+\});\
+\
+export default rootReducer;\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 \ul \ulc0 \
+\
+6. Import, MapStateToProps the new piece of state to the state of the relevant container in React\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\b0 \cf0 \ulnone //This is the highest order component that cares specifically about what the active book is - therefore we make this a container\
+\
+i
+\b mport React, \{ Component \} from 'react';\
+import \{ connect \} from 'react-redux';\
+\
+\
+class BookDetail extends Component \{\
+    render() \{\
+        return (\
+	\
+	
+\b0 //We\'92ll insert stuff here that will display the information contained within \ul \'93this.props.book\'94
+\b \ulnone \
+            <div>Book Detail!</div>\
+        );\
+    \}\
+\}\
+\
+function mapStateToProps(state) \{\
+    return \{\
+
+\b0         //Value 'state.activeBook' specified in the redux state (reducers/index.js)
+\b \
+        book: state.activeBook\
+    \};\
+\}\
+\
+export default connect(mapStateToProps)(BookDetail);\ul \
+\ulnone \
+\
+\
+\
+}

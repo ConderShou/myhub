@@ -1,0 +1,111 @@
+#comment
+
+main.o:	main.c
+	gcc -c main.c	- It must be a tab character that sets the "gcc" line
+
+
+	- Upon typing "make" in termainl,  it will read that it needs to create "main.o" from "main.c"
+		THROUGH executing the command 'gcc -c main.c'
+
+	- It will look through the files to see if 'main.o' was created from the last time 'main.c' was compiled. 
+	- If not, it will executethe 'gcc' command provided to generate 'main.o'
+
+
+main.o:	main.c myadd.h
+	@echo "Starting"
+	gcc -c main.c
+	@echo "Done"
+
+	- Now depends on both 'main.c' and 'myadd.h' to create 'main.o', and will look at the timestamps of both
+	   dependent files accordingly (main.c, myadd.h)
+	
+	- Note: The commands that are executed can be mutliple lines. 
+
+main.o:	main.c myadd .h
+	....
+
+myadd.o:	myadd.c myadd.h
+	....
+
+	- Choose which to execute with: 'main myadd.o' or 'main myadd.h'
+
+
+- Calling "main" will execute all of these statements IN THE ORDER that you have listed them.
+	(Calls itself after each command)
+
+	- This allows automation of compiling/linking files into just a 'main' executable
+	
+
+------------------------------
+
+CFLAGS = -Wall -g
+
+myadd: 	myadd.o main.o
+	gcc myadd.o main.o -o myadd
+
+main.o:	main.c myadd.h
+	gcc -c $(CFLAGS) main.c
+
+myadd.o:	myadd.c myadd.h
+	gcc -c $(CFLAGS) myadd.c
+
+		-(We can also include warning flags), or '-wall' 
+	
+		- '$(CFLAGS)', as declared above, holds all the flags that the compiler will runs (like a variable)
+
+		-'make' command will make sure to check all of these dependencies all the way through to the
+		deepest level each time it is called
+
+CFLAGS = -Wall -g
+
+myadd: 	myadd.o main.o
+	gcc myadd.o main.o -o myadd
+
+main.o:	main.c myadd.h
+
+myadd.o:	myadd.c myadd.h
+
+
+		- This will do the same thing as above INCLUDING calling the CFLAGS, along with the implied 'gcc' command
+		- Unless noted it will use the 'cc' compiler (refer below)
+
+CC = gcc
+CFLAGS = -Wall -g
+	
+	..... (rest of the commands and all that, etc..)
+
+		- Will now use the 'gcc' compiler'
+
+CC = gcc
+CFLAGS = -g -Wall
+LDFLAGS =  -g
+
+	......
+
+		- Adding warnings
+
+CC = gcc
+ ....
+ myadd.o: ..
+...
+...
+
+clean:
+	rm -f myadd *.o
+
+		- Typing 'make clean' will now run the 'rm myadd *.o' command
+
+.PHONY: clean
+clean:
+	rm myadd *.o
+
+		- .PHONY means don't complain if the file isn't there
+
+...
+......
+........
+.PHONY: clean
+....
+.PHONY: all
+all: clean myadd
+		- 'make all'  it cleans AND calls 'make' again to REBUILD everything

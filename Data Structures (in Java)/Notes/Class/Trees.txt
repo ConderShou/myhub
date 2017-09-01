@@ -1,0 +1,4 @@
+
+height of a node = longest path from the top of the tree to that node 
+
+depth = the length of the unique path from the node to the root 

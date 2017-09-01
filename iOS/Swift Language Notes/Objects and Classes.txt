@@ -1,0 +1,45 @@
+class Vehicle {
+	
+	var tires = 4
+	var model = ""
+
+	func drive() {
+		//some function...
+	}
+
+	func brake() {
+
+	}
+
+
+------Using the classes---
+
+let bmw = Vehicle()
+bmw.model = "328i"
+
+let ford = Vehicle()
+ford.model = "F150"
+ford.brake()
+
+--
+
+func passbyRef(vehicle: Vehicle) {
+	vehicle.model = "Cheese"
+}
+
+print(ford.model)	//F150
+
+passbyRef(vehicle: ford)  //Pass by reference
+
+print(ford.model)	//Cheese
+
+
+--ERROR
+
+func passByValue(age: Int) {
+	age = 10			//Doesn't change someAge
+}
+
+var someAge = 20
+
+passByValue(age: someAge)		//Doesn't change someAge

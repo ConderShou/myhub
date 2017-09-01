@@ -1,0 +1,26 @@
+
+The goal of refactoring is to make the code more organized and adaptable WITHOUT changing how the code behaves. 
+
+
+--------------------
+
+1. Right click "facts"
+
+2. Refactor
+
+3. Extract
+
+4. Field
+
+5. In the pop up dropdown bar: choose 'field declaration'
+
+6. BAM automatically sends 'facts' to field declaration, renames it to 'mFacts', and even declares it 'private final'
+
+
+--------------------------
+
+I wonder what else Refactor can do for us.
+
+Keyboard shortcuts make tips and tricks like this even more efficient. 
+
+Let's make sure we master it yeh?

@@ -1,0 +1,67 @@
+Control Flow Commands are commands that control the flow information, the "if" statement 
+being one of them.
+---------------------------------------------------------------------------------------
+if fuelLevel < lowFuelLeevel
+	disp('Warning--low fuel!')
+end				
+
+   //
+ 	if <logical expression> 
+	      <statement block>
+	  end
+
+
+	-If <logical expression> evalutes to true, <statement block> is executed.
+	Otherwise it is not, and execution proceeds to the next statement.
+		-"end" tells the program to stop reading the next lines as statement blocks 
+		(concludes if statement)
+-----------------------------------------------------------
+if <logical expression> 
+	<statement block1>
+else 
+	<statement block2>
+end
+
+	-If <logical expression> evalutes to true, <statement block1> is executed
+	Otherwise <statement block2> is executed.
+
+----------------------------------------------------------------
+if <logical expression> 
+	<statement block1>
+
+elseif <logical expression2>
+	<statement block2>
+
+elseif <logical expression3>
+	<statement block3>
+...
+
+else 
+	<statement block>
+end
+
+	--If <logical expression> evalutes to true, <statement block1> is executed.
+	Otherwise, execution proceeds to the evaluation of next 'elseif' logical expression.
+		-Exeuction moves continuously to the next "elseif" statement if previous logical expressions
+		are evaluted to be false.
+			-When a logical expression is evaluated to be true, the corresponding
+			 statement block is then evaluated and the statement ends. 
+			-If none are true, then execution moves to "else" statement.
+--------------------------------------------------------------------
+if <logical expression> 
+	<statement block1>
+
+elseif <logical expression2>
+	<statement block2>
+
+elseif <logical expression3>
+	<statement block3>
+
+	if <logical expression3b>   - If 'elseif' function here is true, then execution 
+	   <statement block3b>        proceeds to evaluate the logical expression of the included "if" statement
+	end                         - Or <logical expression3> && <logical expression3b> 
+...				      can be used with the original "elseif" statement
+
+else 
+	<statement block>
+end

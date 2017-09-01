@@ -1,0 +1,41 @@
+---Ternary Operator-------
+
+expr1 ? expr2 : expr3
+
+	1. 'expr1' is evaluated
+	2a. If it is true, then 'expr2' is evaluated. Done.
+	2b. Otherwise, if it is false, 'expr3' is evaluated
+
+Ex:
+	z = (a > b) ? a : b;	/* z = max(a, b) */
+
+	Think of this as:
+			z = ( (a > b) ? a : b)
+
+	'z' will be set to whichever is largest. 
+
+
+-----Short-Circuit Evaluation--------
+
+if ( x < 5 && f(x) )
+	
+	- If x < 5 is FALSE, then the program will not execute f(x).
+
+if (x < 5 || g(x) )
+
+	- If x < 5 is TRUE, then the program will not execute g(x)
+
+
+-----Conversion
+
+Conversion rules still hold true for the type of result determiend.
+
+Ex:
+	'f' is float, 'n' is int
+	
+	(n > 0) ? f : n
+			The expression is of type 'float' regardless of whether 'n' is positive
+
+Parentheses are not necessary since the precedence of '?:' is VERY LOW (just above assignment)
+	But they're nonetheless advisable. 
+

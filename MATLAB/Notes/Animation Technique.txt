@@ -1,0 +1,78 @@
+---Common Animation Struture------
+
+%% set parameters
+
+%% calculate motion (and other information)
+
+%% animate motion
+
+   for it=1:Nt
+	plot curves
+		...(optional: line, text, patch, image...)
+	set axes limits
+	label axes
+	drawnow
+  end
+
+------------------------------
+----Remember to add on a program slowly 
+	-Get basic structure down and then add to it
+
+%% ManhattanRandomWalk
+% random walk on a square grid
+
+N = 1e3;
+x=zeros(1, N);
+y=zeros(1, N);
+doAnimate=false;
+
+%% calculate a walk starting at the origin
+
+for istep=2:N-1
+    idirection=randi(4);
+    switch idirection
+	case 1	% north
+	      x(istep+1)=x(istep);
+	      y(istep+1)=y(istep)+1;	--the -1 and +1's are the steps in the left/right/up/down directions to 
+				   correlate with west/east/north/south
+
+	case 2	% south
+	      x(istep+1)=x(istep)
+	      y(istep+1)=y(istep)-1;
+
+	case 3	% west
+	      x(istep+1)=x(istep)-1;
+	      y(istep+1)=y(istep);
+
+	case 4	% east
+	      x(istep+1)=x(istep)+1;
+	      y(istep+1)=y(istep);
+      end
+
+end
+
+%% animate plot of walk
+
+if doAnimate
+    for istep=2:N
+	plot(x(1:istep), y(1:istep), ...	            % draws path 
+		x(istep), y(istep), 'ro', ...      % draws path point	-To have line and a marker, only do the color/shape thing at the end
+		0, 0, 'r^')					-This creates a marker at the center
+	xyMax=max(abs([x(1:istep),y(1:istep)]));
+	axis([-xyMax, xyMax, -xyMax, xyMax]);	-The axis are set to the maximum values of x an y.
+					This way one set of axis are enough. 
+					And do not need to be constantly changing
+	axis square	
+	drawnow
+    end
+else
+	plot(x,y,...			-Skips the animation of the circle, and goes straigh to final results
+	      x(end), y(end), 'ro', ...
+	     0, 0, r^, ...
+	      'MarkerFaceColor', 'r')		-Colors in the Markers with a certain color (in this case - red)
+	xyMax = max(abs([x, y, 10]));
+	axis([-xyMax, xyMax, -xyMax, xyMax]);
+	line([-xyMax, xyMax], [0, 0], 'Color', 'k');
+	line([0, 0], [-xyMax, xyMax, 'Color', 'k');
+	axis square
+	grid on

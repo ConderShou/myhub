@@ -1,0 +1,38 @@
+public class Main { 
+	private static int numTiles  = 8;
+	private static final int LIGHTUP = 0;			- Numbers can be for convenience of user input.
+	private static final int Z_PATTERN = 1;			  	- But make sure they are equated to clear variable names
+	private static final int ZIGZAG_PATTERN = 2;		  	  so you know what's happening when you come back 
+	private static int selection = 2;			 	  to the program.
+
+    public static void main (String[] args) { 
+	if (selection == LIGHTUP) {
+		lightUp(numtiles);				- Notice how functions are used to better organize the program
+	} else if (selection == Z_PATTERN) {
+		zPattern(numTiles);
+	} else if (selection == ZIGZAG_PATTERN) { 
+		zigzagPattern(numtiles);
+	} else{
+		System.out.println("Non valid pattern");
+	}
+     }
+
+    public static void lightUp(int numTiles) {			- The declaration for a function
+	for (int i = 0; i < numTiles; i++) {				-Insert program: notice how when numTiles is called, it refers to 
+		for (int j = 0; j <numTiles; j++) {			          	            the numTiles variable previously defined in the
+			if ((i+j) % 2 == 0) {					            the beginning
+				System.out.print("1");
+			}else{
+				System.out.print("0");
+			}
+		}
+		System.out.println();
+		}
+	}
+   
+      public static void zPattern(int numTiles) {
+		.....
+
+     public static void zigzagPattern(int numTiles) {
+		...
+		

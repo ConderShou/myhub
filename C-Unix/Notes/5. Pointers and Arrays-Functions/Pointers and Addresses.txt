@@ -1,0 +1,59 @@
+The unary operator * is the INDIRECTION or DEREFERENCING operator
+	- When applied to a pointer, it accesses the OBJECT the pointer points to
+
+int x = 1, y = 2, z[10];
+int * ip		- ip is a pointer to int 
+
+ip = &x;		- ip now points to 'x'
+
+y = *ip;		- y is now 1
+
+*ip = 0;		- x is now 0
+
+ip = &z[0]		- ip now points to z[0]	
+
+	
+ int *ip	
+	"The expression *ip is an 'int' "
+ 
+
+The syntax of the declaration for a variable mimics the syntax of expressions in which the variable might appear.
+	- Reasoning applies to function declarations as well
+
+	Ex:
+		double *dp, atof(char *);
+
+		- In an expression, *dp and 'atof(s)' have values of type double
+			and and that the argument of 'atof' is a pointer to 'char'
+
+NOTICE: The implication is that the pointer is CONSTRAINED to point to a PARTICULAR kind of object
+	- Every pointer points to a specific data type
+	(A pointer to 'void' is used to hold any type of pointer but cannot be dereferenced itself)
+
+
+-- If 'ip' points to the integer 'x' then '*ip' can occur in any context where 'x' could
+
+	*ip = *ip + 10;
+	
+	Increments *ip by 10 (and therefore x is incremented by 10)
+
+	Other ways of incrementing WHAT it points TO:
+	
+	++*ip 
+	(*ip)++		(Parentheses are necessary here, otherwise it increments 'ip' rather than 'x')
+
+		These increment what 'ip' POINTS TO. 
+
+	
+----
+
+Since pointers are variables, they can be used without dereferencing. 
+
+Ex:	IF 'iq' is another pointer to 'int'
+	
+	iq = ip
+
+		- Copies the contents of 'ip' into 'iq'
+			THUS: making 'iq' POINT to WHATEVER 'ip' pointed to (i.e. x)
+
+	

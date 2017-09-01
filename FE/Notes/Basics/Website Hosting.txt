@@ -1,0 +1,20 @@
+In the admin dashboard for your website: click the DNS section.
+
+1. Look for the NS (name server) records
+
+2. Copy them
+
+3. Go to domain: MANAGE (Edit, etc..)
+
+4. Change Nameservers for the domain
+
+5. Choose the customization option and PASTE the name servers into the options. 
+
+6. DONE :D
+
+
+Check functionality by going to the website domain through your browser.
+
+It works if there's an error page that has the Hosting service on it. 
+
+(Or if the webpage actually loads)

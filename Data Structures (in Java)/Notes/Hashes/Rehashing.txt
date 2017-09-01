@@ -1,0 +1,99 @@
+If the table gets too full, the running time for the operations will start taking too long and insertions might fail for 
+	open addressing hashing with quadratic resolution.
+
+	This can happen with too many removals mixed with insertions.
+
+
+SOLUTION:
+		Build another table twice as big.
+
+			Scan down the entire original hash table, and compute a new hash value for each
+			non-deleted element with a NEW hash function.
+
+			Insert that new hash value into the new table.
+
+
+Ex:
+	A table of size 7 has a hash function of h(x) = x mod 7.
+	If a 5th element is inserted into a table of size 7, then the table is now over 70% full.
+	
+	As a result, we create a NEW table of size 17, 
+		because it's the FIRST PRIME that's TWICE as LARGE as the old table size
+
+	The new hash function is h(x) = x mod 17
+
+	The old table is scanned, and the 5 elements are inserted into the new table. 
+
+
+This operation is called REHASHING.
+
+
+Rehashing is a very expensive operation, with a running time of O(N).
+	(N elements to rehash, and the table size is roughly 2N)
+However, it's not too bad because it happens very infrequently.
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+Rehashing can be implemented in several ways with quadratic probing.
+
+
+1. Rehash AS SOON AS the table is HALF FULL.			(One extreme)
+
+	OR
+
+2. Rehash ONLY when an INSERTION FAILS			(Other extreme)
+
+	OR
+
+3. Rehash when the table reaches a CERTAIN LOAD FACTOR	(Middle-ground)
+
+
+The third strategy, implemented with a good cutoff, could potentially be best.
+
+
+Ex: (We CALL this method when one of the chosen conditions ABOVE are met)
+
+	/**	
+	   * Rehashing for quadratic probing hash table
+	 */
+	private void rehash()
+	{
+		HashEntry<AnyType> [] oldArray = array;
+
+		      // Create a new double-sized, empty table
+		allocateArray( nextPrime( 2 * oldArray.length ) );		//NOTICE: it's the NEXT PRIME
+		currentSize = 0;					//  that's TWICE as LARGE
+
+		     // Copy table over
+		for( int i = 0; i < oldArray.length; i++ )
+			if( oldArray[ i ] != null && oldArray[ i ].isActive )
+				insert( oldArray[ i ].element );
+	}
+		
+--------------------------------------------------------------------------------------------------------------------------------------------------
+
+Rehashing for separate chaining hash tables is similar.
+
+Ex:
+	/**
+	   * Rehashing for separate chaining hash table
+	 */
+	private void rehash()
+	{
+		List<AnyType> [] oldLists = theLists;
+	
+		       // Create new double-sized, empty table
+		theLists = new List[ nextPrime( 2 * theLists.length ) ];
+		
+		for( int j = 0; j < theLists.length; j++ )
+			theLists[ j ] = new LinkedList<>();
+		
+		     // Copy table over
+	  	currentSize = 0;
+				
+		for( int i = 0; i < oldLists.length; i++ )
+			for( AnyType item : oldLists[ i ] )	// NOTICE how we insert each element of 
+				insert( item );		//  	EACH of the LINKED LIST ELEMENTS 
+	}						//  	      of the ORIGINAL HashTable List
+							//  	into the NEW List

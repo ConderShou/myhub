@@ -1,0 +1,20 @@
+-----More Parameters-------
+
+double average(int x, int y)		- A method with two parameters (we can have more parameters separated by commas)
+{
+	return (x+y)/2;		
+}
+
+-----No Parameters---------
+
+String sayHello()			- Without parameters, the method just always returns the same value
+{
+	return "Hello!";
+}
+
+--------No Result------------
+
+void printInverse(int x)		- "void" as the result type for when we don't want a result computed
+{					Useful for printing something (no value is returned and the result is more of a "side-effect')
+	System.out.println(1/x);
+}

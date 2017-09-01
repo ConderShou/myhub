@@ -1,0 +1,44 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf810
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww33400\viewh21000\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\b\fs24 \cf0 Controlled field/input/element\
+	\
+	
+\b0 Value is set 
+\i by the state
+\i0 . Not the other way around\
+\
+\'97search_bar.js\'97\'97\'97\
+\
+\
+	 	//IDEALLY: We want the 'input' to receive information FROM THE STATE, not the other way around\
+\
+	 	//Input is now a CONTROLLED INPUT/FORM ELEMENT\
+	 	
+\b return (\
+	 		 <div>\
+	 		 <input 
+\b0 \
+\
+	 		 //IMPORTANT: When the state changes, the component is re-rendered, and the 'value' of the input (an HTML property) is now coming from the state\
+
+\b \
+	 		 value = \{this.state.term\}\
+
+\b0 \
+	 		 //Technically when this runs, the value of the input hasn't changed yet - not until it's RE-RENDERED, which happens immediately after\
+\
+	 		 //The user is now ONLY changing the state. And the input only changes from the state now. \
+	 		 \
+	 		
+\b  onChange=\{event => this.setState(\{ term: event.target.value \}) \}/>\
+	 		 </div>\
+	 		 );\
+
+\b0 \
+
+\b 	 \}}

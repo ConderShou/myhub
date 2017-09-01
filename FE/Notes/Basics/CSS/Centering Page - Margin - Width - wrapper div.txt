@@ -1,0 +1,76 @@
+#wrapper {
+  max-width: 940px;
+  margin: 0 auto;
+}
+
+-----------------------------
+
+max-width: 940px;	
+
+	 - We want pixels no larger than 940 pixels across (but can be less)
+
+	- Could have just used "width: 0 auto;"
+
+
+margin: 0 auto;
+
+	- Spacing around the element
+	- This is shorthand that will set the margin on all four sides:
+		
+		1st value sets margin on TOP and BOTTOM element 
+			(Normally we declare unit, but this is 0)
+		2nd value fills in any space on the LEFT or RIGHT side of the element
+
+			Ex:
+				Take entire width of page.
+				Subtract 940 pixels from the middle.
+				The rest of space on left and right is AUTOMATICALLY filled in
+
+			As a result, this CENTERS the contents inside of this div element
+
+
+---------
+
+h2 {
+...
+    margin: -5px 0 0;
+    ...
+}
+
+First value: Top
+Second value: Left and Right
+Third value: Bottom
+
+
+Here, we're bringing elements closer together. 
+
+
+----------------------Padding--------------------
+
+Padding: 		spacing inside the element to give it a little space within its margins
+
+When you adjust the browser window, the space (padding) beside the elements will ALWAYS remain as 5% 
+	NO MATTER how small the browser window gets
+	
+	Ensures space within element no matter what size
+
+Ex:
+	  padding: 0 5%;
+	
+
+	
+	1st value: TOP and BOTTOM (Zero padding top and bottom)
+	
+	2nd value: LEFT and RIGHT (5% padding to both sides of the element)
+		- Five percent of the TOTAL WIDTH of the WRAPPER ELEMENT itself
+
+
+----Padding-Top----
+
+footer {
+....
+ padding-top: 50px;
+....
+}
+
+Specificies that this is padding for the top. 

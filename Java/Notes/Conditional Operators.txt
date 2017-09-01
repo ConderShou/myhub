@@ -1,0 +1,73 @@
+-----------Conditionals--------------
+
+if (n<0) n = -n;	- If n is negative, make it positive
+
+if (n<0)	{	- Making more than one statement dependent on the "if" condition (usually better to do this with just one statement anyways)
+			DO NOT PUT semicolon after the boolean condition (the "if" statement)
+         n = -n;
+         x = 0;
+
+}
+
+--------
+
+if (n<0) {
+
+       x = -n;
+
+}
+
+else {
+
+      if (n==0)   {
+       x = 0;  s = "n==0";
+
+      }
+     
+      else if {
+           x = n; s = "n>0";
+      }
+
+      else {
+        x = n; s="n>=5";
+}
+
+------Semicolons and if statements---------
+
+int i = 0;
+
+if (i < 0);		- the semicolon here ends the if statements and makes the next line a whole separate command in and of itself
+    i = i + 1;
+
+		Result: i = 1
+
+
+-----------------Specifying with the If/else if statement----------------
+
+Here you must sort the conditions and test against the largest cutoff first.
+Suppose we reverse the order of tests:
+
+if (richter >= 4.5) // Tests in wrong order
+{
+description = "Damage to poorly constructed buildings";
+}
+else if (richter >= 6.0)
+{
+description = "Many buildings considerably damaged, some collapse";
+}
+else if (richter >= 7.0)
+{
+description = "Many buildings destroyed";
+}
+else if (richter >= 8.0)
+{
+description = "Most structures fall";
+}
+
+This does not work. Suppose the value of richter is 7.1. That value is at least 4.5,
+matching the first case. The other tests will never be attempted.
+
+The remedy is to test the more specific conditions first. Here, the condition
+richter >= 8.0 is more specific than the condition richter >= 7.0, and the condition
+richter >= 4.5 is more general (that is, fulfilled by more values) than either of the
+first two.

@@ -1,0 +1,87 @@
+Integer and Double wrap the value of integer and double values into objects.
+
+Thus, when creating a new object of type Integer or Double,
+	the variable does not point directly to the value in memory,
+	but to the OBJECT which contains the actual value of the memory.
+
+--------------------------intValue() and doubleValue()--------------------
+
+These methods return the actual primitive data type of the number represented in the objects.
+
+intValue()		
+doubleValue()
+
+If you call the method "doubleValue()" of class "Integer", you'll get the decimal version of that integer number.
+	2 --> 2.0
+
+If you call the method "intValue()" of the class "Double", you'll get integer part of decimal number.
+	2.5 --> 2
+
+----------------------Creating Integer and Double objects------------------
+
+Integer myNumber = new Integer (3);
+
+Integer myNumber = new Integer("3");
+	
+	These two codes are the same.
+	The constructor internally transforms a String representation of the number into a number.
+
+------Transforming a word or String into a number
+
+parseInt(String s)	
+
+parseDouble(String s)
+
+	- Gets the String "s" given as argument and returns the "int" or "double" representation respectively
+
+NOTE: If the string is not a valid number (letters, non-numeric characters, etc..), 
+	then a "NumberFormatException" is thrown.
+
+-----------Max and Min-----
+
+Integer.MAX_VALUE represents a constant number holding the maximum value an int can have, which is (2^31) - 1. 
+
+Integer.MIN_VALUE represents a constant number holding the minimum value an int can have, which is -2^31. 
+
+As you can see in the Integer Javadoc, an integer can range from -2^31 to (2^31) - 1.
+
+---------------------------Examples------------------
+
+public class HelloInteger
+{
+    public static void main(String []args)
+    {
+        Integer i1 = new Integer(2);
+        System.out.println(i1.intValue() + ", " +
+            i1.longValue() + ", " + i1.doubleValue());
+    }
+}	
+
+PRINTED OUTPUT:
+
+	2, 2, 2.0 2, 2, 2.0 
+
+public class HelloInteger
+{
+    public static void main(String []args)
+    { 
+        System.out.println(Integer.SIZE + ", " + Float.SIZE + 		- "...SIZE" refers to number of bits used to represent that specific value type
+            ", " + Long.SIZE + ", " + Double.SIZE);
+    }
+}	
+
+PRINTED OUTPUT:
+		32, 32, 64, 64 
+
+------------------
+
+The number of bits used to represent an int value in two's complement binary form is 32.
+
+The number of bits used to represent an float value in two's complement binary form is 32.
+
+The number of bits used to represent an long value in two's complement binary form is 64.
+
+The number of bits used to represent an double value in two's complement binary form is 64.
+
+----------------
+

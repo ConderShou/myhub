@@ -1,0 +1,43 @@
+-------Derivatives by finite difference quotients---------------
+
+function y = func(x)
+
+The derivative at a set of points (vector) 'x' can then be evaluated by taking the "finite difference quotient"
+
+d/dx func(x) ~~can type this directly as code~~> ( func(x+dx/2) -  func(x-dx/2)  ) / dx
+	
+	- Provided 'dx' (a scalar here) is small compared to variations in func
+	-Gives derivative of function at the set of points 'x'
+
+--------Derivatives of tabulated functions: gradient--------------
+
+
+dydx = gradient(y, dx)
+
+y = tabulated values of function on equally-spaced grid (tabulated and equally-spaced values on an array 'y')
+dx = scalar distance between x values
+	 (difference between successive x values)
+
+1. Tabulate function with equally spaced values 
+
+        x = linspace(0, 1, 300);   
+        h = humps(x);
+
+2. Calculate dx and gradient
+	
+        dx = x(2) - x(1);
+        dhdx = gradient(y, dx);		-gets the derivative of y
+
+3. Plot
+ 
+         subplot(2, 1, 1) ---subplots allow more than one graph to be in the same figure window
+			2 x 1 array axis object, following commands go to Graph 1.
+                  plot(x, h)
+ 	  xlabel(...
+	 ....
+
+         subplot(2, 1, 2)
+	  plot(x, dhdx) 
+	  title(....
+
+

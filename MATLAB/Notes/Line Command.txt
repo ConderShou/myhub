@@ -1,0 +1,23 @@
+------- Line Command---------
+
+Line command does not create axis or redraw figure
+
+Use it to add lines to existing figure
+
+	line(X, Y);
+	line(X,Y, 'Color', 'r');
+	line(X,Y,'Color', 'r', 'LineWidth', 2);
+	line(X, Y, Z);
+
+Type: doc primitive line properties
+	to see list of properties
+
+-----------------Handle--------------------
+The line properties can also be changed by getting the "handle" of the linen obejct 
+and then setting the properties values using the "dot" notation
+
+hL=line([0, 0.5], [0, 0.5]);
+
+hL.Color = 'r';
+hL.LineWidth=1.2;
+

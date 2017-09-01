@@ -1,0 +1,100 @@
+#include <stdio.h>
+
+main()
+{
+	printf("hello, world\n");
+}
+
+Output: 
+	hello, world
+
+
+------
+
+#include <stdio.h>
+
+	Tells compiler to include information about the standard input/output library
+	NOT IMPORT
+
+	Puts the contents of that file in that line. Substitutes that line with all of the file 'stdio.h''s code
+
+main() {...}	
+
+	Define a function named "main" that receives no argument values.
+	Statements of main() are enclosed in braces
+
+\n
+	Newline character. Use it to advance to the next line after the output is printed.
+	Also called an "escape sequence"
+
+------Compiling and Running-------
+
+
+To compile and run in UNIX:
+	
+	Create file name that ends with ".c"
+	
+Compile:		cc hello.c
+	
+	This will make an executable file called "a.out"
+
+Run:		./a.out
+
+	This will run 'a.out' and print: hello, world	
+
+
+This is different depending on the system.
+
+
+-------main()-----------
+
+The program begins executing at the beginning of main()
+
+	Every program must there have a main() somewhere
+
+
+--------------------------
+
+ll	- ls
+
+cat hello.c	- Prints contents of code into terminal
+
+which hello.c	- Shows directory address of the command/program hello.c
+
+		- Each command has a location it's coming from. You tell the terminal where to find the command to run it
+
+.		- One dot = Current directory
+
+..		- Upstairs directory
+
+-------------
+
+1. Compilation
+
+2. Linking
+
+gcc hello.c -o hello		- Ouputs the name of file "hello.c" into "hello"
+
+gcc main.o myadd.o -o myadd
+		
+			- An executable has no extensions
+			- Running 'myadd' runs both 'main.o' and 'myadd.o'
+
+gcc -c hello.c	- Compile hello.c only
+
+gcc hello.c	- Linking with hello.o into an executable
+
+hello.o 		- the Compiled version of hello.c
+
+
+gcc -c Wall main.c		- Enables warning when compiling
+
+----------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------
+
+
+----#include----
+
+#include "myadd.h"
+
+	Include the code of the file present in the current directory

@@ -1,0 +1,48 @@
+The "Car" class and the "Truck" class already have overriding "toString()" methods at work.
+
+Therefore, we don't really need a "toString()" method for the "Vehicle" class if we're only going to use the "Car" and "Truck" classes
+
+Abstract methods/classes are useful ways to not over-specify from the start. 
+	They allow us to delay the definition of the behavior of the method/class to when we have something to specify it with. 
+
+--------------------Abstract Methods----------------------
+
+An "abstract" method is one without a body.
+
+Ex:
+
+	public abstract class Vehicle{				
+		private String color;
+		public Vehicle(String c) {color = c;}
+		
+		public abstract String toString();			- A class with at least ONE abstract method is called "abstract class"
+			//for other methods of other classes
+		}
+
+	public class Car extends Vehicle {	
+		private int noPass;
+
+		public Car(int n, String c)
+			{super(c); noPass = n;}
+		public String toString()
+			{return
+				"I am a car. I am carrying "+noPass+" passengers";}
+		}
+
+An abstract method is a method without the body.
+
+Constructors, static methods, and final methods CANNOT BE abstract. 
+
+-------------------------Abstract Class-----------------------
+
+A class where SOME methods are abstract and SOME are not.
+
+public abstract class Vehicle{...}
+
+An abstract class cannot be instantiated - you CANNOT create an object out of an abstract class
+
+An abstract class can be EXTENDED to a class OR to an ABSTRACT class
+
+You can define a class as abstract EVEN without ANY abstract methods - PREVENTING the possibility of instantiating the class
+	HOWEVER: if you have an abstract method and you do not define the class to be abstract, you will get an ERROR.
+

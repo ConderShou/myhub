@@ -1,0 +1,27 @@
+1. Tabulate Function
+
+	x = linspace(0, 1, Nx);
+	f = humps(x);
+
+2. Integrating using trapz
+
+	F(1) = 0;
+
+     for ix = 2:Nx
+	F(ix) = trapz(x(1:ix), f(1:ix));
+     end
+
+3. Derivative of Integral using gradient
+
+    dx = x(2) - x(1);
+    dFdx = gradient(F, dx);
+
+subplot(3, 1, 1)
+     plot(x, f)
+     .....
+
+subplot(3, 1, 2)
+   plot(x, F)
+
+subplot(3, 1, 3)
+   plot(x, dFdx)

@@ -1,0 +1,45 @@
+Easy to remove elements from an array list by just calling the "remove" method
+
+It's common, however, to remove ALL elements that MATCH a PARTICULAR CONDITION
+
+For example, if we want to remove all strings of length < 4 from an array list:
+
+	ArrayList<String> words = .....;
+	
+	for (int i = 0; i < words.size(); i++)
+	{
+		String word = words.get(i);
+		
+		if (word.length() < 4)
+		{
+			Remove the element at index i
+		}
+	}
+
+HOWEVER, because the "remove" method MOVES all the elements after the position of the removed element DOWN,
+	the increment of "i" in this for loop causes us to SKIP PAST the NEXT ELEMENT 
+		(this element is in the position of the element just removed)
+
+
+--------------------------------SOLLUTION------------------------------
+
+THEREFORE, USE A WHILE LOOP:
+
+	int i = 0;
+	
+	while ( i < words.size())
+	{
+		String word = words.get(i);
+	
+		if (word.length() < 4)
+		{
+			words.remove(i);
+		}
+		else
+		{
+			i++;
+		}
+	}
+
+
+		

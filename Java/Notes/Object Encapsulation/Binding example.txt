@@ -1,0 +1,36 @@
+class Employee {
+   public void speak() {
+      System.out.println("No statements allowed");
+   }
+}
+
+class MarketingEmployee extends Employee {
+   public void speak() { 
+      System.out.println("You should buy our products!");
+   }
+}
+
+class PublicRelationsEmployee extends Employee {
+   public void speak() {
+      System.out.println("Our company is the best!");
+   }
+}
+
+-----------------------------
+
+Employee e = new MarketingEmployee();	
+e.speak();
+
+	PRINTS:
+		"You should buy our products!"
+
+Employee e = new PublicRelationsEmployee();
+e.speak();
+
+	PRINTS: 
+		"Our company is the best!"
+
+This is what Overriding and dynamic binding does. 
+
+The employee class is given instead a MarketingEmployee or PublicRelationsEmployee object, and so will consist 
+	of THOSE specific methods

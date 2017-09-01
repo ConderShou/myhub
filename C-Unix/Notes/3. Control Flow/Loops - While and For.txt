@@ -1,0 +1,64 @@
+Any of the three parts can omitted, but the semicolons must remain
+
+	for (;;) {
+		...
+	}
+
+This is an infinite loop that would require BREAK or RETURN to exit
+	(can also use while)
+
+
+-------------Semicolon in Body------------
+
+int i;
+
+for (...) {
+	;
+}
+
+For loop proceeds normally, but no action is taken even if true.
+	
+	- Used to increment variables inside the expression space of the for loop.
+		(Like skipping over certain array indexes if a certain condition is true)
+
+	- In this case, you'd probably initialize 'i' OUTSIDE of the for loop, so that once it has been increased to
+		some value, you can USE it in OTHER statements
+
+	- !!Regular practice in C: 
+		Initialize 'i' OUTSIDE of for loop
+		Only "LESS THAN" <, NOT '<='
+		'i' is initialized to 0
+
+	Ex:
+		int i;
+		for( i = 0; i < 10; i++)
+			printf("%d", i + 1);
+
+
+------------While------------------
+
+Proper practice for 'while' loops.
+
+
+int i = 0;
+while( i < 10) {
+	...
+	..
+	..
+	i++;
+}
+
+
+-----Comma--------------
+
+- Allows multiple expressions. Use this SPARINGLY. Only when constructs are STRONGLY related to each other. 
+
+Ex:
+
+int c, i , j;
+
+for (i = 0, j = strlen(s) - 1; i < j; i++, j--) {
+	c = s[i];
+	s[i] = s[j];
+	s[j] = c;
+}

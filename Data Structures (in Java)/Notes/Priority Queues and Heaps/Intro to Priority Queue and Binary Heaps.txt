@@ -1,0 +1,21 @@
+A priority queue has at least two of the following operations:
+
+	insert		- equivalent of enqueue
+	
+	deleteMin		- finds, returns, and removes the minimum element in the priority queue
+			- equivalent of dequeue
+
+Priority queues are also important in the implementation of GREEDY ALGORITHMS
+	which operate by repeatedly finding a minimum
+
+
+----------------------------------------Simple Implementations----------------------------------------------------
+
+We could use:
+
+		LinkedList:	- insertions at the front O(1); traversing list and deleting the minimum O(N)
+		
+				- We could SORT the list to make insertions expensive O(N) and deleteMins cheap O(1)
+
+		Binary Search Tree:		- This gives us O(logN) average time for both operations
+

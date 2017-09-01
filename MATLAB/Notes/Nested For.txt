@@ -1,0 +1,26 @@
+--Nested For----
+
+for icol=1:Ncols
+	for irow=1:Nrows
+	    disp(['(', num2str(irow), ',', num2str(icol), ')', ...
+		' element is ', num2str(A(irow,icol))]);
+end
+end
+
+(1, 1) element is 60  
+(2, 1) element is 81
+(3, 1) element is 84
+
+....
+
+(1, 2) element is.....
+(2, 2) element is.....
+(3, 2) elment is......
+
+.....
+
+	-Goes through icol with its initialized value 
+	and then through the entire loop of the next for statement
+	before rolling into the next value of the initial for statement
+
+-----------------------------------------------------

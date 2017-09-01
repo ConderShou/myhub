@@ -1,0 +1,12 @@
+#define sqr(x) x* x
+
+sqr(5 + 6) will literally be evaluated as:
+
+	5 + 6 * 5 + 6 
+
+So be careful with those form of defining functions
+
+#ifndef	__.....	//if not defined
+#def	_.....
+
+	- If not defined, then define

@@ -1,0 +1,43 @@
+There is no direct way for the called function to ALTER a variable in the calling function.
+
+We can't write:
+	
+	void swap(int x, int y)
+	{
+		int temp;
+	
+		temp = x;
+		x = y;
+		y = temp;
+	}
+
+This doesn't actually swap 'x' and 'y' values passed into 'swap'.
+	- It swaps COPIES of 'a' and 'b'
+
+This is why we have pointers - to point to the ACTUAL object
+
+	void swap(int *px, int *py)
+	{
+		int temp;
+
+		temp = *px;
+		*px = *py;
+		*py = temp;
+	}
+
+	---Another example with arrays:
+
+	int n, array[SIZE], getint(int *);
+	
+	for (n = 0; n < SIZE && getint( &array[n] ) != EOF; n++)
+		;
+NOTICE: We pass the ADDRESS of array[n] to 'getint' so that the function can communicate the converted integer 
+	back to the caller
+
+
+ASIDE:
+	c - '0'	Returns the integer value of c
+
+	Ex:
+
+		'2' - '0' = 2

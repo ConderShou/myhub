@@ -1,0 +1,7 @@
+int getline( char s[], int lim )
+
+	- Defining a character array called 's'
+
+	- 'int' is the default return type, so it can be omitted
+
+	-'\0' is the NULL character (used by the function in the example program)

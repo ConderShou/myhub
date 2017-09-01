@@ -1,0 +1,5 @@
+g2.drawString("Message", 50, 100);
+
+	- Draws the string and the x and y coordinates fo the basepoint in the character in the first string
+
+Basepoint: bottom line of the image of the text (like the line you write on in Composition Notebooks and lined paper)

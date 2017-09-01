@@ -1,0 +1,23 @@
+Use '' for apostrophe in a string ( Just ' will end the string)
+Use == for equal to (if ToBikeorNot == 1) ( = means to put something into a variable)
+
+input(PROMPT, 's') - **No brackets 
+	- program will now convert answer to a string (letters and numbers)
+
+EDIT Window: Click on the dash next to number (dash represents the existence of a function)
+	     Then press Run
+		-Now, you can check to see if the program works step by step
+			-The program will start checking from where you created the flag (red circle)
+
+To Fix Indenting: Select the area of interest in the edit window and press CRTL + I 
+		  - or Editor-->Indent-->Smart 
+
+disp([ ])	-Certain commands need the brackets inside parentheses for MULTIPLE strings and commands
+title([ ]) 
+
+fortune{1}(1:3)	-the ':' sign means from what number to the other. Can be used outside of for loops.
+	
+	- Output: Pur
+
+sort()	- sorts vector into ascending or descending order
+		-for default input: sort(vector) - function sorts the vector into ASCENDING order

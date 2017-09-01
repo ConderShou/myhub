@@ -1,0 +1,56 @@
+---Damping harmonic oscillator
+
+
+--MATLAB----
+
+...m..k..x0...v0..Tf..Nt....	-defining constants
+...gamma = 0.05....			-damping constant (increase in this constant = more damping)
+
+t = linspace(0, Tf, Nt);
+x = zeros(1, Nt);
+v = zeros(1, Nt);
+deltat = t(2) - t(1);
+x(1) = x0;
+v(1) = v0;
+
+....
+
+for it = 1:Nt
+	F = -k*x(it) - gamma*v(it);		-Evaluating force at beginning of the interval
+	vhalf = v(it) + (F/m) * deltat;		-Force variable replaces "-kx(it)"
+	x(it+1) = x(it) + vhalf*deltat;
+	F = -k*x(it+1) - gamma*vhalf;		-Reevaluating force
+	v(it+1) = vhalf + (F/m)*deltat/2;	-Force variable replaces "-kx(it+1)"
+end	
+
+...
+
+plot(t, x)
+xlabel('t(sec) ');
+ylabel('x(m) ');
+grid on
+
+-----------------Simple harmonic oscillator with gravity----------
+
+for it = 1:Nt
+	F = -k*x(it) - gamma*v(it)-m*g;	-Subtracting gravity
+	vhalf = v(it) + (F/m) * deltat;		
+	x(it+1) = x(it) + vhalf*deltat;
+	F = -k*x(it+1) - gamma*vhalf-m*g;	-Subtracting gravity
+	v(it+1) = vhalf + (F/m)*deltat/2;	
+end	
+
+KE = 0.5*m*v.^2;				-Energy analysis with vector notation
+PE = 0.5*k*x.^2 + m*g*x;
+Etot = KE + PE;
+....
+
+figure(1)				
+plot(t,x)...
+
+figure(2)				-Creates a separate tab/window for the second graph/figure
+plot(t, KE, 'r', t, PE, 'b', t, Etot, 'k');
+xlabel('t(sec)')
+ylabel('Energy (J)');
+grid on
+legend('Kinetic', 'Potential', 'Total');

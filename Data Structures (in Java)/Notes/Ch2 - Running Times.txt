@@ -1,0 +1,137 @@
+public static int sum( int n )
+{
+int partialSum;
+
+1 	partialSum = 0;
+2	for( int i = 1; i <= n; i++ )
+3	partialSum += i * i * i;
+4	return partialSum;
+
+}
+
+	- Declarations count for no time
+
+	- Lines 1 and 4 count for one unit each
+	
+	- Line 3 counts for four units per time executed 
+		- Two multiplicative operations, one addition, one assignment 
+			(the += is both an incremental operation and an assignment operation)
+
+		- This is executed N times, for a total of 4N units. 
+
+	- Line 2 has to initialize "i", test i <= N, and increment "i". 
+		Costs 1 to initialize "i"
+		N + 1 for all the tests (???)
+			
+			- Is it because after running it through N times, the program has to check one last time to see if i <= N, 
+				and so it runs this operation N+1 times?
+
+		N for the increments (we're running it N times, so this is N for the amount of increments we execute)
+	
+		The "for" loop has cost of: 2N + 2
+			
+		TOTAL COST: 6N + 4
+
+		Conclusion: this method is O(N). 
+
+If we were to do this for every program, it would be much too time-consuming.
+HOWEVER, because the answer is given in terms of Big-OH, we can take some shortcuts without affecting final answer:
+
+	Line 3 is an O(1) statement per execution. So no need to count how many units it is. 
+	Line 1 is insignficant, just a one time "one unit" execution.
+	
+
+------------------------GENERAL RULES--------------------------
+
+1. for loops
+	
+	The running time of a "for" loop is AT MOST the running time of the statements inside the for loop (including test)
+		times the number of iterations.
+
+2. Nested loops
+
+	Analyze inside out. 
+
+	The total running time of a statement inside a group of nested loops is the running time of the statement
+		multiplied by the product of the sizes of all loops. 
+
+	Ex:
+		for (i = 0; i < n; i++)
+			for (j = 0; j<n; j++)
+				k++;
+
+	"Running time of the statement" : k++ statement has running time of ONE unit. 
+
+		First for loop size is 2N+2.
+		Second for loop size is also 2N + 2.
+
+	"Product of the sizes of all loops": (2N+2)(2N+2) = 4N^2 +.......
+
+	1 * (4N^2 +......)
+
+	TOTAL RUNNING TIME: O(N^2)
+
+3. Consecutive Statements
+
+	Just add up - Which means only the MAXIMUM - the one that takes the LONGEST counts.
+
+	Ex:
+		for ( i = 0; i<n; i++)
+			a[i] = 0;
+		for (i = 0; i<n; i++)
+			for (j = 0; j<n; j++)
+				a[i] += a[j] + i + j;
+
+	This program fragment has O(N) code followed by O(N^2), which means the total running time is
+		O(N + N^2).
+	This means that the Big-Oh time is O(N^2).
+
+4. if/else
+	
+	The running time of an if/else statement is never more than the running time of the test (testing the condition)
+		PLUS the LARGER of the running times of the optional statements. 
+
+	Ex:
+		if (condition)
+			Statement 1
+		else
+			Statement 2
+
+	This means this can be a clear overestimate in SOME cases, but never an underestimate.
+
+	Ex:
+		public static long factorial (int n)
+		{
+			if (n <= 1)
+				return 1;
+			else 
+				return n * factorial (n - 1);
+		}
+
+		Running time of the test/condition - n<=1 : N
+		Running time of the larger of the running times of the statements: 1 + method call  
+				- We must analyze the method call themselves. 
+
+		Total running time: 
+
+		Big-Oh running time of the Method: O(N)
+	
+
+-----------------Logarithms in the Running Time------------------------
+
+An algorithm is O(log N) if it takes constant (O(1)) time to cut the problem size by a fraction (usually 1/2). 
+	If  constant time is required to merely reduce the problem by a constant amount, then algorithm is O(N).
+
+Binary search: All the work done inside loop takes O(1) per iteration. 
+	The loop starts with high-low = N-1, finishing with high - low => -1.
+	Every time through the loop, the value of high-low must be at least halved from its previous value.
+	Thus, the number of times around the loop is at most [log(N-1)] + 2.
+	
+	Running time of Binary search: O(logN)
+
+-----------------------Order of Running Time in O(N)------------------
+
+In increasing (less efficient) order:
+
+c, logN, log^2 (N), N, NlogN, N^2, N^3, 2^N
+	

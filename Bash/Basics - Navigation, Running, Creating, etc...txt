@@ -1,0 +1,53 @@
+pwd 		- shows the directly you currenly are in
+
+ls		- shows the list of files within the current directory
+
+cd		- change directory
+
+	cd 1004	- changes to folder/directory named "1004"
+
+	cd ..	- backs out of the directory to whatever larger directory it is in
+
+	cd	- "cd" by itself takes you automatically home
+
+mkdir		- makese a directory/folder
+
+pico example.txt	- uses the text editor "Pico" to create and edit a text file called example.text, or edit an already existing one
+
+ssh c3544@cunix.columbia.edu	- connects to your personal Columbia CUNIX server
+
+rm		- remove file
+
+rmdir		- remove directory
+
+mv page.html index.html	- rename "page.html" to "index.html"
+
+rm *.class	- remove all ".class" files (files that are saved in the format of .class)
+
+javac HeyDude.java	- compiles the java program 
+
+java HeyDude		- runs the file as a java program
+
+-----
+
+If you want to write any specific data in the file then use echo command.
+
+echo some-text  > filename.txt
+
+	Ex:
+		C:\>echo This is a sample text file > sample.txt
+		C:\>type sample.txt
+		This is a sample text file
+		C:\>
+
+To create file using fsutil
+
+fsutil file createnew filename number_of_bytes
+
+	Ex:
+
+		C:\data>fsutil file createnew sample2.txt 2000
+		File C:\data\sample2.txt is created
+		C:\data>dir
+		01/23/2016  09:34 PM     2,000 sample2.txt
+		C:\data>

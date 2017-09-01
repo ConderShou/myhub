@@ -1,0 +1,95 @@
+Inheritance takes advantage of the commonalities between classes. 
+
+Ex:
+	public class Car {
+		private int noPass;
+		private String color;
+
+		public Car(int n, String c)
+			{noPass = n; color = c;}
+		public void moveForward() {...}
+		public void moveBackward() {...}
+		public void enter(int n) {...}		- Changes the number of passengers seated in the car
+		public void exit(int n) {...}
+	}
+
+	public class Truck {
+		private int load;			- Truck, however, has variable "load" and methods "load" and "unload"
+		private String color;
+
+		public Truck (int l, String c)
+			{load = 1; color=c;}
+		public void moveForward() {...}	
+		public void moveBackward() {...}
+		public void load(int l) {...}		- Nothing wrong with naming a method the same as the variable affiliated
+		public void unload(int l) {...}
+	}
+
+Now, to simplify the code, we can INSTEAD define a class for generic vehicles that has the commonalities between a "Car" class and a "Truck" class
+
+	public class Vehicle {			- This would be called the SUPERCLASS of "Car" and "Truck". "Car" and "Truck" being the SUBCLASSES of "Vehicle"
+		private String color;
+	
+		public Vehicle(String c) {color = c;}
+		public void moveForward() {...}
+		public void moveBackward() {...}
+	}
+
+THEN we can do THIS
+
+	public class Car extends Vehicle {		- By extending class "Vehicle", we make "Car" a subclass that has the attributes and methods of the superclass "Vehicle"
+		private int noPass;		 	- We now add the additional attributes and methods that a class "Car" has
+
+		public Car(int n, String c) {...}		
+		public void enter(int n) {...}
+		public void exit(int n) {...}
+	}
+
+	public class Truck extends Vehicle {		- Same concept applies to the "Truck" class
+		private int load;
+		
+		public Truck (int n, String c) {...}
+		public void load (int n) {...}
+		public void unload (int n) {...}
+	}
+
+- A class can have several subclasses.
+  HOWEVER, a class cannot be subclass of more than one class. 
+
+-------------------------this.value what NOT to do--------------------------
+
+class BasicSensor{
+    private double value;
+
+    public BasicSensor(double value){
+        this.value = value;
+    }
+
+    .......
+
+}
+
+class MemorySensor extends BasicSensor {
+    private int memoryPositions;
+    private double memory[];
+    
+    public MemorySensor(double value, int memoryPositions){
+        this.value = value;					
+
+	- this.value is trying to refer to the value in the parent "BasicSensor" class. However, "value" is private there.
+	
+		EITHER: Change "value" to public in "BasicSensor"
+
+		OR: call the constructor of "BasicSensor" with "super()" [insert "value" between parentheses]
+
+        this.memoryPositions = memoryPositions;
+        memory = new double[memoryPositions];
+        memory[0] = value;
+    } 
+    
+    public double[] getOldValues(){
+        return memory;
+    }
+}
+
+	

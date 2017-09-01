@@ -1,0 +1,148 @@
+The ArrayListIterator uses a Java construct known as the "inner class"
+
+----------------Postfix ++ operator------------------
+
+arr[idx++]		- Uses "idx" in the array and THEN increments "idx"
+
+-----------------Prefix ++ operator---------------------
+
+arr[++idx]		- FIRST Increments "idx" and THEN uses the NEW "idx" in the array
+
+--------Using outside variables in Inner Classes-----------------
+
+---1st Attempt:
+
+ISSUE: theItems[current++] is illegal because "theItems" and "size()" are NOT A PART of the ArrayListIterator class, and so are NOT ACCESSIBLE
+	- It is a part of the MyArrayList
+
+Right now, the ArrayListIterator class is written as a SEPARATE CLASS than MyArrayList
+
+	public class MyArrayList<AnyType> implements Iterable<AnyType>
+	{
+		private int theSize;
+		private AnyType[] theItems;
+		....
+		public java.util.Iterator<AnyType> iterator()
+		{ return new ArrayListIterator<AnyType>(); }
+	}
+	class ArrayListIterator<AnyType> implements java.util.Iterator<AnyType>
+	{
+		private int current = 0;			- "current" is declared
+		...
+		public boolean hasNext()
+			{return current < size(); }
+		public AnyType next()
+			{ return theItems[current++]; }	- "theItems" is not a part of the ArrayListIterator
+	}
+
+
+----2nd Attempt:
+
+SOLVED: We reference MyArrayList now, so we can access some of the information contained in MyArrayList, which includes the public "size()" method of MyArrayList
+
+ISSUE: "theItems" is a PRIVATE field in MyArrayList, so "theItems" is STILL NOT ACCESSIBLE
+
+	- We could change the visibility of "theItems" in MyArrayList from private to something like public, but that'd be violating the principles of good object-oriented programming
+		- We must still have data AS HIDDEN AS POSSIBLE
+
+	public class MyArrayList<AnyType> implements Iterable<AnyType>
+	{
+		private int theSize;
+		private AnyType[] theItems;				- This private identifier prevents ArrayListIterator to access "theItems" in its "next()" method
+		....
+		public java.util.Iterator<AnyType> iterator()
+		{ return new ArrayListIterator<AnyType>( this ); }		- Notice the use of "this" to refer to MyArrayList
+	}
+
+	class ArrayListIterator<AnyType> implements java.util.Iterator<AnyType>
+	{
+		private int current = 0;
+		private MyArrayList<AnyType> theList;
+		...
+		public ArrayListIterator( MyArrayList<AnyType> list)	- A new constructor that initializes a second data field (a second place to store data), storing a reference to the MyArrayList that it's iterating over
+			{ theList = list; }			
+	
+		public boolean hasNext()
+			{ return current < theList.size(); }		- Now we can get the size of the MyArrayList with the "size()" method
+		public AnyType next()
+			{ return theList.theItems[current++]; }
+	}
+
+
+------3rd Attempt: SUCCESSFUL
+
+SOLVED: ArrayListIterator is made a NESTED CLASS, and placed inside MyArrayList, which is now its OUTER CLASS
+
+"nested class"	- is identified as STATIC to signify that it's nested
+			- Without "static", it's an INNER CLASS	(which is sometimes good sometimes bad, just stick with "nested") 
+
+The nested class is also made PRIVATE so that ONLY the OUTER CLASS MyArrayList can access it. 
+	
+Now, because the "nested" class is a part of the "outer" class, no visibility issues arise. 
+
+	public class MyArrayList<AnyType> implements Iteraeble<AnyType>
+	{
+		private int theSize;
+		private AnyType [] theItems;
+		...
+		public java.util.Iterator<AnyType> iterator() {
+			return new ArrayListIterator<AnyType>(this);
+		}
+
+		private static class ArrayListIterator<AnyType> implements java.util.Iterator<AnyType>		- DECLARED private static and PLACED WITHIN MyArrayList
+		{
+			private int current = 0;
+			private MyArrayList<AnyType> theList;
+			...
+			public ArrayListIterator( MyArrayList<AnyType> list) {
+				theList = list; 
+			}
+			
+			public boolean hasNext() 	
+				{ return current <theList.size(); }
+			public AnyType next()
+				{ return theList.theItems[current++]; }		- No visibility issues now
+		}
+	}
+
+
+-----4th Alternative-----------------Inner classes-----------------------
+
+When we declare an inner class, the compiler implicitly references the OUTER class as "[Outer].this" 
+
+Therefore, if ArrayListIterator was declared as an inner class without the STATIC, then "MyArrayList.this" and "theList" would both be referencing the same "MyArrayList"
+	- "theList would then be redundant and thus removed
+
+USEFUL: when each inner class oboject is associated with exactly one instance of an outer class object
+	(Cannot exist without having an outer class object with which to be associated first)
+
+Ex: MyArrayList and ArrayListIterator would both point to the same object, IF ArrayListIterator were an INNER CLASS
+
+public class MyArrayList<AnyType> implements Iterable<AnyType>
+	{
+		private int theSize;
+		private AnyType [] theItems;
+		...
+		public java.util.Iterator<AnyType> iterator() {
+			return new ArrayListIterator();			- We don't have to use "<AnyType>" specification, because ArrayListIterator is IMPLICITLY generic, and it's tied to MyArrayList
+		}
+
+		private class ArrayListIterator<AnyType> implements java.util.Iterator<AnyType>		- DECLARED private static and PLACED WITHIN MyArrayList
+		{
+			private int current = 0;
+									- "MyArrayList<AnyType> theList" and its corresponding constructor are removed to eliminate redundancy
+			public boolean hasNext() 	
+				{ return current < size(); }
+			public AnyType next()
+				{ return theItems[current++]; }		- theList.theItems can be replaced with "MyArrayList.this.theItems"
+									HOWEVER: as long as there is NO OTHER variable named "theItems" inside the INNER CLASS, this can be written SIMPLY as "theItems"
+										- Same logic applied to "theList.size()"
+			
+			public void remove()				- We can implement the iterator's "remove" by calling MyArrayList's "remove".
+				{MyArrayList.this.remove( --current );}		HOWEVER: because MyArrayList's "remove" would CONFLICT with ArrayListIterator's "remove", we use "MyArrayList.this.remove"
+		}
+	}
+
+NOTICE: this code reverts back to the style in Attempt #1
+
+BASICALLY, we can write the code that feels SYNTACTICALLY NATURAL as in ATTEMPT #1 through INNER CLASSES

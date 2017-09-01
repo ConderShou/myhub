@@ -1,0 +1,46 @@
+
+
+Graph, G = (V,E)		- Consists of a set of VERTICES, V, and a set of EDGES, E. 
+
+	Each edge is a pair (v, w)
+
+	Edges are sometimes referred to as ARCS
+
+
+DIRECTED graph			- If the pair is ORDERED, then the graph is DIRECTED.	
+				(One - way paths with arrow pointing in the corresponding direction)
+
+UNDIRECTED graph			- Paths are two-way. 
+
+
+Weight/cost			- The third component of an edge
+
+Path				- A sequence of vertices
+
+LENGTH of a path			- Number of EDGES on the path
+				- A path from the vertex to itself would have a length 0 (no edges)
+
+Loop				- Graph contains an edge from a vertex to itself (circular)
+				- The graphs we consider will all be LOOPLESS
+
+Simple path			- All vertices are distinct, except that the FIRST and LAST one COULD be the same
+
+CYCLE in directed graph		- A path of length at least 1 such that the STARTING vertex and the ENDING vertex are the same
+				- The cycle is simple if the path is simple
+
+    "      in undirected graphs 		- Edges must be DISTINCT	
+
+
+Directed graph is ACYCLIC 		- No cycles
+          (DAG)
+
+Undirected graph is CONNECTED 	- A path from every vertex to every other vertex
+
+Directed graph is STRONGLY CONNECTED    - If it has ^ above property: A path from every vertex to every other vertex
+
+Directed graph is WEAKLY CONNECTED	- The directed graph itself is NOT strongly connected, but the UNDIRECTED version WOULD be CONNECTED
+
+COMPLETE graph			- An edge between every pair of vertices
+
+
+

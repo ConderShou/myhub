@@ -1,0 +1,207 @@
+The conceptually FIRST step in compilation.
+
+Most frequently used are:
+			#include	(include contents of a file during compilation)
+			#define	(replace a token by an aribitrary sequence of characters - symbolic constants)
+
+We will also look at CONDITIONAL COMPILATION and MACROS with ARGUMENTS
+
+------------File Inclusion------------
+
+Handles collections of #defines and declarations (among other things)
+
+
+Any source line with the form:
+	
+	#include "filename"
+
+	OR
+	
+	#include <filename>
+
+is replaced by the contents of the file "filename"
+
+
+- If the filename is QUOTED:
+	
+	Searching for the file typically begins where the SOURCE program was found
+
+- If the filename is not found there, OR if the name is enclosed with < and >:
+	
+	searching follows an implementation-defiend rule to find the file
+
+NOTE:
+	When an included file is changed, all files that depend on it must be RECOMPILED
+
+
+------------Macro Substitution---------------
+
+A definition has the form:
+
+	#define 	name	replacement text
+
+
+- Subsequet occurrences of the token "name" will be replaced with "replacement text"
+
+- LONG DEFINITION may be continued onto several lines by placing a '\' at the end of teach line to be continued.
+
+- Scope:	From #define statement to the end of the source file being compiled
+
+- A definition may use PREVIOUS definitions
+
+- Substitutions DO NOT take place within QUOTED STRINGS in the program
+
+
+Any name may be defined with ANY replacement text.
+
+Ex:
+	#define forever for(;;)	/* infinite loop */
+
+
+!! - Defining macros with arguments:
+
+Ex:
+	#define max(A, B) ((A) > (B) ? (A) : (B))
+
+A use of max now expands into IN-LINE CODE (difference between a function call)
+
+THUS:
+	x = max(p+q, r+s);
+
+	is REPLACED WITH:
+
+	x = ((p+q) > (r + s) ? (p+q) : (r+s);
+
+- This macro will serve for ANY data type
+
+IMPORTANT: This is PURE replacement, SO ORDER OF OPERATIONS and CODE EXECUTION are potential pitfalls
+
+max(i++, j++)
+		- This expresion will be evaluated twice
+
+#define square(x) x * x
+
+square(z+1) ---> z + 1 * z + 1
+
+		- You'd have to use PARENTHESES to prevent this
+
+- Macros are valuable - Ex: avoids the run-time overhead of a function call 
+
+
+-------------Undef----------------------
+
+- Names may be undefined with #undef
+	- Ensures that a routine is really a function, not a macro
+
+Ex:
+	#undef getchar
+
+	int getchar(void) {...}
+
+
+-------#-------------
+
+A parameter name preceded by a # in the replacement text will be replaced by the ACTUAL argument
+
+Ex:
+	#define dprint(expr) printf(#expr " = %g\n", expr)
+
+dprint(x/y);
+		--->
+			printf("x/y" " = %g\n", x/y);
+
+- The strings are then concatenated:
+
+	printf("x/y = %g\n", x/y);
+
+
+-------------##---------
+
+The pre-processor operator ## provides a way to concatenate acutal arguments during macro expansion.
+
+- If a parameter in the replacement text is adjacent to ##, the parameter is REPLACED by the ACTUAL ARGUMENT
+
+	- The ## and surrounding white space are REMOVED, and the result is re-scanned.
+
+Ex:
+	#define paste(front, back) front ## back
+
+paste(name, 1) --> name1
+	
+
+- The rules for ## are arcane. Refer to Appendix A for further details.
+
+
+-----------Conditional Inclusion--------------
+
+We can control preprocessing itself with conditional statements that are evaluted during preprocessing.
+	- Include code selectively (depending on value of conditions evaluated during compilation)
+
+- #if line evaluates a constant integer expression 
+	- cannot include "sizeof", casts, or 'enum' constants
+
+- If the expression is NON-ZERO, subsequent lines until an #endif or #elif or #else are included
+	(#elif = else if)
+
+
+-----#if------
+
+- The expression 'defined(name)' in a #if is 1 if the 'name' has been defined, and 0 if otherwise. 
+
+Ex:
+	Making sure that the contents of the file 'hdr.h' are included ONLY ONCE.
+
+	#if !defined(HDR)
+	#define HDR
+
+	/* contents of hdr.h go here */
+
+	#endif
+
+	- Subsequent inclusions that find the name 'hdr.h' ALREADY defined will SKIP DOWN to the #endif.
+
+
+-------
+
+- If this style is used consistently, then each header can ITSELF include any OTHER headers on which it depends,
+	without the user of the header having to deal with the interdependence 
+
+Ex:
+
+#if SYSTEM == SYSV
+	#define HDR "sysv.h"
+#elif SYSTEM == BSD
+	#define HDR "basd.h"
+...
+#else 
+	#define HDR "default.h"
+#endif
+#include HDR
+
+
+--- The #ifdef and #ifndef lines that TEST whether a name is defined
+
+#ifdef	= "if defined"
+
+#ifndef 	= "if not defined"
+
+
+In other words, the example:
+
+
+	#if !defined(HDR)
+	#define HDR
+
+	/* contents of hdr.h go here */
+
+	#endif
+
+
+could be written AS:
+
+	#ifndef HDR
+	#define HDR
+
+	/*contents of hdr.h go here */
+	
+	#endif

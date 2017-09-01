@@ -1,0 +1,148 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf810
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww33400\viewh21000\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \
+\
+\'97recipe.service.ts\'97\
+\
+
+\b import \{ EventEmitter \} from '@angular/core';\
+\
+import \{ Recipe \} from './recipe.model';\
+\
+export class RecipeService \{\
+	\
+	recipeSelected = new EventEmitter<Recipe>();\
+\
+	private recipes: Recipe[] = [\
+		new Recipe('Test', 'This is just a test', 'https://c1.staticflickr.com/3/2547/3862672238_30d378e7d6.jpg'),\
+    new Recipe('Another Test', 'This is just a test', 'https://c1.staticflickr.com/3/2547/3862672238_30d378e7d6.jpg')\
+	];\
+\
+	getRecipes() \{\
+\
+		
+\b0 //Javascript: This gives direct access to the array itself. A pointer to the actual array\
+		//	We slice it (without arguments) to give a NEW duplicate array so that the original 'recipes' array really is protected\
+\
+
+\b 		return this.recipes.slice();\
+	\}\
+\}\
+\
+\
+
+\b0 \'97\'97recipe-list.component.ts\'97\
+\
+
+\b import \{ Component, OnInit \} from '@angular/core';\
+\
+import \{ Recipe \} from '../recipe.model';\
+\
+\ul import \{ RecipeService \} from '../recipe.service';\ulnone \
+\
+@Component(\{\
+  selector: 'app-recip-list',\
+  templateUrl: './recip-list.component.html',\
+  styleUrls: ['./recip-list.component.css']\
+\})\
+\
+export class RecipListComponent implements OnInit \{\
+ \
+
+\b0 \ul  // Migrated to RecipeService\
+\
+	// recipes: Recipe[] = [\
+	// 	new Recipe('Test', 'This is just a test', 'https://c1.staticflickr.com/3/2547/3862672238_30d378e7d6.jpg'),\
+ //    new Recipe('Another Test', 'This is just a test', 'https://c1.staticflickr.com/3/2547/3862672238_30d378e7d6.jpg')\
+	// ];
+\b \
+\
+  recipes: Recipe[];\ulnone \
+\
+
+\b0  // @Output() selectEvent = new EventEmitter<Recipe>();
+\b \
+	\
+  constructor(\ul private recipeService: RecipeService)\ulnone  \{\}\
+\
+\
+  ngOnInit() \{\
+\
+   \ul  this.recipes = this.recipeService.getRecipes();\ulnone \
+  \}\
+\}\
+\
+\
+
+\b0 \'97\'97recipe-item.component.ts\'97\'97\
+
+\b \
+import \{ Component, OnInit, Input \} from '@angular/core';\
+\
+import \{ Recipe \} from '../../recipe.model';\
+\
+import \{ RecipeService \} from '../../recipe.service';\
+\
+@Component(\{\
+  selector: 'app-recip-item',\
+  templateUrl: './recip-item.component.html',\
+  styleUrls: ['./recip-item.component.css']\
+\})\
+export class RecipItemComponent implements OnInit \{\
+\
+	@Input() recipe: Recipe;\
+	\
+
+\b0 	//@Output() selectEvent = new EventEmitter<void>();
+\b \
+\
+  constructor(private recipeService: RecipeService) \{ \}\
+\
+  ngOnInit() \{\
+  \}\
+\
+  onSelected() \{\
+\
+    \ul this.recipeService.recipeSelected.emit(this.recipe);\ulnone \
+  \}\
+\
+\}\
+\
+\
+
+\b0 \'97\'97\'97recipe.component.ts\'97\'97\'97\
+
+\b \
+import \{ Component, OnInit \} from '@angular/core';\
+\
+import \{ Recipe \} from './recipe.model';\
+\
+import \{ RecipeService \} from './recipe.service';\
+\
+@Component(\{\
+  selector: 'app-recipes',\
+  templateUrl: './recipes.component.html',\
+  styleUrls: ['./recipes.component.css'],\
+\ul   providers: [RecipeService]\ulnone \
+\})\
+export class RecipesComponent implements OnInit \{\
+\
+	sRecipe: Recipe;\
+\
+  constructor(private recipeService: RecipeService) \{ \}\
+\
+  \ul ngOnInit() \{\
+  	this.recipeService.recipeSelected.subscribe(\
+  		(recipe: Recipe) => \{\
+  			this.sRecipe = recipe;\
+  		\}\
+  	);\
+  \}\ulnone \
+\}\
+\
+}

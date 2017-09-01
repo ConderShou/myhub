@@ -1,0 +1,22 @@
+----Functions with multiple returns---------
+
+Syntax: [var1, var2, … ] = funcName(x1, x2, x3, …);
+
+After var1, other returned variables are optional, but they must occur in the prescribed order.
+
+Each input or output variable can be any MATLAB data structure
+-Ex: double, string, vector, matrix, other 
+
+Specify in header comments what each input and output represent
+
+>> help myfun		prints header comments
+
+
+If user calls function with just one variable on left, then only one function is returned.
+	-The more variables asked on left, the more returned,
+	 AS LONG AS function is defined to have that many inputs (x1, x2, x3, etc…)
+
+Function [thetad, r] = function cart2pold(x, y)
+
+r = sqrt(x.^2 + y.^2);
+thetad = atan2d(y,x);

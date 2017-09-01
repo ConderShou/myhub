@@ -1,0 +1,148 @@
+class MyClass {
+
+	int count;
+
+	public MyClass( int count) {
+		this.count = count;
+	}
+
+	int getCount() {
+		return count;
+	}
+
+	int static square(int x) {		- This function doesn't use "count". 
+						We make it a static method so that we can be sure it can't access the variable "count",
+							Preventing any side effects
+						
+		return x*x;
+	}
+	
+	public static void main(String[] args) {		- This method allows us to run this program, calling classes, from the command line -- can't do x.main()
+	
+		MyClass x = new MyClass(23);		---- Must create this instance of the class first before you call the ".getCount()" part of the Class
+	
+		MyClass y = new MyClass(42);
+	
+		int result = y.getCount();
+	}
+}
+
+------------------------------
+
+	....
+
+	HasSize y  = new MyClass(42);
+
+	y.getCount(); 	- uses the getCount() method from MyClass
+
+
+
+----------------
+
+We find Comparable interface in Java API documentation
+
+public interface Comparable<AnyType>	- AnyType is placeholder for now for AnyType
+{
+	public int compareTo<AnyType x);
+}
+
+public class Person implements Comparable<Person> {			- Writing a method that allows it to compare it to itself
+
+	private String firstName;
+	private String lastName;
+
+	public Person(String last, String first) {
+		
+		firstName = first;
+		lastname = last;
+	}
+
+	@Override							- Used when overriding an already existing method in the Java API
+
+	public int compareTo(Person other) {					- Overriding compareTo
+
+		int lastNameComp	= lastName.compareTo(other.lastName);	- Invoking the compareTo of the STRING variable. NOT A RECURSIVE f
+		if (lastNameComp == 0)
+			{return firstName.compareTo(other.Firstname);
+		else
+			{return lastNameComp};
+
+	}
+
+	@Override
+	public String toString() {
+
+		return firstName+" "+lastName;
+	}
+	
+}
+
+-----------
+
+public class BinarySearchGenerics {
+	
+	public static <AnyType extends Comparable<AnyType>> int search(AnyType[] arr, AnyType x) {
+		
+		int start;
+		int stop;
+
+		start = 0;
+		stop = arr.length;
+
+		int mid;
+
+		while(start <= stop) {
+
+			mid = (start+stop) / 2;
+			
+			if (arr[mid].compareTo(x) > 0) {	// in first half
+				stop = mid - 1;
+			} else if (arr[mid].compareTo(x) < 0) {	// in second half
+				start = mid + 1;
+			} else {
+				return mid;
+			}
+		}
+		
+		return -1;
+	}
+
+	public static final void main(String[] args) {
+		
+		String[] strings = {"A", "B", "C", "D", "E"};
+		System.out.println(search(strings,"D"));
+	}
+
+}
+
+----------------------
+
+public class TestBinarySearch {
+	
+	public static final void main(String[] args) {
+	
+
+		Person[] p = {
+			new Person("Blaer", "Paul"),
+			new Person("Bauer", "Daniel"),
+			new Person("Wayne", "Bruce")
+		}
+
+	int index = BinarySearchGeneric.search ..........		- How to invoke a static method from another class
+	
+
+-------------
+
+"Integer" comes with basic methods that "int" does not. 
+
+---------------
+
+public static <AnyType extends Comparable<AnyType>> 		- The things in "AnyType" are generally going to be the same, comparing the same type to each other. Apples to Apples
+
+
+--------------------------Analyzing Algorithms--------------------------------------
+
+All operations assumed to have the same time.
+
+Algorithms can be implemented in any language on any machine. 
+

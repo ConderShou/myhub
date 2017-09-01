@@ -1,0 +1,24 @@
+Separate chaining has the DISADVANTAGE of using Linked Lists.
+
+This might slow the algorithm down because of the time needed to allocate new cells (esp. in other languages)
+	and because of the implementation of a second data structure. 
+
+An alternative to resolving collisions is to try alternative cells until an empty cell is found.
+
+	In other words:
+			h0(x), h1(x), h2(x),.... are tried in succession,
+	
+	where hi(x) = (hash(x) + f(i)) % TableSize, with f(0) = 0
+
+	The function "f", is the collision resolution strategy. 
+
+Because all the data go INSIDE the table, meaning EACH data takes up ONE CELL,
+	 a BIGGER table is needed in such a scheme than for separate chain hashing.
+
+GENERALLY, the load factor should be below 0.5 for a hash table that doesn't use separate chaining. 
+
+We call such tables PROBING HASH TABLES.
+
+
+Let's look at THREE common collision resolution strategies that stand as ALTERNATIVES to the Separate chaining 
+	method

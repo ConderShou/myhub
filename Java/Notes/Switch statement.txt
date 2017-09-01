@@ -1,0 +1,42 @@
+int digit = . . .;
+switch (digit)
+{
+case 1: digitName = "one"; break;			- Compares "digit" to the matching case number (case 1, case 2, etc..)
+case 2: digitName = "two"; break;
+case 3: digitName = "three"; break;
+case 4: digitName = "four"; break;
+case 5: digitName = "five"; break;
+case 6: digitName = "six"; break;
+case 7: digitName = "seven"; break;
+case 8: digitName = "eight"; break;
+case 9: digitName = "nine"; break;
+default: digitName = ""; break;
+}
+This is a shortcut for
+int digit = . . .;
+if (digit == 1) { digitName = "one"; }
+else if (digit == 2) { digitName = "two"; }
+else if (digit == 3) { digitName = "three"; }
+else if (digit == 4) { digitName = "four"; }
+else if (digit == 5) { digitName = "five"; }
+else if (digit == 6) { digitName = "six"; }
+else if (digit == 7) { digitName = "seven"; }
+else if (digit == 8) { digitName = "eight"; }
+else if (digit == 9) { digitName = "nine"; }
+else { digitName = ""; }
+It isn’t much of a shortcut, but it has one advantage—
+it is obvious that all branches test the
+same value, namely digit.
+
+The switch statement can be applied only in narrow circumstances. 
+The values in the case clauses must be constants. 
+They can be integers or characters. 
+As of Java 7, strings are permitted as well. 
+You cannot use a switch statement to branch on floating-point values.
+	
+Every branch of the switch should be terminated by a break instruction. 
+If the break is missing, execution falls through to the next branch, and so on, until a break or the end of the switch
+is reached. 
+In practice, this fall-through behavior is rarely useful, but it is a common cause of errors. 
+If you accidentally forget a break statement, your program compiles but executes unwanted code. 
+Many programmers consider the switch statement somewhat dangerous and prefer the if statement.

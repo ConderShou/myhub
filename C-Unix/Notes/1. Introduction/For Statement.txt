@@ -1,0 +1,30 @@
+main() 
+{
+	int fahr;
+
+	for (fahr = 0; fahr <= 300; fahr = fahr + 20)
+		printf("%3d %6.1f\n", fahr, (5.0/9.0) * (fahr-32));
+}
+
+
+Very similar to Java.
+
+
+Grammatical rules of C state 'for statement' must have  a body.
+
+
+for(nc = 0; getchar() != EOF; ++nc)
+	;
+printf("%.0f\n", nc);
+
+
+The semicolon is a "null statement".
+
+
+
+NOTICE: If we initialize 'fahr' OUTSIDE of for loop, it's scope extends outside as well.
+
+Otherwise we can just do
+	
+	for(int fahr = 0; fahr <= 300; fahr = fahr + 20)
+		....

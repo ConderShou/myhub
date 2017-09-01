@@ -1,0 +1,12 @@
+When a function calls itself recursively, each invocation gets a fresh set of all the automatic variables, 
+	INDEPENDENT of the previous set.
+
+	(Normal recursion)
+
+
+- Recursion may provide no saving in storage (somewhere a STACK of values is being processed and maintained)
+	NOR will it be faster
+	
+	- But it's more compat, and much easier to write and understand than the non-recursive equivalent
+
+- Useful for data structures

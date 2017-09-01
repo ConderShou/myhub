@@ -1,0 +1,57 @@
+function [g, dgdx] = gauss(x, x0, a)
+
+prefactor = 1/(a*sqrt(2*pi));
+
+g = prefactor*exp( -(x-x0).^2 / (2*a^2));
+
+dx = (1e-4)*a;
+xp = x+dx/2;
+xm = x-dx/2;
+
+gp = prefactor*exp( -(xp-x0).^2 / (2*a^2));
+gm = prefactor*exp( -(xm-x0).^2 / (2*a^2));
+
+dgdx = (gp, -gmm)/dx;
+
+----------------
+
+%% plotgauss.m
+
+x0 = 0;
+a = 0.5;
+xmin =-5;
+xmax = +5;
+Nx = 300;
+
+iPlotChoice = 3;
+
+x = linspace(xmin, xmax, Nx);
+g = gauss(x, x0, a);			-invoking function
+
+switch iPlotChoice
+	case 1
+plot(x, g)
+		ylabel(‘g(x)’)
+	case 2
+		plot(x, dgdx)
+		ylabel(‘dg/dx’)
+	case 3
+		plot(x, g, x, dgdx);
+		legend(‘g(x)’, ‘dg/dx’)
+end
+
+xlabel(‘x’)
+title(‘Gaussian’)
+grid on 
+
+
+
+-------
+
+Now we can call either:
+
+	g = gauss(0, 0, 0.5)
+
+	or
+	
+	[g, dgdx] = gauss(1, 0, 0.5)

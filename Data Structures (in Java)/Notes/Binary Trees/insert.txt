@@ -1,0 +1,53 @@
+
+
+1. To insert X intro tree T, proceed down the tree as you would with a "contains"
+
+2. If X is found, do nothing (or "update" something)
+
+3. Otherewise, insert x at the last spot on the path traversed
+
+
+As seen in the example code:
+	
+	We traverse the tree as though a "contains" were occurring
+	At the node with item 4, we need to go right, but there is no right subtree
+	
+	Therefore, 5 is not in the tree.
+	
+	We insert 5 at this spot, in the place of the empty right subtree
+
+Since "t" references the root of the tree, and the root CHANGES on the first insertion,
+	"insert" is written as a method that returns a reference to the ROOT of the new tree
+
+------------------------------------------------------------------------------
+
+	private BinaryNode<AnyType> insert( AnyType x, BinaryNode<AnyType> t )
+	{
+		if (t == null )
+			return new BinaryNode<>(x, null, null );
+			
+		int compareResult = x.compareTo( t.element );
+	
+		if (compareResult < 0 )
+			t.left = insert( x, t.left );
+		else if ( compareResult > 0 )
+			t.right = insert( x, t.right );
+		else
+		;		 // Duplicate; do nothing
+
+		return t;
+	}
+
+
+------------------------------------------------------------------------------
+
+
+Duplicates are handled by keeping an extra field in the node record that indicates the
+	FREQUENCY OF OCCURENCE
+
+	This adds extra space to the entire tree but is better than putting duplicates in the tree
+
+NOTICE: 
+	This strategy does not work if the key that guides the "compareTo" method is only part of a larger structure
+	In THAT case, we keep all of the structures that have the same key in an AUXILIARY DATA STRUCTURE,
+		such as a list or another search tree

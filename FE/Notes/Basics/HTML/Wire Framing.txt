@@ -1,0 +1,41 @@
+1. Goal of website			          Ex: 1. To get work, to showcase arts and crafts, etc...
+
+2. List out page elements needed		
+					2. Image gallery
+					    About page
+					    Contact page
+					    Header	(site wide header is called: Top Level Navigation)
+					    Footer
+
+3. Wire Framing
+				    
+	- A drawing technique used to create
+	  the shapes and visual structure of
+	  a website
+	
+	- Wire frame separately for computer and phone screens
+
+Mobile Sites
+
+	- Remember that mobile sites don't have
+	  a lot room for too many columns, but 
+	  they're great at scrolling
+
+	- Stack information and pictures in one or two columns
+		
+	- Navigation bars and logos and titles should be comfortably tight together
+
+Desktop sites
+
+	- Can spread apart the logo tags and the navigation and the header
+
+	- Three or so columns works now
+
+	- Spread information and contact details more. 
+	
+	- Give page elements more room to breathe
+
+-----Complex Websites--------------
+
+Might want to use image editing tools like Photoshop to build high fidelity mock-ups. 
+

@@ -1,0 +1,35 @@
+---Solving Newton's Law with The Verlet Method-------
+
+Calculating velocity at halfway point of the step
+
+	1) Vhalf = Vn + (F(Xn, Vn, Tn)/m) * deltat/2
+
+	2) Xn+1 = Xn + Vhalf*deltat
+
+	3) Vn+1 = Vhalf + (F(Xn+1, Vhalf, Tn+1)/m) * deltat/2
+
+--MATLAB----
+
+...m..k..x0...v0..Tf..Nt....	-defining constants
+
+t = linspace(0, Tf, Nt);
+x = zeros(1, Nt);
+v = zeros(1, Nt);
+deltat = t(2) - t(1);
+x(1) = x0;
+v(1) = v0;
+
+....
+
+for it = 1:Nt
+	vhalf = v(it) + (-k*x(it)/m) * deltat;		-Application of The Verlet Method in MATLAB
+	x(it+1) = x(it) + vhalf*deltat;
+	v(it+1) = vhalf + (-k*x(it+1)/m)*deltat/2;
+end
+
+...
+
+plot(t, x)
+xlabel('t(sec) ');
+ylabel('x(m) ');
+grid on

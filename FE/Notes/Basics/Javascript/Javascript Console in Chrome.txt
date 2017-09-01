@@ -1,0 +1,13 @@
+Ctrl + Shift + J
+
+	Javascript console lists any errors that the browser's Javascript interpreter encounters
+
+In the Javascript file:
+
+	console.log("Program complete);
+
+This will print the string passed in the function inside the console. 
+
+	If the statements previous were successful, this message will be printed.
+
+	Use for debugging.	

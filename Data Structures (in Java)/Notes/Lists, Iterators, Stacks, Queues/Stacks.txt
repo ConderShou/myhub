@@ -1,0 +1,202 @@
+A stack is a list where insertions and deletions can only be done at the END of the list - called the TOP
+
+push() 		= insert
+
+
+pop() 		= delete the most recently inserted element
+
+top()/peek()	= look at what the most recently inserted element is
+
+
+A pop() or top() on an empty stack is considered an ERROR
+
+Stacks = LIFO	(Last In, First Out)
+
+
+-----------------------------Implementation of a Stack-------------------------------
+
+Since a stack is a list, any list implementation will do. 
+
+USUALLY, we use ArrayList or Linkedlist
+	Both support stack operations
+
+We can either use a liniked structure or an array, both simplify the logic in ArrayList and LinkedList, so there is no need to provide code
+
+
+---------------------------LinkedList Implementation of Stacks---------------------------
+
+We use a singly-linked list.
+
+Inserting at the front of the list				= push()
+
+Deleting the element at the front of the list 			= pop()
+
+Examine the element at the front of the list, returning its value 	= top()
+
+
+----------------Array Implementation of Stacks-----------------------
+
+This is probably the more popular option.
+
+We mimic the "add" operation of the ArrayList.
+
+Associated with each stack is "theArray" and "topOfStack".
+	"topOfStack" is -1 for an empty stack (this is how an empty stack is initialized)
+
+To push some element "x" onto the stack, we increment "topOfStack" and set the "theArray[topOfStack] = x"
+
+To pop, we RETURN the value of "theArray[topOfStack]" and decrement "topOfStack"
+
+------------------------------------------------------------
+
+Notice that these operations not only take constant time, but also VERY FAST constant time.
+
+The Stack is probably the most fundamental data struture in computer science, after the array. 
+
+
+------------------------------------------Applications---------------------------------------------
+
+------------Balancing Symbols--------------
+
+Checking for balancing of parentheses, brackets, and braces
+
+Algorithm:
+
+	Make an empty stack.
+	Read charaters until the end of the file.
+	If the character is an opening symbol - ( { [, push it on to the stack
+	
+	Then, if the character is a closing symbol - ) } ], check to see if the stack is empty.
+		If the stack is empty, report an error that the sequence of brackets/braces/parentheses is wrong
+	Otherwise, pop the stack.
+		If the popped symbol does not correspond to the opening symbol, then report an error.
+
+	At the end of the file, if the sack is not empty, report an error 
+
+
+Extra work can be done to decide what to do when an error is reported - like then finding the likely cause
+
+
+----------Postfix Expressions--------------------
+
+4.99 * 1.06 + 5.99 + 6.99 * 1.06
+
+If we enter these numbers one by one with their operations in a normal calculator, it would end up multiplying the total of (4.99 * 1.06 + 5.99 + 6.99) by 1.06
+	RATHER THAN multiplying 6.99 with 1.06 separately and then adding THAT to the rest of the total
+
+Instead, we use POSTFIX or REVERSE POLISH NOTATION
+
+4.99 1.06 * 5.99 + 6.99 1.06 * +
+
+The operators are applied to the two operands BEFORE it
+	OR, if two operators are separated by ONE operand (5.99), the operator applies that one operand to the computed total thus far.
+		ALSO, it would compute separately two operands that are together (6.99 1.06 *) and would THEN execute whatever operator might follow afterwards (+) between the previous result and the rest of the computed total
+
+	Evaluation sequence is thus:
+		
+		Multiply 4.99 and 1.06, saving this in A1
+		Add 5.99 to A1, saving this in A1
+		Multiply 6.99 and 1.06, saving this in A2
+		Finish by adding A1 and A2, leaving the final answer in A1
+
+
+DOING THIS WITH A STACK ALGORITHM:
+
+	When a number is seen, it's pushed onto the stack. 
+	When an operator is seen, it is applied to the two numbers that are then POPPED from the stack
+	The result is then PUSHED onto the stack
+
+See pg. 85-87 in Weiss "Data Structures and Algorithm Analysis in Java, 3rd Edition" for an example
+
+
+NOTICE: When an expression is given in POSTFIX notation, there is no need to know any precedence rules - this is an ADVANTAGE
+
+The time to evaluate a postfix operation is O(N), where the input consists of stack operations and thus takes constant time
+
+
+------------------------Infix to Postfix Conversion-----------------------------
+
+We can also use a stack to CONVERT a standard, also known as INFIX, expression into postfix.
+	- While also insisting on the usual precedence rules
+
+Let's convert:
+	
+	a + b * c + ( d * e + f ) * g
+
+into postfix
+
+Correct answer would be:
+	
+	a b c * + d e * f + g * +
+
+Operands are immediately placed into the output.
+Operators are not immediately output, they must be saved somewhere, like on to the stack. 
+
+ALGORITHM LOGIC:
+
+	Start with an empty stack
+	If we see right parenthesis, pop the stack, writing symbols until we encounter a CORRESPONDING left parenthesis, which is then popped but NOT outputted
+		- When we read a corresponding parenthesis, we pop the stack UNTIL we get to the other parenthesis
+	
+	If we see any other symbol, + * (, then we pop entries from the stack until we find an entry of LOWER PRIORITY
+		- IN OTHER WORDS, we pOP the higher/EQUAL priority UNTIL we get to a even lower priority/empty stack. THEN we PUSH the entry of lower priority that just caused us to do all this. 
+		- For the purposes of this operation, "+" has lowest priority and "(" has highest	(But we can set subtraction to equal priority with addition, division equal priority with multiplication) 
+	When the popping is done, we push the operator onto the stack. 
+
+	Finally, if we read the end of the input, we pop the stack until it's empty, writing symbols onto the output.
+
+The idea is that when an operator is seen, it's placed on the stack.
+
+The stack represents PENDING OPERATORS.
+	However, some of the operators that have high precedence are now known to be completed and should be popped (they will no longer be pending)
+
+Thus, before placing an operator on the stack, operators that ARE on the stack and are to be completed PRIOR to the current operator, are popped. 
+
+See pg. 88-90 in Weiss for the step-by-step drawing and execution. 
+
+
+------------------Activation Record and Recursion--------------------------
+
+When there is a method call, all the important information that needs to be saved (values of variables), and the return address, is saved in the
+	ACTIVATION RECORD or STACK FRAME
+
+When there's use of recursion, the information of each method call is SAVED into to such PLACES.
+	- 50 recursive calls to the method = 50 ACTIVATION RECORDS
+
+Virtually every programming language uses a STACK to IMPLEMENT RECURSION 
+	- Calling and returning the method works the same way as the "balancing symbols" problem 
+
+
+------------------Tail Recursion----------------------------
+
+Recursive call at the last line of the method.
+
+This can ELIMINATED by enclosing the body in a WHILE loop and replacing the recursive call with one assignment per method argument
+
+-----Example: Printing a Linked List------
+
+BAD USE OF RECURSION:
+
+	public static <AnyType> void printList( Iterator<AnyType> itr ) 
+	{
+		if (!itr.hasNext() )
+			return;
+	
+		System.out.println( itr.next() );
+		printList( itr );			- This recursive call at the end of the method is an EXTREMELY BAD use of recursion
+	}
+
+
+IMPROVED VERSION:
+	
+	public static <AnyType> void printList( Iterator<AnyType> itr) 
+	{
+		while( true )
+		{
+			if( !itr.hasNext() )
+				return;
+		
+			System.out.println( itr.next() );	
+		}
+	}
+

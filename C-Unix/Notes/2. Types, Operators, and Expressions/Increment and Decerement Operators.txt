@@ -1,0 +1,15 @@
+++	- increments by 1
+
+-- 	- decrements by 1
+
+
+Prefix:	++n
+		Increments the variable BEFORE the value is used.
+
+Postfix: 	n++
+		Increments the variable AFTER the value has been used.
+
+
+- Only applicable to variables:
+	expressions like (i+j)++ are ILLEGAL
+

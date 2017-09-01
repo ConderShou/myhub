@@ -1,0 +1,77 @@
+---------------Without the variable "key" updating after the method changeArray----------
+
+public class Main{
+
+	static void changeArray(int key, int array[]){
+
+		key = key + 7;
+	
+		for (int i = 0; i < array.length; i++){
+			array[i] = array[i] + key;
+		}
+	
+		System.out.println("*At changeArray *");
+		System.out.println("The key is: "+ key);
+}
+
+	static void printArray(int array[]){
+
+		System.out.print("[ ");
+		for (int element:array){
+			System.out.print(element + " ");
+		}
+		System.out.println("]");
+}
+
+	public static void main(String[] args){
+		int key = 5;
+		int[] array = {10, 11, 12, 13, 14, 15, 16, 18, 18, 19};
+
+		System.out.println("*At the main *");
+		System.out.println("The key is: "+ key);
+
+		printArray(array);
+		changeArray(key, array);
+
+		System.out.println("At the main *");
+		System.out.println("The key is: "+ key);
+		printArray(array);
+	}
+}
+
+------------------------Corrected so that the variable "key" DOES update after the method changeArray is called------------------
+
+public class Main{
+
+	static int changeArray(int key, int array[]){		- Changed "void" to "int" so that the function gives an output
+		
+		...
+		
+		for....{
+
+			....	
+		
+		}	
+		...
+		
+		return key;				- Output is variable "key" (where it has already had "7" added to it)
+}
+
+	...............
+
+	public static void.....(
+
+		.....
+	
+		printArray(array);
+		key = changeArray(key, array);		- IMPORTANT -- MUST HAVE variable "key" assigned to function in order to GET the output "key" 
+.output 
+								of the function assigned to "key" 
+		....							
+									- Otherwise the variable "key" still contains its original value
+		...
+
+		printArray(array);
+
+	}
+}

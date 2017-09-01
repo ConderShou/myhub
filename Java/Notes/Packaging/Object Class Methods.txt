@@ -1,0 +1,59 @@
+The class "java.lang.Object" is the class that all other classes are derived from.
+	It contains methods that make sense for all objects in general.
+
+We will look at three of them:
+
+	equals(Object obj)
+	clone()
+	toString()
+
+---------------------equals(Object obj)------------------
+
+Compares two objects
+
+Ex:
+	this.equals(b) is true if Object "this" is equal to Object "b"
+
+-----Overriding equals------
+
+Must be defined by the programmer, and properly overriden
+
+Ex:
+	"The car 'A' is equal to car 'B' if they have the same license plate number"
+
+	class Car{
+		...
+		public boolean equals (Car other) {				- Redefining the "equals" method
+			return this.license_plate == other.license_plate;
+		}
+	}
+
+If not overriden, then the system will consider "x" and "y" true if they are the same object, in the same location of the system's physical memory
+
+----------------clone()------------------------------
+
+Object y = x.clone();
+
+The clone method makes an exact copy of the object in the system's memory.
+	However, this means that the same object is copied into a NEW POSITION of the system's memory
+		IMPORTANT NOTICE:    x.equals(x.clone()) ----> FALSE
+			(if the "equals" method is not redefined that is)
+
+--------------------toString()---------------------------------
+
+Returns a String representation of the object
+
+Default behavior:
+		Returns the name of the class of which the object is an instance of, and
+		a Serialization of the identifier of the object.
+
+Overriding example:
+
+	class Car{
+		...
+		public String toString() {					- After redefining, this method becomes more functional and specific towards giving the String representation of a "Car" object
+			return new String (model+ " " + color + " " + license_plate);
+		}
+	}
+
+	

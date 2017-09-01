@@ -1,0 +1,26 @@
+So far, all the operations of "contains', "remove", "findMin", "findMax", and "insert", have O(log N) time.
+	This is because in constant time we descend a level of a tree, but then when we operate,
+	we operate on a tree that is now roughly half as large
+
+Indeed, the running time of all operations is O(d), where "d" is the depth of the node containing the accessed item
+	(for "remove": this might be the node that is replaced)
+
+The AVERAGE DEPTH over ALL NODES in a tree is O(log N) on the assumption that all insertion sequences
+	are EQUALLY LIKELY.
+
+In the ABSENCE OF DELETIONS, or when LAZY DELETION is used, we can conclude that the average running times
+	of the operation above are O(log N).
+
+NOTICE:
+	If an input comes intro a tree PRE-SORTED, then a series of "inserts" will take QUADRATIC time and give
+	a very expensive implementation of a linked list. 
+
+	This is because the tree will consist only of nodes with no left children. 
+
+
+Internal path length: 
+
+	The SUM of the depths of all nodes in a tree 
+
+For a BINARY SEARCH TREE, we cannot guarantee an O(log N) bound on any single operation, 
+	BUT we can show that any sequence of M operations takes total time O(M logN) in the worst case scenario.

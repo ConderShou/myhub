@@ -1,0 +1,19 @@
+
+---------Empty Initialization--------------
+
+var students = [String]()
+
+- Can add stuff here and all that
+
+
+---------Declaration---------------
+
+var students: [String]
+
+- This is JUST declaration (not making it empty or anything)
+	- Can't do anything with it
+
+
+--------Initialization with Elements-------
+
+var students: [String] = ["helo", "hi", "erw"]

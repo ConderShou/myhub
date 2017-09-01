@@ -1,0 +1,229 @@
+To implement the LinkedList, we must provide three classes:
+
+1. The MyLinkedList class itself, containing:
+	- Links at both ends
+	- Size of the list
+	- A host of methods
+
+2. The Node class, likely a private nested class, containing:
+	- data
+	- links to the previous and next nodes
+	- appropriate constructors
+
+3. LinkedListIterator, abstracting the notion of a position and is a private inner class IMPLEMENTING the Iterator interface:
+        Provides the implementations of:
+	- next
+	- hasNext
+	- remove
+
+
+Because the iterator classes store a reference to the "current node", and the end marker is a valid position,
+	we can create an EXTRA NODE at the END of the list to represent the END MARKER
+
+	We can also create an extra node at the FRONT of the list, representing the BEGINNING MARKER
+
+SENTINEL NODES: the extra nodes at the front and back
+
+HEADER node = beginning marker = node at the front
+
+TAIL node = end marker = node at the back
+
+------------Advantages------------
+
+In order to remove the first node, we must reset the list's link to the first node. 
+
+HOWEVER: because the remove algorithm needs access to the node PRIOR to the node being removed, 
+		we need a "header" node to provide that prior node 
+
+An empty list contains header and tail nodes pointed at each other
+
+
+----------------------------------------------The Code---------------------------------------------
+
+-------Node class--------
+
+At the beginning, we have the private nested Node class, which consists of: 
+	- the stored data
+	- links to the previous and next Node
+	- and a constructor
+
+private static class Node<AnyType>
+{
+	public Node( AnyType d, Node<AnyType> p, Node<AnyType> n) 
+	{ data = d; prev = p; next = n; }
+
+	public AnyType data;		- Usually the data members are private, BUT because the Node class is private, the visibility of the data members is irrelevant. 
+	public Node<AnyType> prev;		- Classes outside of MyLinkedList can't see the Node class at all anyways
+	public Node<AnyType> next;
+}
+
+--------Data Members (MyLinkedList)-------------
+
+private int theSize;				- Keeping track of the size in a variable so that the "size()" method can be implemented in constant time 
+						- (just needs to return this variable to give size)
+private int modCount = 0;			- Represents number of changes to the linked list since construction
+						- Each all to "add", "remove", "doClear()", etc... will update modCount
+						- Each call to an iterator method (next or remove) will check the stored "modCount" in the iterator with the current "modCount" in the linked list 
+							and will throw a "ConcurrentModificationException" if these two counts don't match
+						- (??) Ensuring that only the iterator is modifiying the Linked list, and that it's doing it one step at a time??
+private Node<AnyType> beginMarker;
+private Node<AnyTYpe> endMarker;
+
+
+--------------------doClear()---------------------------
+
+public void clear()
+	{ doClear(); }
+
+private void doClear()
+{
+	beginMarker = new Node<AnyType>(null, null, null);
+	endMarker = new Node<AnyType>(null, beginMarker, null);	- NOTE: the previous Node is set to beginMarker. 
+									This makes sense because in an empty list, the tail node and the head node are pointing towards each other
+	beginMarker.next = endMarker;					- Same logic as previously stated is applied here as well
+
+	theSize = 0;
+	modCount++;
+}
+
+
+---------------------Inserting a New Node-------------------------
+
+Let "p" be some node in the LinkedList
+
+Node newNode = new Node(x, p.prev, p);	- Even though we set this node to reference "p.prev" and "p", we must still link FROM "p" to the newNode (DOUBLY LINKED LIST)
+p.prev.next = newNode;			- The "next" reference of the node PREVIOUS to p is SET to the new node
+					- AKA (p.prev).next = newNode;
+
+p.prev = newNode;				- The node in front of newNode, "p" is set to reference new Node as its previous node
+
+	----- These steps can be combined ------
+
+Node newNode = new Node(x, p.prev, p);
+p.prev = p.prev.next = newNode;
+
+	---- These steps can be FURTHER combined ----
+
+p.prev = p.prev.next = new Node(x, p.prev, p);
+
+
+-----------------------------------------------addBefore----------------------------
+
+private void addBefore( Node<AnyType> p, AnyType x)
+{
+	Node <AnyType> newNode = new Node<>(x, p.prev, p);
+	newNode.prev.next = newNode;			- Same thing as "p.prev.next" 
+	p.prev = newNode;
+	theSize++;
+	modCount++;
+}
+
+-------------------------------Removing a Node-------------------------------
+
+Only two links change for a node to be disconnected and eligible to be reclaimed by the Virtual Machine
+
+private AnyType remove(Node<AnyType> p) 
+{
+	p.prev.next = p.next;	- Setting the "next" reference of the node previous to "p", to the node in front of "p"
+	p.next.prev = p.prev; 	- Setting the "previous" reference of the next in front of "p", to the node behind "p"
+	theSize--;
+	modCount++;
+
+	return p.data;
+}
+BASICALLY, we're using "p" to set the nodes in front and behind it towards each other, thus ignoring "p" and ""disconnecting it from the list""
+
+
+------------------------------getNode--------------------------------------------
+
+If the Node is in the first half of the list, then the program starts from the BEGINNING of the Linked list and proceeds from there
+
+If the Node is in the later half of the list, then the program starts at the END of the Linked list and works its way backwards (decrementing the loop counter instead)
+
+private Node<AnyType> getNode( int idx )
+{
+	return getNode( idx, 0, size() - 1 );
+}
+
+private Node<AnyType> getNode( int idx, int lower, int upper) 
+{
+	Node<AnyType> p;
+
+	if ( idx < lower || idx > upper)
+		throw new IndexOutofBoundsException();
+
+	if ( idx < size() / 2)					- Testing if the Node is in the first half of the linked list
+	{
+		p.beginMarker.next;			- Starting at first node
+		for ( int i = 0; i < idx; i++ )			- Proceeding forwards
+			p = p.next;
+	}
+	else
+	{
+		p = endMarker;				- Starting at the end marker
+		for ( int i = size(); i > idx; i--)			- Proceeding backwards towards the front
+			p = p.prev;
+	}
+
+	return p;
+}
+
+
+THIS is why the "get" method of Linked Lists are so EXPENSIVE
+
+
+-----------------------LinkedListIterator-------------------------------------
+
+Maintains a current position
+
+Does the job of an iterator, but calls method(s) from Linked List
+
+----HAS SIGNIFICANT ERROR CHECKING
+
+Stores "modCount" of the Linked list into "expectedModCount" - in order to detect a situation in which the collection has been modified DURING THE ITERATION - ( ANY UNPLANNED SIDE EFFECTS/EDITS )
+
+Uses "okToRemove" to check if the iterator has advanced to the next Node yet, before trying to removing something AGAIN 
+	- It's only set to false after a remove operation has been done
+		- That's because the remove operation needs a note to act on, it can't remove an EMPTY SPACE
+
+Uses "hasNext" to make the "next" call illegal when "current" is positioned at the endMarker
+
+private class LinkedListIterator implements java.util.Iterator<AnyType>
+{
+	private Node<AnyType> current = beginMarker.next;
+	private int expectedModCount = modCount;
+	private boolean okToRemove = false;
+
+	public boolean hasNext()
+		{ return current != endMarker; }
+	
+	public AnyType next()
+	{
+		if (modCount != expectedModCount )			- Checks to make sure that the collection hasn't been modified during the iteration (unknowingly)
+			throw new java.util.ConcurrentModificationException();
+		if (!hasNext() )					- If there's no node in front, then "next()" terminates and throws an Error message
+			throw new java.util.NoSuchElementException();
+	
+		AnyType nextItem = current.data;			 - Stores the current position to be returned. 
+									- TO THE USER: it's the data that they haven't gotten yet. The information for the "next" node, where the "next()" is already at the "next" node
+		current = current.next;
+		okToRemove = true;				- Allows the iterator to remove an element, now that it has proceeded to the next node
+		
+		return nextItem;			
+	}
+
+	public void remove()
+	{
+		if ( modCount != expectedModCount )
+			throw new java.util.ConcurrentModificationException();
+		if ( !okToRemove )
+			throw new IllegalStateException();
+								- We call the remove method of MyLinkedList
+		MyLinkedList.false.remove( current.prev );		- NOTICE: "current" remains unchanged, because the node that "current" is viewing is NOT AFFECTED by the removal of the prior node 
+									- The iterator would have already proceeded to the next node if this remove method was accessible (AKA if okToRemove is set to true)
+										- In the ArrayListIterator, we had to shift our items back to compensate for the space after our removal,
+											 so we had to update "current" to the previous node to make sure we were in the node PREVIOUS to the removal
+		expectedModCount++;
+		okToRemove = false;				- Can't call remove again if we just did it, cause then we've ALREADY disconnected the node
+	}
+}		

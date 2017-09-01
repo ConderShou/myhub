@@ -1,0 +1,27 @@
+Give meaningful names to magic numbers, etc..
+
+#define	name	replacement text
+
+Any occurence of "name" will be replaced by the corresponding replacement text.
+
+Name has the same form as a variable name.
+
+The replacement text can be any sequence of characters, not limited to numbers. 
+
+
+#include <stdio.h>
+
+#define LOWER 0 		/* Notice lack of semicolons */
+#define UPPER 300
+#define STEP 20
+
+main()
+{
+	int fahr;
+
+	for (fahr = LOWER; fahr <= UPPER; fahr = fahr + STEP) 
+		printf("%3d %6.1f\n", fahr, (5.0/9.0) * (fahr-32));
+}
+
+These names represent symbolic constants NOT variables. Mere representations of the LITERAL 0, or 300, etc..
+

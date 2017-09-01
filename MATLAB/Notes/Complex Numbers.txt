@@ -1,0 +1,62 @@
+------Complex Numbers-------
+
+i = j = sqrt(-1)
+
+z=a+ib
+
+Euler's formula:
+
+	e^iz = cos(z) +isin(z)
+-----------------------------------------------
+
+z=complex(4,5);
+
+=
+
+z=4+5i;
+
+z4=4*exp(j*pi/4);		-
+z5=3*exp(1i*pi/4);		-safe way to always get an i (or j)
+
+---------------------------------------------------
+
+z = x+i*y			x: real part
+z = r*e^i(theta)		y: imaginary part
+z = x - i*y = r*e^(-i*theta) 	r: modulus
+			theta: angle
+
+real(z)	real part of z
+imag(z)	imaginary part of z
+abs(z)	modulus of z
+angle(z)	phase angle of z in radians
+conj(z)	complex conjugate of z
+
+------------------------------------------------------------------------
+
+%complexReflection
+
+lamba = 1;
+xmin=0;
+xmax=3*lambda;
+k=2*pi/lambda;
+Nx=200;
+
+R=1;
+phi=pi/4;
+r=R*exp(1i*phi);
+
+x=linspace(xmin, xmax, Nx);
+f = exp(1i*k*x) + r*exp(=1i*k*x);
+
+plot(x, abs(f), 'k-', ...
+       x, real(f), 'b', ...
+       x, imag(f), 'r', ...
+       x, angle(f)/pi, 'k--')
+
+legend('|f|', 'Re(f)', 'Im(f)', 'angle(f)/\pi');
+grid on
+xlabel('x')
+title(['f(x)=e^(ikx) + r e^(-ikx) where', ...
+         'r=Re^(i/phi), R= ', num2tstr(r), ...
+         '	\phi= ', num2str(phi/pi), ' \pi']);
+

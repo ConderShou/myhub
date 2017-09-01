@@ -1,0 +1,3 @@
+Top left buttons allows Button to stretch horizontally or vertically
+
+wrap_content	- make the button as small as possible to match the content contained within it

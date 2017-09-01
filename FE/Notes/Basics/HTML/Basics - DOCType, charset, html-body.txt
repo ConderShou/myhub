@@ -1,0 +1,31 @@
+<!DOCTYPE html>			- Every web page has to start with a document type ("doc type")
+				- Tells browser to interpret this document as an HTML document
+	- Must ALWAYS be the first thing on the page 
+	- Must ALWAYS be at the top without ANY space before it
+	- Not visible on website
+
+<html></html>		- Not visible on website
+			- All html elements should be inside these tags
+
+
+----------------------------------------------------------
+
+
+<html>
+	<head>						- Container for meta information about the HTML document itself
+
+		<meta charset="utf-8">			- The character set for the page. A self-closing tag (doesn't need an actual, separate closing tag)
+							- Tells the browser how the webpage is formatted and what types of characters are used
+			- ' charset="utf-8" ' is an ATTRIBUTE
+			- The character set is typically set to UTF-8 to help describe how our page is formatted
+
+		<title>Conder Shou | Developer</title>		- The title tag appears as a label of the website's tab in the browser
+							   as well as the TITLE of the website in search engine result pages
+	</head>
+
+	<body>				- The body element contains the rest of the website content. The body of the document
+		<h1>Conder Shou</h1>
+	</body>
+</html>
+
+Attribute: extra information inside an html tag that provides key information to the browser about how the page is built

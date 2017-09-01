@@ -1,0 +1,7 @@
+Everything is an object.
+
+	- Significant memory requirement
+
+All objects are stored in a heap.
+
+There are mutable and immutable objects.

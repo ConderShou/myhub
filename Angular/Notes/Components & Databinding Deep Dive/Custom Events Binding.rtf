@@ -1,0 +1,132 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf810
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww33400\viewh21000\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 Sending from 
+\i child 
+\i0  to 
+\i parent
+\i0 \
+\
+\
+\'97app.component.html\'97\'97\
+\
+
+\b <div class="container">\
+\ul   <app-cockpit \
+  (serverCreated) = "onServerAdded($event)" \
+  (bpCreated) = "onBlueprintAdded($event)"\
+  ></app-cockpit>\ulnone \
+\
+  <hr>\
+  <div class="row">\
+\
+\
+    <app-server-element *ngFor="let serverElement of serverElements"\
+    [srvElement]="serverElement"></app-server-element>\
+  </div>\
+</div>
+\b0 \
+\
+\
+\'97\'97app.component.ts\'97\'97\'97\
+\
+
+\b import \{ Component \} from '@angular/core';\
+\
+@Component(\{\
+  selector: 'app-root',\
+  templateUrl: './app.component.html',\
+  styleUrls: ['./app.component.css']\
+\})\
+\
+export class AppComponent \{
+\b0 \
+\
+  //These functions are triggered AFTER the buttons have been clicked\
+\
+   
+\b \ul onServerAdded(serverData: \{serverName: string, serverContent: string\}) \{\
+    this.serverElements.push(\{\
+      type: 'server',\
+      name: serverData.serverName,\
+      content: serverData.serverContent\
+    \});\
+  \}\
+\
+  onBlueprintAdded(bpData: \{serverName: string, serverContent: string\}) \{\
+    this.serverElements.push(\{\
+      type: 'blueprint',\
+      name: bpData.serverName,\
+      content: bpData.serverContent\
+    \});\
+\
+\ulnone   \}\
+\
+  \
+\}
+\b0 \
+\
+\
+ \'97\'97cockpit.component.ts\'97\
+\
+//import EventEmitter for custom events\
+//import Output to output the events\
+\
+
+\b \ul import \{ Component, OnInit, EventEmitter, Output \} from '@angular/core';\
+
+\b0 \ulnone \
+
+\b @Component(\{\
+  selector: 'app-cockpit',\
+  templateUrl: './cockpit.component.html',\
+  styleUrls: ['./cockpit.component.css']\
+\})\
+export class CockpitComponent implements OnInit \{
+\b0 \
+\
+  // Import EventEmitter to begin creating a custom event\
+  // \
+  // Define in \{\} in between <>, the content of the event that you are planning to emit\
+  //\
+  // Put () at the end to call the CONSTRUCTOR of the EventEmitter, to create a new EventEmitter object and STORE it in 'serverCreated'\
+\
+  //NOTE: Now we have the Output() decorator to make sure this informatino is 'listenable'\
+\
+  
+\b \ul @Output() serverCreated = new EventEmitter<\{serverName: string, serverContent: string\}>();\
+\
+  @Output() bpCreated = new EventEmitter<\{serverName: string, serverContent: string\}>();\
+\ulnone \
+	newServerName = '';\
+  newServerContent = '';\
+  \
+  constructor() \{ \}\
+\
+  ngOnInit() \{\
+  \}\
+\
+  onAddServer() \{\
+\
+
+\b0     // The 'emit' method will EMIT an event of the type we defined above
+\b \
+\
+    \ul this.serverCreated.emit(\{\
+      serverName: this.newServerName, \
+      serverContent: this.newServerContent  \
+    \});\
+\ulnone   \}\
+\
+  onAddBlueprint() \{\
+    \ul this.bpCreated.emit(\{\
+      serverName: this.newServerName, \
+      serverContent: this.newServerContent  \
+    \});\
+\ulnone   \}\
+\
+\}}

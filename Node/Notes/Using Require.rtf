@@ -1,0 +1,97 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf810
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{decimal\}.}{\leveltext\leveltemplateid1\'02\'00.;}{\levelnumbers\'01;}\fi-360\li720\lin720 }{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{hyphen\}}{\leveltext\leveltemplateid2\'01\uc0\u8259 ;}{\levelnumbers;}\fi-360\li1440\lin1440 }{\listname ;}\listid1}}
+{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}}
+\margl1440\margr1440\vieww33400\viewh20520\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \
+Require\
+\
+\
+\pard\tx220\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\li720\fi-720\pardirnatural\partightenfactor0
+\ls1\ilvl0\cf0 {\listtext	1.	}Allows us to load modules that are bundled with node.js\
+\pard\tx940\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\li1440\fi-1440\pardirnatural\partightenfactor0
+\ls1\ilvl1\cf0 {\listtext	\uc0\u8259 	}Http (make a webserver)\
+{\listtext	\uc0\u8259 	}Fs (access files within our computer)\
+\pard\tx220\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\li720\fi-720\pardirnatural\partightenfactor0
+\ls1\ilvl0\cf0 {\listtext	2.	}Load third-party libraries\
+\pard\tx940\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\li1440\fi-1440\pardirnatural\partightenfactor0
+\ls1\ilvl1\cf0 {\listtext	\uc0\u8259 	}Express\
+{\listtext	\uc0\u8259 	}SQL\
+\pard\tx220\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\li720\fi-720\pardirnatural\partightenfactor0
+\ls1\ilvl0\cf0 {\listtext	3.	}Bring in our own files\
+\pard\tx940\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\li1440\fi-1440\pardirnatural\partightenfactor0
+\ls1\ilvl1\cf0 {\listtext	\uc0\u8259 	}Allows us to break up our application into multiple smaller files\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 \
+\
+\'97Requiring Files\'97\
+\
+\
+\'97\'97app.js\'97\'97\
+\
+
+\b console.log('Starting app.js');\
+\
+const fs = require('fs');\
+const os = require('os');\
+
+\b0 \
+//Requiring your own files\
+// module.exports in 'notes.js' is set to 'notes' variable here\
+\
+
+\b const notes = require('./notes.js');
+\b0 \
+\
+/*\
+\
+Require\
+\
+\
+	1.	Allows us to load modules that are bundled with node.js\
+	\uc0\u8259 	Http (make a webserver)\
+	\uc0\u8259 	Fs (access files within our computer)\
+	2.	Load third-party libraries\
+	\uc0\u8259 	Express\
+	\uc0\u8259 	SQL\
+	3.	Bring in our own files\
+	\uc0\u8259 	Allows us to break up our application into multiple smaller files\
+\
+\
+\
+\'97\'97\'97nodejs.org/api-------\
+\
+Here are documents for reference for how to use different modules.\
+\
+FS - File system\
+\
+OS - Info on the currently logged in user on the computer and stuff like that\
+\
+*/\
+\
+\
+// When we call an async function we need to include a callback with it as well (that's the third argument)\
+\
+
+\b var user = os.userInfo();\
+
+\b0 \
+//Using template strings given by ES6\
+// Otherwise, you can concatenate strings with '+'\
+\
+
+\b fs.appendFile('greetings.txt', `Hello $\{user.username\}!`, (err) => \{\
+	if (err) \{\
+		console.log('Unable to write to file');\
+	\}\
+\});
+\b0 \
+\
+// OR - We can choose the Sync version of the function (Blocking). I personally don't think this should be recommended\
+\
+// fs.appendFileSync('greetings.txt', 'Hello World!');\
+}

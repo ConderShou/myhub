@@ -1,0 +1,27 @@
+public class Main{
+
+	static int[] division(int dividend, int divisor) {
+
+		int result[] = {0, dividend};
+		
+		if ( dividend < divisor ) {
+			return result;
+		} else {
+			int tmp = dividend - divisor;
+			result = division(tmp, divisor);		- This keeps on looping, until it gets to the part where (dividend < divisor), by that time, the "dividend" in "int result[] = {0, dividend}" will be the remainder and
+			result[0]++;					because result[1] doesn't change, it gets carried back through the loop as the result[0] is increased for every time the dividend subtracted the divisor. 
+			return result;						Then, the initial loop of "result" finishes and we have result[0] containing the quotient from all the times added, and result[1] containing the remainder 
+		}
+
+	}
+
+	public static void main(String[] args) {
+		int result[] = division(13, 3);
+		System.out.println("Quotient: " + result[0] + " Remainder: " + result[1]);
+	}
+}
+
+
+Prints:
+
+	Quotient: 4 Remainder: 1

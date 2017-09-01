@@ -1,0 +1,75 @@
+Automatic variables:
+
+	Local variables that only come into existence when a function is called
+
+The variables in a function, like 'main', are private or local to that particular function.
+
+
+To declare and use variables outside of the function, for ALL functions to use:
+	(Global static variables)
+	
+	#include <stdio.h>
+	
+	#define MAXLINE 1000
+
+	int max;
+	char line[MAXLINE]
+	char longest[MAXLINE]
+
+	int getline(void);		// void MUST BE USED for an explicitly empty list
+	void copy(void);
+
+	...
+
+
+main()
+{
+	int len;
+	extern int max;
+	extern char longest[];
+	
+	...
+
+
+Use "extern" declaration before the normal declaration to allow the function to use the external variable.
+
+We usually omit "extern" declarations if we simply just use the variable without declaring it in the function.
+
+If the program is in several source files, and a variable is DEFINED in 'file1' and USED in 'file2' and 'file3', 
+	then 'extern' declarations are needed in 'file2' and 'file3' to connect the occurences of the variable.
+
+Usually we collect 'extern' declarations of variables and functions in a separate file, called a HEADER,
+	that is included in '#include'
+
+The suffix '.h' is used for HEADER names. (stdio.h)
+
+
+-----------------Variables---
+
+1. Automatic/Local/Stack
+
+2. Static
+
+	- Global static:	extern
+	- file static
+	- function static
+
+
+--file static------
+
+Can only use the variable WITHIN that file. But ANYWHERE in that file
+static int x = 5;
+
+int foo() 
+{
+	..
+}
+-------function static------------
+
+int foo()
+{
+	static int x = 5;	//Initialized at program STARTUP (not initialized in FOO)
+	x++;			- However, this allows ONLY 'foo' to use the variable
+		
+	return x;
+}

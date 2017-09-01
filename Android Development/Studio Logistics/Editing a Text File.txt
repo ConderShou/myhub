@@ -1,0 +1,25 @@
+Click directly on text to select it. 
+Write the desired text.
+Hit Enter.
+
+
+Most properties will be in 'View all properties'
+
+The most commonly used ones will be in the preliminary view by default 
+
+Yellow highlights are WARNINGS that we SHOULD fix but could still the run app anyways without doing so.
+
+NOTE: Android studio saves everything automatically
+
+---------------------
+
+A 'view' in the Android sense of the word is:
+
+	a rectangular area on the screen that we can see and interact with
+
+Drag and drop the widget according to how you see fit in relation to the respective areas on the screen (the dotted lines)
+
+---------------------
+
+In 'text size':
+		Enter different numbers for the font size with 'sp' at the end (i.e. 24sp)

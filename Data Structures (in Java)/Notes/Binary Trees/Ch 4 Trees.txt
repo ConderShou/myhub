@@ -1,0 +1,90 @@
+The running time for trees is O(log N) on average. 
+
+Binary search tree:		
+	
+	A data structure consisting of the implementation of two library collections classes: 
+
+		1. TreeSet
+		2. TreeMap
+
+A tree can be defined in several ways. 
+	One way is to define it recursively.
+
+----------------------------Strcuture and Terminology of Trees-----------------------------
+
+A tree is a collection of nodes. 
+	The initial one at the top is called the ROOT.
+	
+	Below it are zero or more nonempty SUBTREES
+		
+		Each of their roots are connected by a directed EDGE from the root
+	
+	The root of each subtree is called the CHILD of the root. 
+	
+	The root is the PARENT of each subtree root
+
+A tree therefore, consists of N nodes, one of which is a ROOT, and N - 1 EDGES
+	N-1 edges because each edge connects some node to its parent, and every node except
+	the root has one parent
+
+Nodes with NO CHILDREN are called LEAVES
+
+Nodes with the SAME PARENT are called SIBLINGS.
+
+GRANDPARENT and GRANDCHILD can be defined in the same way. 
+
+---------
+
+A PATH from node1 to nodeK is defined as a sequence of nodes from parent to child from n1, n2, ..... nk. 
+
+The LENGTH of the path is the number of edges in this path. 
+	There is a path of length 0 from every node to itself. 
+
+The DEPTH of nodeI is the length of the unique path FROM THE ROOT to nodeI.
+	The ROOT is at depth 0. 
+
+The HEIGHT of nodeI is the length of the longest path from nodeI to a LEAF.
+
+If there'a path from nI and n2, then node1 is an ANCESTOR of n2.
+	n2 is a DESCENDANT of n1
+
+If n1 is a PROPER ANCESTOR of n2, then n2 is a PROPER DESCENDANT of n1. 
+
+
+----------------------------Implemenation of Trees------------------------------
+
+One way to implement a tree is to have in each node, besides its data, a link
+to each child of the node.
+
+Keep the children of each node in a linked list of tree nodes 
+	This avoids wasting space since the number of children can greatly vary and is not always known in advance
+
+This means that a node will have a link to its next sibling AND its FIRST CHID (the first child will have links to the rest of the siblings)
+	- LinkedList can still only be built one node at a time
+
+---Applicationn----
+
+A directory in the unix file system is just a file with a list of al its children.
+
+A path name "usr/mark/book/ch1.r" are simply directories with parents and their children. 
+
+
+-------------------Preorder Traversal-----------------
+
+In a PREORDER TRAVERSAL, work at a node is performed BEFORE its children are processed.
+	Ex: when something is execeuted for a node without first proceeding down to process the node's children
+
+If there are N file names to be output, then the running time is O(N).
+
+
+---------------PostOrder Traversal------------------
+
+In a POSTORDER traversal, the work at a node is performed AFTER its children are evaluated
+
+-------------------------DIFFERENCE Between Preorder and Postorder Traversal-------------------
+
+Preorders start at root, and move their way downwards and execute actions on the node they're on as they traverse
+
+Postorders start executing their actions at the very lowest child node, and move their way upwards as they go. 
+
+

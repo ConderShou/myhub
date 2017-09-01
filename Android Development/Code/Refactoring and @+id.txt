@@ -1,0 +1,38 @@
+android: id="@+id/textView"		- the 'textView' part is the actual ID we can use in the system
+
+
+We use the ID to refer to these views from within our code.
+
+This is also true for buttons, etc..
+
+	android:"@+id/button"
+
+Notice in other textViews, the ID code is:
+
+	android:id="@+id/textView2"
+
+-------------------
+
+It's a good idea to make IDs more specific, and renaming it - like most other things, by doing a REFACTORING.
+
+	We can't just change it within the code, cause if the widget is already referred to elsewhere, then we have 
+	to change every instance of it, this is why we do a REFACTORING.
+
+
+-----------------Refactoring--------------------------
+
+The goal of refactoring is to make the code more organized and adaptable WITHOUT changing how the code behaves. 
+
+We rename it in one place, and Android Studio takes care of it in EVERY OTHER REFERENCE to that ID
+
+NOTE: Won't affect other classes with same variable name. 
+
+
+Right Click on ID statement > Refactor > Rename (Don't change the '@+id/' part)
+
+New ID statement:
+
+	 android:id="@+id/factTextView"
+
+
+Remember the naming convention: variables begin wth lowercase 'm'

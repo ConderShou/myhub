@@ -1,0 +1,33 @@
+The STATIC declaration, applied to an EXTERNAL variable or function:
+	
+	LIMITS the scope of that object to the rest of the source file being compiled
+
+In other words, EXTERNAL STATIC means that the file the variables/functions are being declared in will have access
+	to the variables/functions, but NO OTHER FILE will
+	- This means we can HIDE external variables from OTHER files
+
+- They also must be compiled in ONE file, the one they are to be limited to. 
+	
+
+Ex:
+	static char buf[BUFSIZE]
+	static int bufp = 0;
+
+	int getch(void) {...}
+	void ungetch(int c) {...}
+
+
+The external 'static' declaration is most often used for VARIABLES, but it can be applied to functions as well.
+
+- If a function is declared STATIC, then its name is INVISIBLE OUTSIDE of the file in which it is declared
+	- Otherwise, by default, functions names are GLOBAL
+
+
+-----Internal Variables-----
+
+- Internal static variables are local to a particular function JUST AS automatic variables are, 
+	BUT: they REMAIN IN EXISTENCE instead of disappearing and re-initializing themselves 
+
+	- In other words: INTERNAL STATIC variables provide private, PERMANENT storage within a SINGLE function
+
+- They are initialized ONLY THE FIRST TIME a statement/function block is entered

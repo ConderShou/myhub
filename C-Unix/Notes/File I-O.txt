@@ -1,0 +1,107 @@
+
+-------------------------FIle I/O----------------------------
+
+FILE	- a typedef structure in 'stdio.h'
+
+	- Whenever we use it, we use a 'FILE *', a pointer, because we're modifying the INTERNAL VALUES of the 
+	   'FILE' value
+
+	- An 'opaque type' : means you should NEVER be accessing its internals directly 
+
+
+Among many other things, FILE wraps a FILE DESCRIPTOR, an integer used by the operating system to keep track of files
+
+Use 'fopen' and 'fclose' insteaed of the more low-level 'open' and 'close'
+
+
+-----------fopen---fclose----------
+
+'fopen()'	- opens files 
+	- two arguments of type STRING
+		1. string that represents the PATH to the file you want to open
+		2. string representing the MODE with which you will open it
+			- reading, writing, appending to the file, how you want to read the file in
+		!!!	- KNOW THE DIFFERENCE BETWEEN:
+				"r", "w", "a", "r+", "w+", "a+", and all of them with a "b" on the end
+		!!!
+	
+	- If 'fopen()' fails it will return a NULL POINTER.
+		- In the case of the 'r' mode type, it can be because the file DOESN'T EXIST or because 
+		   you don't have PERMISSION
+	- 'fopen()' a non-existent file with 'a' or 'w' will CREATE the file	
+
+	- 'fclose()' will close the file when you're done
+
+Ex:
+	FILE *fopen(char *name, char *mode);
+	int fclose(FILE *fp);
+
+	THIS IS SIMILAR TO:
+
+	void *malloc(size_t size);
+	int free(void *p);
+
+The similarity exists because 'fopen' and 'fclose' create a new FILE structure on the HEAP so that the STATUS of the
+	OPEN file can be MAINTAINED
+
+!!!!!
+	This means: If you don't  'fclose' your 'FILE *' 's  you will have MEMORY LEAKS
+
+
+-------------fgets----------fputs---------------
+
+These are for LINE INPUT and LINEOUTPUT:
+
+	- Meaning they're ONLY good for READING  in STRINGS (bad at everything else)
+
+ 	- Only use these functions if LINES are a logical way to delimit chunks of the file you're reading
+
+Code:
+	char *fgets(char *line, int maxline, FILE *fp);
+	int fputs(char *line, FILE *fp);
+
+---
+- 'fgets' reads the next LINE from the input file in 'fp' into the MEMORY LOCATION POINTED to by 'line'.
+
+- If all is successful, it will read AT MOST 'maxline-1' characters out of the file and RETURNS 'line'
+- If something goes wrong, it returns NULL
+
+- It will KEEP the newline character it reads if it gets to one before it reaches 'maxline-1' characters.
+- It ALWAYS appends the NULL CHARACTER to the end of the string
+
+---
+- 'fputs' returns EOF if there's an error
+- It returns 0 otherwise
+- It will NOT APPEND a NEWLINE into the file
+- String DOES NOT need to contain a newline character
+
+---
+
+!!!
+	'gets' and 'puts' work VERY SIMILARLY for 'stdin' and 'stdout'.
+	'gets' will NOT give you the newline character
+	NEVER USE 'gets'
+		- It doesn't do any bounds checking on the input = pretty much automatic memory errors
+
+
+---------------fread----------fwrite---------------
+Code:
+	size_t
+
+
+
+----------------Important Distinction between 'freads' and 'fgets'------------------
+
+
+
+
+----Piping-----
+
+Lecture notes
+
+
+-------Cool-----
+
+w | grep vim
+
+'grep' selects all the files that contain the keyword 'vim'

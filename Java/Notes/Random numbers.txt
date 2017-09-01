@@ -1,0 +1,31 @@
+The "Random" class of the Java library implements a random number generator that produces pseudo-random numbers.
+
+These are some of its methods:
+
+nextInt(n)		- A random integer between the integers 0 (inclusive) and n (exclusive)
+
+nextDouble()	- A random floating-point number between 0 (inclusive) and 1 (exclusive)
+
+
+import java.util.Random;
+....
+
+Random generator = new Random();		
+int d = 1 + generator.nextInt(6);		- Simulates a roll of a die
+
+....
+
+
+Math.random() = a double value greater than or equal to 0.0 and less than 1.0 (meaning, excluding 1.0)
+
+
+--------Flipping a Coin-----------------
+
+public void flip()
+{
+	face = (int) (Math.random() * 2);	- converts a random number into integer between 0 and 2 (2 not inclusive) 
+}						- the integer conversion rounds the number down - BECAUSE 2 IS NOT INCLUDED In the final range,
+							it will always ROUND DOWN TO 1 as the HIGHEST.
+					OFFICIAL RANGE: 0 to 1. 
+
+-----------------------------------

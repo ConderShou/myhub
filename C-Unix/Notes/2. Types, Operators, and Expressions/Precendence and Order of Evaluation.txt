@@ -1,0 +1,7 @@
+- Writing code that depends on order of evaluation is a BAD programming practice in ANY LANGUAGE. 
+
+
+- Chapter contains table of all the operators in their precedence.
+
+	- Refer to and memorize if needed. 
+

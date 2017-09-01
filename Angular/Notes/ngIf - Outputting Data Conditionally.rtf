@@ -1,0 +1,46 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf810
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww33400\viewh20520\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\i\fs24 \cf0 \
+\
+\
+ngIf
+\i0 \
+\
+	Built-in directive that works like an if statement\
+\
+\'97\'97servers.component.html\'97\'97\
+\
+<!-- The star is required because 'ngIf' is a STRUCTURAL DIRECTIVE. It changes the literal structure of the DOM by choosing to add or not add an element. \
+\
+	The expressions set to 'ngIf' should be a boolean expression. Method, variable, an actual TypeScript statement, etc...\
+\
+	ngIf shows statement when the expression is True.\
+\
+	NOTE: ngIf DOES NOT HIDE the element. The element either EXISTS in the DOM or it's actually not. \
+-->\
+\
+<!-- We just added 'else noServer' as an else construction for 'ngIf' \
+	You can also use reverse checking with \'93!\'94 In some shape or form as well  -->\
+\
+
+\b <p *ngIf="serverCreated; else noServer">Server was created, server name is \{\{ serverName \}\}</p>
+\b0 \
+\
+<!-- \
+		Constructing an 'else' for the 'ngif'\
+Think of the # as a marker for now. \
+			ng-template is a built-in component in Angular. \
+			Used to mark places in the DOM\
+		 -->\
+\
+
+\b <ng-template #noServer>\
+	<p>\
+		No server was created!\
+	</p>\
+</ng-template>}

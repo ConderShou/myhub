@@ -1,0 +1,204 @@
+------------------Introduction----------------
+
+int	- arbitrary precision
+float 	- 64 bits
+complex numbers
+
+------------------------
+
+# this is a comment
+
+
+-Numbers evaluate to themselves
+-------
+
+1234
+
+Output: 
+
+1234
+
+
+-Python has the usual arithmetic operators
+-------
+
+3 * 4 - 2**3
+
+Output: 
+
+4
+
+	- 12 - 2^3 = 12 - 8 = 4
+
+
+-Float makes the entire expression evaluate to a float
+--------
+
+3*4 - 2**3.2
+
+Output: 
+
+2.810413160023719
+
+
+-Arbitrary precision integers
+----------
+
+Integer size is limited ONLY by AVAILABLE MEMORY
+
+2**250
+
+O:
+
+1809251394333065553493296640760748560207343510400633813116524750123642650624
+
+
+-'type' returns the TYPE or CLASS NAME of an OBJECT
+---------
+
+type(2**100)
+
+O:
+
+int
+
+
+---------------------------Division Operators--------------------------
+
+- Slightly different from most languages
+
+- Also different with integers
+
+
+Normal division between integers returns a float if a fraction is the correct answer
+------------------------
+
+7/2
+
+O:
+
+3.5
+
+
+// is integer divide
+----------------
+
+7//2
+
+O:
+
+3
+
+
+Mod
+-----
+
+7%2
+
+O:
+
+1
+
+
+Division with floats is normal
+-----
+
+7.0/2.0
+
+O:
+
+3.5
+
+
+Integer division with Floats
+--------
+
+7.0 //  2.0
+
+O:
+
+3.0
+
+
+Modulus
+---------
+
+7.0 % 2.0
+
+O:
+
+1.0
+
+
+Scientific Notation: XeY = X * 10 ^ Y
+---------
+
+3e3
+
+O:
+
+3000
+
+
+Floats with scientific notation can be off by JUST A BIT
+----------
+
+2.3 * 3e3
+
+O:
+
+6899.999999999999
+
+	- 2.3 * 3000 is meant to equal 6900
+
+
+---------------Complex Numbers--------------
+
+- A complex number multiplied with its conjugate is a real number
+
+- 'j' is the square root of -1 ( what we know of as 'i' )
+
+- Type name is 'complex'
+-----------
+
+[(3+4j)*(3-4j), type(3+4j)]
+
+O:
+
+[(25+0j), complex]
+
+
+'int' function tries to convert its argument to an int
+------------
+
+int('2345')
+
+O:
+
+2345
+
+--
+
+int(3.45)
+
+O:
+
+3
+
+
+'float' function does the same respectively
+------------
+
+float('3.45')
+
+O:
+
+3.45
+
+--
+
+float(3)
+
+O:
+
+3.0

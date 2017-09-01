@@ -1,0 +1,136 @@
+Each node will have an element associated with it, the data
+
+LinkedLists wil have a class inside it called "Node"
+
+---------------Singly Linked Lists----------------------
+
+Node object has a reference to another node, which has a field "next" 
+
+Last element in the linked list references "null"
+
+"Head" reference is a node object, and it's the first element on the list
+
+get method are now more expensive than an array implementation - you have to get the node first
+
+class Node<AnyType> {
+
+	AnyType data;
+	
+	Node<AnyType> next;	- You now define a type "node" even though it's in the class you're defining
+}
+
+
+class LinkedList<AnyType>  {
+	
+	Node<AnyType> head;
+	int size;
+
+	AnyType get(int i) {
+		
+		Node<AnyType> t = head;		- We can make multiple nodes point to the same spot.
+		int count = 0;				- We can make "Node temp" refer to the same spot as the "head" variable 
+								- Then we can keep the "head" variable as it is as we use "temp" to move along the LinkedList
+		if (i >=size) 
+			throw ....			- Accounting for the null refernce at the end of the LinkedList, thowing an exception
+		while (count < i) {
+		
+			count++;			- Now "count" and "t" move at the same pace
+			t = t.next;			- "t" will stop at desired "i"
+		}	
+
+		return t.data;			- this returns the data INSIDE the node
+
+
+In order to add a new element to the beginning of the LinkedList, add a node to the new object that references to head.
+	Then set head to reference the new object. 
+
+No limit on the length of the LinkedList, we can just keep adding
+
+
+----------------------Doubly Linked Lists-------------------------------------------
+
+Empty List: Head node points to the tail node, and the tail node points to the head node 
+	There is a "head" node in the beginning of the list, and a "tail" node at the end of the list
+
+t.prev = head;		- Setting the temp node
+t.next = head.next;
+
+If we're going to put an element in the doubly linked list, between the head and tail node......
+
+	head.next.prev = t;		- head.next refers to the node that head.next REFERS to
+				- head.next.prev refers to the "previous" node of the node that head.next referes to
+		- IF THIS LIST WERE EMPTY, IT'D BE THE SAME THING AS tail.prev
+		
+		- But if there is another element next to the head note, then it'd be THAT element's "previous" node we'd need to change
+			- We're generalizing it so that it works no matter what the list is
+		
+	head.next = t;
+
+In the head node (the first node), the "previous" node points to null
+
+
+-----------------------------------------MyLinkedList----------------------------------------------------
+
+LinkedList class has two private Node objects.
+
+	The Node class that is defined "private static" are nested classes inside the LinkedList, that cannot access the instance variables of LinkedList
+
+private static class Node<AnyType>
+{
+	public Node( AnyType d, Node<AnyType> p, Node<AnyType> n)
+	{
+		data = d; prev = p; next = n;
+	}
+
+	
+
+------------------public void doClear()------------
+
+Change size of collection to zero
+
+public void doClear()
+{
+	beginMarker = new Node<>(null, nulll, null);			
+	endMarker = new Node<>(null, beginmarker, null);
+	beginMarker.next = endMarker;							- this basically looks like the same setup as a "head" to "tail" node
+
+	theSize = 0;
+	modCount++;
+}
+}
+----------------
+
+public boolean add( AnyType x)
+{
+	add(size(), x);			- adds an object to the end of the list
+	return true;
+}
+
+public void add(int idx, AnyType x) 		- idx is the position to add object at
+{
+	addBefore( getNode(idx, 0, size()), x);			- we must FIRST get the node at the position in order to add the object there
+}							- Notice that the endmarker, which is one node beyond the end of the list, happens to then be precisely AT the index of the size of the array. 
+								- (index 8 of array size 8 - even though index's start at 0)
+
+private AnyType remove(Node<AnyType> p)
+{
+	p.next.prev = p.prev;			- This is simply causing the nodes adjacent to "p" to BYPASS it, to IGNORE it
+	p.prev.next = p.next;
+	theSize++;
+	modCount;
+
+	return p.data;
+}
+
+------Wishing to insert a new node before p--------
+
+private void addBefore( Node<AnyType> p, AnyType x)
+{
+	Node<AnyType> newNode = new Node<> (x, p.prev, p);	- previous node must be the node that "p" pointed to preiously, and the next reference should then be referencing "p" 
+	newNode.prev.next = newNode;			- changing what the previous node points to, to the newNode
+	p.prev = newNode;
+	theSize++;
+	modCount++;
+}
+
+-------getNode() method will be used a lot for the various Node methods that require action at a CERTAIN position--------------------

@@ -1,0 +1,43 @@
+Use the keyword "super" to call the constructor of the superclass.
+
+The arguments of "super" must coincide with the arguments of the constructor we're calling. 
+
+Ex:
+	public class Vehicle {
+		private String color;
+		public Vehicle (String c) {color = c;}
+		public void moveForward() {...}
+		public void moveBackward() {...}
+	}
+
+	public class Car extends Vehicle {
+		private int noPass;
+		public Car (int n, String c)
+
+			CAN'T DO:	{color = c; noPass = n;}  - We cannot access "color" because it is private
+
+			CAN DO: 		{super(c); noPass = n;}  - This calls constructor VEHICLE "c"
+							      - Must FIRST call superclass constructor THEN all other calls
+		public void enter (int n) {...}
+		public void exit (int n) {...}
+	}
+
+Ex:
+
+	public class A {
+		public A() {System.out.print("A, "); }
+	}
+	
+	public class B extends A {
+		public B() {super(); System.out.print("B, "); }
+	}	
+	
+	public class C extends B {
+		public C() {super(); System.out.print("C."); }
+	}
+	
+	C c = new C();
+
+   Prints out:
+		
+	A, B, C.

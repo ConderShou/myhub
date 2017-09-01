@@ -1,0 +1,43 @@
+Take these steps and replace method with hexadecimal with whatever other base you talk about
+
+------Translating binary to hexadecimal----
+
+	4 bits represent 0 to 15 (one unit of hexidecimal), so split binary into groups of 4. 
+	(0x will indicate a given a number is written in hexadecimal notation)
+Ex:
+
+	Binary: 01000010b
+		
+			1. 0100b = 0x4
+			2. 0010b = 0x2
+	Hexadecimal: 0x42
+
+
+	Binary: 01011111b
+
+			1. 0101b = 0x5
+			2. 1111b = 0xF
+
+	Hexadecimal: 0x5F
+
+
+-----Translating hexadecimal to decimal-------------
+
+0x42 = 4*16 + 2 = 64 + 2 = 66
+
+0x2A = 4*16 + 10 = 32 + 10 = 42
+
+0xFF = 15*16 + 15 = 240 + 15 = 255
+
+
+----Translating from decimal to hexadecimal--------
+
+Decimal: 31416
+
+		31416 / 16 = 1963 with remainder 8	Hexadecimal digit only counts remainder: 8
+		1963 % 16 = 11			Hexadecimal digit: B
+		...
+		7 % 16 = 7			Hexadecimal digit: 7
+
+Hexadecimal: 0x7AB8
+		

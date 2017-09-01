@@ -1,0 +1,13 @@
+Program  = the record fo the computation
+
+Application = program
+
+Compiler: a program that takes a program in source code and returns the program in object code.
+
+Process = a running program
+
+It's possible to run a program multiple times simultaneously, whereby you have multiple processes.
+
+Primary/Secondary storage: stores the programs and prepares them for running.
+
+Processing unit: runs the programs

@@ -1,0 +1,50 @@
+Two ways to read and understand recursive methods:
+
+	1. In an operational way: term rewriting
+	2. In a mathematical, or notational way
+
+----------Understanding Recursion Mathematically-------------
+
+The mathemtical view is useful for designing recursive methods and to check whether they are correct or not. 
+
+Write a recursive method to compute the factorial of a natural number 'n'
+
+fac(5) = 5!
+fac(4) = 4!
+
+---Solving this task:
+
+	1. Assume the problem is solved for a simpler problem of the same kind
+
+		Simpler problem: Computing factorial of 'n' when we already know how to compute the factorial
+			             of 'n-1'
+		
+		Solution to Simpler Problem: fac(n) = n*fac(n-1)
+
+	2. Check the border conditions, when you cannot simplify the problem any further
+
+		fac(0) = 0! = 1		- 0! cannot be reduced to a simpler case as we did in the first part
+					- Therefore, this is a base case. 
+
+The Mathemtical Basis of the Recursive Method:
+
+	fac(n) = 1		if n = 0
+	fac(n) = n*fac(n-1)	if n => 1
+
+The Recursive Method:
+		
+	long fac (int n) {				- Factorials grow very big very quickly. More bytes prevents an overflow from occurring too soon.
+		if (n <= 1) {return 1;}		- Base case
+			else {return n*fac(n-1);}	- Recursive case
+	}
+
+
+------------Understanding Recursion Operationally-----------------
+
+Term Rewriting
+
+fac(3) --> 3*fac(2)
+fac(2) --> 2*fac(1)
+fac(1) --> 1
+
+fac(3) --> 3*fac(2)... -->  (2*1) --> 6

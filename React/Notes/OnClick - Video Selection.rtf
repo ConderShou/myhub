@@ -1,0 +1,121 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf810
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww33400\viewh21000\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \
+1. We will add on to the App state with a \'91selectedVideo\'92 that will 
+\i only
+\i0  be passed into the video_detail\
+2. To update the selected video, we\'92ll pass a callback from app into video list\
+3. Then from video list, to video list item\
+4. Whenever a video list item is clicked, it will run the callback with the video that belongs to it\
+\
+\
+Rare to go more than two levels deep with passing props. \
+	- Think about another approach if you do this too often\
+\
+\'97index.js\'97\
+\
+
+\b class App extends Component \{\
+	constructor(props) \{\
+		super(props);\
+\
+		
+\i this.state = \{ \
+			videos: [],\
+			selectedVideo: null\
+		 \};\
+
+\i0 \
+		YTSearch(\{ key: API_KEY, term: 'surfboards'\}, (videos) => \{\
+\
+				
+\i  this.setState(\{ \
+				 	videos: videos,\
+				 	selectedVideo: videos[0]\
+				 \});\
+
+\i0 		\});\
+	\}\
+\
+\
+	render() \{\
+\
+		return (\
+			<div>\
+				<SearchBar />
+\b0 \
+				\
+			 	
+\b <VideoDetail video=\{this.state.selectedVideo\} />\
+
+\b0 \
+			 \{/* \
+						Crucial: If VideoList calls the function passed as 'onVideoSelect', the function will update the state of 'App', ITS PARENT COMPONENT\
+\
+						VideoList can now call 'props.onVideoSelect'\
+\
+			 */\}
+\b \
+				
+\i <VideoList\
+				 onVideoSelect = \{selectedVideo => this.setState(\{selectedVideo\})\}\
+				 videos=\{this.state.videos\} />\
+
+\i0 			</div>\
+		);\
+	\}\
+\}\
+\
+\
+
+\b0 \'97video_list\'97\
+
+\b \
+const VideoList = (props) => \{\
+\
+	const videoItems = props.videos.map((video) => \{\
+		return (\
+			<VideoListItem \
+\
+			
+\b0 //We're just passing the 'onVideoSelect' prop to VideoListItem\
+
+\b \
+			
+\i onVideoSelect = \{props.onVideoSelect\}
+\i0 \
+				\
+			key=\{video.etag\} \
+			video = \{video\} />\
+		)\
+	\});	\
+\
+\
+
+\b0 \'97video_list_item\'97\'97\
+\
+
+\b return (\
+\
+	
+\b0 //onClick is a javascript event handler
+\b \
+\
+	
+\i <li onClick=\{() => onVideoSelect(video)\} className = "list-group-item">
+\i0 \
+\
+		<div className = "video-list media">\
+			<div className = "media-left">\
+				\'85..\
+\
+\
+\
+\
+\
+}

@@ -1,0 +1,48 @@
+   
+
+
+  protected void onCreate(Bundle savedInstanceState) {		
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_fun_facts);	
+
+----------
+
+OnCreate 		-  called when app is first created
+ setContentView	- dictates which layout file to use for the screen
+
+	- "R.layout.activity_fun_facts"	 	- an ID for the 'activity_fun_facts.xml' file in the layout directory
+
+NOTE: 'R' is a file within 'app/build/generated/source/r/debug', that contains all the information regarding IDs of things
+
+---------------Fields---------------
+
+Field = the name for a variable that is inside the class, but outside all of the methods
+
+Can access them from any method in our class (i.e. instance variables)
+
+Ex:
+	private TextView mFactTextView;		
+		
+
+- hit Alt + Enter to import TextView after typing it 
+	It automatically enters: 
+		
+		import android.widget.TextView;
+
+- "m" prefix is in accordance to Android Source Style guide 
+	(After going into 'Default Settings' the Studio will now do it for us automatically)
+
+
+------------------------------Assigning Values to Fields-------------------------------------
+
+Only assign values AFTER the call to 'setContentView'		
+	- i.e. do it after the layout is chosen, the layout that contains these views
+	- Remember, this is still normal programming, it's Java. 
+
+mFactTextView = (TextView) findViewById(R.id.factTextView);
+
+	1. findViewById	- allows us to find the view by refering to the ID through a generated resource class
+				(Which is contained in R in the 'id' class in the variable we named 'factTextView')
+
+	2. Casting (TextView)	- findViewById is for generic views, therefore we cast it to '(TextView)' to 
+				   specialize it

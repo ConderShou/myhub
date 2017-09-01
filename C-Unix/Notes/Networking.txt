@@ -1,0 +1,85 @@
+-----Begins with a brief review of previous class----
+
+nc
+
+Let's say you're running two 'nc' in two worlds:
+
+	One runs in the clac server:	nc -l 4000
+		- listing mode
+		-Waits for another TCP, some program to connect to this program on port 4000
+
+	One runs in the cunix server: 	nc clac.cs.columbia.edu
+		- The connection is made between the two 'nc' programs
+
+The relation between the two are as if they are | (piped)
+	
+	- Except instead of it being one-way, it's two-way. 
+	- Also, the two programs can be run anywhere in the world and still connect to each other
+
+The connection between the two 'nc' programs are established by what is called the TCP connection
+
+The 'stdin' of one program goes to the 'stdout' of another program, and vice versa. 
+
+
+--------------
+
+What we did previously:
+
+One 'nc' program is feeding itself into mdb-lookup:
+
+	nc | mdb-lookup mdb
+
+Netcat (nc), will feed into mdb-lookup.
+
+There is another 'nc' program connected to the previous 'nc'
+
+For the other 'nc' program that is connected to the previous 'nc' program, whatever it is fed there ultimately gets inputted
+	into the mdb-lookup program as well. 
+
+- If we feed something into the piped 'nc' program, the information will be sent to the connected 'nc' program on the 
+	network, and outputted through the 'stdout' of that unpiped 'nc' program
+	
+	Ex: 'cat mypipe' can be sent through the piped 'nc' program
+  	     The output of the mdb-lookup program can then execute some program that initiates 'cat mypipe'.
+	     Now we have a full loop going around between the 'cat mypipe', the piped 'nc' program, the unpiped 'nc'
+		program, and the mdb-lookup program that the former 'nc' program was feeding into
+
+	  - Termination of the loop in this example happens ONLY when one of the 'nc' programs terminate. 
+
+- This all has to do with Lab 5. 
+- Make sure you understand how this pipline works. 
+
+
+-------------------
+
+Let's see what we can now build on top of this.
+
+- There are 5 layers to Networking/Connection - Just get a good conceptual understanding of all this
+
+5.  Application Layer  - Internet Browsers/Programs - i.e. Chrome
+
+	- The protocol connecting the web browser and TCP is HTTP. (HTTP is built off of TCP - it initiates the TCP
+		connection)
+
+	Socket API - The layer IN BETWEEN Layer 5 and 4, it's the user interface that allows you to control the 
+		   interaction between the programs and the Transport layer
+
+4. Transport Layer: TCP, UDP	- This is the layer that computer programs connect to
+3. Network Layer: IP version 4, IP version 6	- This is the MOST IMPORTANT layer/set of protocols
+2. Link Layer  - its protocols are Ethernet, Wifi
+1. Physical Layer - Cables, connectors, circuits, etc...
+
+www.cnn.com/index.html
+
+'www.cnn.com'	- Browser creates an address from this and sends a request to the webserver at this address
+			to fetch 'index.html'
+		The request is something like: GET /index.html HTTTP/1.0
+		After sending info on its way, the webserver says it sent it 
+
+		- The point of this is just to acknowledge the pipeline existent between browsers and their
+			servers
+
+There's SMTP and SSH as well. These are all also built on top of TCP - ultimately initiating TCP connnections
+
+
+------------------------

@@ -1,0 +1,26 @@
+Sometimes you want to execute the body of a loop at least once and perform the loop test AFTER the body is executed. 
+
+The do loop serves that purpose:
+
+	do
+	{
+		statements
+	}
+	while (condition);
+
+The body of the do loop is executed first, then the condition is tested.
+
+Do loops are most commonly used for input validation.
+
+Ex:
+
+	int value;
+	do 
+	{
+		System.out.print("Enter an integer < 100: ");
+		value = in.nextInt();
+	}
+	while (value >= 100);
+
+Basically, the do loop is a post-test loop, where the body is executed first, and the condition is tested after, 
+and as long as the condition is true, the body will continue to be executed (and then tested afterwards). 

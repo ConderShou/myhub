@@ -1,0 +1,90 @@
+struct Pt {
+	double x;
+	double y;
+};
+
+-------
+A struct CANNOT contain functions/methods.
+It can ONLY contain other datatypes: pointers, int, char, float, and even OTHER STRUCTS
+
+
+struct Pt {
+	...
+} p;		//Semi-colon is there because you can declare a variable at the end of the declaration
+
+struct Pt p1;	//A struct is a type
+
+p1.x = 3.0;
+p2.y = 4.0;
+
+struct Pt *q1;
+
+q1 = &p1;		//If you want to pass a pointer to a struct, you can dereference it with the '&' operator
+
+int *qx = &p1.x;
+
+
+(*q1).y = 6.0;
+
+q1->y = 7.0;
+
+
+----------------Data Structures for LinkedList--------------
+
+struct Node {
+	int data;
+	struct Node *next;
+};
+
+
+--
+
+struct Node {
+	void *data;
+	struct Node *next;
+}
+
+--
+
+struct List {
+	struct node *head;
+}
+
+--
+
+addNode(List *, void *)
+
+
+--------------------------------------
+
+If you don't want to write out the keyword 'struct' every time, you can declare struct as follows
+
+typedef struct {
+	int x;
+	int y;
+} Point;
+
+Point pt = {50, 100};
+
+
+--------Union-------------
+
+All of the members contained within the Union are stored in the same location in memory
+
+When you allocate a union, enough space is allocated for the largest member's type
+
+union u_tag {
+	int integer_value;
+	float float_value;
+	char *string_value;
+}
+
+union u_tag u;
+
+u.integer_value = 5;
+
+int x = u.integer_value;
+
+u.float_value = 3.14f;
+
+float f = u.float_value;

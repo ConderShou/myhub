@@ -1,0 +1,129 @@
+-------------------Construct an object of the JFrame class:--------------
+
+	JFrame frame = new JFrame();
+
+2. Set the size of the frame:
+
+	frame.setSize(300, 400);
+	This frame will be 300 pixels wide and 400 pixels tall. If you omit this step the
+	frame will be 0 by 0 pixels, and you won’t be able to see it. (Pixels are the tiny
+	dots from which digital images are composed.)
+
+3. If you’d like, set the title of the frame:
+	
+	frame.setTitle("An empty frame");
+	If you omit this step, the title bar is simply left blank.
+
+4. Set the “default close operation”:
+	
+	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	When the user closes the frame, the program automatically exits. Don’t omit
+	this step. If you do, the program keeps running even after the frame is closed.
+	
+5. Make the frame visible:
+	
+	frame.setVisible(true);
+
+-----Ex:
+
+	
+ import javax.swing.JFrame;
+
+ public class EmptyFrameViewer
+ {
+ public static void main(String[] args)
+ {
+ JFrame frame = new JFrame();
+ frame.setSize(300, 400);
+ frame.setTitle("An empty frame");
+ frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+ frame.setVisible(true);
+ }
+ }
+
+-------
+
+-----------------Drawing In Frame----------------------------
+
+----Ex:
+
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Rectangle;
+import javax.swing.JComponent;
+
+ /**
+ A component that draws two rectangles.
+ */
+ public class RectangleComponent extends JComponent
+ {
+
+ public void paintComponent(Graphics g)
+ {
+ 
+--// Recover Graphics2D
+
+ Graphics2D g2 = (Graphics2D) g;
+
+ ---// Construct a rectangle and draw it
+
+ Rectangle box = new Rectangle(5, 10, 20, 30);
+ g2.draw(box);
+
+ --// Move rectangle 15 units to the right and 25 units down
+
+ box.translate(15, 25);
+
+ --// Draw moved rectangle
+ 
+g2.draw(box);
+
+ }
+}
+
+----
+
+-----------------------Displaying a Component in a Frame--------------------------
+
+1. Construct a frame object and configure it.
+
+2. Construct an object of your component class:
+
+	RectangleComponent component = new RectangleComponent();
+
+3. Add the component to the frame:
+	
+	frame.add(component);
+
+4. Make the frame visible.
+
+--Ex:
+
+ import javax.swing.JFrame;
+
+ public class RectangleViewer
+ {
+
+ public static void main(String[] args)
+ { 
+
+JFrame frame = new JFrame();
+
+ frame.setSize(300, 400);
+ frame.setTitle("Two rectangles");
+ frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+ RectangleComponent component = new RectangleComponent();
+ frame.add(component);
+
+ frame.setVisible(true);
+}
+
+----
+
+Note that the rectangle drawing program consists of two classes:
+
+• The RectangleComponent class, whose paintComponent method produces the drawing.
+• The RectangleViewer class, whose main method constructs a frame and a RectangleComponent,
+adds the component
+to the frame, and makes the frame visible.

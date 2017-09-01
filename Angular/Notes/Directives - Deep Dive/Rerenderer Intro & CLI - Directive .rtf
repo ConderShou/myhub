@@ -1,0 +1,57 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf810
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww33400\viewh20520\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \
+\
+
+\b ng g d [DIRECTIVE-NAME]
+\b0 \
+\
+	Autogenerates a directive from the CLI\
+\
+IMPORTANT: Use the 
+\i Renderer 
+\i0 for any DOM manipulation\
+\
+	Visit official Angular documentation for available methods\
+\
+\
+\'97better-highlight.directive.ts\'97\'97\
+\
+
+\b import \{ Directive, Renderer2, OnInit, ElementRef \} from '@angular/core';\
+\
+@Directive(\{\
+  selector: '[appBetterHighlight]'\
+\})\
+export class BetterHighlightDirective implements OnInit \{\
+\
+  constructor(private elRef: ElementRef, private renderer: Renderer2) \{ \}\
+\
+  ngOnInit() \{
+\b0 \
+\
+  	// We use the renderer in the ngOnInit implementation to create the same attribute effect\
+\
+  	// setStyle\
+  	// 1. We need to input an element inside 'setStyle()'\
+  	// 2. Input what kind of style you want to set\
+  	// 3 . The value for the style you're trying to set\
+  	// 4. Optional flags for stuff - look it up if you want to use them \
+\
+  	
+\b this.renderer.setStyle(this.elRef.nativeElement, 'background-color', 'blue');
+\b0 \
+\
+  	//This is a better approach because with 'service-workers', you may not have access to the DOM - it's not run in the browser\
+\
+
+\b   	\
+  \}\
+\}\
+\
+}

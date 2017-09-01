@@ -1,0 +1,11 @@
+------------------Automatic Memory Management------------------
+
+- When an object has no references to it, it becomes eligible for 'garbage colllection'
+
+- The storage it uses is recycled
+
+- Python uses 'reference counting'
+
+- User does not need have to manage allocating and freeing memory, like Java, unlike C++
+
+

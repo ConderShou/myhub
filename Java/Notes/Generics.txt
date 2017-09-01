@@ -1,0 +1,30 @@
+public BoxGeneric(T x) {		- Generic class.
+
+public T a;
+
+public T getter()
+{
+	return a;
+}
+
+...
+
+}
+
+public static void main(String[] args) {
+	BoxGeneric<String> newBox = new BoxGeneric<>("New Box Made!");		- You define the type of input that this generic class will work with by placing
+	newBox.getter();								where "String" is at. 
+										- newBox is gonna give "String" inputs. 
+										- The BoxGeneric now reaplces all "T" with "Strong"
+}
+}
+
+
+public static<AnyType> AnyType newMethod(AnyType a) {		- when you make a solely Generic method
+....
+}
+
+The <> syntax allow us to define the classes
+
+List<Integer> l = new ArrayList<>();
+List<String> l = new ArrayList<>();

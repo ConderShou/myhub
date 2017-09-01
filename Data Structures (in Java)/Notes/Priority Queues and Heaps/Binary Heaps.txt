@@ -1,0 +1,304 @@
+------------------------------------------Binary Heap------------------------------------------------------------------
+
+Binary heaps are also just plainly known as "heaps"
+
+A heap is a COMPLETE BINARY TREE.
+
+	Complete binary tree:	A binary tree that is completely filled, with the possible exception of the bottom level,
+					which MUST be filled from left to right (no gaps)
+
+A complete binary tree can simply be represented in an ARRAY, no links are necessary 
+	
+	Array starts with root ***AT POSITION 1***, and is then filled left to right corresponding to the left to right on each level of the binary tree
+
+-----------------------------------------------------
+
+For any element in array position "i":
+	
+	the left child is in position "2i"
+	the right child is in the cell after the left child, "2i+1"
+	the parent is in position "i/2" 			- INTEGER DIVISION
+
+
+The only problem with this implementation is that an ESTIMATE of the MAXIMUM HEAP SIZE is required IN ADVANCE
+
+	Typically this is not a problem, we can just RESIZE if necessary.
+
+------------------------------------------------------
+
+A heap data structure consists of an ARRAY of COMPARABLE objects and an INTEGER representing the CURRENT HEAP SIZE
+
+
+------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------
+
+
+------------------------------Heap-Order Property---------------------------------------------------
+
+
+This allows operations to be performed quickly. 
+
+	The SMALLEST element should be the ROOT
+	ANY node should be SMALLER than its DESCENDANTS
+
+
+In a heap, for every node X, the key in the parent of X is smaller than (or equal to) the key in X,
+	with the exception of the root - which has no parent
+
+By the heap-order property, the minimum element can always be found at the root.
+
+THUS: findMin is in constant time. 
+
+
+--------------------------------------
+
+All the work for basic heap operations involves ensuring that the heap-order property is maintained
+
+
+--------------------------------------Insert--------------------------------------
+
+
+------PERCOLATING UP--------
+
+The new element is PERCOLATED UP the heap until the correct location is found.
+
+The process is thus:
+
+	To insert an element X into the heap, we create a HOLE in the NEXT AVAILABLE location,
+		 since OTHERWISE the tree will NOT BE COMPLETE
+
+	If X can be placed in the hole without violating heap order, then we do so and we're done.
+
+	Otherwise, we SLIDE the element that is in the hole's parent node INTO the hole.
+
+	We REPEAT this process of SLIDING the parent node into the hole until X can be inserted WITHOUT
+		violating the heap-order property
+
+
+If the element to be inserted is the new minimum, it will be pushed all the way to the top.
+	The hole will eventually be 1 and we'll want to break out of the loop.
+
+		We can either do an explicit test,
+			OR
+		Put a reference to the inserted item in position 0 in order to make the loop terminate
+
+Ex:
+
+	/*
+	  * Insert into the priority queue, maintaining heap order.
+	  * DUPLICATES are ALLOWED
+	  * @param x the item to insert
+	  */
+	  public void insert( AnyType x )
+	  {
+		if( currentSize == array.length - 1 )
+			enlargeArray( array.length * 2 + 1 );
+
+		       //Percolate up
+		int hole = ++currentSize;
+	
+		for( array[0] = x; x.compareTo( array[ hole/2 ] ) < 0; hole /= 2 )
+			array[ hole ] = array[ hole/2 ];
+		
+		array[ hole ] = x;
+
+
+--------------------------------------deleteMin--------------------------------------
+
+Finding the minimum is easy; the hard part is removing it.
+
+------PERCOLATING DOWN-------
+
+
+We do this as thus:
+
+	When the minimum is removed, a HOLE is created at the root.
+
+	Since the heap now becomes one smaller, the LAST element X in the heap must move somewhere in the heap
+		(This is the bottom element, AKA one of the largest elements in the heap) 
+		
+		If X can be placed in the hole, then we are done
+	
+		But this is very unlikely,
+
+			so we slide the SMALLER of the hole's children into the hole
+		
+			and therefore, end up PUSHING the hole down one level
+	
+		We REPEAT this process until X can be placed in the hole.
+
+	We want to place X in its correct spot along a path from the root containing MINIMUM CHILDREN
+
+
+--------------------Notes on the Code--------------
+
+A frequent implementation error occurs when
+		
+	 there are an EVEN number of elements in the heap
+
+	and the one node that has ONLY ONE CHILD is encountered
+
+DO NOT ASSUME THAT THERE ARE ALWAYS TWO CHILDREN 	
+	- This means adding an EXTRA TEST
+
+One extremely tricky solution is to always ensure that your algorithm THINKS every node has two children
+	- Placing a sentinel, of value higher than any in the heap, 
+		at the spot after the heap ends
+		at the start of each PERCOLATE DOWN
+	 when the heap size is even
+
+While this eliminates a need to test for the presence of a right child, you MUST continue to TEST at the BOTTOM
+	This would require a sentinel for every leaf
+
+
+The WORST-CASE running time for this operation is O(log N).
+
+In most cases, the element placed at the root is percolated almost to the bottom of the heap (the level it came from),
+	so the AVERAGE running time is ALSO O(logN)
+
+
+Ex:
+	/**
+	 * Remove the smallest item from the priority queue
+	 * @return the smallest item, or throw UnderflowException, if empty
+     	 */
+	public AnyType deleteMin()
+	{
+		if( isEmpty() )
+			throw new UnderflowException();
+
+		AnyType minItem = findMin();
+		array[ 1 ] = array[ currentSize-- ];		//Insert bottom element into root
+		percolateDown( 1 );				//Begin the percolation downwards
+
+		return minItem;
+	}
+
+	/** 
+	  * Internal method to percolate down in the heap
+	  * @param hole the index at which the percolate begins
+	 */
+	private void percolateDown( int hole )
+	{
+		int child;
+		AnyType tmp = array[ hole ];
+	
+		for( ; hole * 2 <= currentSize; hole = child )
+		{
+			child = hole * 2;
+			if( child != currentsize && 
+				array[ child + 1 ].compareTo( array[ child ] ) < 0 )
+			    child++;
+		
+			if( array[ child ].compareTo( tmp ) < 0 )
+				array[ hole ] = array[ child ];
+			else
+				break;
+		}
+		array[ hole ] = tmp;			// the value of "hole" somehow changes during the for loop (the "hole = child" statement?)
+	}
+
+
+
+--------------------------------------------------------------------------------------------------------------------------
+--------------------------------------Other Heap Operations-------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------
+
+A heap designed to find the minimum element is also known as a MINHEAP. 
+	NOTE: This is absolutely useless for finding the maximum element 
+		It's just one of the leaves at the bottom level
+
+For this reason, if it is important to know where elements are, 
+	some other data structure, such as HASH TABLE,
+	must be used in addition to the heap. 
+
+
+If we assume that the position at every element IS KNOWN by some other method,
+	 then several other operations become cheap
+
+
+----------------decreaseKey--------------
+
+decreaseKey(p, delta):
+	 LOWERS the value of the item at position "p" by a positive "delta"
+	
+Since this might violate the heap order, it must be fixed by a PERCOLATE UP. 
+
+
+---------------increaseKey--------------
+
+increaseKey(p, delta):
+	INCREASES the value of the item at position "p" by a positive "delta"
+
+This is done with a PERCOLATE DOWN.
+
+
+-------------delete-----------------
+
+delete(p):
+	REMOVES the node at position "p" from the heap
+
+This is done by FIRST:
+			decreaseKey(p, [infinite])
+ 	          THEN:
+			deleteMin()
+
+--------------------------------------
+------------buildHeap----------
+--------------------------------------
+
+The binary heap is sometimes constructed by an initial collection of items,
+	taking in N items and placing them into a heap
+	
+	This can be done with N sucessive inserts
+
+
+The general algorithm is to place N items into the tree in ANY order, while maintaining the structure property
+
+	Then, if percolateDown(i) percolates down from node "i", 
+		***the BUILDHEAP routine can be used by the constructor to create a HEAP-ORDERED TREE****
+
+Refer to figures 6.15 - 6.18 to see how the percolate down visually works
+
+
+To bound the running time of BUILDHEAP,
+	
+		Compute the sum of the heights of all nodes in the heap (i.e. maximum number of SLIDES in percolate downs)
+
+This sum is O(N)
+		
+	
+Ex:
+
+	/**
+	   * Construct the binary heap given an array of items
+	   */
+	public BinaryHeap( AnyType [] items )
+	{
+		currentSize = items.length;
+		array = (AnyType[]) new Comparable[ ( currentSize + 2 ) * 11 / 10 ];
+		
+		int i = 1;
+	
+		for( AnyType item : items ) 
+			array[ i++ ] = item;
+		buildHeap();
+	}
+	
+	/**
+	  * Establish heap order property from an arbitrary
+	  *  arrangement of items. Runs in linear time.
+	 */
+	private void buildHeap()
+	{
+		for( int i = currentSize / 2; i > 0; i-- )
+			percolateDown( i );
+	}
+
+----------------------------------------------------------------------------
+
+For the perfect binary tree of height "h" containing "2^(h + 1) - 1" nodes, 
+	the sum of the heights of the nodes is:
+						2^(h+1) - 1 - (h+1)
+
+

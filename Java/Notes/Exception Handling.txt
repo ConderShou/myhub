@@ -1,0 +1,189 @@
+There are two aspects to dealing with program errors, 
+	DETECTION and HANDLING
+
+Something detects the error, then we must give a way for the program to HANDLE the error - to respond to it. 
+
+In Java, EXCEPTION HANDLING provides a flexible mechanism for passing control 
+	from the point of ERROR DETECTION to a HANDLER that can DEAL with the error
+
+
+------------------------------------------------Throwing Exceptions------------------------------------------------------
+
+When you detect an error condition, you THROW an appropriate exception object, and you are done.
+
+
+Ex:
+
+Suppose someone tries to withdraw too much money from a bank account.
+
+	if (amount > balance)
+	{
+		//Now what?
+	}
+
+Now, look for an APPROPRIATE exception class. 
+
+The amount to be withdrawn is "illegal" because it's too large.
+
+Therefore, let's throw an "IllegalArgumentException".
+
+	if (amount > balance)
+	{
+		throw new IllegalArgumentException("Amount exceeds balance");
+	}
+
+When you throw an exception, execution continues with an EXCEPTION HANDLER.
+
+
+------------------------------------------------Catching Exceptions-------------------------------------------------------------
+
+If an exception has no handler, an error message is printed, and the program terminates.
+	This unhandled exception can be confusing to program users. 
+
+Use the TRY/CATCH statement to handle exceptions
+
+	Place the statement into a location in your program that knows how to handle a particular expression.
+
+	The TRY statement contains ONE or MORE statements that may cause an exception.
+
+	Each CATCH clause contains the handler for an exception type.
+
+NOTE: Place more SPECIFIC EXCEPTIONS before more GENERAL ones
+
+Ex:
+	try
+	{
+		String filename = ...;
+		Scanner in = new Scanner(new File(filename));
+		String input = in.next();
+		int value = Integer.parseInt(input);
+		....
+	}
+	catch (IOException exception)
+	{				//execution of program resumes here IF this exception was thrown
+		exception.printStackTrace();		//printStackTrace() prints the chain of method calls that led to exception
+	}
+	catch (NumberFormatException exception)	//Place more SPECIFIC exceptions before GENERAL ones
+	{
+		System.out.println(exception.getMessage());	//You can place your own exception message
+	}						// like how we did in the section above			
+							//  with "IllegalArgumentException("....");
+
+printStackTrace() prints the chain of method calls that led to the exception
+
+
+----------------------------------------------------Checked Exceptions------------------------------------------------------------------
+
+In Java, the exceptions that can be thrown and catched fall into THREE categories:
+
+	1. Internal errors: reported by descendants of the type ERROR
+	
+	Ex: 	OutOfMemoryError 	- all available computer memory has been used up
+	
+	2. Unchecked exceptions: descendants of RuntimeException
+	
+	    These indicate errors in your code.
+	
+	Ex: IndexOutofBoundsException, IllegalArgumentException, etc...
+
+	3. Checked Exceptions: ALL OTHER exceptions
+
+	    Indicating that something has gone wrong for some external reason BEYOND your control
+
+	Ex:  IOException can be caused by disk error or broken network connection, beyond your control
+
+
+When the current method CANNOT HANDLE the exception, you want your method to be terminated if it occurs
+
+Therefore, supply the METHOD with a throws clause
+
+	Ex:
+		public void readData(String filename) throws FileNotFoundExcption, NumberFormatException
+		{
+			.....
+		}
+
+You MUST specify ALL checked exception that this method may throw (i.e. FileNotFoundException)
+
+You MAY also list UNCHECKED exceptions (i.e. NumberFormatException)
+
+Java will automatically decide on the appropriate handler.
+
+
+-------------------------------------------------------Closing Resources------------------------------------------------------------
+
+NOTE: If you get an exception BEFORE you CLOSE "PrintWriter" or the like, then "close" NEVER GETS EXECUTED.
+
+Use the "try-with-resources statement"
+
+Instead of:
+	
+	PrintWriter out = new PrintWriter(filename);
+	writeData(out);
+	out.close();	//Program might never get here
+
+Write:
+	try (PrintWriter out = new PrintWriter(filename))	//implements AutoCloseable Interface
+	{
+		writeData(out);
+	}
+	// out.close() is ALWAYS called - automatically when the "try" block is completed
+	//     If an exception occurs, the "close" method is invoked BEFORE the exception is passed onto its handler
+
+
+You can also declare MULTIPLE variables in a try-with-resources statement, like so:
+
+	try (Scanner in = new Scanner(inFile); PrintWriter out = new PrintWriter(outFile))
+	{
+		while (in.hasNextLine())
+		{
+			String input = in.nextLine();
+			String result = process(input);
+			out.println(result);
+		}
+	}    // Both in.close() and out.close() are called here
+
+Use the try-with-resources statement whenever you work with a Scanner or PrintWriter to make sure that these
+	resources are closed properly
+
+
+-----------------------------------------------------Designing Your Own Exception Types------------------------------------------
+
+If none of the standard exception types describe your particular error condition well enough, design your own.
+
+Ex:	
+	if (amount > balance)
+	{
+		throw new InsufficientFundsException(
+			"withdrawal of " + amount + " exceeds balance of " + balance);
+	}
+
+1. Checked or unchecked exception? Fault beyond control or of programmer?
+
+We take the position that the programmer could have prevented it 
+	- could have checked: amount <= account.getBalance() before calling the "withdraw" method
+
+
+2. It's a good idea to EXTEND an appriopriate class in the Exception hierarchy.
+
+	Ex: We consider "InsufficientFundsException" a special case of an "IllegalArgumentException". 
+
+
+3. It's customary to provide two constructors for an exception class:
+	
+	a constructor with no arguments
+	a constructor that accepts a message string describing the reason for the exception
+
+Ex:
+	public class InsufficientFundsException extends IllegalArgumentException
+	{
+		public InsufficientFundsException() {}
+
+		public InsufficientFundsException(String messagee)
+		{
+			super(message);
+		}
+	}
+
+When the exception is caught, you can retrieve its message with "getMessage",
+	a method of the Throwable class

@@ -1,0 +1,43 @@
+-----Euler Method: velocity and position-----
+
+v(t+deltat) = v(t) + ((F(x(t), v(t), t))/m)deltat
+		--Force/mass
+
+x(t+deltat) = x(t) + [v(t) + v(t+deltat)]deltat/2
+
+	-The best we can do for the Euler method
+
+------For Harmonic oscilattor example:
+
+	F(x) = -kx
+
+v(t+deltat) = v(t) + (-kx/m)deltat
+
+x(t+deltat)) = x(t) + (v(t) + v(t+1))(deltat/2)
+
+
+--MATLAB----
+
+...m..k..x0...v0..Tf..Nt....	-defining constants
+
+t = linspace(0, Tf, Nt);
+x = zeros(1, Nt);
+v = zeros(1, Nt);
+deltat = t(2) - t(1);
+x(1) = x0;
+v(1) = v0;
+
+
+for it = 1:Nt
+	v(it+1) = v(it) + (-k*x(it)/m) * deltat;
+	x(it+1) = x(it) + (v(it)+v(it+1))*deltat/2;
+end
+
+plot(t, x)
+xlabel('t(sec) ');
+ylabel('x(m) ');
+grid on
+
+-----------------------------Problem: Gains energy over time - Overestimates values
+
+This is where the Verlet method comes in. 

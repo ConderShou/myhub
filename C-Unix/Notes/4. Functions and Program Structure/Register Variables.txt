@@ -1,0 +1,36 @@
+A REGISTER declaration notifies the compiler that the variable in question will be HEAVILY USED
+
+- Purpose: to have register variables placed in MACHINE REGISTERS, to get smaller and faster programs
+	- HOWEVER: Compilers are free to ignore the advice
+
+Ex:
+	register int x;
+	register char c;'
+
+
+- The register declaration can ONLY be applied to AUTOMATIC variables and to the FORMAL PARAMETERS of a function
+
+Ex: (For 'formal parameters')
+	
+	f(register unsigned m, register long n)
+	{
+		register int i;
+		...
+	}
+
+
+-----Restrictions on Usage of Register Variables------
+
+- Only a FEW variables in each function may be kept in registers
+
+- Only CERTAIN TYPES are allowed
+
+- Excess register declarations are harmless though:
+	- The WORD 'register' is IGNORED for excess or disallowed declarations
+
+- IMPOSSIBLE to take the ADDRESS of a register variable, regardless of whether the variable is ACTUALLY PLACED
+	in a register (regardless if variable is ignored or not?)
+
+
+- The specific restrictions on number and types of register variables VARY from machine to machine
+

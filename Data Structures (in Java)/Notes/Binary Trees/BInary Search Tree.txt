@@ -1,0 +1,103 @@
+If the binary search tree is balanced, the running time is O(log N)
+
+If the binary search tree is NOT balanced, WHICH IS THE WORST-CASE SCENARIO, the running time is O(N)
+	- Like a linked list, which is a degenerate binary tree that only goes down one side
+
+ON A TEST, YOU MUST ASSUME WORST-CASE SCENARIO - THIS MEANS ASSUME THE BINARY SEARCH TREE IS UNBALANCED
+
+------------------------------------------------------------------------------------------
+
+BInary Search Tree: 
+
+	For every node X, in the tree, the values of all the items in its LEFT subtree are SMALLER than the item in X,
+		and the values of all the items in its RIGHT subtree are LARGER than the item in X. 
+
+
+--------------------------Operations-------------------------------
+
+Because of the recursive definition of trees, it's common to write these routines RECURSIVELY
+
+Since the average depth of a binary tree is O(log N), we usually do not need to worry about running out of stack space.
+
+The binary search tree REQUIRES that all the items can be ordered. 
+
+In order to write this class generically, we need to use the interface COMPARABLE (from Chapter 1)
+	- It allows us to compare any two items in the tree using the "compareTo" method
+Instead of the "equals" method, we determine if the items are equal if and only if the
+	"compareTo" method RETURNS 0
+
+Alternatively, we can instead also use a function object to implement the binary search tree.
+
+Similar to the LinkedList class, the "BinaryNode" class is a nested class.
+
+
+private static class BinaryNode <AnyType> {
+	
+	// Constructors
+	
+	BinaryNode( AnyType theElement) {
+		this ( theElement, null, null ); 
+	}
+
+	BinaryNode ( AnyType theElement, BinaryNode<AnyType> lt, BinaryNode<AnyType> rt) {
+		element = theElement;
+		left = lt;
+		right = rt;
+	}
+
+	AnyType element;			// the data in the node
+	BinaryNode<AnyType> left;		// Left child
+	BinaryNode<AnyType> right;		// Right child
+	
+}
+
+
+----------------------Contains---------------------------
+
+Returns true if there is a node in tree T that has item X
+	- false if there is no such node
+	
+
+If T is empty, we can just return false.	
+
+If the item stored at T is X, we can return true.
+
+Otherewise, we make a recursive call on a subtree of T
+	- either left or right, corresponding to the "compareTo" result being < or > 0
+
+
+// x is the item to search for
+// t is the node that roots the subtree
+
+
+private boolean contains(AnyType x, BinaryNode<AnyType> t) {
+	if (t == null)
+		return false;
+
+	int compareResult = x.compareTo( t. element );
+	
+	if (compareResult < 0)
+		return contains( x, t.left );
+	else if ( compareResult > 0 ) 
+		return contains( x, t.right );
+	else
+		return true;	// A match has been found
+}
+
+
+NOTICE THE ORDER OF THE TESTS: 
+	
+	We test for an empty tree FIRST
+		- Otherwise, we generate a "NullPointerException" attempting to access a data
+			field through a "null" reference
+
+	The remaining tests are also arranged with the LEAST LIKELY case LAST
+
+
+Also notice that tail recursion is used here, which means they can easily be removed
+	with a while loop
+HOWEVER: the simplicity of the algorithmic expression here and the amount of stack space available from 
+	O(log N) allows us to use tail recursion without much consequence
+
+
+

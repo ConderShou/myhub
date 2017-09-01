@@ -1,0 +1,56 @@
+char* 
+char[]
+
+char astring[] = "abc"; //{'a', 'b', 'c'}
+char buf[10];
+buf = {0};
+
+---String are immutable, char arrays and char* are IMMUTABLE
+
+astring[0] = "abcd";		- Cannot do normal assignment for string array
+
+
+char *pstring = "abc"	- Points automatically to FIRST character
+
+*pstring = 'b';	- This doesn't work with dereferencing the first letter and replacing the character itself
+
+pstring = "test";	- This is mutable. Pointer can point to a different string. 
+
+
+char * 	- Immutable, but CAN reassign contents
+
+char[]	- Mutable, but CANNOT reassign
+
+char *x = "hello";
+
+
+sizeof(astring);		- Returns 4 - one byte for each character + one for null
+sizeof(pstring):		- 8 - number of bytes for a pointer
+
+char q[6];
+char *p = "hello"; 
+strcpy(q, p);		- Copies 'p' into 'q'
+
+
+-------------Three ways to Implement Strcpy--------------------
+
+//t is the source, s is the destination
+
+strcpy( char *destination, char *source )
+
+int i = 0;
+while((s[i] = t[i]) != 0) {
+	i++;
+}
+
+while((*s = *t) != 0) {	// Equivalent to:	s = (*t != 0) vim 
+	s++;
+	t++;
+}
+
+
+------------------------------------------
+printf("my program is %s": *argv);
+
+	*argv points to the Character pointer of the argument array, and that character pointer automatically returns
+		the string it's pointing to here

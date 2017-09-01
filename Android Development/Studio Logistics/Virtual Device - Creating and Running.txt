@@ -1,0 +1,49 @@
+Go into AVD Manager.
+
+Notice we can create our own virtual device, testing our app with a device not already included in the previous list.
+
+
+-----Selecting a System Image-----
+
+Represents which version of Android we want to have on our virtual device.
+
+x86 is meant for computers. 
+We can only utilize HAXM on x86.
+
+In the tab - "Other Images":
+	"arm" is meant for mobile platforms.
+
+Targets that contain the phrase "Google APIs" mean that they contain the Google APIs - i.e. Google maps
+
+Since we are using a computer to run the emulator, we choose the x86 system image. 
+
+------Verify Configuration--------
+
+Advanced settings has settings for cameras and network connections
+
+---
+
+If your app relies on a network connection, make sure to test it under various network conditions.
+
+In Advanced Settings, you can set many different speeds and latencies to make testing much more comprehensive.
+
+---
+
+NOTE: Make sure the "Enable Keyboard input" box is CHECKED
+	- Allows us to use our computer keyboard
+
+----
+
+Finish.
+
+-------------------------Setting Default Emulator---------------------------
+
+1. Click on the drop down menu that says 'app'.
+
+2. Select 'Edit Configurations'
+
+3. In the 'Target' drop-down box, select 'Emulator
+
+4. Select your desired virtual device in the 'Prefered Android Virtual Device' 
+
+5. Now when you run the app, it will start directly in the emulator. 

@@ -1,0 +1,66 @@
+Now we want to have the same methods in the base class and in a derived one, 
+but we want to do something different depending on the class the object is of.
+
+-------------------------------------------
+
+public class Vehicle {
+	private String color;
+	public Vehicle(String c) {color = c;}
+	
+	public String toString()
+		{return "I am a vehicle";}
+}
+
+public class Car extends Vehicle {
+	private int noPass;
+	public Car(int n, String c)
+		{super(c); noPass = n;}
+
+	public String toString()		- NOTICE: The method "toString" has a different behavior for the "Car" class in comparison to the "Vehicle" superclass
+						- The behavior is overwritten
+						- Even the input parameters can be the same. 
+
+		{return "I am a car. I am carrying "+noPass+" passengers";}
+}
+
+The same method with the same name and functionality can have different content in the different classes of the hierarchy.
+
+HOWEVER, the same method of the superclass can be called if needed.
+
+We use the "super" prefix, or the "this" prefix. 
+
+	super.toString()
+	
+	         or
+
+	this.toString()
+
+----------------------------------------
+
+Ex:
+
+class Employee {
+   public void speak() { 
+      System.out.println("No statements allowed");
+   }
+}
+
+class MarketingEmployee extends Employee {
+   public void speak() { 
+      System.out.println("You should buy our products!");
+   }
+}
+
+class PublicRelationsEmployee extends Employee {
+   public void speak() {
+      System.out.println("Our company is the best!");
+   }
+}
+
+....
+
+MarketingEmployee me = new MarketingEmployee();
+me.speak();
+
+	PRINTS: You should buy our products!
+

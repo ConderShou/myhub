@@ -1,0 +1,9 @@
+------------------------Collection Types------------------------
+
+- Hold multiple objects in various configurations
+
+- Several kinds are built into the language
+
+- Can write "collection literals"
+
+- Very easy to use

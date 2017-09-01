@@ -1,0 +1,125 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf810
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww33400\viewh20520\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\b\fs24 \cf0 \ul \ulc0 NOTE: The application state stored in Redux is ENTIRELY SEPARATE from the component state (we ONLY connect it with with mapState/mapDispatch/connect)
+\b0 \ulnone \
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 \'97reducer_book.js\'97\
+\
+\
+// Make sure you export this function in order to use it in other parts of the app\
+\
+// To wire this function into our function, we need to use 'index.js' - the one in the reducers folder\
+\
+
+\b export default function() \{\
+    return [\
+    \{ title: 'Javascript: The Good Parts' \},\
+    \{ title: 'Harry Potter' \},\
+    \{ title: 'The Dark Tower' \},\
+    \{ title: 'Eloquent Ruby' \},\
+    ]\
+\}\
+\
+\
+\
+
+\b0 \'97\'97index.js\'97\'97\
+\
+
+\b import \{ combineReducers \} from 'redux';
+\b0 \
+\
+//Importing the function and naming it as 'BooksReducer'\
+
+\b import BooksReducer from './reducer_books';
+\b0 \
+\
+//This is the mapping of our state. We're actually specifying what the state is in here.\
+//Ex: there is a piece of state right now called 'books' whose value is whatever is in 'BooksReducer'\
+\
+
+\b const rootReducer = combineReducers(\{\
+
+\b0 \
+  //This is equivalent to books: [ \{title: 'Javascript'\}, \{ title: 'Harry Potter' \} ]\
+  
+\b books: BooksReducer\
+\
+\
+\});\
+\
+export default rootReducer;\
+\
+\
+\
+
+\b0 \'97\'97./containers/book-list.js\'97\'97\
+
+\b \
+
+\b0 /* In order to create a bridge between the redux library and the react library: \
+    - We need to use 'react-redux' library\
+    - We need to promote a Component into a CONTAINER\
+\
+ The container = React component that has a DIRECT connection to the state managed by redux\
+\
+\
+ This is a container. Or AKA a 'Smart Component'\
+\
+\
+ ---Which apps should be containers?----\
+\
+ The most parent component that cares about a particular piece of state should be a container.\
+\
+ By "caring" we mean, DIRECTLY USING that piece of state.\
+\
+    The easy way out: Connecting App.js to Redux as a container and VOILA all of our components are connected to redux. BUT THAT IS NOT GOOD PROGRAMMING PARADIGM.\
+        - OOP\
+        - Modularization\
+\
+ This also means that: \
+     The children components of BookList (if they existed) WOULD NOT BE CONTAINERS\
+\
+
+\b SEE \'93IMPLEMENTING CONTAINERS\'94 TO SEE HOW WE IMPLEMENT THIS COMPONENT AS A CONTAINER
+\b0 \
+*/\
+
+\b \
+import React, \{ Component \} from 'react';\
+\
+\
+export default class BookList extends Component \{\
+    \
+    renderList() \{\
+        return this.props.books.map((book) => \{\
+            return (\
+\
+               
+\b0  //Remember that we need to provide a key when it comes to rendering a list \
+\
+                //Just insert whatever you think will be unique for each item
+\b \
+\
+                <li key=\{book.title\} className="list-group-item">\
+                    \{book.title\}\
+                </li>\
+                )\
+        \})\
+    \}\
+\
+    render() \{\
+        return (\
+            <ul className="list-group col-sm-4">\
+                \{this.renderList()\}\
+            </ul>\
+        )\
+    \}\
+\}\
+}

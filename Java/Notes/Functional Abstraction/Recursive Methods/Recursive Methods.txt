@@ -1,0 +1,59 @@
+---------------------------------------------------------------Recursive Methods--------------------------------------------------------------
+
+Power: x^y
+
+int power (int x, int y)
+{ // y >= 0
+	int z = 1;
+	for (int i = 1; i <= y; i++)
+		{z = x*z;}
+	return z;
+}
+
+--------------Recurrence Equation----------------
+
+Precondition: y >= 0
+
+x^y = 1		if (y==0)
+x^y = x * x^(y-1)	if (y>0)
+
+Representing this recurrence equation in Java....
+
+power(x, y) = 1			if (y==0)
+power(x,y) = x*power(x, y-1)		if (y > 0)
+
+-------------------------------Recursive Method-----------------------------
+
+Making this recurrence equation a functional method in Java:
+
+int power (int x, int y)
+{	// y>= 0
+
+	if (y==0) 
+		{return 1;}
+	else
+		{return x*power(x, y-1);}
+}
+
+--------------------------------------------------
+
+
+int power (int x, int y)
+{	// y>= 0
+
+	if (y==0) 
+		{return 1;}
+	else
+		{return x*power(x, y-1);}
+}
+
+public static void main (String[] args)
+{
+	int x =  3;
+	int y =  3;
+	int r = power(x, y);
+	System.out.println(r);
+}
+
+Prints: 27
+

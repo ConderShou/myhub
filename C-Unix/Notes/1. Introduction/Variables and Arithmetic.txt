@@ -1,0 +1,112 @@
+
+/* A comment */
+
+---Variables-----
+
+Must declare beforehand like in Java.
+
+	int fahr, celsius;
+	int lower, upper, step;
+
+
+Included:
+
+	char	- single byte
+	short	- short integer
+	long	- long integer
+	double	- double-precision floating point
+
+
+-----Assignment-----
+
+lower = 0;
+upper = 300;
+
+
+-----------while-------------
+
+while (fahr <= upper ) {
+	....
+}
+	
+
+NOTICE: 	<= exists in C.
+
+	Java has =<
+
+Can also be without braces for one statement blocks, like Java.
+
+while (i < j)
+	i = 2 * i;
+
+
+---------------Integer Division-------------
+
+celsius = 5 * (fahr - 32) / 9;
+
+Multiply by 5 FIRST, THEN divide by 9.
+
+Otherwise, if you do:
+
+	 5 / 9 * (fahr-32)
+
+Integer division will cause 5/9 to be evaluated to 0, and therefore all Celsius temperatures would be evaluated to 0. 
+
+If an arithmetic operator has integer operands, an integer operation is performed. 
+
+
+Between an INTEGER and a FLOATING-POINT, the integer will be CONVERTED INTO A FLOATING-POINT.
+
+This holds true for ASSIGNMENTS, ARITHMETIC, CONDITIONAL TESTS (while loop), etc...
+
+--------printf-------
+
+printf("%d/t%d/n", fahr, celsius);
+
+%d	- specifies integer argument
+
+%d\t	- The two integers 'fahr' and 'celsius' have a tab \t printed between them
+
+Each % construction is paired with the corresponding argument
+	
+	- 1st with 1st, 2nd with 2nd, etc...
+	
+They must match up properly by number and type. 
+
+
+printf is not a part of the C library, it actually works with any library, compiler, language, etc...
+
+defined in the ANSI standard
+
+
+---------------------------
+
+printf("%3d %6d\n", fahr, celsius);
+
+	Prints the first number of each line in a field 3 digits wide
+		Second number in a field 6 digits wide
+
+Like so:
+
+0	-17
+20	-6
+40
+...
+100	37
+
+
+---float---
+
+Change 'd' to 'f'
+
+float fahr, celsius;
+
+...
+
+printf("%3.0f %6.1f\n", fahr, celsius);
+
+For the second character, 6 digits wide, with 1 digit after decimal point. 
+
+0	-17.8
+20	-6.7
+40	4.4

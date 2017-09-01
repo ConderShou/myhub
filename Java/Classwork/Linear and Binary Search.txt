@@ -1,0 +1,84 @@
+Linear search = comparing each term with the desired value to see if it fits
+
+Binary search = list MUST be SORTED. Split book in half. If number is bigger/greater than desired value, search lesser half.
+		If number is less/fewer than desired value, search the greater half. 
+			Repeat until you find the value. 
+
+		- Start in the middle and determine in which half of the list our target lives (middle is less or more than desired value?)
+			- Repeat procedure eliminating half of the remaining list elements on each iteration
+
+Input size: associated with each input is a measure of its size. How we measure the size can vary from problem to problem.
+
+---------------------------------------------------------
+
+Pseudo Linear Search:
+
+found = "no";
+i = 1;
+while (found == "no" && i <= n)
+{
+	if (A[i] == x)
+	{	
+		found = "yes";
+		location = i;
+	}
+	i++;
+}
+if (found == "no")	
+{
+	print ("Sorry, " + x + " is not on the list");
+}
+else
+{
+	print (x + " occurs at position " + location + " on the list");
+}
+
+---------------------------------------------------------
+
+Pseudocode for Binary search:
+	"x" is the desired value
+
+found = "no";
+begin = 1;
+end = n;
+while (fond == "no" and begin <= end)
+{
+	m = begin + floor((end-begin/2)
+	if (A[m] == x)
+	{
+		found = "yes";
+		location = m;
+	}
+	if (A[m] > x)
+		end = m-1;
+	if (A[m] < x)
+		begin =  m + 1;
+}
+if (found == "n")
+{
+	print ("Sorry, " + x + " is not on the list");
+}
+else
+{
+	print (x+ " occurs at position" + location + " on the list");
+}
+
+---------------------------------------------------------
+
+Pseudocode for Selection sort:
+	Sorting list into increasing order. 
+
+for (i = 1; i < length(A); i++)
+{
+	locmin = i;
+	for (j = i+1; j <= length(A); j++)
+	{
+		if (A[locmin] > A[j])
+			locmin = j;
+	}
+	exchange(A[locmin], A[i]);		- Swaps values. As if we did:	
+
+						exchangevalue = A[locmin]	
+						A[locmin] = A[i]
+						A[i] = exchangevalue
+}

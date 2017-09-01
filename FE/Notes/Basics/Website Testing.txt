@@ -1,0 +1,96 @@
+-------Testing for Clarity in Color Contrast:-----
+
+1. Take screenshot of website
+
+2. Paste in image-editing tool:
+	
+	Make black and white. (Set 'Saturation' to 0)
+
+
+If everything still looks clear and easily distinguishable, then you're good.
+
+	Make sure you have strong contrast.
+
+
+------Testing for Aesthetics--------
+
+
+Flip screenshot UPSIDE-DOWN
+
+Look for:
+	Balance
+	
+	Aesthetics
+
+
+-------Testing Design Issues-----
+
+Blur the image so that you can JUST BARELY make out the text
+
+
+Look for:
+
+	Color saturation
+
+	Balance (In general: physical arrangement of portfolio/website elements, color, etc..)
+
+
+Adding in a SMALL amount of blur.
+
+Look for:
+
+	Legibility of text
+
+
+---------Validating Code-----------
+
+Use W3C validators:		
+
+
+--Validating HTML----
+
+validator.w3.org
+
+
+Look for:
+		Pass or Fail.
+
+The small warnings are nothing to be concerned with. 
+
+You might get errors for google fonts and their pipe "|" characters. This should be fine(?)
+
+----Validating CSS------
+
+jigsaw.w3.org/css-validator/
+
+
+Look for:
+		Pass or Fail
+
+
+-------------------Real Devices--------------------------
+
+Definitely test on real devices if possible.
+
+
+-------------------Testing on Various Types of Browsers---------
+
+Browserstack.com
+
+Use a free trial to test your website on VARIOUS BROWSERS
+
+	(Firefox, Windows, chrome, Opera, etc....)
+
+Use "Screenshots" to test A LOT at once
+
+Or do one at a time
+
+-------------------------------------------------------------
+-------------------------------------------------------------
+
+REMEMBER:
+		No matter how hard you try it's almost impossible to make your website look EXACTLY THE SAME
+		in every screen resolution/device/web browser
+
+GOAL:		
+		Get as close to perfection as possible while spending the least amount of effort to get there.

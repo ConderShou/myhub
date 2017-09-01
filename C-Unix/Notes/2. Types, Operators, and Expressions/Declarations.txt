@@ -1,0 +1,32 @@
+- All variables must be declared before use. 
+
+- Can declare multiple of the same type at once.
+
+	int lower, upper, step;
+
+	char c, line[1000];
+
+- Do not 'tentatively' define the variables like this for global variables.
+
+
+----------Automatic Variables----------
+
+Automatic variables are those declared inside a function or a block - those with LOCAL scope.
+	- Initialized each time the function or block is called. 
+
+
+-----------Const---------
+
+const	- specifies that the value of the variable will not be changed.
+	
+	const double e = 2.718...;
+	
+- Can be used with array arguments, indicating that the function does not change that array
+
+	int strlen(const char[]);
+
+- If the program attempts to change the 'const' variable, the result of the action is IMPLEMENTATION-DEFINED
+
+
+
+	

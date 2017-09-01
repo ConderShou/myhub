@@ -1,0 +1,25 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf810
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww33400\viewh21000\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\b\fs24 \cf0 render() \{\
+\
+		
+\b0 // ===THROTTLING THE SEARCH BAR FUNCTION====\
+		//\
+		//Takes the inner function 'videoSearch' and returns a NEW function that does the same thing as the inner function BUT can only be called ONCE every 300 MILLISECONDS\
+		//\
+		//This is how GOOGLE INTANT SEARCH WORKS
+\b \
+\
+		const videoSearch = _.debounce((term) => \{ this.videoSearch(term) \}, 300)\
+\
+		return (\
+			<div>\
+				<SearchBar onSearchTermChange=\{videoSearch\} />\
+\
+			\'85.\
+}

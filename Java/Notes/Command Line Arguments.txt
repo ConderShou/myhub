@@ -1,0 +1,102 @@
+You can start with a program with the command line:
+
+	java ProgramClass -v input.dat
+
+The program receives two command line arguments: the strings "-v" and "input.dat"
+
+
+Your program receives its command line arguments in the "args" parameter of the main method.
+
+	public static void main(String[] args)
+
+In our earlier example, "args" is an array of length 2, containing the strings:
+	
+	args[0]:	"v"
+	args[1]:	"input.dat"
+
+-------------
+
+We will write a program that encrypts a file, called CaesarCipher.java
+
+We will make the program take in the following command line arguments:
+
+	An optional "-d" flag to indicate decryption instead of encryption
+	
+	The input file name
+		
+	The output file name
+
+Ex:
+	java CaesarCipher	input.txt	encrypt.txt
+	
+Encrypts the file "input.txt" and places the result into "encrypt.txt"
+
+	java CaesarCipher -d encrypt.txt  output.txt
+
+Decrypts the file "encrypt.txt" and places the result into "output.txt"
+
+
+----------Command Line Portion of the Caesar Cipher program---------
+
+This is only long because we want to include the "-d" function.
+
+OTHERWISE: we just use args[0] and args[1] and insert them directly into Scanner
+
+public static void main(String[] args) throws FileNotFoundException
+{
+	final int DEFAULT_KEY = 3;
+	int key = DEFAULT_KEY;
+	String inFile = "";
+	String outFile = "";
+	int files = 0; 	// Number of command line arguments that are files
+
+	for (int i  = 0; i < args.length; i++)
+	{
+		String arg = args[i];
+	
+		if (arg.charAt(0) == '-')
+		{
+			//It's a command line option "-d"
+	
+			char option = arg.charAt(1);
+			if (option == 'd') { key = -key; }	//If key is negative, (-3), the method "encrypt" 
+			else { return; }			// ends up decrypting the file
+		}
+		else
+		{
+			//It's a file name
+	
+			files++;
+	
+			if (files == 1) { inFile = arg; }		//arg[1]
+			else if (files == 2) { outFile = arg; }	//arg[2]
+		}
+	}
+
+	if (files != 2) {return;}
+	
+	Scanner in = new Scanner(new File(inFile));
+	in.useDelimiter("");		// Process individual characters
+	PrintWriter out = new PrintWriter(outFile);
+
+	while (in.hasNext())
+	{
+		char from = in.next().charAt(0);
+		char to = encrypt(from, key);
+		out.print(to);
+	}
+	in.close();
+	out.close();
+}
+	
+....
+
+/**
+	Encrypts upper and lowercase characters by shifting them according to a key
+
+	@param ch the letter to be encrypted
+	@parm key the encryption key
+	@return the encrypted letter
+
+.....
+

@@ -1,0 +1,86 @@
+--------Placing Images on an Axis----------
+
+---------STEPS TO PLACING FIGURE ON AN AXIS----------------
+
+1. Read figure from file with imread
+2. Flip color planes to Cartesian mode
+3. Find size of image and set scale appropriately
+4. Create axis
+5. Create image using low-level image command (setting Color Data to the array that we read with imread Ex: hPimage = image('CData', Perry);)
+6. Place image on axis by:
+	- setting Parent property to handle of axes object
+	- set XData and YData properties to lower left and upper right corner coordinates
+
+----MATLAB----------------------------------------------------------------------------------
+
+axis image	- equal number of pixels on x as well as y axis (fixes distortion of image displayed in Matlab)
+
+
+% placeAgentP
+%	import image of Perry the Platypus and place it on an axis
+
+clear;
+clc
+clf;
+
+%% import figure
+
+Perry = imread('Perry_the_Platypus.png');
+
+%% find image scale
+[ny, nx, nz] = size(Perry);	- [row, column, plane]
+PerryWidth = 4;			-image width	
+PerryHeight = PerryWidth* (ny/nx);	-scales width with height so image is proportionate
+
+%% flip color plane
+for k = 1:3				-Image data is stored where the row number increases going down the y-axis, so we must flip the image
+	Perry(:, :, k) = flipud(Perry(:, :, k));	-Goes through red, green, and blue color plans 
+end					-Flips upside down - makes lowest row the highest row and vice versa
+		
+		
+	
+%% create axes
+
+axes xy			-creates normal Cartesian axis as opposed to an image axis (so direction will be in the right way)
+axes equal		-makes pixels in up-right-left-down direction the same
+axis([0, 15, 0, 10]);
+hax = gca;		-placement for the handle that will get the current axis 
+
+%% create figure and place on axis
+
+hPimage = image('CData', Perry);	-creates image object from the Color Data that is in the array 'Perry'
+hPimage.Parent = hax;	
+
+%% set coordinates of lower left and upper right corners
+
+xLL = 7;					-Now we can change this without changing scale of image
+yLL = 0.5;
+xUr = xLL + PerryWidth;
+yUr = yLL + PerryHeight;			-Now image is scaled appropriately
+
+hPimage.XData = [xLL, xUR];				
+hPimage.YData = [yLL, yUR];	
+	
+         -Sets X and Y coordinates of two points
+
+	Ex: 
+	
+	hPimage.XData = [3, 10];	-But this can distort image if the image is not scaled appropriately (this is why we get the size of the image)
+	hPimage.YData = [1, 5];
+	(3, 1) => lower left corner of image
+	(10, 5) => upper right corner of image
+
+	hPimage.XData = [xLL, xUR];
+	hPimage.YData = [yLL, yUR];
+
+
+---------STEPS TO PLACING FIGURE ON AN AXIS----------------
+
+1. Read figure from file with imread
+2. Flip color planes to Cartesian mode
+3. Find size of image and set scale appropriately
+4. Create axis
+5. Create image using low-level image command (setting Color Data to the array that we read with imread Ex: hPimage = image('CData', Perry);)
+6. Place image on axis by:
+	- setting Parent property to handle of axes object
+	- set XData and YData properties to lower left and upper right corner coordinates

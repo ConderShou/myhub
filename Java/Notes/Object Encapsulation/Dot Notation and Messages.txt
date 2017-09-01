@@ -1,0 +1,23 @@
+class Triple {
+	int n1;
+	int n2;
+	int n3;
+
+	Triple(int i, int j, int k) {n1 = i; n2 = j; n3 = k;}
+	
+	int get1() {return n1;}
+	void set1(int n) {n1 = n;}
+	double average() {return (n1+n2+n3)/3;}
+
+	}
+
+Triple t = new Triple(1, 2, 3);
+
+	When you have defined a reference for the object (created an object and given it a name)
+		you refer to the attribute through dot notation.
+
+t.n1 		- Refers to attribute "n1" of object "t"
+
+t.get1()		- Calls method "get1()" for "object t"
+
+NOT get1(t)	- This applies to OTHER programming paradigms

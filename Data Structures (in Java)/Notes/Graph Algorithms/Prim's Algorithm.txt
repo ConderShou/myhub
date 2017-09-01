@@ -1,0 +1,65 @@
+
+This entire implementation is virtually identical to Dijkstra's.
+
+All analysis of Dijkstra's applies here.
+
+IMPORTANT: Prim's algorithm runs on undirected graphs
+	    When coding it, remember to put every edge in TWO adjacency lists
+
+	The running time is O(|V|^2)       without heaps        -- This is optimal for DENSE graphs
+	                               O(|E| log|V|) using binary heaps -- This is optimal for SPARSE graphs
+
+
+----------------------------------------------
+
+One way to compute a minimum spanning tree is to:
+
+	Grow the tree in successive stages
+
+	In each stage, one node is picked as the root, we add an edge, and thus an associated vertex, to the tree.
+
+At any point in the algorithm, we can see that we have a set of vertices that have already been included in the tree. 
+
+	The rest of the vertices have not. 
+
+	Then, we find, at each stage, a NEW vertex to add to the tree by choosing the edge (u, v) 
+		such that the cost of (u, v) is the SMALLEST among all edges where 'u' is in the tree and 'v' is not.
+
+	Initially, the tree just contains a root with no edges.
+
+
+--------------------------
+
+Essentially, Prim's algorithm is like Dijkstra's algorithm.
+
+For each vertex we keep values dv, pv, and known.
+
+	dv = weight of the shortest edge connecting 'v' to a KNOWN vertex
+
+	pv = last vertex to cause a change in dv
+
+The rest of the algorithm is exactly the same (although it may not seem so at first with the confusing instructions above)
+
+EXCEPTION: Notice definition of 'dv' is different
+
+	The update rule is EVEN MORE simple.
+
+          RULE: After a vertex 'v' is selected, for each unknown adjacent 'w' adjacent to v, dw = min(dw, cw,v )
+
+	   In other words, the adjacent vertex's 'dv' is just meant to have the smallest weight possible, 
+			and we UPDATE it whenever there's another vertex that creates an edge of SMALLER weight
+
+Review pg. 395 - 397 to see Prim's algorithm (Fig 9.52 - 9.57) to see Prim's algorithm demonstrated.
+
+
+--------------------------------
+
+This entire implementation is virtually identical to Dijkstra's.
+
+All analysis of Dijkstra's applies here.
+
+IMPORTANT: Prim's algorithm runs on undirected graphs
+	    When coding it, remember to put every edge in TWO adjacency lists
+
+	The running time is O(|V|^2)       without heaps        -- This is optimal for DENSE graphs
+	                               O(|E| log|V|) using binary heaps -- This is optimal for SPARSE graphs

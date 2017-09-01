@@ -1,0 +1,5 @@
+do
+	{statement}
+while (expression);
+
+- Even for single statements, use braces for clarity (even though they are not TECHNICALLY necessary)

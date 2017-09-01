@@ -1,0 +1,50 @@
+-----Waitbar--------
+
+Reassures user that things are okay in a long calculation
+
+1. Create and initialize waitbar, getting the handle to it
+2. Update waitbar, usually within a loop
+3. Close waitbar
+
+Nt = 1000;
+hwb = waitbar(0, 'Calculating...', 'Name', 'Time Marching');	- Creates waitbar 
+					                   Initiliazes state to zero
+						   Labels the bar as 'Calculating...'
+					 	   Names the window as 'Time Marching'		
+for it  = 1:Nt
+	%serious computation takes place here
+	pause(0.005)
+	waitbar(it/Nt, hwb);		- Updates waitbar 'hwb' by taking value of it/Nt  (handle is 'hwb')
+				         (can only take values between 0 and 1)
+end
+close(hwb)	-Close waitbar so it doesn't linger on the screen
+
+------Button groups---------------------
+
+Add buttons from the GUI selection toolbox and name their 'String' and 'Tag' accordingly
+
+    ---Within program.....
+
+	Instead of iPlotChoice: hPlotSelected = handles.plotButtongroup.SelectedObject;	-the handles here returns a string
+
+	plotStr = hPlotSelected.String;						-which we then put into plotStr
+
+	....
+	
+	switch plotStr
+
+		case 'Function'
+
+		case 'Derivative'
+
+		case 'Both'
+
+	
+	
+     ---Within GUI code......
+
+	function plotButtongroup_SelectionChangedFcn(...     -this function runs code whenever the button is changed
+
+	plotgaussF(handles);
+
+       Now the graph changes IMMEDIATELY to the current slider value when a different button is clicked 
