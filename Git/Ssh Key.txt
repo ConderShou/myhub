@@ -1,1 +1,0 @@
-Google github generate SSH key and follow the instructions for the desired operating system.
